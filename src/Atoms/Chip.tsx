@@ -14,12 +14,14 @@ export function Chip({ text }: Props) {
   };
 
   return (
-    <button
+    <div
       className={isSelected ? selectedStyle : unSelectedStyle}
       onClick={handleClick}
     >
-      {text}
-    </button>
+      <p className={isSelected ? selectedTextStyle : unSelectedTextStyle}>
+        {text}
+      </p>
+    </div>
   );
 }
 
@@ -38,6 +40,25 @@ const unSelectedStyle = css`
   gap: 10;
   border-radius: 8px;
   border: 1px solid var(--grey_30_light, #e9ebee);
+`;
+
+const unSelectedTextStyle = css`
+  flex-shrink: 0;
+  width: auto; /* 28px */
+  height: auto; /* 23px */
+  white-space: pre;
+  position: relative;
+  line-height: 1.2;
+`;
+
+const selectedTextStyle = css`
+  flex-shrink: 0;
+  width: auto; /* 28px */
+  height: auto; /* 23px */
+  white-space: pre;
+  position: relative;
+  color: var(--grey_5_light, #fefefe);
+  line-height: 1.2;
 `;
 
 const selectedStyle = css`
