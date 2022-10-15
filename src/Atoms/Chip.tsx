@@ -40,6 +40,7 @@ const unSelectedStyle = css`
   gap: 10;
   border-radius: 8px;
   border: 1px solid var(--grey_30_light, #e9ebee);
+  font-size: 16px;
 `;
 
 const unSelectedTextStyle = css`
