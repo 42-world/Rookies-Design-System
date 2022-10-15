@@ -3,9 +3,6 @@
   "version": "1.0.5",
   "main": "",
   "license": "MIT",
-  "author": {
-    "name": "Koen Bok"
-  },
   "scripts": {
     "serve": "yarn; node esmbuild/esmbuild serve ./src 8000",
     "build": "yarn; node esmbuild/esmbuild build ./src dist",
