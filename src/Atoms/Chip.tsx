@@ -11,6 +11,7 @@ export function Chip({ text }: Props) {
 
   const handleClick = () => {
     setIsSelected(!isSelected);
+    console;
   };
 
   return (
