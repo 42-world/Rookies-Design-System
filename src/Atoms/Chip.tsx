@@ -1,6 +1,7 @@
 import { css } from "@emotion/css";
 import * as React from "react";
 import { useState } from "react";
+import { tokens } from "../tokens";
 
 type Props = {
   text: string;
@@ -32,7 +33,7 @@ const unSelectedStyle = css`
   padding: 6px 18px 6px 18px;
   align-content: center;
   border-radius: 8px;
-  border: 1px solid var(--grey_30_light, #e9ebee);
+  border: 1px solid ${tokens.color.grey_20_dark};
   background-color: #fff;
 `;
 
