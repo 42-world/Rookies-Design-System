@@ -20,12 +20,12 @@ export function Chip({ text, link, size, type }: Props) {
           : "4px 24px 4px 24px"};
         border-radius: 8px;
         background-color: ${type === "primary"
-          ? tokens.color.main_green_10.value
-          : tokens.color.grey_10_light.value};
-        border: 1px solid ${tokens.color.grey_30_light.value};
+          ? tokens.color.main_green_10
+          : tokens.color.grey_10_light};
+        border: 1px solid ${tokens.color.grey_30_light};
         color: ${type === "primary"
-          ? tokens.color.grey_5_light.value
-          : tokens.color.grey_50_light.value};
+          ? tokens.color.grey_5_light
+          : tokens.color.grey_50_light};
         font-weight: 500;
         font-size: 16px;
         text-align: center;
