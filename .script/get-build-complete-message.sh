@@ -35,19 +35,19 @@ get_diff_component() {
         local status=$(get_status $filepath)
         local link=$(make_link $filepath)
 
-        echo "- $status : $link"
+        echo -n "- $status : $link\n"
     done
 }
 
 
 main() {
-    echo "## $version 빌드 완로 🚀"
-    echo ""
-    echo "### Changes & URL"
-    echo ""
+    echo -n "## $version 빌드 완로 🚀\n"
+    echo -n "\n"
+    echo -n "### Changes & URL\n"
+    echo -n "\n"
     get_diff_component
-    echo ""
-    echo "github pages 배포후에 사용가능합니다."
+    echo -n "\n"
+    echo -n "github pages 배포후에 사용가능합니다.\n"
 }
 
 main

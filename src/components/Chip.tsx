@@ -52,6 +52,6 @@ const selectedStyle = css`
   background-color: var(--main_green_10, #41c464);
   overflow: hidden;
   align-content: center;
-  gap: 10;
+  gap: 30;
   border-radius: 8px;
 `;
