@@ -35,10 +35,8 @@ jobs:
           cd branch
           yarn
           yarn run build
-          ls -al
-          pwd
-          PR_NUM=${{ github.event.number }} yarn run release
-          cp -rf release/* pages
+          PR_NUM=${{ github.event.number }} yarn run release:alpha
+          cp -rf release/* $GITHUB_WORKSPACE/pages
       - name: Commit & Push
         run: |
           cd pages
