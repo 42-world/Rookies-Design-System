@@ -9,7 +9,8 @@ type Props = {
   size: 'normal' | 'small';
   type: 'default' | 'danger' | 'primary';
 };
-
+const a = 10;
+a;
 export function Chip({ text, link, size, type }: Props) {
   return (
     <button

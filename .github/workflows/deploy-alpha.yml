@@ -44,6 +44,17 @@ jobs:
           git config --global user.name 'deploy'
           git config --global user.email 'deploy@users.noreply.github.com'
           git add .
+          MSG=$(bash .script/get-diff-components.sh $VERSION)
           git status
           git commit -m "Updated Alpha ${{ github.event.number }}"
           git push --force
+      - name: Comment a pull_request
+        uses: actions/github-script@v5
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: process.env.MSG
+            })

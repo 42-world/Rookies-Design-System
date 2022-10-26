@@ -29,7 +29,7 @@ const unSelectedStyle = css`
   align-content: center;
   border-radius: 8px;
   border: 1px solid ${tokens.color.grey_20_dark};
-  background-color: #fff;
+  background-color: #fff; ;
 `;
 
 const unSelectedTextStyle = css`
