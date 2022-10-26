@@ -35,10 +35,14 @@ jobs:
           cd branch
           yarn
           yarn run build
-          echo $npm_package_version
-          echo alpha-pr${{ github.event.number }}
-          VERSION=alpha-pr${{ github.event.number }} yarn run release
-          cp -rf release/* $GITHUB_WORKSPACE/pages
+          VERSION=$(yarn --silent run version)
+          echo $VERSION
+          VERSION=alpha-pr${{ github.event.number }}
+          yarn run release
+          ls -al $GITHUB_WORKSPACE/pages
+          ls -al $GITHUB_WORKSPACE/pages/$VERSION
+          echo "rm -rf $GITHUB_WORKSPACE/pages/$VERSION"
+          cp -rf dist $GITHUB_WORKSPACE/pages/$VERSION
       - name: Commit & Push
         run: |
           cd pages
