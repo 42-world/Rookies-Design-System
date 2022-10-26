@@ -36,7 +36,8 @@ jobs:
           cd main
           yarn
           yarn run build
-          yarn run release
+          echo $npm_package_version
+          VERSION=$npm_package_version yarn run release
           cp -rf release/* pages
       - name: Commit & Push
         run: |

@@ -35,7 +35,9 @@ jobs:
           cd branch
           yarn
           yarn run build
-          PR_NUM=${{ github.event.number }} yarn run release:alpha
+          echo $npm_package_version
+          echo alpha-pr${{ github.event.number }}
+          VERSION=alpha-pr${{ github.event.number }} yarn run release
           cp -rf release/* $GITHUB_WORKSPACE/pages
       - name: Commit & Push
         run: |
