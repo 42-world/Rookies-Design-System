@@ -32,9 +32,10 @@ jobs:
           path: pages
       - name: Reset Pages
         run: |
-          cd pages
-          VERSION=alpha-pr${{ github.event.pull_request.number }}
+          cd branch
           MAIN_VERSION=$(yarn --silent run version)
+          cd ../pages
+          VERSION=alpha-pr${{ github.event.pull_request.number }}
           rm -rf $VERSION
           cp -rf $MAIN_VERSION $VERSION
           git config --global user.name 'deploy'
