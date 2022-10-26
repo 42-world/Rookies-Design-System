@@ -44,8 +44,9 @@ jobs:
           git config --global user.name 'deploy'
           git config --global user.email 'deploy@users.noreply.github.com'
           git add .
-          MSG=$(bash $GITHUB_WORKSPACE/branch/.script/get-build-complete-message.sh $VERSION)
-          echo $MSG
+          VERSION=alpha-pr${{ github.event.pull_request.number }}
+          bash $GITHUB_WORKSPACE/branch/.script/get-build-complete-message.sh $VERSION > $GITHUB_WORKSPACE/comment.txt
+          cat $GITHUB_WORKSPACE/comment.txt
           git status
           git commit -m "Updated Alpha $VERSION"
           git push --force
@@ -54,9 +55,9 @@ jobs:
           PR_NUMBER: ${{ github.event.pull_request.number }}
           REPO: ${{ github.repository }}
         run: |
-          echo $MSG
+          cat $GITHUB_WORKSPACE/comment.txt
           curl -X POST \
             -H "Content-Type: application/json" \
             -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
             https://api.github.com/repos/$REPO/issues/$PR_NUMBER/comments \
-            -d '{"body": "test"}'
+            -d '{"body": "test $(cat $GITHUB_WORKSPACE/comment.txt)"}'
