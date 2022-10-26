@@ -35,7 +35,7 @@ jobs:
           cd branch
           yarn
           yarn run build
-          VERSION=alpha-pr${{ github.event.number }}
+          VERSION=alpha-pr${{ github.event.pull_request.number }}
           rm -rf $GITHUB_WORKSPACE/pages/$VERSION
           cp -rf dist $GITHUB_WORKSPACE/pages/$VERSION
       - name: Commit & Push
@@ -46,15 +46,16 @@ jobs:
           git add .
           MSG=$(bash $GITHUB_WORKSPACE/branch/.script/get-build-complete-message.sh $VERSION)
           git status
-          git commit -m "Updated Alpha ${{ github.event.number }}"
+          git commit -m "Updated Alpha $VERSION"
           git push --force
       - name: Comment a pull_request
-        uses: actions/github-script@v5
-        with:
-          script: |
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: process.env.MSG
-            })
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          REPO: ${{ github.repository }}
+        run: |
+          echo $MSG
+          curl -X POST \
+            -H "Content-Type: application/json" \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            https://api.github.com/repos/$REPO/issues/$PR_NUMBER/comments \
+            -d '{"body": "test"}'
