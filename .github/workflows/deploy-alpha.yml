@@ -36,7 +36,13 @@ jobs:
           yarn
           yarn run build
           VERSION=alpha-pr${{ github.event.pull_request.number }}
+          MAIN_VERSION=$(yarn --silent run version)
           rm -rf $GITHUB_WORKSPACE/pages/$VERSION
+          cp -rf $GITHUB_WORKSPACE/pages/$MAIN_VERSION $GITHUB_WORKSPACE/pages/$VERSION
+          git config --global user.name 'deploy'
+          git config --global user.email 'deploy@users.noreply.github.com'
+          git add .
+          git commit -m "Reset Alpha $VERSION"
           cp -rf dist $GITHUB_WORKSPACE/pages/$VERSION
       - name: Commit & Push
         run: |
