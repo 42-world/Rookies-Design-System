@@ -1,7 +1,7 @@
-import { css } from "@emotion/css";
-import * as React from "react";
-import { useState } from "react";
-import { tokens } from "../tokens";
+import { css } from '@emotion/css';
+import * as React from 'react';
+import { useState } from 'react';
+import { tokens } from '../tokens';
 
 type Props = {
   text: string;
@@ -15,13 +15,8 @@ export function Chip({ text }: Props) {
   };
 
   return (
-    <div
-      className={isSelected ? selectedStyle : unSelectedStyle}
-      onClick={handleClick}
-    >
-      <p className={isSelected ? selectedTextStyle : unSelectedTextStyle}>
-        {text}
-      </p>
+    <div className={isSelected ? selectedStyle : unSelectedStyle} onClick={handleClick}>
+      <p className={isSelected ? selectedTextStyle : unSelectedTextStyle}>{text}</p>
     </div>
   );
 }
