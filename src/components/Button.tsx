@@ -10,7 +10,7 @@ type Props = {
   type: "default" | "danger" | "primary";
 };
 
-export function Chip({ text, link, size, type }: Props) {
+export function Button({ text, link, size, type }: Props) {
   return (
     <button
       type="button"
