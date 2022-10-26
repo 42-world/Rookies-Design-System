@@ -60,4 +60,4 @@ jobs:
             -H "Content-Type: application/json" \
             -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
             https://api.github.com/repos/$REPO/issues/$PR_NUMBER/comments \
-            -d '{"body": "test $(cat $GITHUB_WORKSPACE/comment.txt)"}'
+            -d '{"body": "test '$(cat $GITHUB_WORKSPACE/comment.txt)'"}'

@@ -28,10 +28,10 @@ make_link() {
 }
 
 get_diff_component() {
-    local list=$(git status | grep src | cut -d ":" -f 2)
+    local list=$(git status | grep $version | cut -d ":" -f 2)
 
     for raw_filepath in $list; do
-        local filepath=$(trim $raw_filepath | sed 's/src\///g')
+        local filepath=$(trim $raw_filepath | sed "s/$version\///g")
         local status=$(get_status $filepath)
         local link=$(make_link $filepath)
 
