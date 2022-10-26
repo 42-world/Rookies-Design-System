@@ -1,5 +1,15 @@
 # 42World Design System
 
+## Framer Example
+
+```
+import { addPropertyControls, ControlType } from "framer"
+import { Chip } from "https://42-world.github.io/42world-Design-System/1.0.5/components/Chip.js"
+
+export default Chip as React.ComponentType
+
+```
+
 # Framer ESM Example Setup
 
 This is an example how to set up a repository that builds code which can be consumed in Framer. It builds standard JavaScript into ES Modules that you can both use locally for development or to deploy to any http server for distribution across your team or the internet.
