@@ -30,6 +30,11 @@ make_link() {
 get_diff_component() {
     local list=$(git status | grep $version | cut -d ":" -f 2)
 
+    if [ -z "$list" ]; then
+        echo -n "- No changes!!\n"
+        return
+    fi
+
     for raw_filepath in $list; do
         local filepath=$(trim $raw_filepath | sed "s/$version\///g")
         local status=$(get_status $filepath)

@@ -48,7 +48,7 @@ jobs:
           VERSION=$(yarn --silent run version)
           bash $GITHUB_WORKSPACE/branch/.script/get-build-complete-message.sh $VERSION > $GITHUB_WORKSPACE/comment.txt
           git status
-          git commit -m "Updated Main"
+          git commit -m "Updated Main" | cat
           git push --force
       - name: Comment a pull_request
         env:
