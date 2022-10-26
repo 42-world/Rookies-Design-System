@@ -39,7 +39,8 @@ jobs:
           git add .
           git status
           git commit -m "Removed Alpha $VERSION"
-          git push --force
+          git pull
+          git push
       - name: Comment a pull_request
         env:
           PR_NUMBER: ${{ github.event.pull_request.number }}
