@@ -7,7 +7,7 @@ type Props = {
   text: string;
 };
 
-export function Chip({ text }: Props) {
+export function Button({ text }: Props) {
   const [isSelected, setIsSelected] = useState(false);
 
   const handleClick = () => {
