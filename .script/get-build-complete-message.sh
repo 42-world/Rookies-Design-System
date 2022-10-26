@@ -21,8 +21,8 @@ get_status() {
 make_link() {
     local filepath=$1
     local dirpath=$(dirname $filepath)
-    local filename=$(basename $filepath .tsx)
-    local url="https://42-world.github.io/42world-Design-System/$version/$dirpath/$filename.js"
+    local filename=$(basename $filepath)
+    local url="https://42-world.github.io/42world-Design-System/$version/$dirpath/$filename"
 
     echo "[$dirpath/$filename]($url)"
 }
