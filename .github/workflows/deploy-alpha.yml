@@ -35,12 +35,8 @@ jobs:
           cd branch
           yarn
           yarn run build
-          VERSION=$(yarn --silent run version)
-          echo $VERSION
           VERSION=alpha-pr${{ github.event.number }}
-          ls -al $GITHUB_WORKSPACE/pages
-          ls -al $GITHUB_WORKSPACE/pages/$VERSION
-          echo "rm -rf $GITHUB_WORKSPACE/pages/$VERSION"
+          rm -rf $GITHUB_WORKSPACE/pages/$VERSION
           cp -rf dist $GITHUB_WORKSPACE/pages/$VERSION
       - name: Commit & Push
         run: |
@@ -48,5 +44,6 @@ jobs:
           git config --global user.name 'deploy'
           git config --global user.email 'deploy@users.noreply.github.com'
           git add .
+          git status
           git commit -m "Updated Alpha ${{ github.event.number }}"
           git push --force
