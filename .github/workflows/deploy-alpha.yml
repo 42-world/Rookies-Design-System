@@ -38,7 +38,6 @@ jobs:
           VERSION=$(yarn --silent run version)
           echo $VERSION
           VERSION=alpha-pr${{ github.event.number }}
-          yarn run release
           ls -al $GITHUB_WORKSPACE/pages
           ls -al $GITHUB_WORKSPACE/pages/$VERSION
           echo "rm -rf $GITHUB_WORKSPACE/pages/$VERSION"
