@@ -38,7 +38,17 @@ export function Text({ theme, size, color, align, text }: Props) {
         : size === 'Caption'
         ? '12px'
         : '16px'};
-      font-weight: 500;
+      font-weight: ${size === 'Header1'
+        ? 600
+        : size === 'Header2'
+        ? 600
+        : size === 'Header3'
+        ? 600
+        : size === 'Header4'
+        ? 600
+        : size === 'Body1'
+        ? 500
+        : 500};
       width: 1fr;
       line-height: 1.25;
       margin: 0;
