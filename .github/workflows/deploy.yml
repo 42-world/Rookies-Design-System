@@ -50,7 +50,8 @@ jobs:
           bash $GITHUB_WORKSPACE/main/.script/get-build-complete-message.sh $VERSION > $GITHUB_WORKSPACE/comment.txt
           git status
           git commit -m "Updated Main" | cat
-          git push --force
+          git pull
+          git push
       - name: Comment a pull_request
         env:
           PR_NUMBER: ${{ github.event.pull_request.number }}
