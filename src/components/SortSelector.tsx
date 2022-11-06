@@ -12,7 +12,7 @@ type Props = {
   list: ListProps[];
 };
 
-const SortSelector = ({ list, theme }: Props) => {
+export const SortSelector = ({ list, theme }: Props) => {
   const [onFocus, setOnFocus] = useState(0);
 
   return (
