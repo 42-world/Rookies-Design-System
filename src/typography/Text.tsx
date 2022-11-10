@@ -77,7 +77,7 @@ export function Text({ theme, size, color, align, text }: Props) {
       : color === 'main_green_10'
       ? tokens.color.main_green_10
       : color === 'red_10'
-      ? tokens.color.grey_50_light
+      ? tokens.color.red_10_light
       : tokens.color.grey_50_light;
 
   const COLOR_DARK =
