@@ -14,15 +14,21 @@ type CustomProps = {
 
 type Props = React.InputHTMLAttributes<HTMLInputElement> & CustomProps;
 
-export function Input({ theme, value, placeholder, isError, errorMessage, ...rest }: Props) {
+export function Input({ theme, value, placeholder, isError, errorMessage, onFocus, onBlur, ...rest }: Props) {
   const [isFocus, setIsFocus] = React.useState(false);
 
-  const handleFocus = React.useCallback(() => {
+  const handleFocus = React.useCallback((event: React.FocusEvent<HTMLInputElement>) => {
     setIsFocus(true);
+    if (onFocus) {
+      onFocus(event);
+    }
   }, []);
 
-  const handleBlur = React.useCallback(() => {
+  const handleBlur = React.useCallback((event: React.FocusEvent<HTMLInputElement>) => {
     setIsFocus(false);
+    if (onBlur) {
+      onBlur(event);
+    }
   }, []);
 
   return (
