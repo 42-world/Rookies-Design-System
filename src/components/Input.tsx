@@ -97,7 +97,8 @@ const inputStyle = (theme: Theme, isError?: boolean) => css`
   color: ${theme === 'light' ? tokens.color.grey_60_light : tokens.color.grey_60_dark};
   font-size: 16px;
   caret-color: rgb(255, 255, 255);
-  font-family: 'Pretendard Regular', serif;
+  font-family: 'Pretendard Medium', serif;
+  font-weight: 100;
   appearance: none;
   border: none;
   border-radius: unset;
