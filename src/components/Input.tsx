@@ -133,7 +133,8 @@ const placeholderStyle = (theme: Theme, isFocus: boolean, isTyping: boolean, isE
   transform-origin: 50% 50% 0;
   font-size: ${isTyping ? '10px' : '14px'};
   line-height: ${isTyping ? '1.2' : '1.4'};
-  transition: all 0.2s ease-in-out;
+  transition-duration: 0.2s;
+  transition-property: transform, color, top, line-height;
   ${isError &&
   css`
     color: ${tokens.color.red_20_light};
