@@ -8,13 +8,24 @@ type Theme = 'light' | 'dark';
 type CustomProps = {
   value: string;
   theme: Theme;
+  onChangeless: boolean;
   isError?: boolean;
   errorMessage?: string;
 };
 
 type Props = React.InputHTMLAttributes<HTMLInputElement> & CustomProps;
 
-export function Input({ theme, value, placeholder, isError, errorMessage, onFocus, onBlur, ...rest }: Props) {
+export function Input({
+  theme,
+  value,
+  placeholder,
+  isError,
+  errorMessage,
+  onFocus,
+  onBlur,
+  onChangeless,
+  ...rest
+}: Props) {
   const [isFocus, setIsFocus] = React.useState(false);
 
   const handleFocus = React.useCallback((event: React.FocusEvent<HTMLInputElement>) => {
@@ -33,8 +44,8 @@ export function Input({ theme, value, placeholder, isError, errorMessage, onFocu
 
   return (
     <div className={containerStyle(theme, isError)}>
-      <span className={placeholderStyle(theme, isFocus, value.length > 0, isError)}>{placeholder}</span>
-      <div className={inputWrapperStyle}>
+      <span className={placeholderStyle(theme, isFocus, value.length > 0, isError, onChangeless)}>{placeholder}</span>
+      <div className={inputWrapperStyle(onChangeless)}>
         <input
           className={inputStyle(theme, isError)}
           value={value}
@@ -89,13 +100,13 @@ const containerStyle = (theme: Theme, isError?: boolean) => css`
   `}
 `;
 
-const inputWrapperStyle = css`
+const inputWrapperStyle = (onChangeless?: boolean) => css`
   position: absolute;
   left: 0;
   right: 0;
   bottom: 0;
   flex: 0 0 auto;
-  height: 34px;
+  height: ${onChangeless ? '100%' : '34px'};
   z-index: 2;
 `;
 
@@ -121,7 +132,14 @@ const inputStyle = (theme: Theme, isError?: boolean) => css`
   `};
 `;
 
-const placeholderStyle = (theme: Theme, isFocus: boolean, isTyping: boolean, isError?: boolean) => css`
+const placeholderStyle = (
+  theme: Theme,
+  isFocus: boolean,
+  isTyping: boolean,
+  isError?: boolean,
+  onChangeless?: boolean,
+) => css`
+  display: ${onChangeless && isTyping ? 'none' : 'block'};
   position: absolute;
   top: ${isTyping ? '8px' : '50%'};
   left: 15px;
