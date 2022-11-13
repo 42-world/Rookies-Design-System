@@ -8,7 +8,7 @@ type Theme = 'light' | 'dark';
 type CustomProps = {
   value: string;
   theme: Theme;
-  onChangeless: boolean;
+  onChangeless?: boolean;
   isError?: boolean;
   errorMessage?: string;
 };
