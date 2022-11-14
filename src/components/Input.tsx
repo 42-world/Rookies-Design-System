@@ -5,15 +5,13 @@ import { Text } from '../typography/Text';
 
 type Theme = 'light' | 'dark';
 
-type CustomProps = {
+interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   value: string;
   theme: Theme;
   onChangeless?: boolean;
   isError?: boolean;
   errorMessage?: string;
-};
-
-type Props = React.InputHTMLAttributes<HTMLInputElement> & CustomProps;
+}
 
 export function Input({
   theme,
@@ -43,20 +41,24 @@ export function Input({
   }, []);
 
   return (
-    <div className={containerStyle(theme, isError)}>
-      <span className={placeholderStyle(theme, isFocus, value.length > 0, isError, onChangeless)}>{placeholder}</span>
-      <div className={inputWrapperStyle(onChangeless)}>
-        <input
-          className={inputStyle(theme, isError)}
-          value={value}
-          onFocus={handleFocus}
-          onBlur={handleBlur}
-          {...rest}
-        />
+    <div>
+      <div className={containerStyle(theme, isError)}>
+        <span className={placeholderStyle(theme, isFocus, value.length > 0, isError, onChangeless)}>{placeholder}</span>
+        <div className={inputWrapperStyle(onChangeless)}>
+          <input
+            className={inputStyle(theme, isError)}
+            value={value}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
+            {...rest}
+          />
+        </div>
       </div>
-      <div className={errorWrapperStyle}>
-        {isError && <Text theme={theme} size="Caption" align="left" text={errorMessage ?? ''} color="red_10" />}
-      </div>
+      {isError && (
+        <div className={errorWrapperStyle}>
+          <Text theme={theme} size="Caption" align="left" text={errorMessage ?? ''} color="red_10" />
+        </div>
+      )}
     </div>
   );
 }
