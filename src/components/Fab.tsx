@@ -1,8 +1,12 @@
 import { css } from '@emotion/css';
-import React from 'react';
+import * as React from 'react';
 
 export default function Fab() {
-  return <div className={defaultStyle}></div>;
+  const handleClick = () => {
+    // move to writing page
+  };
+
+  return <button className={defaultStyle} onClick={handleClick}></button>;
 }
 
 const defaultStyle = css`
@@ -21,4 +25,22 @@ const defaultStyle = css`
   gap: 0;
   aspect-ratio: 1 / 1;
   border-radius: 29px;
+
+  &:hover {
+		boxSizing: "border-box",
+		width: 58,
+		height: 58,
+		display: "flex",
+		flexDirection: "row",
+		justifyContent: "center",
+		alignItems: "center",
+		padding: "17px 17px 17px 17px",
+		backgroundColor: "var(--main_green_20, #009929)",
+		overflow: "hidden",
+		alignContent: "center",
+		flexWrap: "nowrap",
+		gap: 0,
+		aspectRatio: "1 / 1",
+		borderRadius: 29,
+	}
 `;
