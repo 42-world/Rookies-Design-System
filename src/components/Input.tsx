@@ -167,7 +167,6 @@ const placeholderStyle = (
 `;
 
 const errorWrapperStyle = css`
-  position: absolute;
-  top: 60px;
-  left: 15px;
+  margin-top: 8px;
+  margin-left: 15px;
 `;
