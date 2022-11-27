@@ -31,14 +31,14 @@ export function Input({
     if (onFocus) {
       onFocus(event);
     }
-  }, []);
+  }, [onFocus]);
 
   const handleBlur = React.useCallback((event: React.FocusEvent<HTMLInputElement>) => {
     setIsFocus(false);
     if (onBlur) {
       onBlur(event);
     }
-  }, []);
+  }, [onBlur]);
 
   return (
     <div>
