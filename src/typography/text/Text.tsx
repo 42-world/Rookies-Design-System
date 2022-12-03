@@ -6,13 +6,13 @@ import { getFontSize, getFontWeight, getThemeColor } from './utils';
 export function Text({ theme, size, color, align, text }: Props) {
   return (
     <div className={textStyle(align, size)} style={{ color: getThemeColor(theme, color) }}>
-      {size === 'Header1' ? (
+      {size === 'header1' ? (
         <h1>{text}</h1>
-      ) : size === 'Header2' ? (
+      ) : size === 'header2' ? (
         <h2>{text}</h2>
-      ) : size === 'Header3' ? (
+      ) : size === 'header3' ? (
         <h3>{text}</h3>
-      ) : size === 'Header4' ? (
+      ) : size === 'header4' ? (
         <h4>{text}</h4>
       ) : (
         <p>{text}</p>

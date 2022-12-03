@@ -10,7 +10,7 @@ addPropertyControls(Text, {
   },
   size: {
     type: ControlType.Enum,
-    options: ['Header1', 'Header2', 'Header3', 'Header4', 'Body1', 'Body2', 'Body3', 'Caption'],
+    options: ['header1', 'header2', 'header3', 'header4', 'body1', 'body2', 'body3', 'caption'],
     defaultValue: 'Body1',
   },
   color: {

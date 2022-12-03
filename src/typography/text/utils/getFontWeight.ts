@@ -1,14 +1,14 @@
 import { Props } from '../Props';
 
 export const getFontWeight = (size: Props['size']) =>
-  size === 'Header1'
+  size === 'header1'
     ? 600
-    : size === 'Header2'
+    : size === 'header2'
     ? 600
-    : size === 'Header3'
+    : size === 'header3'
     ? 600
-    : size === 'Header4'
+    : size === 'header4'
     ? 600
-    : size === 'Body1'
+    : size === 'body1'
     ? 500
     : 500;

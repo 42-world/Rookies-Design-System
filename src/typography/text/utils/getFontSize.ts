@@ -1,20 +1,20 @@
 import { Props } from '../Props';
 
 export const getFontSize = (size: Props['size']) =>
-  size === 'Header1'
+  size === 'header1'
     ? '45px'
-    : size === 'Header2'
+    : size === 'header2'
     ? '36px'
-    : size === 'Header3'
+    : size === 'header3'
     ? '26px'
-    : size === 'Header4'
+    : size === 'header4'
     ? '18px'
-    : size === 'Body1'
+    : size === 'body1'
     ? '18px'
-    : size === 'Body2'
+    : size === 'body2'
     ? '16px'
-    : size === 'Body3'
+    : size === 'body3'
     ? '14px'
-    : size === 'Caption'
+    : size === 'caption'
     ? '12px'
     : '16px';
