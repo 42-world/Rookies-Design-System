@@ -1,7 +1,7 @@
 import { css } from '@emotion/css';
 import * as React from 'react';
 import { useState } from 'react';
-import { tokens } from '../tokens';
+import { token } from '../common/token';
 
 type CheckboxProps = {
   text: string;
@@ -35,7 +35,7 @@ export function Checkbox({ theme, direction, list }: Props) {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    color: ${theme === 'light' ? tokens.color.grey_60_light : tokens.color.grey_60_dark};
+    color: ${theme === 'light' ? token.color.grey_60_light : token.color.grey_60_dark};
     font-size: 14px;
 
     font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
@@ -63,7 +63,7 @@ export function Checkbox({ theme, direction, list }: Props) {
       align-items: center;
       height: 26px;
       width: 26px;
-      border: 2px solid ${theme === 'light' ? tokens.color.grey_40_light : tokens.color.grey_40_dark};
+      border: 2px solid ${theme === 'light' ? token.color.grey_40_light : token.color.grey_40_dark};
       border-radius: 4px;
     }
 
@@ -74,7 +74,7 @@ export function Checkbox({ theme, direction, list }: Props) {
     }
 
     & input:checked ~ .checkmark {
-      border: 2px solid ${theme === 'light' ? tokens.color.grey_60_light : tokens.color.grey_60_dark};
+      border: 2px solid ${theme === 'light' ? token.color.grey_60_light : token.color.grey_60_dark};
 
       & svg {
         opacity: 1;
@@ -99,7 +99,7 @@ export function Checkbox({ theme, direction, list }: Props) {
                 fill="currentColor"
                 width="24"
                 height="24"
-                color={theme === 'light' ? tokens.color.grey_60_light : tokens.color.grey_60_dark}
+                color={theme === 'light' ? token.color.grey_60_light : token.color.grey_60_dark}
                 // style="width: 100%; height: 100%; cursor: auto;"
               >
                 <path

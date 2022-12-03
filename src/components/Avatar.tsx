@@ -1,6 +1,6 @@
 import { css } from '@emotion/css';
 import * as React from 'react';
-import { tokens } from '../tokens';
+import { token } from '../common/token';
 
 type Props = {
   theme: 'light' | 'dark';
@@ -32,13 +32,13 @@ export function Avatar({ theme, profileImg, username, createdAt }: Props) {
 
     & > p:first-of-type {
       font-size: 16px;
-      color: ${theme === 'light' ? tokens.color.grey_70_light : tokens.color.grey_70_dark};
+      color: ${theme === 'light' ? token.color.grey_70_light : token.color.grey_70_dark};
       font-weight: 500;
     }
 
     & > p:last-of-type {
       font-size: 12px;
-      color: ${theme === 'light' ? tokens.color.grey_40_light : tokens.color.grey_40_dark};
+      color: ${theme === 'light' ? token.color.grey_40_light : token.color.grey_40_dark};
     }
   `;
   return (
@@ -63,6 +63,6 @@ const profileStyle = css`
   width: 40px;
   height: 40px;
   border-radius: 20px;
-  background-color: ${tokens.color.grey_10_light};
+  background-color: ${token.color.grey_10_light};
   object-fit: cover;
 `;
