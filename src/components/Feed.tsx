@@ -21,15 +21,7 @@ type Props = {
 };
 
 export function Feed({ theme, title, contents, isThumbed, thumbCount, commentCount, user }: Props) {
-  const bottomStyle = css`
-    display: flex;
-    padding: 8px 0px 16px 0px;
-    gap: 16px;
-    border-bottom: 1px solid ${theme === 'light' ? tokens.color.grey_30_light : tokens.color.grey_30_dark};
-  `;
-
   const thumbedStyle = tokens.color.main_green_10;
-
   const unThumbedStyle = theme === 'light' ? tokens.color.grey_50_light : tokens.color.grey_50_dark;
 
   return (
@@ -37,27 +29,9 @@ export function Feed({ theme, title, contents, isThumbed, thumbCount, commentCou
       <div className={contentsStyle}>
         <Avatar createdAt={user.createdAt} username={user.username} profileImg={user.profileImg} theme={theme} />
         <Text align="left" color="grey_60" size="Header4" text={title} theme={theme} />
-        <p
-          style={{
-            margin: 0,
-            padding: 0,
-            overflow: 'hidden',
-            textOverflow: 'ellipsis',
-            wordWrap: 'break-word',
-            display: '-webkit-box',
-            WebkitLineClamp: 2,
-            WebkitBoxOrient: 'vertical',
-            fontSize: '15px',
-            fontWeight: 400,
-            fontFamily: 'Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto',
-            color: theme === 'light' ? tokens.color.grey_50_light : tokens.color.grey_50_dark,
-            lineHeight: 1.25,
-          }}
-        >
-          {contents}
-        </p>
+        <p className={feedTextStyle(theme)}>{contents}</p>
       </div>
-      <div className={bottomStyle}>
+      <div className={bottomStyle(theme)}>
         <div className={iconContainerStyle}>
           <div className={iconStyle}>
             <svg
@@ -114,6 +88,29 @@ const contentsStyle = css`
   flex-direction: column;
   gap: 16px;
   padding-bottom: 22px;
+`;
+
+const feedTextStyle = (theme: Props['theme']) => css`
+  margin: 0;
+  padding: 0;
+  overflow: 'hidden';
+  text-overflow: 'ellipsis';
+  word-wrap: 'break-word';
+  display: '-webkit-box';
+  line-clamp: 2;
+  box-orient: 'vertical';
+  font-size: '15px';
+  font-weight: 400;
+  font-family: 'Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto';
+  color: ${theme === 'light' ? tokens.color.grey_50_light : tokens.color.grey_50_dark};
+  line-height: 1.25;
+`;
+
+const bottomStyle = (theme: Props['theme']) => css`
+  display: flex;
+  padding: 8px 0px 16px 0px;
+  gap: 16px;
+  border-bottom: 1px solid ${theme === 'light' ? tokens.color.grey_30_light : tokens.color.grey_30_dark};
 `;
 
 const iconContainerStyle = css`
