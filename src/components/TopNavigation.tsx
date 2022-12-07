@@ -1,6 +1,6 @@
 import { css } from '@emotion/css';
 import * as React from 'react';
-import Icons from '../assets/icons';
+import Icons from '../assets/icons/index';
 import { tokens } from '../tokens';
 import { Text } from '../typography/Text';
 
