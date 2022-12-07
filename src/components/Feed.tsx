@@ -93,15 +93,15 @@ const contentsStyle = css`
 const feedTextStyle = (theme: Props['theme']) => css`
   margin: 0;
   padding: 0;
-  overflow: 'hidden';
-  text-overflow: 'ellipsis';
-  word-wrap: 'break-word';
-  display: '-webkit-box';
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  display: -webkit-box;
   line-clamp: 2;
-  box-orient: 'vertical';
-  font-size: '15px';
+  box-orient: vertical;
+  font-size: 15px;
   font-weight: 400;
-  font-family: 'Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto';
+  font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto;
   color: ${theme === 'light' ? tokens.color.grey_50_light : tokens.color.grey_50_dark};
   line-height: 1.25;
 `;
