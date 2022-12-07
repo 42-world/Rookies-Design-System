@@ -1,5 +1,4 @@
 import { css } from '@emotion/css';
-import * as React from 'react';
 import { Text } from '../typography/Text';
 import { Avatar } from './Avatar';
 
@@ -30,7 +29,6 @@ export function Comment({ theme, text, isThumbed, thumbCount, user }: Props) {
     gap: 8px;
     padding-left: 52px;
   `;
-
   return (
     <div className={containerStyle}>
       <Avatar createdAt={user.createdAt} profileImg={user.profileImg} theme={theme} username={user.username} />
