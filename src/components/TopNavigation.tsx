@@ -24,55 +24,10 @@ type Props = {
 };
 
 export function TopNavigation({ theme, links, user }: Props) {
-  const containerStyle = css`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto;
-    border-bottom: 1px solid ${theme === 'light' ? tokens.color.grey_30_light : tokens.color.grey_30_dark};
-    padding: 8px 0px 8px 0px;
-  `;
-
-  const wrapperStyle = css`
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1400px;
-    padding: 0px 20px 0px 20px;
-
-    & a {
-      text-decoration: none;
-    }
-  `;
-
-  const logoStyle = css`
-    font-weight: 700;
-    color: ${theme === 'light' ? tokens.color.grey_80_light : tokens.color.grey_80_dark};
-    font-size: 24px;
-    margin: 0;
-    font-family: 'Raleway', serif;
-    src: url('https://fonts.googleapis.com/css2?family=Raleway:wght@700&display=swap');
-    @font-face {
-      font-family: 'Raleway', serif;
-      src: url('https://fonts.googleapis.com/css2?family=Raleway:wght@700&display=swap');
-    }
-
-    @media (max-width: 700px) {
-      font-size: 22px;
-    }
-  `;
-
-  const profileStyle = css`
-    width: 24px;
-    height: 24px;
-    border-radius: 12px;
-    background-color: ${theme === 'light' ? tokens.color.grey_20_light : tokens.color.grey_20_dark};
-  `;
   return (
-    <div className={containerStyle}>
+    <div className={containerStyle(theme)}>
       <div className={wrapperStyle}>
-        <a href={links.homeLink} className={logoStyle}>
+        <a href={links.homeLink} className={logoStyle(theme)}>
           42world
         </a>
         <div className={iconListStyle}>
@@ -104,7 +59,7 @@ export function TopNavigation({ theme, links, user }: Props) {
             <Text align="center" color="grey_50" size="Caption" text="알림" theme={theme} />
           </a>
           <a href={user.profileLink} className={iconContainerStyle}>
-            <img src={user.profileImg} className={profileStyle}></img>
+            <img src={user.profileImg} className={profileStyle(theme)}></img>
             <Text align="center" color="grey_50" size="Caption" text="나" theme={theme} />
           </a>
         </div>
@@ -113,6 +68,52 @@ export function TopNavigation({ theme, links, user }: Props) {
     </div>
   );
 }
+
+const containerStyle = (theme: Props['theme']) => css`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  border-bottom: 1px solid ${theme === 'light' ? tokens.color.grey_30_light : tokens.color.grey_30_dark};
+  padding: 8px 0px 8px 0px;
+`;
+
+const wrapperStyle = css`
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1400px;
+  padding: 0px 20px 0px 20px;
+
+  & a {
+    text-decoration: none;
+  }
+`;
+
+const logoStyle = (theme: Props['theme']) => css`
+  font-weight: 700;
+  color: ${theme === 'light' ? tokens.color.grey_80_light : tokens.color.grey_80_dark};
+  font-size: 24px;
+  margin: 0;
+  font-family: 'Raleway', serif;
+  src: url('https://fonts.googleapis.com/css2?family=Raleway:wght@700&display=swap');
+  @font-face {
+    font-family: 'Raleway', serif;
+    src: url('https://fonts.googleapis.com/css2?family=Raleway:wght@700&display=swap');
+  }
+
+  @media (max-width: ${tokens.size.TABLET_SIZE}) {
+    font-size: 22px;
+  }
+`;
+
+const profileStyle = (theme: Props['theme']) => css`
+  width: 24px;
+  height: 24px;
+  border-radius: 12px;
+  background-color: ${theme === 'light' ? tokens.color.grey_20_light : tokens.color.grey_20_dark};
+`;
 
 const iconContainerStyle = css`
   display: flex;

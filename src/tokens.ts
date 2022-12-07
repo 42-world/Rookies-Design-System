@@ -26,4 +26,7 @@ export const tokens = {
     grey_70_dark: '#F7F8F9',
     grey_80_dark: '#FDFDFD',
   },
+  size: {
+    TABLET_SIZE: '700px',
+  },
 };
