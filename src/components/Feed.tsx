@@ -97,8 +97,8 @@ const feedTextStyle = (theme: Props['theme']) => css`
   text-overflow: ellipsis;
   word-wrap: break-word;
   display: -webkit-box;
-  line-clamp: 2;
-  box-orient: vertical;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
   font-size: 15px;
   font-weight: 400;
   font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto;
