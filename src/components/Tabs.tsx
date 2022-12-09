@@ -87,6 +87,13 @@ const NavigationStyle = (theme: Props['theme']) => css`
   height: 56px;
   display: flex;
 
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
   & ul,
   li {
     list-style: none;
