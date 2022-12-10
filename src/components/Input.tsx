@@ -5,7 +5,7 @@ import { Text } from '../typography/Text';
 
 type Theme = 'light' | 'dark';
 
-interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
+interface Props extends Omit<React.InputHTMLAttributes<HTMLInputElement>,"style" | "className"> {
   value: string;
   theme: Theme;
   onChangeless?: boolean;
