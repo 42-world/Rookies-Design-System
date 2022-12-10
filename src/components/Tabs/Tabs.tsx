@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { ReactChild, useState } from 'react';
 import { token } from '../../common/token';
 import { Theme } from '../../common/type';
-import { Text } from '../../typography/temp';
+import { Text } from '../../typography/Text';
 
 type Props = {
   theme: Theme;
