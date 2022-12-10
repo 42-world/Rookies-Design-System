@@ -1,6 +1,6 @@
 import { css } from '@emotion/css';
 import * as React from 'react';
-import { tokens } from '../tokens';
+import { token } from '../common/token';
 
 type Props = {
   theme: 'light' | 'dark';
@@ -14,9 +14,9 @@ export function Button({ theme, text, link, size, type }: Props) {
   const defaultStyle = css`
     padding: ${size === 'normal' ? '8px 24px 8px 24px' : '4px 24px 4px 24px'};
     border-radius: 8px;
-    background-color: ${theme === 'light' ? tokens.color.grey_10_light : tokens.color.grey_10_dark};
-    border: 1px solid ${theme === 'light' ? tokens.color.grey_30_light : tokens.color.grey_30_dark};
-    color: ${theme === 'light' ? tokens.color.grey_50_light : tokens.color.grey_50_dark};
+    background-color: ${theme === 'light' ? token.color.grey_10_light : token.color.grey_10_dark};
+    border: 1px solid ${theme === 'light' ? token.color.grey_30_light : token.color.grey_30_dark};
+    color: ${theme === 'light' ? token.color.grey_50_light : token.color.grey_50_dark};
     font-weight: 500;
     font-size: 16px;
     text-align: center;
@@ -39,16 +39,16 @@ export function Button({ theme, text, link, size, type }: Props) {
     }
 
     &:hover {
-      background-color: ${theme === 'light' ? tokens.color.grey_20_light : tokens.color.grey_20_dark};
+      background-color: ${theme === 'light' ? token.color.grey_20_light : token.color.grey_20_dark};
     }
   `;
 
   const dangerStyle = css`
     padding: ${size === 'normal' ? '8px 24px 8px 24px' : '4px 24px 4px 24px'};
     border-radius: 8px;
-    background-color: ${theme === 'light' ? tokens.color.grey_10_light : tokens.color.grey_10_dark};
-    border: 1px solid ${theme === 'light' ? tokens.color.grey_30_light : tokens.color.grey_30_dark};
-    color: ${theme === 'light' ? tokens.color.grey_50_light : tokens.color.grey_50_dark};
+    background-color: ${theme === 'light' ? token.color.grey_10_light : token.color.grey_10_dark};
+    border: 1px solid ${theme === 'light' ? token.color.grey_30_light : token.color.grey_30_dark};
+    color: ${theme === 'light' ? token.color.grey_50_light : token.color.grey_50_dark};
     font-weight: 500;
     font-size: 16px;
     text-align: center;
@@ -71,18 +71,18 @@ export function Button({ theme, text, link, size, type }: Props) {
     }
 
     &:hover {
-      background-color: ${theme === 'light' ? tokens.color.red_5_light : tokens.color.red_5_dark};
-      color: ${tokens.color.red_10_light};
-      border: 1px solid ${tokens.color.red_10_light};
+      background-color: ${theme === 'light' ? token.color.red_5_light : token.color.red_5_dark};
+      color: ${token.color.red_10_light};
+      border: 1px solid ${token.color.red_10_light};
     }
   `;
 
   const primaryStyle = css`
     padding: ${size === 'normal' ? '8px 24px 8px 24px' : '4px 24px 4px 24px'};
     border-radius: 8px;
-    background-color: ${tokens.color.main_green_10};
-    border: 1px solid ${theme === 'light' ? tokens.color.grey_30_light : tokens.color.grey_30_dark};
-    color: ${tokens.color.grey_5_light};
+    background-color: ${token.color.main_green_10};
+    border: 1px solid ${theme === 'light' ? token.color.grey_30_light : token.color.grey_30_dark};
+    color: ${token.color.grey_5_light};
     font-weight: 500;
     font-size: 16px;
     text-align: center;
@@ -105,7 +105,7 @@ export function Button({ theme, text, link, size, type }: Props) {
     }
 
     &:hover {
-      background-color: ${tokens.color.main_green_20};
+      background-color: ${token.color.main_green_20};
     }
   `;
 
