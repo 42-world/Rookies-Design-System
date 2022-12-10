@@ -1,11 +1,10 @@
 import { css } from '@emotion/css';
-import * as React from 'react';
-import { tokens } from '../tokens';
-import { Text } from '../typography/Text';
+import React from 'react';
+import { token } from '../../common/token';
+import { Theme } from '../../common/type';
+import { Text } from '../../typography/Text';
 
-type Theme = 'light' | 'dark';
-
-interface Props extends Omit<React.InputHTMLAttributes<HTMLInputElement>,"style" | "className"> {
+interface Props extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'style' | 'className'> {
   value: string;
   theme: Theme;
   onChangeless?: boolean;
@@ -26,19 +25,25 @@ export function Input({
 }: Props) {
   const [isFocus, setIsFocus] = React.useState(false);
 
-  const handleFocus = React.useCallback((event: React.FocusEvent<HTMLInputElement>) => {
-    setIsFocus(true);
-    if (onFocus) {
-      onFocus(event);
-    }
-  }, [onFocus]);
+  const handleFocus = React.useCallback(
+    (event: React.FocusEvent<HTMLInputElement>) => {
+      setIsFocus(true);
+      if (onFocus) {
+        onFocus(event);
+      }
+    },
+    [onFocus],
+  );
 
-  const handleBlur = React.useCallback((event: React.FocusEvent<HTMLInputElement>) => {
-    setIsFocus(false);
-    if (onBlur) {
-      onBlur(event);
-    }
-  }, [onBlur]);
+  const handleBlur = React.useCallback(
+    (event: React.FocusEvent<HTMLInputElement>) => {
+      setIsFocus(false);
+      if (onBlur) {
+        onBlur(event);
+      }
+    },
+    [onBlur],
+  );
 
   return (
     <div>
@@ -56,7 +61,7 @@ export function Input({
       </div>
       {isError && (
         <div className={errorWrapperStyle}>
-          <Text theme={theme} size="Caption" align="left" text={errorMessage ?? ''} color="red_10" />
+          <Text theme={theme} size="caption" align="left" text={errorMessage ?? ''} color="red_10" />
         </div>
       )}
     </div>
@@ -78,9 +83,9 @@ const containerStyle = (theme: Theme, isError?: boolean) => css`
   flex-wrap: nowrap;
   gap: 0;
   border-radius: 8px;
-  border: 1px solid ${theme === 'light' ? tokens.color.grey_40_light : tokens.color.grey_40_dark};
+  border: 1px solid ${theme === 'light' ? token.color.grey_40_light : token.color.grey_40_dark};
   &:focus-within {
-    border-color: ${tokens.color.main_green_10};
+    border-color: ${token.color.main_green_10};
   }
   font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue',
     'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji',
@@ -94,10 +99,10 @@ const containerStyle = (theme: Theme, isError?: boolean) => css`
   transition: border-color 0.2s ease-in-out;
   ${isError &&
   css`
-    color: ${tokens.color.red_20_light};
-    border-color: ${tokens.color.red_10_light};
+    color: ${token.color.red_20_light};
+    border-color: ${token.color.red_10_light};
     &:focus-within {
-      border-color: ${tokens.color.red_10_light};
+      border-color: ${token.color.red_10_light};
     }
   `}
 `;
@@ -113,7 +118,7 @@ const inputWrapperStyle = (onChangeless?: boolean) => css`
 `;
 
 const inputStyle = (theme: Theme, isError?: boolean) => css`
-  color: ${theme === 'light' ? tokens.color.grey_60_light : tokens.color.grey_60_dark};
+  color: ${theme === 'light' ? token.color.grey_60_light : token.color.grey_60_dark};
   font-size: 16px;
   caret-color: rgb(255, 255, 255);
   font-family: 'Pretendard Medium', serif;
@@ -130,7 +135,7 @@ const inputStyle = (theme: Theme, isError?: boolean) => css`
   padding: 15px;
   ${isError &&
   css`
-    color: ${tokens.color.red_20_light};
+    color: ${token.color.red_20_light};
   `};
 `;
 
@@ -152,10 +157,10 @@ const placeholderStyle = (
   z-index: 1;
   font-family: 'Pretendard Regular', serif;
   color: ${isFocus && isTyping
-    ? tokens.color.main_green_20
+    ? token.color.main_green_20
     : theme === 'light'
-    ? tokens.color.grey_40_light
-    : tokens.color.grey_40_dark};
+    ? token.color.grey_40_light
+    : token.color.grey_40_dark};
   transform: ${isTyping ? 'none' : ' translateY(-50%)'};
   transform-origin: 50% 50% 0;
   font-size: ${isTyping ? '10px' : '14px'};
@@ -164,7 +169,7 @@ const placeholderStyle = (
   transition-property: transform, color, top, line-height;
   ${isError &&
   css`
-    color: ${tokens.color.red_20_light};
+    color: ${token.color.red_20_light};
   `}
 `;
 

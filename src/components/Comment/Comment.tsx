@@ -1,7 +1,7 @@
 import { css } from '@emotion/css';
-import React from 'react';
-import { Text } from '../typography/Text';
-import { Avatar } from './Avatar';
+import { Theme } from '../../common/type';
+import { Text } from '../../typography/Text';
+import { Avatar } from '../Avatar';
 
 type User = {
   username: string;
@@ -9,22 +9,22 @@ type User = {
   profileImg: any;
 };
 
-type Props = {
-  theme: 'light' | 'dark';
+interface Props {
+  theme: Theme;
   text: string;
   isThumbed: boolean;
   thumbCount: number;
   user: User;
-};
+}
 
 export function Comment({ theme, text, isThumbed, thumbCount, user }: Props) {
   return (
     <div className={containerStyle}>
       <Avatar createdAt={user.createdAt} profileImg={user.profileImg} theme={theme} username={user.username} />
       <div className={textWrapperStyle}>
-        <Text size="Body3" align="left" color="grey_50" text={text} theme={theme} />
+        <Text size="body3" align="left" color="grey_50" text={text} theme={theme} />
         <Text
-          size="Caption"
+          size="caption"
           align="left"
           color={isThumbed ? 'main_green_10' : 'grey_50'}
           text={`좋아요 ${thumbCount}`}

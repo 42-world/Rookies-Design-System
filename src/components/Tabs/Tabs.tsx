@@ -1,14 +1,15 @@
 import { css } from '@emotion/css';
 import { AnimatePresence, motion } from 'framer-motion';
-import React, { ReactChild, useState } from 'react';
-import { tokens } from '../tokens';
-import { Text } from '../typography/Text';
+import { ReactChild, useState } from 'react';
+import { token } from '../../common/token';
+import { Theme } from '../../common/type';
+import { Text } from '../../typography/Text';
 
 type Props = {
+  theme: Theme;
   label: string[];
   children: ReactChild[];
   align: 'left' | 'center';
-  theme: 'dark' | 'light';
 };
 
 export function Tabs({ label, children, align, theme }: Props) {
@@ -23,36 +24,34 @@ export function Tabs({ label, children, align, theme }: Props) {
           {label.map((item, index) => (
             <div
               key={index}
-              className={`${ListItemStyle(align, theme)} ${item === selectedTab ? 'selected' : ''}`}
+              className={ListItemStyle(align, theme)}
               onClick={() => setSelectedTab(item)}
             >
               <Text
                 align="left"
                 color={item === selectedTab ? 'grey_70' : 'grey_40'}
-                size="Body1"
+                size="body1"
                 theme={theme}
                 text={`${item}`}
               />
 
-              {item === selectedTab ? <motion.div className={UnderlineStyle(theme)} layoutId="underline" /> : null}
+              {item === selectedTab && <motion.div className={UnderlineStyle(theme)} layoutId="underline" />}
             </div>
           ))}
         </ul>
       </div>
-      <section>
-        <AnimatePresence exitBeforeEnter>
-          <motion.div
-            key={selectedTab ? selectedTab : 'empty'}
-            initial={{ y: 10, opacity: 1 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: -10, opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className={ChildrenContainer}
-          >
-            {children[tabIndex]}
-          </motion.div>
-        </AnimatePresence>
-      </section>
+      <AnimatePresence exitBeforeEnter>
+        <motion.div
+          key={selectedTab ? selectedTab : 'empty'}
+          initial={{ y: 10, opacity: 1 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: -10, opacity: 0 }}
+          transition={{ duration: 0.2 }}
+          className={ChildrenContainer}
+        >
+          {children[tabIndex]}
+        </motion.div>
+      </AnimatePresence>
     </div>
   );
 }
@@ -71,7 +70,7 @@ const ListContainerStyle = (align: Props['align']) => css`
 
 const ContainerStyle = (theme: Props['theme']) => css`
   border-radius: 10px;
-  background: ${theme === 'light' ? tokens.color.grey_5_light : tokens.color.grey_5_dark};
+  background: ${theme === 'light' ? token.color.grey_5_light : token.color.grey_5_dark};
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -83,7 +82,7 @@ const NavigationStyle = (theme: Props['theme']) => css`
   overflow-y: hidden;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
-  border-bottom: 1px solid ${theme === 'light' ? tokens.color.grey_30_light : tokens.color.grey_30_dark};
+  border-bottom: 1px solid ${theme === 'light' ? token.color.grey_30_light : token.color.grey_30_dark};
   height: 56px;
   display: flex;
 
@@ -110,7 +109,7 @@ const UnderlineStyle = (theme: Props['theme']) => css`
   right: 0;
   height: 3px;
   border-radius: 2px;
-  background: ${theme === 'light' ? tokens.color.grey_70_light : tokens.color.grey_70_dark};
+  background: ${theme === 'light' ? token.color.grey_70_light : token.color.grey_70_dark};
 `;
 
 const ListItemStyle = (align: Props['align'], theme: Props['theme']) => css`
@@ -119,7 +118,7 @@ const ListItemStyle = (align: Props['align'], theme: Props['theme']) => css`
   border-bottom-right-radius: 0;
   padding: 10px ${align === 'left' ? '0px' : '15px'};
   position: relative;
-  background: ${theme === 'light' ? tokens.color.grey_5_light : tokens.color.grey_5_dark};
+  background: ${theme === 'light' ? token.color.grey_5_light : token.color.grey_5_dark};
   cursor: pointer;
   display: flex;
   justify-content: center;
