@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { ReactChild, useState } from 'react';
 import { token } from '../../common/token';
 import { Theme } from '../../common/type';
-import { Text } from '../../typography/Text';
+import { Text } from '../../typography/temp';
 
 type Props = {
   theme: Theme;
@@ -22,11 +22,7 @@ export function Tabs({ label, children, align, theme }: Props) {
       <div className={NavigationStyle(theme)}>
         <ul className={ListContainerStyle(align)}>
           {label.map((item, index) => (
-            <div
-              key={index}
-              className={ListItemStyle(align, theme)}
-              onClick={() => setSelectedTab(item)}
-            >
+            <div key={index} className={ListItemStyle(align, theme)} onClick={() => setSelectedTab(item)}>
               <Text
                 align="left"
                 color={item === selectedTab ? 'grey_70' : 'grey_40'}

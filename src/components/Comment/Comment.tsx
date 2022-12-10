@@ -1,6 +1,6 @@
 import { css } from '@emotion/css';
 import { Theme } from '../../common/type';
-import { Text } from '../../typography/Text';
+import { Text } from '../../typography/temp';
 import { Avatar } from '../Avatar';
 
 type User = {

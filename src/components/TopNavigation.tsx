@@ -2,7 +2,7 @@ import { css } from '@emotion/css';
 import { BellIcon, MoonIcon, PlusIcon, SearchIcon, SunIcon } from '../assets/icons';
 import { token } from '../common/token';
 import { Theme } from '../common/type';
-import { Text } from '../typography/Text';
+import { Text } from '../typography/temp';
 
 type User = {
   profileLink: string;

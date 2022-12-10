@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { ChatIcon, ThumbIcon } from '../../assets/icons';
 import { token } from '../../common/token';
 import { Theme } from '../../common/type';
-import { Text } from '../../typography/Text';
+import { Text } from '../../typography/temp';
 import { Avatar } from '../Avatar';
 
 type Props = {

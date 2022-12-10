@@ -2,7 +2,7 @@ import { css } from '@emotion/css';
 import React from 'react';
 import { token } from '../../common/token';
 import { Theme } from '../../common/type';
-import { Text } from '../../typography/Text';
+import { Text } from '../../typography/temp';
 
 interface Props extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'style' | 'className'> {
   value: string;
