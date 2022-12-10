@@ -1,12 +1,12 @@
 import { token } from '../../../common/token';
 import { Theme } from '../../../common/type';
-import { Props } from '../Props';
+import { TextColorType } from '../types';
 
-export function getThemeColor(theme: Theme, color: Props['color']) {
+export function getThemeColor(theme: Theme, color: TextColorType) {
   return theme === 'light' ? getLightColor(color) : getDarkColor(color);
 }
 
-const getLightColor = (color: Props['color']): string =>
+const getLightColor = (color: TextColorType): string =>
   color === 'grey_40'
     ? token.color.grey_40_light
     : color === 'grey_50'
@@ -21,7 +21,7 @@ const getLightColor = (color: Props['color']): string =>
     ? token.color.red_10_light
     : token.color.grey_50_light;
 
-const getDarkColor = (color: Props['color']): string =>
+const getDarkColor = (color: TextColorType): string =>
   color === 'grey_40'
     ? token.color.grey_40_dark
     : color === 'grey_50'

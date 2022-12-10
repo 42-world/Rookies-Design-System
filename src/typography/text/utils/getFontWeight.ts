@@ -1,6 +1,6 @@
-import { Props } from '../Props';
+import { TextSizeType } from '../types';
 
-export const getFontWeight = (size: Props['size']) =>
+export const getFontWeight = (size: TextSizeType) =>
   size === 'header1'
     ? 600
     : size === 'header2'

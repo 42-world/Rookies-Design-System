@@ -1,7 +1,17 @@
 import { css } from '@emotion/css';
 import * as React from 'react';
-import { Props } from './Props';
+import '../../common/style/reset.css';
+import { Theme } from '../../common/type';
+import { TextAlignType, TextColorType, TextSizeType } from './types';
 import { getFontSize, getFontWeight, getThemeColor } from './utils';
+
+export type Props = {
+  theme: Theme;
+  size: TextSizeType;
+  color: TextColorType;
+  align: TextAlignType;
+  text: string;
+};
 
 export function Text({ theme, size, color, align, text }: Props) {
   return (
@@ -36,15 +46,5 @@ const textStyle = (align: Props['align'], size: Props['size']) => css`
     width: 1fr;
     line-height: 1.25;
     margin: 0;
-    font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
-      'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
-      'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
-
-    @font-face {
-      font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
-        'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
-        'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
-      src: url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css');
-    }
   }
 `;
