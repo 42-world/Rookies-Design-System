@@ -25,7 +25,7 @@ export function SideNavigation({ theme, hasIcon, currentLink, list }: Props) {
       {list.map((list) => {
         return (
           <a data-framer-smooth-scroll className={itemContainer} href={list.link}>
-            {/* <div>{list.icon}</div> */}
+            {hasIcon && <div>{list.icon}</div>}
             <Text
               text={list.text}
               align="left"
