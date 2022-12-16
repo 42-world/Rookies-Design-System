@@ -26,4 +26,4 @@ export const color = {
   grey_80_dark: '#FDFDFD',
 };
 
-export type ColorToken = keyof typeof color;
+export type Color = keyof typeof color;
