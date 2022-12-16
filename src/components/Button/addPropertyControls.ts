@@ -1,8 +1,11 @@
-import { addPropertyControls, ControlType } from 'framer';
+import { ControlType } from 'framer';
+import { themeProperty } from '../../common/property';
+import { addStrictPropertyControls } from '../../common/utils';
 import { Button } from './Button';
 
-addPropertyControls(Button, {
-  childType: {
+addStrictPropertyControls(Button, {
+  theme: themeProperty,
+  type: {
     title: 'Type',
     type: ControlType.Enum,
     options: ['text', 'link'],
@@ -16,16 +19,9 @@ addPropertyControls(Button, {
   },
   link: {
     title: 'Link',
-    type: ControlType.String,
-    defaultValue: 'https://www.framer.com',
-    hidden: ({ childType }) => !(childType === 'link'),
-  },
-  theme: {
-    title: 'Theme',
-    type: ControlType.Enum,
-    displaySegmentedControl: true,
-    options: ['light', 'dark'],
-    defaultValue: 'light',
+    type: ControlType.Link,
+    defaultValue: 'https://42world.kr',
+    hidden: ({ type }) => !(type === 'link'),
   },
   size: {
     title: 'Size',
@@ -42,6 +38,8 @@ addPropertyControls(Button, {
     displaySegmentedControl: true,
   },
   onClick: {
+    title: 'onClick',
     type: ControlType.EventHandler,
+    hidden: ({ type }) => !(type === 'text'),
   },
 });

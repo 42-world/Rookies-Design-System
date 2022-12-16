@@ -1,19 +1,39 @@
 import { css } from '@emotion/css';
 import { AnimatePresence, motion } from 'framer-motion';
-import { ReactChild, useState } from 'react';
+import React from 'react';
 import { token } from '../../common/token';
 import { Theme } from '../../common/type';
 import { Text } from '../../typography/Text';
 
 type Props = {
+  /**
+   * 테마
+   */
   theme: Theme;
+
+  /**
+   * 탭 라벨
+   */
   label: string[];
-  children: ReactChild[];
+
+  /**
+   * 탭 컴포넌트
+   */
+  children: React.ReactChild[];
+
+  /**
+   * 탭 정렬
+   */
   align: 'left' | 'center';
 };
 
+/**
+ * 탭 컴포넌트
+ *
+ * @author ycha
+ */
 export function Tabs({ label, children, align, theme }: Props) {
-  const [selectedTab, setSelectedTab] = useState(label[0]);
+  const [selectedTab, setSelectedTab] = React.useState(label[0]);
 
   const tabIndex = label.indexOf(selectedTab);
 
@@ -22,7 +42,7 @@ export function Tabs({ label, children, align, theme }: Props) {
       <div className={NavigationStyle(theme)}>
         <ul className={ListContainerStyle(align)}>
           {label.map((item, index) => (
-            <div key={index} className={ListItemStyle(align, theme)} onClick={() => setSelectedTab(item)}>
+            <li key={index} className={ListItemStyle(align, theme)} onClick={() => setSelectedTab(item)}>
               <Text
                 align="left"
                 color={item === selectedTab ? 'grey_70' : 'grey_40'}
@@ -32,7 +52,7 @@ export function Tabs({ label, children, align, theme }: Props) {
               />
 
               {item === selectedTab && <motion.div className={UnderlineStyle(theme)} layoutId="underline" />}
-            </div>
+            </li>
           ))}
         </ul>
       </div>

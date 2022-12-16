@@ -1,22 +1,51 @@
 import { css } from '@emotion/css';
 import React from 'react';
+import '../../assets/styles/reset.css';
 import { token } from '../../common/token';
 import { Theme } from '../../common/type';
 import { Text } from '../../typography/Text';
 
 interface Props extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'style' | 'className'> {
-  value: string;
+  /**
+   * 테마
+   */
   theme: Theme;
+
+  /**
+   * 입력한 값
+   */
+  value: string;
+
+  /**
+   * onChangeless // TODO: 이름이 명확하지 않음
+   *
+   * @default false
+   */
   onChangeless?: boolean;
-  isError?: boolean;
+
+  /**
+   * 에러 메세지를 가지고 있는지 여부
+   *
+   * @default false
+   */
+  hasError?: boolean;
+
+  /**
+   * 에러 메세지
+   */
   errorMessage?: string;
 }
 
+/**
+ * Input
+ *
+ * @author hyeonkim
+ */
 export function Input({
   theme,
   value,
   placeholder,
-  isError,
+  hasError,
   errorMessage,
   onFocus,
   onBlur,
@@ -47,11 +76,13 @@ export function Input({
 
   return (
     <div>
-      <div className={containerStyle(theme, isError)}>
-        <span className={placeholderStyle(theme, isFocus, value.length > 0, isError, onChangeless)}>{placeholder}</span>
+      <div className={containerStyle(theme, hasError)}>
+        <span className={placeholderStyle(theme, isFocus, value.length > 0, hasError, onChangeless)}>
+          {placeholder}
+        </span>
         <div className={inputWrapperStyle(onChangeless)}>
           <input
-            className={inputStyle(theme, isError)}
+            className={inputStyle(theme, hasError)}
             value={value}
             onFocus={handleFocus}
             onBlur={handleBlur}
@@ -59,7 +90,7 @@ export function Input({
           />
         </div>
       </div>
-      {isError && (
+      {hasError && (
         <div className={errorWrapperStyle}>
           <Text theme={theme} size="caption" align="left" text={errorMessage ?? ''} color="red_10" />
         </div>
@@ -86,15 +117,6 @@ const containerStyle = (theme: Theme, isError?: boolean) => css`
   border: 1px solid ${theme === 'light' ? token.color.grey_40_light : token.color.grey_40_dark};
   &:focus-within {
     border-color: ${token.color.main_green_10};
-  }
-  font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue',
-    'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji',
-    'Segoe UI Symbol', sans-serif;
-  @font-face {
-    font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
-      'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
-      'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
-    src: url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css');
   }
   transition: border-color 0.2s ease-in-out;
   ${isError &&

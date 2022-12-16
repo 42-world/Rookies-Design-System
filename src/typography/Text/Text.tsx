@@ -1,17 +1,44 @@
 import { css } from '@emotion/css';
+import React from 'react';
 import '../../assets/styles/reset.css';
 import { Theme } from '../../common/type';
 import { TextAlignType, TextColorType, TextSizeType } from './types';
 import { getFontSize, getFontWeight, getThemeColor } from './utils';
 
 export type Props = {
+  /**
+   * 테마
+   */
   theme: Theme;
-  size: TextSizeType;
-  color: TextColorType;
-  align: TextAlignType;
+
+  /**
+   * 텍스트
+   */
   text: string;
+
+  /**
+   * 텍스트 사이즈
+   */
+  size: TextSizeType;
+
+  /**
+   * 텍스트 색상
+   */
+  color: TextColorType;
+
+  /**
+   * 텍스트 정렬
+   */
+  align: TextAlignType;
 };
 
+React; ///.memo(Text);
+
+/**
+ * 텍스트 컴포넌트
+ *
+ * @author ycha
+ */
 export function Text({ theme, size, color, align, text }: Props) {
   return (
     <div className={textStyle(align, size)} style={{ color: getThemeColor(theme, color) }}>

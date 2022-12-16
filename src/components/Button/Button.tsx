@@ -2,28 +2,56 @@ import { css } from '@emotion/css';
 import '../../assets/styles/reset.css';
 import { token } from '../../common/token';
 import { Theme } from '../../common/type';
-import { wrapATag } from './wrapATag';
+import { wrapLinkTag } from './wrapLinkTag';
 
 type TextProps = {
-  childType: 'text';
+  type: 'text';
+
+  /**
+   * 버튼 클릭 이벤트
+   */
   onClick: React.MouseEventHandler<HTMLButtonElement>;
 };
 
 type LinkProps = {
-  childType: 'link';
+  type: 'link';
+
+  /**
+   * 링크 주소
+   */
   link: string;
 };
 
 type Props = (TextProps | LinkProps) & {
+  /**
+   * 테마
+   */
   theme: Theme;
+
+  /**
+   * 버튼 텍스트
+   */
   text: string;
+
+  /**
+   * 버튼 사이즈
+   */
   size: 'normal' | 'small';
+
+  /**
+   * 버튼 스타일
+   */
   style: 'default' | 'danger' | 'primary';
 };
 
+/**
+ * 버튼 컴포넌트
+ *
+ * @author juchoi
+ */
 export function Button(props: Props) {
-  const isLinkType = props.childType === 'link';
-  const onClick = isLinkType ? () => undefined : props.onClick;
+  const isTextButton = props.type === 'text';
+  const onClick = isTextButton ? props.onClick : undefined;
 
   const innerButton = (
     <button className={getClassStyle(props)} onClick={onClick}>
@@ -31,7 +59,7 @@ export function Button(props: Props) {
     </button>
   );
 
-  return isLinkType ? wrapATag(props.link, innerButton) : innerButton;
+  return isTextButton ? innerButton : wrapLinkTag(props.link, innerButton);
 }
 
 const getClassStyle = ({ style, theme, size }: Pick<Props, 'style' | 'theme' | 'size'>) =>

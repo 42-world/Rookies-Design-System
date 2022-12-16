@@ -1,26 +1,59 @@
 import { css } from '@emotion/css';
-import * as React from 'react';
 import { useState } from 'react';
-import { token } from '../common/token';
+import { token } from '../../common/token';
+import { Theme } from '../../common/type';
 
 type ListProps = {
+  /**
+   * 아이콘
+   */
   icon: string;
+
+  /**
+   * 텍스트
+   */
   text: string;
+
+  /**
+   * 링크
+   */
   link: string;
 };
 
 type Props = {
-  theme: 'light' | 'dark';
+  /**
+   * 테마
+   */
+  theme: Theme;
+
+  /**
+   * 포커스
+   */
   focus: number;
+
+  /**
+   * 아이콘 여부
+   */
   hasIcon: boolean;
+
+  /**
+   * 리스트
+   */
   list: ListProps[];
 };
 
+/**
+ * 사이드 네비게이션
+ *
+ * @author beason
+ */
 export function SideNavigation({ theme, hasIcon, list, focus }: Props) {
   const [onFocus, setOnFocus] = useState(focus);
+
   const handleFocus = (index: number) => {
     setOnFocus(index);
   };
+
   return (
     <div className={contaier}>
       {list.map((list, index) => {
@@ -32,18 +65,9 @@ export function SideNavigation({ theme, hasIcon, list, focus }: Props) {
                 font-size: 16px;
                 color: ${focus === index ? token.color.main_green_10 : token.color.grey_40_light};
                 font-weight: ${focus === index ? 600 : 500};
-                font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
-                  'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic',
-                  'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
                 margin: 0;
                 line-height: 1.25;
                 text-decoration: none;
-                @font-face {
-                  font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
-                    'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic',
-                    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
-                  src: url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css');
-                }
               `}
               href={list.link}
             >

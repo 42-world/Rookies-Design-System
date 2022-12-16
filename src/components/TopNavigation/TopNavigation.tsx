@@ -1,8 +1,8 @@
 import { css } from '@emotion/css';
-import { BellIcon, MoonIcon, PlusIcon, SearchIcon, SunIcon } from '../assets/icons';
-import { token } from '../common/token';
-import { Theme } from '../common/type';
-import { Text } from '../typography/Text';
+import { BellIcon, MoonIcon, PlusIcon, SearchIcon, SunIcon } from '../../assets/icons';
+import { token } from '../../common/token';
+import { Theme } from '../../common/type';
+import { Text } from '../../typography/Text';
 
 type User = {
   profileLink: string;
@@ -23,6 +23,11 @@ type Props = {
   user: User;
 };
 
+/**
+ * 상단 네비게이션 컴포넌트
+ *
+ * @author jiychoi
+ */
 export function TopNavigation({ theme, links, user }: Props) {
   return (
     <div className={containerStyle(theme)}>

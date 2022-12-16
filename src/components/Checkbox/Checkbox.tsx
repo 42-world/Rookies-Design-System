@@ -1,63 +1,47 @@
 import { css } from '@emotion/css';
-import { useCallback, useState } from 'react';
 import { CheckMarkIcon } from '../../assets/icons';
 import { token } from '../../common/token';
 import { Theme } from '../../common/type/theme';
 
-type CheckboxProps = {
-  text: string;
-  isChecked: boolean;
-};
-
 type Props = {
+  /**
+   * 테마
+   */
   theme: Theme;
-  direction: Direction;
-  list: CheckboxProps[];
+
+  /**
+   * 체크박스 텍스트
+   */
+  text: string;
+
+  /**
+   * 이미 체크되어있는지 여부
+   *
+   * @default false
+   */
+  isChecked?: boolean;
+
+  /**
+   * 체크박스 클릭 이벤트
+   */
+  onClick: React.MouseEventHandler<HTMLButtonElement>;
 };
 
-type InnerProps = {
-  theme: Theme;
-  item: CheckboxProps;
-};
-
-type Direction = 'row' | 'column';
-
-export function Checkbox({ theme, direction, list }: Props) {
+/**
+ * 체크박스 컴포넌트
+ *
+ * @author jiychoi
+ */
+export function Checkbox({ theme, text, isChecked = false, onClick }: Props) {
   return (
-    <div className={containerStyle(direction)}>
-      {list.map((item) => (
-        <CheckboxInnerElement theme={theme} item={item} />
-      ))}
-    </div>
-  );
-}
-
-function CheckboxInnerElement({ theme, item }: InnerProps) {
-  const [checked, setChecked] = useState(item.isChecked);
-
-  const handleCheck = useCallback(() => {
-    console.log(checked);
-    setChecked((prevState: boolean) => !prevState);
-  }, [checked]);
-
-  return (
-    <div className={checkboxWrapperStyle(theme)}>
-      <button className={checkboxButtonStyle(theme)} onClick={handleCheck}>
+    <label className={checkboxWrapperStyle(theme)}>
+      <button className={checkboxMarkStyle(theme)} onClick={onClick}>
         <CheckMarkIcon color={theme === 'light' ? 'grey_60_light' : 'grey_60_dark'} />
       </button>
-      <p onClick={handleCheck}>{item.text}</p>
-    </div>
+      <span>{text}</span>
+    </label>
   );
 }
-
-const containerStyle = (direction: Direction) => css`
-  display: flex;
-  flex-direction: ${direction};
-  gap: 22px;
-  justify-content: 'start';
-  align-items: 'start';
-  white-space: nowrap;
-`;
 
 const checkboxWrapperStyle = (theme: Theme) => css`
   display: flex;
@@ -72,16 +56,6 @@ const checkboxWrapperStyle = (theme: Theme) => css`
   user-select: none;
   color: ${theme === 'light' ? token.color.grey_60_light : token.color.grey_60_dark};
   font-size: 14px;
-
-  font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue',
-    'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji',
-    'Segoe UI Symbol', sans-serif;
-
-  @font-face {
-    font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
-      'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
-      'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
-    src: url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css');
   }
 `;
 

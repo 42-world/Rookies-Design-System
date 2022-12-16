@@ -1,49 +1,105 @@
 import { css } from '@emotion/css';
 import { motion } from 'framer-motion';
-import { useState } from 'react';
 import { ChatIcon, ThumbIcon } from '../../assets/icons';
 import { token } from '../../common/token';
 import { Theme } from '../../common/type';
 import { Text } from '../../typography/Text';
-import { Avatar } from '../Avatar';
+import { Avatar } from '../Avatar/Avatar';
 
 type Props = {
+  /**
+   * 테마
+   */
   theme: Theme;
+
+  /**
+   * 작성자
+   */
+  writerName: string;
+
+  /**
+   * 작성자 이미지
+   */
+  writerImg: string;
+
+  /**
+   * 피드 제목
+   */
   title: string;
+
+  /**
+   * 피드 내용
+   */
   contents: string;
-  isThumbed: boolean;
-  thumbCount: number;
+
+  /**
+   * 좋아요 여부
+   *
+   * @default false
+   */
+  isLike?: boolean;
+
+  /**
+   * 좋아요 수
+   */
+  likeCount: number;
+
+  /**
+   * 댓글 수
+   */
   commentCount: number;
-  user: {
-    username: string;
-    createdAt: string;
-    profileImg: any;
-  };
+
+  /**
+   * 생성된 시간
+   */
+  createdAt: string;
+
+  /**
+   * 좋아요 클릭 이벤트
+   */
+  onLikeClick?: React.MouseEventHandler<HTMLDivElement>;
 };
 
-export function Feed({ theme, title, contents, isThumbed, thumbCount, commentCount, user }: Props) {
+/**
+ * 피드 컴포넌트
+ *
+ * @author beason
+ *
+ * @param param0
+ * @returns
+ */
+export function Feed({
+  theme,
+  writerName,
+  writerImg,
+  title,
+  contents,
+  isLike,
+  likeCount,
+  commentCount,
+  createdAt,
+  onLikeClick,
+}: Props) {
   const thumbedStyle = 'main_green_10';
   const unThumbedStyle = theme === 'light' ? 'grey_50_light' : 'grey_50_dark';
-
-  const [thumbed, setThumbed] = useState(isThumbed);
 
   return (
     <div>
       <div className={contentsStyle}>
-        <Avatar createdAt={user.createdAt} username={user.username} profileImg={user.profileImg} theme={theme} />
+        <Avatar theme={theme} name={writerName} img={writerImg} seconderyText={createdAt} />
         <Text align="left" color="grey_60" size="header4" text={title} theme={theme} />
         <p className={feedTextStyle(theme)}>{contents}</p>
       </div>
       <div className={bottomStyle(theme)}>
-        <motion.div whileTap={{ scale: 0.9 }} className={iconContainerStyle} onClick={() => setThumbed(!thumbed)}>
+        <motion.div whileTap={{ scale: 0.9 }} className={iconContainerStyle} onClick={onLikeClick}>
           <div className={iconStyle}>
-            <ThumbIcon color={thumbed ? thumbedStyle : unThumbedStyle} />
+            <ThumbIcon color={isLike ? thumbedStyle : unThumbedStyle} />
           </div>
           <Text
             align="left"
-            color={thumbed ? 'main_green_10' : 'grey_50'}
+            color={isLike ? 'main_green_10' : 'grey_50'}
             size="body3"
-            text={thumbCount.toString()}
+            text={likeCount.toString()}
             theme={theme}
           />
         </motion.div>

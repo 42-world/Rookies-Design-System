@@ -1,21 +1,38 @@
 import { css } from '@emotion/css';
-import * as React from 'react';
-import { useState } from 'react';
-import { token } from '../common/token';
+import React from 'react';
+import { token } from '../../common/token';
+import { Theme } from '../../common/type';
 
 type Props = {
+  /**
+   * 테마
+   */
+  theme: Theme; // TODO: theme 적용 안됨
+
+  /**
+   * 텍스트
+   */
   text: string;
+
+  /**
+   * 선택 여부
+   */
+  isSelected: boolean;
+
+  /**
+   * 클릭 이벤트
+   */
+  onClick: React.MouseEventHandler<HTMLDivElement>;
 };
 
-export function Chip({ text }: Props) {
-  const [isSelected, setIsSelected] = useState(false);
-
-  const handleClick = () => {
-    setIsSelected(!isSelected);
-  };
-
+/**
+ * Chip 컴포넌트
+ *
+ * @author ycha
+ */
+export function Chip({ text, isSelected, onClick }: Props) {
   return (
-    <div className={isSelected ? selectedStyle : unSelectedStyle} onClick={handleClick}>
+    <div className={isSelected ? selectedStyle : unSelectedStyle} onClick={onClick}>
       <p className={isSelected ? selectedTextStyle : unSelectedTextStyle}>{text}</p>
     </div>
   );

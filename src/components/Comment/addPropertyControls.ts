@@ -1,41 +1,39 @@
-import { addPropertyControls, ControlType } from 'framer';
+import { ControlType } from 'framer';
+import { themeProperty } from '../../common/property';
+import { addStrictPropertyControls } from '../../common/utils';
 import { Comment } from './Comment';
 
-addPropertyControls(Comment, {
-  theme: {
-    type: ControlType.Enum,
-    displaySegmentedControl: true,
-    options: ['light', 'dark'],
-    defaultValue: 'light',
+addStrictPropertyControls(Comment, {
+  theme: themeProperty,
+  writerName: {
+    title: 'Writer Name',
+    type: ControlType.String,
+    defaultValue: 'beson',
+  },
+  writerImg: {
+    title: 'Writer Image',
+    type: ControlType.Image,
   },
   text: {
+    title: 'Text',
     type: ControlType.String,
     defaultValue: '저도 마찬가지에요! 항상 군대에서 뭘 준비해야할지 모르겠어요 ㅠㅠㅜㅜㅜㅜ',
   },
-  isThumbed: {
+  isLike: {
+    title: 'Like',
     type: ControlType.Boolean,
     defaultValue: false,
   },
-  thumbCount: {
+  likeCount: {
+    title: 'Like Count',
     type: ControlType.Number,
-    defaultValue: 1,
+    defaultValue: 0,
     min: 0,
     displayStepper: true,
   },
-  user: {
-    type: ControlType.Object,
-    controls: {
-      username: {
-        type: ControlType.String,
-        defaultValue: 'beson',
-      },
-      profileImg: {
-        type: ControlType.Image,
-      },
-      createdAt: {
-        type: ControlType.String,
-        defaultValue: '2시간 전',
-      },
-    },
+  createdAt: {
+    title: 'Created At',
+    type: ControlType.String,
+    defaultValue: '1분 전',
   },
 });
