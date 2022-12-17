@@ -1,7 +1,7 @@
 import { ControlType } from 'framer';
 import { applyFramerProperties } from '../../common/framer';
 import { themeProperty } from '../../common/property';
-import TopNavigation from './TopNavigation';
+import { TopNavigation } from './TopNavigation';
 
 applyFramerProperties(TopNavigation, {
   theme: themeProperty,

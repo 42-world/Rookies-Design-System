@@ -163,14 +163,14 @@ export function Button() {
 }
 ```
 
-any files in `common/framer` folder will be ignored in the publishing process. This folder is for Framer specific files.
+Any files in `common/framer` folder will be ignored in the publishing process. This folder is for Framer specific files.
 
 ```
-./dist/common/framer // ignored
+dist/common/framer // ignored
 ```
 
-any files with path `*.framer.*` will be ignored in the publishing process. This is for Framer specific files.
+Any files with path `*.framer.*` will be ignored in the publishing process. This is for Framer specific files.
 
 ```
-./dist/typography/Text/applyProperties.framer.js // ignored
+dist/typography/Text/applyProperties.framer.js // ignored
 ```
