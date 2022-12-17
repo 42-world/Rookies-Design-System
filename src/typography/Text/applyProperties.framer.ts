@@ -1,8 +1,8 @@
 import { ControlType } from 'framer';
-import { addStrictPropertyControls } from '../../common/utils';
+import { applyFramerProperties } from '../../common/framer';
 import { Text } from './Text';
 
-addStrictPropertyControls(Text, {
+applyFramerProperties(Text, {
   theme: {
     title: 'Theme',
     type: ControlType.Enum,

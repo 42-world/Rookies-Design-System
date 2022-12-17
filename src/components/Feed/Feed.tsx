@@ -1,10 +1,12 @@
 import { css } from '@emotion/css';
 import { motion } from 'framer-motion';
+import React, { MouseEventHandler } from 'react';
 import { ChatIcon, ThumbIcon } from '../../assets/icons';
 import { token } from '../../common/token';
 import { Theme } from '../../common/type';
 import { Text } from '../../typography/Text';
 import { Avatar } from '../Avatar/Avatar';
+React;
 
 type Props = {
   /**
@@ -57,7 +59,7 @@ type Props = {
   /**
    * 좋아요 클릭 이벤트
    */
-  onLikeClick?: React.MouseEventHandler<HTMLDivElement>;
+  onLikeClick?: MouseEventHandler<HTMLDivElement>;
 };
 
 /**

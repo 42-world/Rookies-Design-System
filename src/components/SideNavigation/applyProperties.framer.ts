@@ -1,9 +1,9 @@
 import { ControlType } from 'framer';
+import { applyFramerProperties } from '../../common/framer';
 import { themeProperty } from '../../common/property';
-import { addStrictPropertyControls } from '../../common/utils';
 import { SideNavigation } from './SideNavigation';
 
-addStrictPropertyControls(SideNavigation, {
+applyFramerProperties(SideNavigation, {
   theme: themeProperty,
   hasIcon: {
     title: 'Icon',

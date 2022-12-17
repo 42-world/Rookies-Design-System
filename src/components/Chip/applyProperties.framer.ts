@@ -1,17 +1,17 @@
 import { ControlType } from 'framer';
+import { applyFramerProperties } from '../../common/framer';
 import { themeProperty } from '../../common/property';
-import { addStrictPropertyControls } from '../../common/utils';
-import { Checkbox } from './Checkbox';
+import { Chip } from './Chip';
 
-addStrictPropertyControls(Checkbox, {
+applyFramerProperties(Chip, {
   theme: themeProperty,
   text: {
     title: 'Text',
     type: ControlType.String,
-    defaultValue: 'text',
+    defaultValue: '텍스트',
   },
-  isChecked: {
-    title: 'Checked',
+  isSelected: {
+    title: 'Is Selected',
     type: ControlType.Boolean,
     defaultValue: false,
   },

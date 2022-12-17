@@ -1,7 +1,9 @@
 import { css } from '@emotion/css';
+import React from 'react';
 import { Theme } from '../../common/type';
 import { Text } from '../../typography/Text';
 import { Avatar } from '../Avatar/Avatar';
+React;
 
 interface Props {
   /**

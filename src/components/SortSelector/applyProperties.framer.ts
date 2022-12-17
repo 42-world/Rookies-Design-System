@@ -1,9 +1,9 @@
 import { ControlType } from 'framer';
+import { applyFramerProperties } from '../../common/framer';
 import { themeProperty } from '../../common/property';
-import { addStrictPropertyControls } from '../../common/utils';
 import { SortSelector } from './SortSelector';
 
-addStrictPropertyControls(SortSelector, {
+applyFramerProperties(SortSelector, {
   theme: themeProperty,
   selectedIndex: {
     title: 'SelectedIndex',

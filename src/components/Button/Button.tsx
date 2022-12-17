@@ -1,8 +1,10 @@
 import { css } from '@emotion/css';
+import React, { MouseEventHandler } from 'react';
 import '../../assets/styles/reset.css';
 import { token } from '../../common/token';
 import { Theme } from '../../common/type';
 import { wrapLinkTag } from './wrapLinkTag';
+React;
 
 type TextProps = {
   type: 'text';
@@ -10,7 +12,7 @@ type TextProps = {
   /**
    * 버튼 클릭 이벤트
    */
-  onClick: React.MouseEventHandler<HTMLButtonElement>;
+  onClick: MouseEventHandler<HTMLButtonElement>;
 };
 
 type LinkProps = {

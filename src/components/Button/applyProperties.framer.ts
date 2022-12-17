@@ -1,9 +1,9 @@
 import { ControlType } from 'framer';
+import { applyFramerProperties } from '../../common/framer';
 import { themeProperty } from '../../common/property';
-import { addStrictPropertyControls } from '../../common/utils';
 import { Button } from './Button';
 
-addStrictPropertyControls(Button, {
+applyFramerProperties(Button, {
   theme: themeProperty,
   type: {
     title: 'Type',

@@ -1,9 +1,9 @@
 import { ControlType } from 'framer';
+import { applyFramerProperties } from '../../common/framer';
 import { themeProperty } from '../../common/property';
-import { addStrictPropertyControls } from '../../common/utils';
-import { TopNavigation } from './TopNavigation';
+import TopNavigation from './TopNavigation';
 
-addStrictPropertyControls(TopNavigation, {
+applyFramerProperties(TopNavigation, {
   theme: themeProperty,
   links: {
     title: 'Links',

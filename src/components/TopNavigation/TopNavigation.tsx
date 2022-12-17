@@ -1,8 +1,10 @@
 import { css } from '@emotion/css';
+import React from 'react';
 import { BellIcon, MoonIcon, PlusIcon, SearchIcon, SunIcon } from '../../assets/icons';
 import { token } from '../../common/token';
 import { Theme } from '../../common/type';
 import { Text } from '../../typography/Text';
+React;
 
 type User = {
   profileLink: string;

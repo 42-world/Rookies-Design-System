@@ -1,7 +1,8 @@
 import { css } from '@emotion/css';
-import React from 'react';
+import React, { MouseEventHandler } from 'react';
 import { token } from '../../common/token';
 import { Theme } from '../../common/type';
+React;
 
 type Props = {
   /**
@@ -22,7 +23,7 @@ type Props = {
   /**
    * 클릭 이벤트
    */
-  onClick: React.MouseEventHandler<HTMLDivElement>;
+  onClick: MouseEventHandler<HTMLDivElement>;
 };
 
 /**

@@ -1,8 +1,9 @@
-import { addPropertyControls, ControlType } from 'framer';
+import { ControlType } from 'framer';
+import { applyFramerProperties } from '../../common/framer';
 import { themeProperty } from '../../common/property';
 import { Feed } from './Feed';
 
-addPropertyControls(Feed, {
+applyFramerProperties(Feed, {
   theme: themeProperty,
   writerName: {
     title: 'Writer Name',
@@ -47,6 +48,7 @@ addPropertyControls(Feed, {
     displayStepper: true,
   },
   onLikeClick: {
+    title: 'onLikeClick',
     type: ControlType.EventHandler,
   },
 });

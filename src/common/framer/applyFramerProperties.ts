@@ -9,7 +9,7 @@ type PropertyControlsType<Props extends Record<string, any>> = {
   };
 };
 
-export function addStrictPropertyControls<Props extends Record<string, any> & { theme: Theme }>(
+export function applyFramerProperties<Props extends Record<string, any> & { theme: Theme }>(
   component: React.ComponentType<Props> | React.ForwardRefExoticComponent<Props> | HigherOrderComponent<Props>,
   propertyControls: PropertyControlsType<Props>,
 ): void {

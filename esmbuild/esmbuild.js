@@ -13,7 +13,7 @@ async function getBuildOptions(path) {
 
   return {
     entryPoints,
-    // minify: true,
+    minify: true,
     format: 'esm',
     bundle: true,
     external: ['react', 'react/jsx-runtime', 'react-dom', 'framer', 'framer-motion'],
@@ -23,7 +23,7 @@ async function getBuildOptions(path) {
 
 async function build(path = defaultPath, outdir = defaultOutdir) {
   outdir = resolve(outdir);
-  await esbuild.build({ outdir, ...(await getBuildOptions(path)), sourcemap: true });
+  await esbuild.build({ outdir, ...(await getBuildOptions(path)) });
 
   console.log(`Build done at ${outdir}`);
 }

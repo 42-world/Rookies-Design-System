@@ -1,9 +1,10 @@
 import { css } from '@emotion/css';
 import { AnimatePresence, motion } from 'framer-motion';
-import React from 'react';
+import React, { useState } from 'react';
 import { token } from '../../common/token';
 import { Theme } from '../../common/type';
 import { Text } from '../../typography/Text';
+React;
 
 type Props = {
   /**
@@ -33,7 +34,7 @@ type Props = {
  * @author ycha
  */
 export function Tabs({ label, children, align, theme }: Props) {
-  const [selectedTab, setSelectedTab] = React.useState(label[0]);
+  const [selectedTab, setSelectedTab] = useState(label[0]);
 
   const tabIndex = label.indexOf(selectedTab);
 

@@ -1,9 +1,18 @@
 import { css } from '@emotion/css';
+import React, { MouseEventHandler } from 'react';
 import { token } from '../../common/token';
 import { Theme } from '../../common/type/theme';
+React;
 
 type ListProps = {
+  /**
+   * 텍스트
+   */
   text: string;
+
+  /**
+   * 링크
+   */
   link: string;
 };
 
@@ -26,15 +35,15 @@ type Props = {
   /**
    * selector 클릭 이벤트
    */
-  onClick: React.MouseEventHandler<SVGTextElement>;
+  onClick: MouseEventHandler<SVGTextElement>;
 };
 
 /**
- * 정렬셀렉터 컴포넌트
+ * 정렬 선택 컴포넌트
  *
  *  @author sham
  */
-export const SortSelector = ({ list, theme, selectedIndex, onClick }: Props) => {
+export function SortSelector({ list, theme, selectedIndex, onClick }: Props) {
   return (
     <div className={containerStyle}>
       {list.map((item, index) => {
@@ -49,7 +58,7 @@ export const SortSelector = ({ list, theme, selectedIndex, onClick }: Props) => 
       })}
     </div>
   );
-};
+}
 
 const containerStyle = css`
   display: flex;

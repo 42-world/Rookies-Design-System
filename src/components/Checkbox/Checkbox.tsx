@@ -1,7 +1,9 @@
 import { css } from '@emotion/css';
+import React, { MouseEventHandler } from 'react';
 import { CheckMarkIcon } from '../../assets/icons';
 import { token } from '../../common/token';
 import { Theme } from '../../common/type/theme';
+React;
 
 type Props = {
   /**
@@ -24,7 +26,7 @@ type Props = {
   /**
    * 체크박스 클릭 이벤트
    */
-  onClick: React.MouseEventHandler<HTMLButtonElement>;
+  onClick: MouseEventHandler<HTMLButtonElement>;
 };
 
 /**

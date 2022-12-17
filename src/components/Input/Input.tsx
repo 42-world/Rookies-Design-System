@@ -1,11 +1,12 @@
 import { css } from '@emotion/css';
-import React from 'react';
+import React, { FocusEvent, InputHTMLAttributes, useCallback, useState } from 'react';
 import '../../assets/styles/reset.css';
 import { token } from '../../common/token';
 import { Theme } from '../../common/type';
 import { Text } from '../../typography/Text';
+React;
 
-interface Props extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'style' | 'className'> {
+interface Props extends Omit<InputHTMLAttributes<HTMLInputElement>, 'style' | 'className'> {
   /**
    * 테마
    */
@@ -52,10 +53,10 @@ export function Input({
   onChangeless,
   ...rest
 }: Props) {
-  const [isFocus, setIsFocus] = React.useState(false);
+  const [isFocus, setIsFocus] = useState(false);
 
-  const handleFocus = React.useCallback(
-    (event: React.FocusEvent<HTMLInputElement>) => {
+  const handleFocus = useCallback(
+    (event: FocusEvent<HTMLInputElement>) => {
       setIsFocus(true);
       if (onFocus) {
         onFocus(event);
@@ -64,8 +65,8 @@ export function Input({
     [onFocus],
   );
 
-  const handleBlur = React.useCallback(
-    (event: React.FocusEvent<HTMLInputElement>) => {
+  const handleBlur = useCallback(
+    (event: FocusEvent<HTMLInputElement>) => {
       setIsFocus(false);
       if (onBlur) {
         onBlur(event);

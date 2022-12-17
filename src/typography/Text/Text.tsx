@@ -4,6 +4,7 @@ import '../../assets/styles/reset.css';
 import { Theme } from '../../common/type';
 import { TextAlignType, TextColorType, TextSizeType } from './types';
 import { getFontSize, getFontWeight, getThemeColor } from './utils';
+React;
 
 export type Props = {
   /**
@@ -31,8 +32,6 @@ export type Props = {
    */
   align: TextAlignType;
 };
-
-React; ///.memo(Text);
 
 /**
  * 텍스트 컴포넌트

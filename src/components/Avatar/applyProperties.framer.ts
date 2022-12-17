@@ -1,9 +1,9 @@
 import { ControlType } from 'framer';
+import { applyFramerProperties } from '../../common/framer';
 import { themeProperty } from '../../common/property';
-import { addStrictPropertyControls } from '../../common/utils';
 import { Avatar } from './Avatar';
 
-addStrictPropertyControls(Avatar, {
+applyFramerProperties(Avatar, {
   theme: themeProperty,
   img: {
     title: 'Profile Image',

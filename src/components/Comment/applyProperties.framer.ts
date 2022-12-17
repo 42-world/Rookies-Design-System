@@ -1,9 +1,9 @@
 import { ControlType } from 'framer';
+import { applyFramerProperties } from '../../common/framer';
 import { themeProperty } from '../../common/property';
-import { addStrictPropertyControls } from '../../common/utils';
 import { Comment } from './Comment';
 
-addStrictPropertyControls(Comment, {
+applyFramerProperties(Comment, {
   theme: themeProperty,
   writerName: {
     title: 'Writer Name',
