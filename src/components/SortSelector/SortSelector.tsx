@@ -1,7 +1,6 @@
 import { css } from '@emotion/css';
-import * as React from 'react';
-import { useState } from 'react';
-import { tokens } from '../tokens';
+import { token } from '../../common/token';
+import { Theme } from '../../common/type/theme';
 
 type ListProps = {
   text: string;
@@ -9,21 +8,40 @@ type ListProps = {
 };
 
 type Props = {
-  theme: 'light' | 'dark';
-  selectIndex: number;
+  /**
+   * 테마
+   */
+  theme: Theme;
+
+  /**
+   * 선택된 인덱스
+   */
+  selectedIndex: number;
+
+  /**
+   * 리스트
+   */
   list: ListProps[];
+
+  /**
+   * selector 클릭 이벤트
+   */
+  onClick: React.MouseEventHandler<SVGTextElement>;
 };
 
-export const SortSelector = ({ list, theme, selectIndex }: Props) => {
-  const [select, setSelect] = useState(selectIndex);
-
+/**
+ * 정렬셀렉터 컴포넌트
+ *
+ *  @author sham
+ */
+export const SortSelector = ({ list, theme, selectedIndex, onClick }: Props) => {
   return (
     <div className={containerStyle}>
       {list.map((item, index) => {
         return (
           <div className="item">
-            <text className={beforeItem(select === index)}>•</text>
-            <text className={itemText(select === index)} onClick={() => setSelect(index)}>
+            <text className={beforeItem(selectedIndex === index)}>•</text>
+            <text className={itemText(selectedIndex === index)} onClick={onClick}>
               {item.text}
             </text>
           </div>
@@ -39,10 +57,10 @@ const containerStyle = css`
 `;
 
 const beforeItem = (isFocus: boolean) => css`
-  color: ${isFocus ? tokens.color.main_green_10 : tokens.color.grey_40_light};
+  color: ${isFocus ? token.color.main_green_10 : token.color.grey_40_light};
   margin: 4px;
 `;
 
 const itemText = (isFocus: boolean) => css`
-  color: ${isFocus ? tokens.color.grey_40_light : tokens.color.grey_40_dark};
+  color: ${isFocus ? token.color.grey_40_light : token.color.grey_40_dark};
 `;

@@ -1,23 +1,19 @@
 import { ControlType } from 'framer';
+import { themeProperty } from '../../common/property';
 import { addStrictPropertyControls } from '../../common/utils';
 import { SortSelector } from './SortSelector';
 
 addStrictPropertyControls(SortSelector, {
-  theme: {
-    type: ControlType.Enum,
-    displaySegmentedControl: true,
-    options: ['light', 'dark'],
-    defaultValue: 'light',
-  },
-
-  selectIndex: {
+  theme: themeProperty,
+  selectedIndex: {
+    title: 'SelectedIndex',
     type: ControlType.Number,
     displayStepper: true,
     defaultValue: 0,
     min: 0,
   },
-
   list: {
+    title: 'List',
     type: ControlType.Array,
     control: {
       type: ControlType.Object,
@@ -30,6 +26,10 @@ addStrictPropertyControls(SortSelector, {
         },
       },
     },
-    defaultValue: [{ text: '124123234' }, { text: '144213122' }, { text: 'text3' }],
+    defaultValue: [{ text: 'sort1' }, { text: 'sort2' }, { text: 'sort3' }],
+  },
+  onClick: {
+    title: 'onClick',
+    type: ControlType.EventHandler,
   },
 });
