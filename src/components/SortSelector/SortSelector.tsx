@@ -1,6 +1,6 @@
 import { css } from '@emotion/css';
 import * as React from 'react';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { tokens } from '../tokens';
 
 type ListProps = {
@@ -10,24 +10,20 @@ type ListProps = {
 
 type Props = {
   theme: 'light' | 'dark';
-  focus: number;
+  selectIndex: number;
   list: ListProps[];
 };
 
-export const SortSelector = ({ list, theme, focus }: Props) => {
-  const [onFocus, setOnFocus] = useState(0);
-
-  useEffect(() => {
-    setOnFocus(focus);
-  }, []);
+export const SortSelector = ({ list, theme, selectIndex }: Props) => {
+  const [select, setSelect] = useState(selectIndex);
 
   return (
     <div className={containerStyle}>
       {list.map((item, index) => {
         return (
           <div className="item">
-            <text className={beforeItem(onFocus === index)}>•</text>
-            <text className={itemText(onFocus === index)} onClick={() => setOnFocus(index)}>
+            <text className={beforeItem(select === index)}>•</text>
+            <text className={itemText(select === index)} onClick={() => setSelect(index)}>
               {item.text}
             </text>
           </div>
