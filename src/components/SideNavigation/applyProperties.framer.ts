@@ -13,13 +13,6 @@ addPropertyControls(SideNavigation, {
     title: 'Has Icon',
     type: ControlType.Boolean,
   },
-  pageType: {
-    title: 'Page Type',
-    type: ControlType.Enum,
-    displaySegmentedControl: true,
-    options: ['One Page', 'Multi Page'],
-    defaultValue: 'Multi Page',
-  },
   currentLink: {
     type: ControlType.Link,
   },

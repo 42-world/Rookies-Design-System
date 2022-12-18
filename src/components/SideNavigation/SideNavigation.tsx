@@ -32,11 +32,6 @@ type Props = {
   theme: Theme;
 
   /**
-   * 페이지 타입
-   */
-  pageType: 'One Page' | 'Multi Page';
-
-  /**
    * 현재 링크(focused)
    */
   currentLink: string;
