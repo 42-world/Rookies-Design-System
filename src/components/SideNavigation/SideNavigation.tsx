@@ -1,8 +1,10 @@
 import { css } from '@emotion/css';
 import { motion } from 'framer-motion';
 import React from 'react';
+import * as IconComponents from '../../assets/icons';
 import { token } from '../../common/token';
 import { Theme } from '../../common/type';
+import { Icons } from '../../common/type/icons';
 import { Text } from '../../typography';
 React;
 
@@ -10,7 +12,7 @@ type ListProps = {
   /**
    * 아이콘
    */
-  icon: string;
+  icon: Icons;
 
   /**
    * 텍스트
@@ -57,20 +59,27 @@ type Props = {
  */
 
 export function SideNavigation({ theme, hasIcon, currentLink, list }: Props) {
-  console.log(list);
+  const activeColor = 'main_green_10';
+  const unActiveColor = theme === 'light' ? 'grey_40_light' : 'grey_40_dark';
+
   return (
     <div className={contaier}>
       {list.map((list) => {
         return (
           <a className={itemContainer} href={list.link}>
-            {hasIcon && <div>{list.icon}</div>}
-            <Text
-              text={list.text}
-              align="left"
-              color={currentLink === list.link ? 'main_green_10' : 'grey_40'}
-              size="body2"
-              theme={theme}
-            />
+            <div>
+              {hasIcon &&
+                React.createElement(IconComponents[list.icon], {
+                  color: currentLink === list.link ? activeColor : unActiveColor,
+                })}
+              <Text
+                text={list.text}
+                align="left"
+                color={currentLink === list.link ? 'main_green_10' : 'grey_40'}
+                size="body2"
+                theme={theme}
+              />
+            </div>
             {currentLink === list.link ? (
               <motion.div
                 className={css`
@@ -107,5 +116,12 @@ const itemContainer = css`
 
   & p {
     margin: 0;
+  }
+
+  & > div {
+    display: flex;
+    gap: 8px;
+    justify-contents: center;
+    align-items: center;
   }
 `;

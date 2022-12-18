@@ -31,11 +31,22 @@ addPropertyControls(SideNavigation, {
         text: {
           type: ControlType.String,
         },
-        icon: {
-          type: ControlType.String,
-        },
         link: {
           type: ControlType.Link,
+        },
+        icon: {
+          type: ControlType.Enum,
+          options: [
+            'BellIcon',
+            'ChatIcon',
+            'CheckMarkIcon',
+            'MoonIcon',
+            'PlusIcon',
+            'SearchIcon',
+            'SunIcon',
+            'ThumbIcon',
+          ],
+          // hidden: ({ hasIcon }) => !hasIcon,
         },
       },
     },
