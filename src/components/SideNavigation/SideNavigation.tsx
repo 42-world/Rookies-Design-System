@@ -1,7 +1,9 @@
 import { css } from '@emotion/css';
-import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+import React from 'react';
 import { token } from '../../common/token';
 import { Theme } from '../../common/type';
+import { Text } from '../../typography';
 React;
 
 type ListProps = {
@@ -28,9 +30,14 @@ type Props = {
   theme: Theme;
 
   /**
-   * 포커스
+   * 페이지 타입
    */
-  focus: number;
+  pageType: 'One Page' | 'Multi Page';
+
+  /**
+   * 현재 링크(focused)
+   */
+  currentLink: string;
 
   /**
    * 아이콘 여부
@@ -46,47 +53,36 @@ type Props = {
 /**
  * 사이드 네비게이션
  *
- * @author beason
+ * @author beson
  */
-export function SideNavigation({ theme, hasIcon, list, focus }: Props) {
-  const [onFocus, setOnFocus] = useState(focus);
 
-  const handleFocus = (index: number) => {
-    setOnFocus(index);
-  };
-
+export function SideNavigation({ theme, hasIcon, currentLink, list }: Props) {
+  console.log(list);
   return (
     <div className={contaier}>
-      {list.map((list, index) => {
+      {list.map((list) => {
         return (
-          <div className={itemContainer} onClick={() => handleFocus(index)}>
-            {/* <div>{list.icon}</div> */}
-            <a
-              className={css`
-                font-size: 16px;
-                color: ${focus === index ? token.color.main_green_10 : token.color.grey_40_light};
-                font-weight: ${focus === index ? 600 : 500};
-                margin: 0;
-                line-height: 1.25;
-                text-decoration: none;
-              `}
-              href={list.link}
-            >
-              {list.text}
-            </a>
-            <div
-              className={css`
-                width: 3px;
-                background-color: ${token.color.main_green_10};
-                border-radius: 0px 2px 2px 0px;
-                color: ${token.color.main_green_10};
-                opacity: ${focus === index ? 1 : 0};
-                transition: all 0.2s cubic-bezier(0.215, 0.61, 0.355, 1);
-              `}
-            >
-              .
-            </div>
-          </div>
+          <a className={itemContainer} href={list.link}>
+            {hasIcon && <div>{list.icon}</div>}
+            <Text
+              text={list.text}
+              align="left"
+              color={currentLink === list.link ? 'main_green_10' : 'grey_40'}
+              size="body2"
+              theme={theme}
+            />
+            {currentLink === list.link ? (
+              <motion.div
+                className={css`
+                  width: 3px;
+                  height: 20px;
+                  background-color: ${token.color.main_green_10};
+                  border-radius: 0px 2px 2px 0px;
+                `}
+                layoutId="underline"
+              />
+            ) : null}
+          </a>
         );
       })}
     </div>
@@ -107,4 +103,9 @@ const itemContainer = css`
   width: 100%;
   justify-content: space-between;
   align-items: center;
+  text-decoration: none;
+
+  & p {
+    margin: 0;
+  }
 `;

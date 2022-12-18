@@ -1,23 +1,29 @@
-import { ControlType } from 'framer';
-import { applyFramerProperties } from '../../common/framer';
-import { themeProperty } from '../../common/property';
+import { addPropertyControls, ControlType } from 'framer';
 import { SideNavigation } from './SideNavigation';
 
-applyFramerProperties(SideNavigation, {
-  theme: themeProperty,
+addPropertyControls(SideNavigation, {
+  theme: {
+    title: 'Theme',
+    type: ControlType.Enum,
+    displaySegmentedControl: true,
+    options: ['light', 'dark'],
+    defaultValue: 'light',
+  },
   hasIcon: {
-    title: 'Icon',
+    title: 'Has Icon',
     type: ControlType.Boolean,
   },
-  focus: {
-    title: 'Focus',
-    type: ControlType.Number,
-    displayStepper: true,
-    defaultValue: 0,
-    min: 0,
+  pageType: {
+    title: 'Page Type',
+    type: ControlType.Enum,
+    displaySegmentedControl: true,
+    options: ['One Page', 'Multi Page'],
+    defaultValue: 'Multi Page',
+  },
+  currentLink: {
+    type: ControlType.Link,
   },
   list: {
-    title: 'List',
     type: ControlType.Array,
     control: {
       type: ControlType.Object,
