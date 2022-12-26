@@ -69,7 +69,7 @@ export function SideNavigation({ theme, hasIcon, focus, list }: Props) {
     <div className={container}>
       {list.map((item, index) => {
         return (
-          <a className={itemContainer} href={item.link} onClick={() => handleClick(index)}>
+          <a key={index} className={itemContainer} href={item.link} onClick={() => handleClick(index)}>
             <div>
               {hasIcon &&
                 React.createElement(IconComponents[item.icon], {
