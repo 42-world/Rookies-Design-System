@@ -1,6 +1,6 @@
 import { css } from '@emotion/css';
 import { motion } from 'framer-motion';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import * as IconComponents from '../../assets/icons';
 import { token } from '../../common/token';
 import { Theme } from '../../common/type';
@@ -34,7 +34,7 @@ type Props = {
   /**
    * 현재 링크(focused)
    */
-  currentLink: string;
+  focus: number;
 
   /**
    * 아이콘 여부
@@ -53,29 +53,37 @@ type Props = {
  * @author beson
  */
 
-export function SideNavigation({ theme, hasIcon, currentLink, list }: Props) {
+export function SideNavigation({ theme, hasIcon, focus, list }: Props) {
+  const [current, setCurrent] = useState(focus);
+  useEffect(() => {
+    setCurrent(focus);
+  }, [focus]);
   const activeColor = 'main_green_10';
   const unActiveColor = theme === 'light' ? 'grey_40_light' : 'grey_40_dark';
 
+  const handleClick = (index: number) => {
+    setCurrent(index);
+  };
+
   return (
     <div className={contaier}>
-      {list.map((list) => {
+      {list.map((item, index) => {
         return (
-          <a className={itemContainer} href={list.link}>
+          <a className={itemContainer} href={item.link} onClick={() => handleClick(index)}>
             <div>
               {hasIcon &&
-                React.createElement(IconComponents[list.icon], {
-                  color: currentLink === list.link ? activeColor : unActiveColor,
+                React.createElement(IconComponents[item.icon], {
+                  color: current === index ? activeColor : unActiveColor,
                 })}
               <Text
-                text={list.text}
+                text={item.text}
                 align="left"
-                color={currentLink === list.link ? 'main_green_10' : 'grey_40'}
+                color={current === index ? 'main_green_10' : 'grey_40'}
                 size="body2"
                 theme={theme}
               />
             </div>
-            {currentLink === list.link ? (
+            {current === index ? (
               <motion.div
                 className={css`
                   width: 3px;

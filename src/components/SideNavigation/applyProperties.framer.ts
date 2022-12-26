@@ -13,8 +13,10 @@ addPropertyControls(SideNavigation, {
     title: 'Has Icon',
     type: ControlType.Boolean,
   },
-  currentLink: {
-    type: ControlType.Link,
+  focus: {
+    type: ControlType.Number,
+    min: 0,
+    displayStepper: true,
   },
   list: {
     type: ControlType.Array,
