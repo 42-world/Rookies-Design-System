@@ -66,7 +66,7 @@ export function SideNavigation({ theme, hasIcon, focus, list }: Props) {
   };
 
   return (
-    <div className={contaier}>
+    <div className={container}>
       {list.map((item, index) => {
         return (
           <a className={itemContainer} href={item.link} onClick={() => handleClick(index)}>
@@ -101,7 +101,7 @@ export function SideNavigation({ theme, hasIcon, focus, list }: Props) {
   );
 }
 
-const contaier = css`
+const container = css`
   display: flex;
   flex-direction: column;
   justify-content: start;
