@@ -55,11 +55,13 @@ type Props = {
 
 export function SideNavigation({ theme, hasIcon, focus, list }: Props) {
   const [current, setCurrent] = useState(focus);
+  const activeColor = 'main_green_10';
+  const unActiveColor = theme === 'light' ? 'grey_40_light' : 'grey_40_dark';
+
+  // 굳이 할 필요없지만, 이상하게도 넣어두지 않으면 framer 에서 상태가 제대로 들어가지 않음
   useEffect(() => {
     setCurrent(focus);
   }, [focus]);
-  const activeColor = 'main_green_10';
-  const unActiveColor = theme === 'light' ? 'grey_40_light' : 'grey_40_dark';
 
   const handleClick = (index: number) => {
     setCurrent(index);
