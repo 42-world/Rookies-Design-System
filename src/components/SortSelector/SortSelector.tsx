@@ -1,5 +1,5 @@
 import { css } from '@emotion/css';
-import React, { MouseEventHandler } from 'react';
+import React, { MouseEventHandler, useState } from 'react';
 import { token } from '../../common/token';
 import { Theme } from '../../common/type/theme';
 React;
@@ -43,14 +43,19 @@ type Props = {
  *
  *  @author sham
  */
-export function SortSelector({ list, theme, selectedIndex, onClick }: Props) {
+export function SortSelector({ list, theme, selectedIndex }: Props) {
+  const [onFocus, setOnFocus] = useState(selectedIndex);
+  const handleSelect = (index: number) => {
+    setOnFocus(index);
+  };
+
   return (
     <div className={containerStyle}>
       {list.map((item, index) => {
         return (
           <div className="item">
-            <text className={beforeItem(selectedIndex === index)}>•</text>
-            <text className={itemText(selectedIndex === index)} onClick={onClick}>
+            <text className={beforeItem(onFocus === index)}>•</text>
+            <text className={itemText(onFocus === index)} onClick={() => handleSelect(index)}>
               {item.text}
             </text>
           </div>
@@ -63,6 +68,10 @@ export function SortSelector({ list, theme, selectedIndex, onClick }: Props) {
 const containerStyle = css`
   display: flex;
   flex-direction: row;
+
+  .item {
+    cursor: pointer;
+  }
 `;
 
 const beforeItem = (isFocus: boolean) => css`
