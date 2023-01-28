@@ -68,15 +68,20 @@ export function SortSelector({ list, theme, selectedIndex }: Props) {
 const containerStyle = css`
   display: flex;
   flex-direction: row;
+  padding: 8px;
+
+  font-weight: 500;
+  font-size: 16px;
 
   .item {
     cursor: pointer;
+    margin-left: 8px;
   }
 `;
 
 const beforeItem = (isFocus: boolean) => css`
   color: ${isFocus ? token.color.main_green_10 : token.color.grey_40_light};
-  margin: 4px;
+  margin: 8px;
 `;
 
 const itemText = (isFocus: boolean) => css`
