@@ -1,4 +1,5 @@
 import { css } from '@emotion/css';
+import { motion } from 'framer-motion';
 import React, { MouseEventHandler, useState } from 'react';
 import { token } from '../../common/token';
 import { Theme } from '../../common/type/theme';
@@ -53,12 +54,25 @@ export function SortSelector({ list, theme, selectedIndex }: Props) {
     <div className={containerStyle}>
       {list.map((item, index) => {
         return (
-          <div className="item">
-            <text className={beforeItem(onFocus === index)}>•</text>
-            <text className={itemText(onFocus === index)} onClick={() => handleSelect(index)}>
-              {item.text}
-            </text>
-          </div>
+          <>
+            {onFocus === index ? (
+              <motion.div transition={{ delay: 1 }}>
+                <div className="item">
+                  <text className={beforeItem(onFocus === index)}>•</text>
+                  <text className={itemText(onFocus === index)} onClick={() => handleSelect(index)}>
+                    {item.text}
+                  </text>
+                </div>
+              </motion.div>
+            ) : (
+              <div className="item">
+                <text className={beforeItem(onFocus === index)}>•</text>
+                <text className={itemText(onFocus === index)} onClick={() => handleSelect(index)}>
+                  {item.text}
+                </text>
+              </div>
+            )}
+          </>
         );
       })}
     </div>
