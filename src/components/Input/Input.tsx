@@ -1,5 +1,5 @@
 import { css } from '@emotion/css';
-import React, { FocusEvent, InputHTMLAttributes, useCallback, useState } from 'react';
+import React, { ChangeEvent, FocusEvent, forwardRef, InputHTMLAttributes, useCallback, useState } from 'react';
 import '../../assets/styles/reset.css';
 import { token } from '../../common/token';
 import { Theme } from '../../common/type';
@@ -11,11 +11,6 @@ interface Props extends Omit<InputHTMLAttributes<HTMLInputElement>, 'style' | 'c
    * 테마
    */
   theme: Theme;
-
-  /**
-   * 입력한 값
-   */
-  value: string;
 
   /**
    * onChangeless // TODO: 이름이 명확하지 않음
@@ -42,63 +37,69 @@ interface Props extends Omit<InputHTMLAttributes<HTMLInputElement>, 'style' | 'c
  *
  * @author hyeonkim
  */
-export function Input({
-  theme,
-  value,
-  placeholder,
-  hasError,
-  errorMessage,
-  onFocus,
-  onBlur,
-  onChangeless,
-  ...rest
-}: Props) {
-  const [isFocus, setIsFocus] = useState(false);
+export const Input = forwardRef<HTMLInputElement, Props>(
+  (
+    { theme, placeholder, hasError, errorMessage, onFocus, onBlur, onChange, value, onChangeless, children, ...rest },
+    ref,
+  ) => {
+    const [isFocus, setIsFocus] = useState(false);
+    const [input, setInput] = useState(value || '');
 
-  const handleFocus = useCallback(
-    (event: FocusEvent<HTMLInputElement>) => {
-      setIsFocus(true);
-      if (onFocus) {
-        onFocus(event);
-      }
-    },
-    [onFocus],
-  );
+    const handleFocus = useCallback(
+      (event: FocusEvent<HTMLInputElement>) => {
+        setIsFocus(true);
+        if (onFocus) {
+          onFocus(event);
+        }
+      },
+      [onFocus],
+    );
 
-  const handleBlur = useCallback(
-    (event: FocusEvent<HTMLInputElement>) => {
-      setIsFocus(false);
-      if (onBlur) {
-        onBlur(event);
-      }
-    },
-    [onBlur],
-  );
+    const handleBlur = useCallback(
+      (event: FocusEvent<HTMLInputElement>) => {
+        setIsFocus(false);
+        if (onBlur) {
+          onBlur(event);
+        }
+      },
+      [onBlur],
+    );
 
-  return (
-    <div>
-      <div className={containerStyle(theme, hasError)}>
-        <span className={placeholderStyle(theme, isFocus, value.length > 0, hasError, onChangeless)}>
-          {placeholder}
-        </span>
-        <div className={inputWrapperStyle(onChangeless)}>
-          <input
-            className={inputStyle(theme, hasError)}
-            value={value}
-            onFocus={handleFocus}
-            onBlur={handleBlur}
-            {...rest}
-          />
+    const handleChange = useCallback(
+      (event: ChangeEvent<HTMLInputElement>) => {
+        if (onChange) onChange(event);
+        setInput(event.target.value);
+      },
+      [onChange],
+    );
+
+    return (
+      <div>
+        <div className={containerStyle(theme, hasError)}>
+          {placeholder && (
+            <span className={placeholderStyle(theme, isFocus, !!input, hasError, onChangeless)}>{placeholder}</span>
+          )}
+          <div className={inputWrapperStyle(onChangeless)}>
+            <input
+              ref={ref}
+              className={inputStyle(theme, hasError)}
+              value={input}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
+              onChange={handleChange}
+              {...rest}
+            />
+          </div>
         </div>
+        {hasError && (
+          <div className={errorWrapperStyle}>
+            <Text theme={theme} size="caption" align="left" text={errorMessage ?? ''} color="red_10" />
+          </div>
+        )}
       </div>
-      {hasError && (
-        <div className={errorWrapperStyle}>
-          <Text theme={theme} size="caption" align="left" text={errorMessage ?? ''} color="red_10" />
-        </div>
-      )}
-    </div>
-  );
-}
+    );
+  },
+);
 
 const containerStyle = (theme: Theme, isError?: boolean) => css`
   box-sizing: border-box;
