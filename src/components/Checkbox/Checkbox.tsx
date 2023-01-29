@@ -51,7 +51,7 @@ export function Checkbox({ theme, text = '', isChecked = false, onClick }: Props
       <button className={checkboxMarkStyle(buttonBorderColor)} onClick={onClick}>
         <CheckMarkIcon className={checkboxIconStyle(isChecked)} color={'main_green_10'} />
       </button>
-      <input type="checkbox" className={checkboxInputStyle(theme)} checked={isChecked} />
+      <input type="checkbox" className={checkboxInputStyle} checked={isChecked} />
       <span className={checkboxSpanStyle(textColor)}>{text}</span>
     </label>
   );
@@ -89,12 +89,11 @@ const checkboxIconStyle = (isChecked: boolean) =>
     aspectRatio: '1 / 1',
   });
 
-const checkboxInputStyle = (theme: Theme) =>
-  css({
-    opacity: 0,
-    width: 16,
-    height: 16,
-  });
+const checkboxInputStyle = css({
+  opacity: 0,
+  width: 16,
+  height: 16,
+});
 
 const checkboxSpanStyle = (textColor: string) =>
   css({
