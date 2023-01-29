@@ -1,5 +1,5 @@
-import { color } from './color';
-import { screenSize } from './screenSize';
+import { color } from 'common/token/color';
+import { screenSize } from 'common/token/screenSize';
 
 export const token = {
   color,
