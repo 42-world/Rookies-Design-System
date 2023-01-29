@@ -1,14 +1,18 @@
 import { css } from '@emotion/css';
-import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+import React, { useEffect, useState } from 'react';
+import * as IconComponents from '../../assets/icons';
 import { token } from '../../common/token';
 import { Theme } from '../../common/type';
+import { Icons } from '../../common/type/icons';
+import { Text } from '../../typography';
 React;
 
 type ListProps = {
   /**
    * 아이콘
    */
-  icon: string;
+  icon: Icons;
 
   /**
    * 텍스트
@@ -28,7 +32,7 @@ type Props = {
   theme: Theme;
 
   /**
-   * 포커스
+   * 현재 링크(focused)
    */
   focus: number;
 
@@ -46,54 +50,60 @@ type Props = {
 /**
  * 사이드 네비게이션
  *
- * @author beason
+ * @author beson
  */
-export function SideNavigation({ theme, hasIcon, list, focus }: Props) {
-  const [onFocus, setOnFocus] = useState(focus);
 
-  const handleFocus = (index: number) => {
-    setOnFocus(index);
+export function SideNavigation({ theme, hasIcon, focus, list }: Props) {
+  const [current, setCurrent] = useState(focus);
+  const activeColor = 'main_green_10';
+  const unActiveColor = theme === 'light' ? 'grey_40_light' : 'grey_40_dark';
+
+  // 굳이 할 필요없지만, 이상하게도 넣어두지 않으면 framer 에서 상태가 제대로 들어가지 않음
+  useEffect(() => {
+    setCurrent(focus);
+  }, [focus]);
+
+  const handleClick = (index: number) => {
+    setCurrent(index);
   };
 
   return (
-    <div className={contaier}>
-      {list.map((list, index) => {
+    <div className={container}>
+      {list.map((item, index) => {
         return (
-          <div className={itemContainer} onClick={() => handleFocus(index)}>
-            {/* <div>{list.icon}</div> */}
-            <a
-              className={css`
-                font-size: 16px;
-                color: ${focus === index ? token.color.main_green_10 : token.color.grey_40_light};
-                font-weight: ${focus === index ? 600 : 500};
-                margin: 0;
-                line-height: 1.25;
-                text-decoration: none;
-              `}
-              href={list.link}
-            >
-              {list.text}
-            </a>
-            <div
-              className={css`
-                width: 3px;
-                background-color: ${token.color.main_green_10};
-                border-radius: 0px 2px 2px 0px;
-                color: ${token.color.main_green_10};
-                opacity: ${focus === index ? 1 : 0};
-                transition: all 0.2s cubic-bezier(0.215, 0.61, 0.355, 1);
-              `}
-            >
-              .
+          <a key={index} className={itemContainer} href={item.link} onClick={() => handleClick(index)}>
+            <div>
+              {hasIcon &&
+                React.createElement(IconComponents[item.icon], {
+                  color: current === index ? activeColor : unActiveColor,
+                })}
+              <Text
+                text={item.text}
+                align="left"
+                color={current === index ? 'main_green_10' : 'grey_40'}
+                size="body2"
+                theme={theme}
+              />
             </div>
-          </div>
+            {current === index ? (
+              <motion.div
+                className={css`
+                  width: 3px;
+                  height: 20px;
+                  background-color: ${token.color.main_green_10};
+                  border-radius: 0px 2px 2px 0px;
+                `}
+                layoutId="underline"
+              />
+            ) : null}
+          </a>
         );
       })}
     </div>
   );
 }
 
-const contaier = css`
+const container = css`
   display: flex;
   flex-direction: column;
   justify-content: start;
@@ -107,4 +117,16 @@ const itemContainer = css`
   width: 100%;
   justify-content: space-between;
   align-items: center;
+  text-decoration: none;
+
+  & p {
+    margin: 0;
+  }
+
+  & > div {
+    display: flex;
+    gap: 8px;
+    justify-contents: center;
+    align-items: center;
+  }
 `;
