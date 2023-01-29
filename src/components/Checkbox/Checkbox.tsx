@@ -1,5 +1,5 @@
 import { css } from '@emotion/css';
-import { CheckMarkIcon } from 'assets/icons';
+import { CheckMarkIcon } from 'assets/icons/CheckMarkIcon';
 import { token } from 'common/token';
 import { Theme } from 'common/type/theme';
 import { MouseEventHandler } from 'react';
