@@ -1,9 +1,8 @@
 import { css } from '@emotion/css';
-import React, { MouseEventHandler } from 'react';
-import { CheckMarkIcon } from '../../assets/icons';
-import { token } from '../../common/token';
-import { Theme } from '../../common/type/theme';
-React;
+import { CheckMarkIcon } from 'assets/icons';
+import { token } from 'common/token';
+import { Theme } from 'common/type/theme';
+import { MouseEventHandler } from 'react';
 
 type Props = {
   /**
@@ -34,61 +33,73 @@ type Props = {
  *
  * @author jiychoi
  */
-export function Checkbox({ theme, text, isChecked = false, onClick }: Props) {
+export function Checkbox({ theme, text = '', isChecked = false, onClick }: Props) {
+  const buttonBorderColor = {
+    light: token.color.grey_40_light,
+    dark: token.color.grey_40_dark,
+    checked: token.color.main_green_10,
+  }[isChecked ? 'checked' : theme];
+
+  const textColor = {
+    light: token.color.grey_60_light,
+    dark: token.color.grey_60_dark,
+    checked: token.color.main_green_10,
+  }[isChecked ? 'checked' : theme];
+
   return (
     <label className={checkboxWrapperStyle(theme)}>
-      <button className={checkboxMarkStyle(theme)} onClick={onClick}>
-        <CheckMarkIcon color={theme === 'light' ? 'grey_60_light' : 'grey_60_dark'} />
+      <button className={checkboxMarkStyle(buttonBorderColor)} onClick={onClick}>
+        <CheckMarkIcon className={checkboxIconStyle(isChecked)} color={'main_green_10'} />
       </button>
-      <span>{text}</span>
+      <input type="checkbox" className={checkboxInputStyle(theme)} checked={isChecked} />
+      <span className={checkboxSpanStyle(textColor)}>{text}</span>
     </label>
   );
 }
 
-const checkboxWrapperStyle = (theme: Theme) => css`
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 12px;
-  cursor: pointer;
-  font-size: 22px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  color: ${theme === 'light' ? token.color.grey_60_light : token.color.grey_60_dark};
-  font-size: 14px;
-  }
-`;
+const checkboxWrapperStyle = (theme: Theme) =>
+  css({
+    display: 'flex',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    cursor: 'pointer',
+    userSelect: 'none',
+    gap: 12,
+    color: theme === 'light' ? token.color.grey_60_light : token.color.grey_60_dark,
+    overflow: 'hidden',
+  });
 
-const checkboxButtonStyle = (theme: Theme) => css`
-  position: absolute;
-  top: 0;
-  left: 0;
-  opacity: 0;
-  cursor: pointer;
+const checkboxMarkStyle = (buttonBorderColor: string) =>
+  css({
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 26,
+    height: 26,
+    border: `2px solid ${buttonBorderColor}`,
+    borderRadius: 4,
+    backgroundColor: 'transparent',
+  });
 
-  &:checked > div {
-    border: 2px solid ${theme === 'light' ? token.color.grey_60_light : token.color.grey_60_dark};
+const checkboxIconStyle = (isChecked: boolean) =>
+  css({
+    display: isChecked ? 'block' : 'none',
+    width: '100%',
+    height: '100%',
+    aspectRatio: '1 / 1',
+  });
 
-    & svg {
-      opacity: 1;
-    }
-  }
-`;
+const checkboxInputStyle = (theme: Theme) =>
+  css({
+    opacity: 0,
+    width: 16,
+    height: 16,
+  });
 
-const checkboxMarkStyle = (theme: Theme) => css`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 26px;
-  width: 26px;
-  border: 2px solid ${theme === 'light' ? token.color.grey_40_light : token.color.grey_40_dark};
-  border-radius: 4px;
-
-  > svg {
-    width: 16px;
-    height: 16px;
-    opacity: 0;
-  }
-`;
+const checkboxSpanStyle = (textColor: string) =>
+  css({
+    fontSize: 14,
+    color: textColor,
+    whiteSpace: 'pre',
+    lineHeight: 1.2,
+  });
