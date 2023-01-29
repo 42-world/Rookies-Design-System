@@ -43,7 +43,7 @@ type Props = {
  *
  *  @author sham
  */
-export function SortSelector({ list, theme, selectedIndex, onClick }: Props) {
+export function SortSelector({ list, selectedIndex, onClick }: Props) {
   return (
     <div className={containerStyle}>
       {list.map((item, index) => {
