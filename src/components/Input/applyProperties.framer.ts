@@ -20,4 +20,9 @@ applyFramerProperties(Input, {
     type: ControlType.String,
     defaultValue: '에러 메시지',
   },
+  placeholder: {
+    title: 'placeholder',
+    type: ControlType.String,
+    defaultValue: 'placeholder',
+  },
 });
