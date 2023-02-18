@@ -1,5 +1,4 @@
 import { css } from '@emotion/css';
-import { motion } from 'framer-motion';
 import React, { MouseEventHandler, useState } from 'react';
 import { token } from '../../common/token';
 import { Theme } from '../../common/type/theme';
@@ -54,25 +53,12 @@ export function SortSelector({ list, theme, selectedIndex }: Props) {
     <div className={containerStyle}>
       {list.map((item, index) => {
         return (
-          <>
-            {onFocus === index ? (
-              <motion.div transition={{ delay: 1 }}>
-                <div className="item">
-                  <text className={beforeItem(onFocus === index)}>•</text>
-                  <text className={itemText(onFocus === index)} onClick={() => handleSelect(index)}>
-                    {item.text}
-                  </text>
-                </div>
-              </motion.div>
-            ) : (
-              <div className="item">
-                <text className={beforeItem(onFocus === index)}>•</text>
-                <text className={itemText(onFocus === index)} onClick={() => handleSelect(index)}>
-                  {item.text}
-                </text>
-              </div>
-            )}
-          </>
+          <div key={index} onClick={() => handleSelect(index)}>
+            <div className="item" key={index}>
+              <text className={beforeItem(onFocus === index)}>•</text>
+              <text className={itemText(onFocus === index)}>{item.text}</text>
+            </div>
+          </div>
         );
       })}
     </div>
@@ -96,8 +82,10 @@ const containerStyle = css`
 const beforeItem = (isFocus: boolean) => css`
   color: ${isFocus ? token.color.main_green_10 : token.color.grey_40_light};
   margin: 8px;
+  transition: color 0.3s ease-in-out;
 `;
 
 const itemText = (isFocus: boolean) => css`
   color: ${isFocus ? token.color.grey_40_light : token.color.grey_40_dark};
+  transition: color 0.3s ease-in-out;
 `;
