@@ -52,7 +52,7 @@ interface Props {
 export function Comment({ theme, writerName, writerImg, text, isLike, likeCount, createdAt }: Props) {
   return (
     <div className={containerStyle}>
-      <Avatar theme={theme} name={writerName} img={writerImg} seconderyText={createdAt} />
+      <Avatar theme={theme} name={writerName} img={writerImg} secondaryText={createdAt} />
       <div className={textWrapperStyle}>
         <Text size="body3" align="left" color="grey_50" text={text} theme={theme} />
         <Text

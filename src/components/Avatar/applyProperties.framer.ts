@@ -13,8 +13,8 @@ applyFramerProperties(Avatar, {
     title: 'Name',
     type: ControlType.String,
   },
-  seconderyText: {
-    title: 'Secondery Text',
+  secondaryText: {
+    title: 'Secondary Text',
     type: ControlType.String,
   },
 });

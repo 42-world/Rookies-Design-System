@@ -25,7 +25,7 @@ type Props = {
    *
    * @example 1분 전
    */
-  seconderyText?: string;
+  secondaryText?: string;
 };
 
 /**
@@ -33,13 +33,13 @@ type Props = {
  *
  * @author junseo
  */
-export function Avatar({ theme, img, name, seconderyText }: Props) {
+export function Avatar({ theme, img, name, secondaryText }: Props) {
   return (
     <div className={ContainerStyle}>
       <img src={img} className={profileStyle} />
       <div className={detailStyle(theme)}>
         <p>{name}</p>
-        <p>{seconderyText}</p>
+        <p>{secondaryText}</p>
       </div>
     </div>
   );
