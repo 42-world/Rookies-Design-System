@@ -1,5 +1,5 @@
-import { token } from 'common/token';
-import type { Color } from 'common/token/color';
+import { token } from '../../common/token';
+import type { Color } from '../../common/token/color';
 
 interface Props {
   color: Color;
