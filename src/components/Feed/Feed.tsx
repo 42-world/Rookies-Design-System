@@ -88,7 +88,7 @@ export function Feed({
   return (
     <div>
       <div className={contentsStyle}>
-        <Avatar theme={theme} name={writerName} img={writerImg} seconderyText={createdAt} />
+        <Avatar theme={theme} name={writerName} img={writerImg} secondaryText={createdAt} />
         <Text align="left" color="grey_60" size="header4" text={title} theme={theme} />
         <p className={feedTextStyle(theme)}>{contents}</p>
       </div>
