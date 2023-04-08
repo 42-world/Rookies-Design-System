@@ -21,10 +21,18 @@ const ThemeDecorator = (Story) => {
 
   return (
     <ThemeProvider value={theme}>
-      <div style={{ marginBottom: '16px' }}>
-        <Button type="text" text="ToggleTheme" size="small" style="default" theme={theme} onClick={toggleTheme} />
+      <div
+        style={{
+          padding: '16px',
+          backgroundColor: theme === 'light' ? '#fff' : '#111',
+          height: '100vh',
+        }}
+      >
+        <div style={{ marginBottom: '16px' }}>
+          <Button type="text" text="ToggleTheme" size="small" style="default" theme={theme} onClick={toggleTheme} />
+        </div>
+        {Story()}
       </div>
-      {Story()}
     </ThemeProvider>
   );
 };
