@@ -1,6 +1,6 @@
-import { createContext } from 'utils/createContext';
+import { createContext } from '../utils';
 
-type Theme = 'light' | 'dark';
+export type Theme = 'light' | 'dark';
 
 const [useTheme, ThemeProvider] = createContext<Theme>('light');
 
