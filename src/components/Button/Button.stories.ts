@@ -14,7 +14,6 @@ export const Primary: Story = {
     text: 'Button',
     size: 'normal',
     style: 'primary',
-    theme: 'light',
   },
 };
 

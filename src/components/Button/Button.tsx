@@ -3,6 +3,7 @@ import React, { MouseEventHandler } from 'react';
 import '../../assets/styles/reset.css';
 import { token } from '../../common/token';
 import { Theme } from '../../common/type';
+import { useTheme } from '../../context';
 import { wrapLinkTag } from './wrapLinkTag';
 React;
 
@@ -26,11 +27,6 @@ type LinkProps = {
 
 type Props = (TextProps | LinkProps) & {
   /**
-   * 테마
-   */
-  theme: Theme;
-
-  /**
    * 버튼 텍스트
    */
   text: string;
@@ -52,11 +48,12 @@ type Props = (TextProps | LinkProps) & {
  * @author juchoi
  */
 export function Button(props: Props) {
+  const theme = useTheme('');
   const isTextButton = props.type === 'text';
   const onClick = isTextButton ? props.onClick : undefined;
 
   const innerButton = (
-    <button className={getClassStyle(props)} onClick={onClick}>
+    <button className={getClassStyle(theme, props.size, props.style)} onClick={onClick}>
       <span>{props.text}</span>
     </button>
   );
@@ -64,14 +61,14 @@ export function Button(props: Props) {
   return isTextButton ? innerButton : wrapLinkTag(props.link, innerButton);
 }
 
-const getClassStyle = ({ style, theme, size }: Pick<Props, 'style' | 'theme' | 'size'>) =>
+const getClassStyle = (theme: Theme, size: Props['size'], style: Props['style']) =>
   ({
-    default: defaultStyle({ theme, size }),
-    danger: dangerStyle({ theme, size }),
-    primary: primaryStyle({ theme, size }),
+    default: defaultStyle(theme, size),
+    danger: dangerStyle(theme, size),
+    primary: primaryStyle(theme, size),
   }[style]);
 
-const defaultStyle = ({ theme, size }: Pick<Props, 'theme' | 'size'>) => css`
+const defaultStyle = (theme: Theme, size: Props['size']) => css`
   padding: ${size === 'normal' ? '8px 24px 8px 24px' : '4px 24px 4px 24px'};
   border-radius: 8px;
   background-color: ${theme === 'light' ? token.color.grey_10_light : token.color.grey_10_dark};
@@ -91,7 +88,7 @@ const defaultStyle = ({ theme, size }: Pick<Props, 'theme' | 'size'>) => css`
   }
 `;
 
-const dangerStyle = ({ theme, size }: Pick<Props, 'theme' | 'size'>) => css`
+const dangerStyle = (theme: Theme, size: Props['size']) => css`
   padding: ${size === 'normal' ? '8px 24px 8px 24px' : '4px 24px 4px 24px'};
   border-radius: 8px;
   background-color: ${theme === 'light' ? token.color.grey_10_light : token.color.grey_10_dark};
@@ -113,7 +110,7 @@ const dangerStyle = ({ theme, size }: Pick<Props, 'theme' | 'size'>) => css`
   }
 `;
 
-const primaryStyle = ({ theme, size }: Pick<Props, 'theme' | 'size'>) => css`
+const primaryStyle = (theme: Theme, size: Props['size']) => css`
   padding: ${size === 'normal' ? '8px 24px 8px 24px' : '4px 24px 4px 24px'};
   border-radius: 8px;
   background-color: ${token.color.main_green_10};
