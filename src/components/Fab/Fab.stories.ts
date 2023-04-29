@@ -8,9 +8,7 @@ const meta: Meta<Component> = {
 };
 
 type Story = StoryObj<Component>;
-export const Primary: Story = {
-  args: {},
-};
+export const Primary: Story = {};
 
 export const Actived: Story = {
   args: {

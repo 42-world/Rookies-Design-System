@@ -14,7 +14,7 @@ type Props = {
   /**
    * 활성화 여부
    */
-  isActived: boolean;
+  isActived?: boolean;
 
   /**
    * 클릭 이벤트
@@ -35,7 +35,7 @@ export function Fab({ isActived, onClick }: Props) {
   );
 }
 
-const fabStyle = (isActived: boolean) => css`
+const fabStyle = (isActived?: boolean) => css`
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
