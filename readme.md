@@ -84,18 +84,7 @@ export function Button() {
 }
 ```
 
-You must `import React from "react"` in every component file and put `React;` at the beginning of the file. This is because React namespace is exposed in Framer, but not in the browser. So we need to import React explicitly.
-
-```tsx
-import React from 'react';
-React;
-
-export function Button() {
-  return <button>Button</button>;
-}
-```
-
-you must create `applyProperties.framer.ts` file for every component file. This file will be used to define property controls for the component in Framer.
+you must create `Component.framer.ts` file for every component file. This file will be used to define property controls for the component in Framer.
 
 - we recommend to use `applyFramerProperties` function in `common/framer` folder. This function checks type more strictly than `addPropertyControls` function.
 - we also recommend to use `themeProperty` in `common/property` folder. This property is used to define theme property controls in Framer.
@@ -172,5 +161,5 @@ dist/common/framer # ignored
 Any files with path `*.framer.*` will be ignored in the publishing process. This is for Framer specific files.
 
 ```bash
-dist/typography/Text/applyProperties.framer.js # ignored
+dist/typography/Text/Text.framer.js # ignored
 ```
