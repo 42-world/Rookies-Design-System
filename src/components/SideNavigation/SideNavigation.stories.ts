@@ -1,13 +1,15 @@
-import { ComponentMeta } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 import { SideNavigation } from './SideNavigation';
 
-export default {
+type Component = typeof SideNavigation;
+const meta: Meta<Component> = {
   title: '42world/SideNavigation',
   component: SideNavigation,
-} as ComponentMeta<typeof SideNavigation>;
+};
 
-export const Light = () => {
-  const props: Parameters<typeof SideNavigation>[0] = {
+type Story = StoryObj<Component>;
+export const Light: Story = {
+  args: {
     theme: 'light',
     hasIcon: true,
     focus: 0,
@@ -23,13 +25,11 @@ export const Light = () => {
         link: '/search',
       },
     ],
-  };
-
-  return <SideNavigation {...props} />;
+  },
 };
 
-export const Dark = () => {
-  const props: Parameters<typeof SideNavigation>[0] = {
+export const Dark: Story = {
+  args: {
     theme: 'dark',
     hasIcon: true,
     focus: 0,
@@ -45,7 +45,7 @@ export const Dark = () => {
         link: '/search',
       },
     ],
-  };
-
-  return <SideNavigation {...props} />;
+  },
 };
+
+export default meta;
