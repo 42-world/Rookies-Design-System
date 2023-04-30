@@ -1,17 +1,12 @@
 import { css } from '@emotion/css';
-import React, { ChangeEvent, FocusEvent, forwardRef, InputHTMLAttributes, useCallback, useState } from 'react';
+import { ChangeEvent, FocusEvent, forwardRef, InputHTMLAttributes, useCallback, useState } from 'react';
 import '../../assets/styles/reset.css';
 import { token } from '../../common/token';
 import { Theme } from '../../common/type';
+import { useTheme } from '../../context';
 import { Text } from '../../typography/Text';
-React;
 
 interface Props extends Omit<InputHTMLAttributes<HTMLInputElement>, 'style' | 'className'> {
-  /**
-   * 테마
-   */
-  theme: Theme;
-
   /**
    * onChangeless // TODO: 이름이 명확하지 않음
    *
@@ -38,10 +33,8 @@ interface Props extends Omit<InputHTMLAttributes<HTMLInputElement>, 'style' | 'c
  * @author hyeonkim
  */
 export const Input = forwardRef<HTMLInputElement, Props>(
-  (
-    { theme, placeholder, hasError, errorMessage, onFocus, onBlur, onChange, value, onChangeless, children, ...rest },
-    ref,
-  ) => {
+  ({ placeholder, hasError, errorMessage, onFocus, onBlur, onChange, value, onChangeless, children, ...rest }, ref) => {
+    const theme = useTheme();
     const [isFocus, setIsFocus] = useState(false);
     const [input, setInput] = useState(value || '');
 
@@ -93,7 +86,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(
         </div>
         {hasError && (
           <div className={errorWrapperStyle}>
-            <Text theme={theme} size="caption" align="left" text={errorMessage ?? ''} color="red_10" />
+            <Text size="caption" align="left" text={errorMessage ?? ''} color="red_10" />
           </div>
         )}
       </div>

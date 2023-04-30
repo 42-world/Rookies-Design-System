@@ -1,8 +1,6 @@
 import { css } from '@emotion/css';
-import React, { MouseEventHandler } from 'react';
+import { MouseEventHandler } from 'react';
 import { token } from '../../common/token';
-import { Theme } from '../../common/type/theme';
-React;
 
 type ListProps = {
   /**
@@ -17,11 +15,6 @@ type ListProps = {
 };
 
 type Props = {
-  /**
-   * 테마
-   */
-  theme: Theme;
-
   /**
    * 선택된 인덱스
    */

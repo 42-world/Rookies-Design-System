@@ -1,12 +1,11 @@
 import { css } from '@emotion/css';
 import { motion } from 'framer-motion';
-import React, { useEffect, useState } from 'react';
+import { createElement, useEffect, useState } from 'react';
 import * as IconComponents from '../../assets/icons';
 import { token } from '../../common/token';
-import { Theme } from '../../common/type';
 import { Icons } from '../../common/type/icons';
+import { useTheme } from '../../context';
 import { Text } from '../../typography';
-React;
 
 type ListProps = {
   /**
@@ -26,11 +25,6 @@ type ListProps = {
 };
 
 type Props = {
-  /**
-   * 테마
-   */
-  theme: Theme;
-
   /**
    * 현재 링크(focused)
    */
@@ -52,8 +46,8 @@ type Props = {
  *
  * @author beson
  */
-
-export function SideNavigation({ theme, hasIcon, focus, list }: Props) {
+export function SideNavigation({ hasIcon, focus, list }: Props) {
+  const theme = useTheme();
   const [current, setCurrent] = useState(focus);
   const activeColor = 'main_green_10';
   const unActiveColor = theme === 'light' ? 'grey_40_light' : 'grey_40_dark';
@@ -74,7 +68,7 @@ export function SideNavigation({ theme, hasIcon, focus, list }: Props) {
           <a key={index} className={itemContainer} href={item.link} onClick={() => handleClick(index)}>
             <div>
               {hasIcon &&
-                React.createElement(IconComponents[item.icon], {
+                createElement(IconComponents[item.icon], {
                   color: current === index ? activeColor : unActiveColor,
                 })}
               <Text
@@ -82,7 +76,6 @@ export function SideNavigation({ theme, hasIcon, focus, list }: Props) {
                 align="left"
                 color={current === index ? 'main_green_10' : 'grey_40'}
                 size="body2"
-                theme={theme}
               />
             </div>
             {current === index ? (

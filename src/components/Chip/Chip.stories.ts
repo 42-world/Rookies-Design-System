@@ -10,9 +10,8 @@ const meta: Meta<Component> = {
 type Story = StoryObj<Component>;
 export const Primary: Story = {
   args: {
-    isSelected: false,
     text: 'Chip',
-    theme: 'light',
+    isSelected: false,
   },
 };
 

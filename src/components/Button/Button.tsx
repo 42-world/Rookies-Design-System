@@ -1,11 +1,10 @@
 import { css } from '@emotion/css';
-import React, { MouseEventHandler } from 'react';
+import { MouseEventHandler } from 'react';
 import '../../assets/styles/reset.css';
 import { token } from '../../common/token';
 import { Theme } from '../../common/type';
 import { useTheme } from '../../context';
 import { wrapLinkTag } from './wrapLinkTag';
-React;
 
 type TextProps = {
   type: 'text';
@@ -48,7 +47,7 @@ type Props = (TextProps | LinkProps) & {
  * @author juchoi
  */
 export function Button(props: Props) {
-  const theme = useTheme('');
+  const theme = useTheme();
   const isTextButton = props.type === 'text';
   const onClick = isTextButton ? props.onClick : undefined;
 

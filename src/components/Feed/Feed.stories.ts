@@ -10,7 +10,6 @@ const meta: Meta<Component> = {
 type Story = StoryObj<Component>;
 export const Light: Story = {
   args: {
-    theme: 'light',
     writerName: 'junseo',
     writerImg: 'https://avatars.githubusercontent.com/u/72878284?s=400&u=e764cc0b15861e9b0e3e447157b4c7fa67513bca&v=4',
     title: 'hello',

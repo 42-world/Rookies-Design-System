@@ -1,17 +1,10 @@
 import { css } from '@emotion/css';
-import React from 'react';
 import '../../assets/styles/reset.css';
-import { Theme } from '../../common/type';
+import { useTheme } from '../../context';
 import { TextAlignType, TextColorType, TextSizeType } from './types';
 import { getFontSize, getFontWeight, getThemeColor } from './utils';
-React;
 
 export type Props = {
-  /**
-   * 테마
-   */
-  theme: Theme;
-
   /**
    * 텍스트
    */
@@ -38,7 +31,9 @@ export type Props = {
  *
  * @author ycha
  */
-export function Text({ theme, size, color, align, text }: Props) {
+export function Text({ size, color, align, text }: Props) {
+  const theme = useTheme();
+
   return (
     <div className={textStyle(align, size)} style={{ color: getThemeColor(theme, color) }}>
       {size === 'header1' ? (

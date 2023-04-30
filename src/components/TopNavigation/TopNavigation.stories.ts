@@ -10,7 +10,6 @@ const meta: Meta<Component> = {
 type Story = StoryObj<Component>;
 export const Primary: Story = {
   args: {
-    theme: 'light',
     links: {
       homeLink: 'https://github.com/Skyrich2000',
       themeLink: 'https://github.com/SeoJunHwan',

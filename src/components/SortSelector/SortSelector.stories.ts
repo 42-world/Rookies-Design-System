@@ -21,7 +21,6 @@ export const Primary: Story = {
       },
     ],
     selectedIndex: 0,
-    theme: 'light',
   },
 };
 

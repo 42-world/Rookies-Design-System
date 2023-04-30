@@ -1,24 +1,29 @@
-import { addPropertyControls, ControlType } from 'framer';
-import { SideNavigation } from './SideNavigation';
+import { ControlType } from 'framer';
+import { ComponentProps } from 'react';
+import { FramerProvider, applyFramerProperties } from '../../common/framer';
+import { SideNavigation as _SideNavigation } from './SideNavigation';
 
-addPropertyControls(SideNavigation, {
-  theme: {
-    title: 'Theme',
-    type: ControlType.Enum,
-    displaySegmentedControl: true,
-    options: ['light', 'dark'],
-    defaultValue: 'light',
-  },
+export function SideNavigation(props: ComponentProps<typeof _SideNavigation>) {
+  return (
+    <FramerProvider>
+      <_SideNavigation {...props} />
+    </FramerProvider>
+  );
+}
+
+applyFramerProperties(SideNavigation, {
   hasIcon: {
-    title: 'Has Icon',
+    title: 'Icon',
     type: ControlType.Boolean,
   },
   focus: {
+    title: 'Focus',
     type: ControlType.Number,
     min: 0,
     displayStepper: true,
   },
   list: {
+    title: 'List',
     type: ControlType.Array,
     control: {
       type: ControlType.Object,

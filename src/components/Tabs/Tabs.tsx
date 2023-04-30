@@ -2,16 +2,10 @@ import { css } from '@emotion/css';
 import { AnimatePresence, motion } from 'framer-motion';
 import React, { useState } from 'react';
 import { token } from '../../common/token';
-import { Theme } from '../../common/type';
+import { Theme, useTheme } from '../../context';
 import { Text } from '../../typography/Text';
-React;
 
 type Props = {
-  /**
-   * 테마
-   */
-  theme: Theme;
-
   /**
    * 탭 라벨
    */
@@ -33,7 +27,8 @@ type Props = {
  *
  * @author ycha
  */
-export function Tabs({ label, children, align, theme }: Props) {
+export function Tabs({ label, children, align }: Props) {
+  const theme = useTheme();
   const [selectedTab, setSelectedTab] = useState(label[0]);
 
   const tabIndex = label.indexOf(selectedTab);
@@ -44,13 +39,7 @@ export function Tabs({ label, children, align, theme }: Props) {
         <ul className={ListContainerStyle(align)}>
           {label.map((item, index) => (
             <li key={index} className={ListItemStyle(align, theme)} onClick={() => setSelectedTab(item)}>
-              <Text
-                align="left"
-                color={item === selectedTab ? 'grey_70' : 'grey_40'}
-                size="body1"
-                theme={theme}
-                text={`${item}`}
-              />
+              <Text align="left" color={item === selectedTab ? 'grey_70' : 'grey_40'} size="body1" text={`${item}`} />
 
               {item === selectedTab && <motion.div className={UnderlineStyle(theme)} layoutId="underline" />}
             </li>
@@ -85,7 +74,7 @@ const ListContainerStyle = (align: Props['align']) => css`
   gap: 32px;
 `;
 
-const ContainerStyle = (theme: Props['theme']) => css`
+const ContainerStyle = (theme: Theme) => css`
   border-radius: 10px;
   background: ${theme === 'light' ? token.color.grey_5_light : token.color.grey_5_dark};
   overflow: hidden;
@@ -93,7 +82,7 @@ const ContainerStyle = (theme: Props['theme']) => css`
   flex-direction: column;
 `;
 
-const NavigationStyle = (theme: Props['theme']) => css`
+const NavigationStyle = (theme: Theme) => css`
   /* padding: 4px 4px 0; */
   overflow-x: scroll;
   overflow-y: hidden;
@@ -119,7 +108,7 @@ const NavigationStyle = (theme: Props['theme']) => css`
   }
 `;
 
-const UnderlineStyle = (theme: Props['theme']) => css`
+const UnderlineStyle = (theme: Theme) => css`
   position: absolute;
   bottom: -1px;
   left: 0;
@@ -129,7 +118,7 @@ const UnderlineStyle = (theme: Props['theme']) => css`
   background: ${theme === 'light' ? token.color.grey_70_light : token.color.grey_70_dark};
 `;
 
-const ListItemStyle = (align: Props['align'], theme: Props['theme']) => css`
+const ListItemStyle = (align: Props['align'], theme: Theme) => css`
   border-radius: 5px;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;

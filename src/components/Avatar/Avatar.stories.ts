@@ -8,17 +8,8 @@ const meta: Meta<Component> = {
 };
 
 type Story = StoryObj<Component>;
-export const Light: Story = {
+export const Primary: Story = {
   args: {
-    theme: 'light',
-    secondaryText: 'hello',
-    name: 'junseo',
-    img: 'https://avatars.githubusercontent.com/u/72878284?s=400&u=e764cc0b15861e9b0e3e447157b4c7fa67513bca&v=4',
-  },
-};
-export const Dark: Story = {
-  args: {
-    theme: 'dark',
     secondaryText: 'hello',
     name: 'junseo',
     img: 'https://avatars.githubusercontent.com/u/72878284?s=400&u=e764cc0b15861e9b0e3e447157b4c7fa67513bca&v=4',

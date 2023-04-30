@@ -5,11 +5,11 @@ export const createContext = <T>(initialValue: T) => {
 
   const provider = context.Provider;
 
-  function useContext(consumer: string) {
+  function useContext(consumer?: string) {
     const contextValue = _useContext(context);
 
     if (!contextValue) {
-      throw new Error(`useContext must be used within a Provider, check this ${consumer}`);
+      throw new Error(`useContext must be used within a Provider, check this ${consumer ?? ''}`);
     }
 
     return contextValue;

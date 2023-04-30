@@ -1,15 +1,9 @@
 import { css } from '@emotion/css';
-import React from 'react';
 import { token } from '../../common/token';
 import { Theme } from '../../common/type';
-React;
+import { useTheme } from '../../context';
 
 type Props = {
-  /**
-   * 테마
-   */
-  theme: Theme;
-
   /**
    * 프로필 이미지
    */
@@ -33,7 +27,9 @@ type Props = {
  *
  * @author junseo
  */
-export function Avatar({ theme, img, name, secondaryText }: Props) {
+export function Avatar({ img, name, secondaryText }: Props) {
+  const theme = useTheme();
+
   return (
     <div className={ContainerStyle}>
       <img src={img} className={profileStyle} />

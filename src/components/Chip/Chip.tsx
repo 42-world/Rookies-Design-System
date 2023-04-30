@@ -1,15 +1,8 @@
 import { css } from '@emotion/css';
-import React, { MouseEventHandler } from 'react';
+import { MouseEventHandler } from 'react';
 import { token } from '../../common/token';
-import { Theme } from '../../common/type';
-React;
 
 type Props = {
-  /**
-   * 테마
-   */
-  theme: Theme; // TODO: theme 적용 안됨
-
   /**
    * 텍스트
    */
