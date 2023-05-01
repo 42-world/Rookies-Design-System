@@ -1,19 +1,13 @@
 import { css } from '@emotion/css';
 import { motion } from 'framer-motion';
-import React, { MouseEventHandler } from 'react';
+import { MouseEventHandler } from 'react';
 import { ChatIcon, ThumbIcon } from '../../assets/icons';
 import { token } from '../../common/token';
-import { Theme } from '../../common/type';
+import { Theme, useTheme } from '../../context';
 import { Text } from '../../typography/Text';
 import { Avatar } from '../Avatar/Avatar';
-React;
 
 type Props = {
-  /**
-   * 테마
-   */
-  theme: Theme;
-
   /**
    * 작성자
    */
@@ -71,7 +65,6 @@ type Props = {
  * @returns
  */
 export function Feed({
-  theme,
   writerName,
   writerImg,
   title,
@@ -82,14 +75,15 @@ export function Feed({
   createdAt,
   onLikeClick,
 }: Props) {
+  const theme = useTheme();
   const thumbedStyle = 'main_green_10';
   const unThumbedStyle = theme === 'light' ? 'grey_50_light' : 'grey_50_dark';
 
   return (
     <div>
       <div className={contentsStyle}>
-        <Avatar theme={theme} name={writerName} img={writerImg} secondaryText={createdAt} />
-        <Text align="left" color="grey_60" size="header4" text={title} theme={theme} />
+        <Avatar name={writerName} img={writerImg} secondaryText={createdAt} />
+        <Text align="left" color="grey_60" size="header4" text={title} />
         <p className={feedTextStyle(theme)}>{contents}</p>
       </div>
       <div className={bottomStyle(theme)}>
@@ -97,19 +91,13 @@ export function Feed({
           <div className={iconStyle}>
             <ThumbIcon color={isLike ? thumbedStyle : unThumbedStyle} />
           </div>
-          <Text
-            align="left"
-            color={isLike ? 'main_green_10' : 'grey_50'}
-            size="body3"
-            text={likeCount.toString()}
-            theme={theme}
-          />
+          <Text align="left" color={isLike ? 'main_green_10' : 'grey_50'} size="body3" text={likeCount.toString()} />
         </motion.div>
         <div className={iconContainerStyle}>
           <div className={iconStyle}>
             <ChatIcon color={theme === 'light' ? 'grey_50_light' : 'grey_50_dark'} />
           </div>
-          <Text align="left" color="grey_50" size="body3" text={commentCount.toString()} theme={theme} />
+          <Text align="left" color="grey_50" size="body3" text={commentCount.toString()} />
         </div>
       </div>
     </div>
@@ -123,7 +111,7 @@ const contentsStyle = css`
   padding-bottom: 22px;
 `;
 
-const feedTextStyle = (theme: Props['theme']) => css`
+const feedTextStyle = (theme: Theme) => css`
   margin: 0;
   padding: 0;
   overflow: hidden;
@@ -139,7 +127,7 @@ const feedTextStyle = (theme: Props['theme']) => css`
   line-height: 1.5;
 `;
 
-const bottomStyle = (theme: Props['theme']) => css`
+const bottomStyle = (theme: Theme) => css`
   display: flex;
   padding: 8px 0px 16px 0px;
   gap: 16px;

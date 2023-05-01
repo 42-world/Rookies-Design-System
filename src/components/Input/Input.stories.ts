@@ -10,9 +10,8 @@ const meta: Meta<Component> = {
 type Story = StoryObj<Component>;
 export const Primary: Story = {
   args: {
-    theme: 'light',
-    placeholder: 'Input',
     value: '입력값',
+    placeholder: 'Input',
   },
 };
 

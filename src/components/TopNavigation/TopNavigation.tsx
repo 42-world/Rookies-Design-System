@@ -1,10 +1,8 @@
 import { css } from '@emotion/css';
-import React from 'react';
 import { BellIcon, MoonIcon, PlusIcon, SearchIcon, SunIcon } from '../../assets/icons';
 import { token } from '../../common/token';
-import { Theme } from '../../common/type';
+import { Theme, useTheme } from '../../context';
 import { Text } from '../../typography/Text';
-React;
 
 type User = {
   profileLink: string;
@@ -20,7 +18,6 @@ type links = {
 };
 
 type Props = {
-  theme: Theme;
   links: links;
   user: User;
 };
@@ -30,7 +27,9 @@ type Props = {
  *
  * @author jiychoi
  */
-export function TopNavigation({ theme, links, user }: Props) {
+export function TopNavigation({ links, user }: Props) {
+  const theme = useTheme();
+
   return (
     <div className={containerStyle(theme)}>
       <div className={wrapperStyle}>
@@ -46,24 +45,23 @@ export function TopNavigation({ theme, links, user }: Props) {
               color="grey_50"
               size="caption"
               text={theme === 'light' ? '밝은 테마' : '어두운 테마'}
-              theme={theme}
             />
           </a>
           <a href={links.searchLink} className={iconContainerStyle}>
             <SearchIcon color={theme === 'light' ? 'grey_50_light' : 'grey_50_dark'} />
-            <Text align="center" color="grey_50" size="caption" text="검색" theme={theme} />
+            <Text align="center" color="grey_50" size="caption" text="검색" />
           </a>
           <a href={links.createLink} className={iconContainerStyle}>
             <PlusIcon color={theme === 'light' ? 'grey_50_light' : 'grey_50_dark'} />
-            <Text align="center" color="grey_50" size="caption" text="글쓰기" theme={theme} />
+            <Text align="center" color="grey_50" size="caption" text="글쓰기" />
           </a>
           <a href={links.alertLink} className={iconContainerStyle}>
             <BellIcon color={theme === 'light' ? 'grey_50_light' : 'grey_50_dark'} />
-            <Text align="center" color="grey_50" size="caption" text="알림" theme={theme} />
+            <Text align="center" color="grey_50" size="caption" text="알림" />
           </a>
           <a href={user.profileLink} className={iconContainerStyle}>
             <img src={user.profileImg} className={profileStyle(theme)}></img>
-            <Text align="center" color="grey_50" size="caption" text="나" theme={theme} />
+            <Text align="center" color="grey_50" size="caption" text="나" />
           </a>
         </div>
       </div>
@@ -72,7 +70,7 @@ export function TopNavigation({ theme, links, user }: Props) {
   );
 }
 
-const containerStyle = (theme: Props['theme']) => css`
+const containerStyle = (theme: Theme) => css`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -94,7 +92,7 @@ const wrapperStyle = css`
   }
 `;
 
-const logoStyle = (theme: Props['theme']) => css`
+const logoStyle = (theme: Theme) => css`
   font-weight: 700;
   color: ${theme === 'light' ? token.color.grey_80_light : token.color.grey_80_dark};
   font-size: 24px;
@@ -111,7 +109,7 @@ const logoStyle = (theme: Props['theme']) => css`
   }
 `;
 
-const profileStyle = (theme: Props['theme']) => css`
+const profileStyle = (theme: Theme) => css`
   width: 24px;
   height: 24px;
   border-radius: 12px;

@@ -1,10 +1,17 @@
 import { ControlType } from 'framer';
-import { applyFramerProperties } from '../../common/framer';
-import { themeProperty } from '../../common/property';
-import { Button } from './Button';
+import type { ComponentProps } from 'react';
+import { FramerProvider, applyFramerProperties } from '../../common/framer';
+import { Button as _Button } from './Button';
+
+export function Button(props: ComponentProps<typeof _Button>) {
+  return (
+    <FramerProvider>
+      <_Button {...props} />
+    </FramerProvider>
+  );
+}
 
 applyFramerProperties(Button, {
-  theme: themeProperty,
   type: {
     title: 'Type',
     type: ControlType.Enum,

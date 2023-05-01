@@ -1,10 +1,17 @@
 import { ControlType } from 'framer';
-import { applyFramerProperties } from '../../common/framer';
-import { themeProperty } from '../../common/property';
-import { TopNavigation } from './TopNavigation';
+import { ComponentProps } from 'react';
+import { FramerProvider, applyFramerProperties } from '../../common/framer';
+import { TopNavigation as _TopNavigation } from './TopNavigation';
+
+export function TopNavigation(props: ComponentProps<typeof _TopNavigation>) {
+  return (
+    <FramerProvider>
+      <_TopNavigation {...props} />
+    </FramerProvider>
+  );
+}
 
 applyFramerProperties(TopNavigation, {
-  theme: themeProperty,
   links: {
     title: 'Links',
     type: ControlType.Object,

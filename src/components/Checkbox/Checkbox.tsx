@@ -1,15 +1,11 @@
 import { css } from '@emotion/css';
+import { MouseEventHandler } from 'react';
 import { CheckMarkIcon } from '../../assets/icons/CheckMarkIcon';
 import { token } from '../../common/token';
 import { Theme } from '../../common/type/theme';
-import { MouseEventHandler } from 'react';
+import { useTheme } from '../../context';
 
 type Props = {
-  /**
-   * 테마
-   */
-  theme: Theme;
-
   /**
    * 체크박스 텍스트
    */
@@ -33,7 +29,8 @@ type Props = {
  *
  * @author jiychoi
  */
-export function Checkbox({ theme, text = '', isChecked = false, onClick }: Props) {
+export function Checkbox({ text = '', isChecked = false, onClick }: Props) {
+  const theme = useTheme();
   const buttonBorderColor = {
     light: token.color.grey_40_light,
     dark: token.color.grey_40_dark,

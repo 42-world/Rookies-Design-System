@@ -1,15 +1,17 @@
 import { ControlType } from 'framer';
-import { applyFramerProperties } from '../../common/framer';
-import { Text } from './Text';
+import { ComponentProps } from 'react';
+import { FramerProvider, applyFramerProperties } from '../../common/framer';
+import { Text as _Text } from './Text';
+
+export function Text(props: ComponentProps<typeof _Text>) {
+  return (
+    <FramerProvider>
+      <_Text {...props} />
+    </FramerProvider>
+  );
+}
 
 applyFramerProperties(Text, {
-  theme: {
-    title: 'Theme',
-    type: ControlType.Enum,
-    options: ['light', 'dark'],
-    defaultValue: 'light',
-    displaySegmentedControl: true,
-  },
   text: {
     title: 'Text',
     type: ControlType.String,

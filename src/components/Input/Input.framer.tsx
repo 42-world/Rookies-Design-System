@@ -1,10 +1,17 @@
 import { ControlType } from 'framer';
-import { applyFramerProperties } from '../../common/framer';
-import { themeProperty } from '../../common/property';
-import { Input } from './Input';
+import { ComponentProps } from 'react';
+import { FramerProvider, applyFramerProperties } from '../../common/framer';
+import { Input as _Input } from './Input';
+
+export function Input(props: ComponentProps<typeof _Input>) {
+  return (
+    <FramerProvider>
+      <_Input {...props} />
+    </FramerProvider>
+  );
+}
 
 applyFramerProperties(Input, {
-  theme: themeProperty,
   onChangeless: {
     title: 'onChangeless',
     type: ControlType.Boolean,

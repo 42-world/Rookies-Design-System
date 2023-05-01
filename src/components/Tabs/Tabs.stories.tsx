@@ -10,7 +10,6 @@ const meta: Meta<Component> = {
 type Story = StoryObj<Component>;
 export const Primary: Story = {
   args: {
-    theme: 'light',
     label: ['ycha 바보', 'junseo 바보', '규동 말고 부타동'],
     children: [
       <p style={{ color: '#777777', padding: '10px 20px' }}>ycha 바보</p>,

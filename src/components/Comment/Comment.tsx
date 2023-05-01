@@ -1,16 +1,8 @@
 import { css } from '@emotion/css';
-import React from 'react';
-import { Theme } from '../../common/type';
 import { Text } from '../../typography/Text';
 import { Avatar } from '../Avatar/Avatar';
-React;
 
 interface Props {
-  /**
-   * 테마
-   */
-  theme: Theme;
-
   /**
    * 작성자 이름
    */
@@ -49,19 +41,15 @@ interface Props {
  *
  * @author junseo
  */
-export function Comment({ theme, writerName, writerImg, text, isLike, likeCount, createdAt }: Props) {
+export function Comment({ writerName, writerImg, text, isLike, likeCount, createdAt }: Props) {
+  // const theme = useTheme();
+
   return (
     <div className={containerStyle}>
-      <Avatar theme={theme} name={writerName} img={writerImg} secondaryText={createdAt} />
+      <Avatar name={writerName} img={writerImg} secondaryText={createdAt} />
       <div className={textWrapperStyle}>
-        <Text size="body3" align="left" color="grey_50" text={text} theme={theme} />
-        <Text
-          size="caption"
-          align="left"
-          color={isLike ? 'main_green_10' : 'grey_50'}
-          text={`좋아요 ${likeCount}`}
-          theme={theme}
-        />
+        <Text size="body3" align="left" color="grey_50" text={text} />
+        <Text size="caption" align="left" color={isLike ? 'main_green_10' : 'grey_50'} text={`좋아요 ${likeCount}`} />
       </div>
     </div>
   );

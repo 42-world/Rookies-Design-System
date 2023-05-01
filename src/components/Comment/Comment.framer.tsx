@@ -1,10 +1,17 @@
 import { ControlType } from 'framer';
-import { applyFramerProperties } from '../../common/framer';
-import { themeProperty } from '../../common/property';
-import { Comment } from './Comment';
+import { ComponentProps } from 'react';
+import { FramerProvider, applyFramerProperties } from '../../common/framer';
+import { Comment as _Comment } from './Comment';
+
+export function Comment(props: ComponentProps<typeof _Comment>) {
+  return (
+    <FramerProvider>
+      <_Comment {...props} />
+    </FramerProvider>
+  );
+}
 
 applyFramerProperties(Comment, {
-  theme: themeProperty,
   writerName: {
     title: 'Writer Name',
     type: ControlType.String,

@@ -1,10 +1,17 @@
 import { ControlType } from 'framer';
-import { applyFramerProperties } from '../../common/framer';
-import { themeProperty } from '../../common/property';
-import { Feed } from './Feed';
+import { ComponentProps } from 'react';
+import { FramerProvider, applyFramerProperties } from '../../common/framer';
+import { Feed as _Feed } from './Feed';
+
+export function Feed(props: ComponentProps<typeof _Feed>) {
+  return (
+    <FramerProvider>
+      <_Feed {...props} />
+    </FramerProvider>
+  );
+}
 
 applyFramerProperties(Feed, {
-  theme: themeProperty,
   writerName: {
     title: 'Writer Name',
     type: ControlType.String,

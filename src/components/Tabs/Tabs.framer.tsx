@@ -1,10 +1,17 @@
 import { ControlType } from 'framer';
-import { applyFramerProperties } from '../../common/framer';
-import { themeProperty } from '../../common/property';
-import { Tabs } from './Tabs';
+import { ComponentProps } from 'react';
+import { FramerProvider, applyFramerProperties } from '../../common/framer';
+import { Tabs as _Tabs } from './Tabs';
+
+export function Tabs(props: ComponentProps<typeof _Tabs>) {
+  return (
+    <FramerProvider>
+      <_Tabs {...props} />
+    </FramerProvider>
+  );
+}
 
 applyFramerProperties(Tabs, {
-  theme: themeProperty,
   label: {
     title: 'Label',
     type: ControlType.Array,

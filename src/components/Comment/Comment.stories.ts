@@ -12,7 +12,6 @@ export const Primary: Story = {
   args: {
     writerName: 'ycha',
     writerImg: 'https://avatars.githubusercontent.com/u/8',
-    theme: 'light',
     text: '댓글 내용 입니다',
     isLike: true,
     likeCount: 10,

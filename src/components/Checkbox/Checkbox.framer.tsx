@@ -1,10 +1,17 @@
 import { ControlType } from 'framer';
-import { applyFramerProperties } from '../../common/framer';
-import { themeProperty } from '../../common/property';
-import { Checkbox } from './Checkbox';
+import type { ComponentProps } from 'react';
+import { FramerProvider, applyFramerProperties } from '../../common/framer';
+import { Checkbox as _Checkbox } from './Checkbox';
+
+export function Checkbox(props: ComponentProps<typeof _Checkbox>) {
+  return (
+    <FramerProvider>
+      <_Checkbox {...props} />
+    </FramerProvider>
+  );
+}
 
 applyFramerProperties(Checkbox, {
-  theme: themeProperty,
   text: {
     title: 'Text',
     type: ControlType.String,

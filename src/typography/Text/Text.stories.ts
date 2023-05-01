@@ -14,7 +14,6 @@ export const Primary: Story = {
     color: 'main_green_10',
     size: 'header1',
     text: 'Hello World',
-    theme: 'light',
   },
 };
 

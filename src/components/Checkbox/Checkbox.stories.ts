@@ -10,7 +10,6 @@ const meta: Meta<Component> = {
 type Story = StoryObj<Component>;
 export const Primary: Story = {
   args: {
-    theme: 'light',
     text: 'Checkbox',
   },
 };

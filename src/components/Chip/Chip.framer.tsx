@@ -1,10 +1,17 @@
 import { ControlType } from 'framer';
-import { applyFramerProperties } from '../../common/framer';
-import { themeProperty } from '../../common/property';
-import { Chip } from './Chip';
+import { ComponentProps } from 'react';
+import { FramerProvider, applyFramerProperties } from '../../common/framer';
+import { Chip as _Chip } from './Chip';
+
+export function Chip(props: ComponentProps<typeof _Chip>) {
+  return (
+    <FramerProvider>
+      <_Chip {...props} />
+    </FramerProvider>
+  );
+}
 
 applyFramerProperties(Chip, {
-  theme: themeProperty,
   text: {
     title: 'Text',
     type: ControlType.String,

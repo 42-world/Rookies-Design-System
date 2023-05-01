@@ -1,10 +1,17 @@
 import { ControlType } from 'framer';
-import { applyFramerProperties } from '../../common/framer';
-import { themeProperty } from '../../common/property';
-import { SortSelector } from './SortSelector';
+import { ComponentProps } from 'react';
+import { FramerProvider, applyFramerProperties } from '../../common/framer';
+import { SortSelector as _SortSelector } from './SortSelector';
+
+export function SortSelector(props: ComponentProps<typeof _SortSelector>) {
+  return (
+    <FramerProvider>
+      <_SortSelector {...props} />
+    </FramerProvider>
+  );
+}
 
 applyFramerProperties(SortSelector, {
-  theme: themeProperty,
   selectedIndex: {
     title: 'SelectedIndex',
     type: ControlType.Number,
