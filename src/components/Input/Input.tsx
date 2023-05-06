@@ -1,10 +1,9 @@
 import { css } from '@emotion/css';
 import { ChangeEvent, FocusEvent, forwardRef, InputHTMLAttributes, useCallback, useState } from 'react';
-import '../../assets/styles/reset.css';
 import { token } from '../../common/token';
 import { Theme } from '../../common/type';
 import { useTheme } from '../../context';
-import { Text } from '../../typography/Text';
+import { Text } from '../Text';
 
 interface Props extends Omit<InputHTMLAttributes<HTMLInputElement>, 'style' | 'className'> {
   /**

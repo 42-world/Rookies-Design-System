@@ -1,5 +1,4 @@
 import { css } from '@emotion/css';
-import '../../assets/styles/reset.css';
 import { useTheme } from '../../context';
 import { TextAlignType, TextColorType, TextSizeType } from './types';
 import { getFontSize, getFontWeight, getThemeColor } from './utils';

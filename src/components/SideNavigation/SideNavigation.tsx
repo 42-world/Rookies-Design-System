@@ -5,7 +5,7 @@ import * as IconComponents from '../../assets/icons';
 import { token } from '../../common/token';
 import { Icons } from '../../common/type/icons';
 import { useTheme } from '../../context';
-import { Text } from '../../typography';
+import { Text } from '../Text';
 
 type ListProps = {
   /**

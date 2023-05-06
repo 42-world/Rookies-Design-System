@@ -4,8 +4,8 @@ import { MouseEventHandler } from 'react';
 import { ChatIcon, ThumbIcon } from '../../assets/icons';
 import { token } from '../../common/token';
 import { Theme, useTheme } from '../../context';
-import { Text } from '../../typography/Text';
 import { Avatar } from '../Avatar/Avatar';
+import { Text } from '../Text';
 
 type Props = {
   /**

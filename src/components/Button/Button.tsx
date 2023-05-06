@@ -1,10 +1,8 @@
 import { css } from '@emotion/css';
 import { MouseEventHandler } from 'react';
-import '../../assets/styles/reset.css';
 import { token } from '../../common/token';
 import { Theme } from '../../common/type';
 import { useTheme } from '../../context';
-import { wrapLinkTag } from './wrapLinkTag';
 
 type TextProps = {
   type: 'text';
@@ -58,6 +56,10 @@ export function Button(props: Props) {
   );
 
   return isTextButton ? innerButton : wrapLinkTag(props.link, innerButton);
+}
+
+function wrapLinkTag(herf: string, children: JSX.Element): JSX.Element {
+  return <a href={herf}>{children}</a>;
 }
 
 const getClassStyle = (theme: Theme, size: Props['size'], style: Props['style']) =>

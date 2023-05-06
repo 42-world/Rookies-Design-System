@@ -1,9 +1,9 @@
 import { css } from '@emotion/css';
 import { AnimatePresence, motion } from 'framer-motion';
-import React, { useState } from 'react';
+import { ReactChild, useState } from 'react';
 import { token } from '../../common/token';
 import { Theme, useTheme } from '../../context';
-import { Text } from '../../typography/Text';
+import { Text } from '../Text';
 
 type Props = {
   /**
@@ -14,7 +14,7 @@ type Props = {
   /**
    * 탭 컴포넌트
    */
-  children: React.ReactChild[];
+  children: ReactChild[];
 
   /**
    * 탭 정렬

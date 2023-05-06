@@ -1,6 +1,6 @@
 import { css } from '@emotion/css';
-import { Text } from '../../typography/Text';
 import { Avatar } from '../Avatar/Avatar';
+import { Text } from '../Text';
 
 interface Props {
   /**
