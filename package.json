@@ -1,6 +1,6 @@
 {
   "name": "@42world/design-core",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "author": "42World Team",
   "description": "42World Design System",
   "homepage": "https://github.com/42-world/42world-Design-System",
@@ -14,30 +14,28 @@
     "access": "public"
   },
   "files": [
-    "dist",
-    "!dist/**/*.framer.*",
-    "!dist/common/framer"
+    "dist"
   ],
   "license": "MIT",
   "scripts": {
-    "typecheck": "tsc --noEmit",
-    "version": "echo $npm_package_version",
-    "serve": "yarn; rm -rf dist && node esmbuild/esmbuild.js serve ./src 8000",
-    "build": "yarn; rm -rf dist && yarn tsc && node esmbuild/esmbuild.js build ./src dist",
-    "deploy": "yarn version; git push --tags; git push",
+    "framer": "node .framer/esmbuild.js serve ./src 8000",
+    "storybook": "storybook dev -p 6006",
+    "build": "rm -rf dist && tsc -p tsconfig.build.json",
+    "build-framer": "rm -rf framer && node .framer/esmbuild.js build src framer",
+    "build-storybook": "rm -rf storybook && storybook build -o storybook",
     "lint": "eslint \"{src,test}/**/*.ts\" --fix",
     "prettier": "prettier --write ./**/*.ts",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "typecheck": "tsc --noEmit",
+    "version": "echo $npm_package_version"
   },
   "dependencies": {
     "@emotion/css": "^11",
-    "framer-motion": "7.6.12",
-    "process": "^0.11.10"
+    "framer-motion": "^10.12.4",
+    "popmotion": "^11.0.5"
   },
   "peerDependencies": {
     "react": "^18.2.0",
-    "react-dom": "^18.0.0"
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-0",
@@ -56,6 +54,7 @@
     "@types/babel-core": "^6.25.7",
     "@types/node": "^18.11.6",
     "@types/react": "^17",
+    "@types/react-dom": "^18.2.4",
     "@typescript-eslint/eslint-plugin": "^5.41.0",
     "@typescript-eslint/parser": "^5.41.0",
     "babel-plugin-named-exports-order": "^0.0.2",
@@ -72,7 +71,7 @@
     "prettier": "^2.7.1",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
-    "react-dom": "^18.0.0",
+    "react-dom": "^18.2.0",
     "storybook": "^7.0.7",
     "storybook-dark-mode": "^3.0.0",
     "tmp": "^0.2.1",
