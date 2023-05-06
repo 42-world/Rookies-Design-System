@@ -16,6 +16,8 @@ async function getBuildOptions(path) {
     minify: true,
     format: 'esm',
     bundle: true,
+    // sourcemap: true,
+    target: 'es2019',
     external: ['react', 'react/jsx-runtime', 'react-dom', 'framer', 'framer-motion'],
     plugins: [esmPlugin, cssPlugin({ inject: true })],
   };
