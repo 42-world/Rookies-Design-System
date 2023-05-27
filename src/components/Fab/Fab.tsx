@@ -1,16 +1,9 @@
 import { css } from '@emotion/css';
-import React, { MouseEventHandler } from 'react';
+import { MouseEventHandler } from 'react';
 import { token } from '../../common/token';
-import { Theme } from '../../common/type';
 import { PlusOutlineIcon } from '../../assets/icons/PlusOutlineIcon';
-React;
 
 type Props = {
-  /**
-   * 테마
-   */
-  theme: Theme; // TODO: theme 적용 안됨
-
   /**
    * 활성화 여부
    */
