@@ -58,9 +58,7 @@ jobs:
 
           rm -rf pages/$alpha_version
           mkdir -p pages/$alpha_version
-          cp -rf branch/framer pages/$alpha_version/framer
-          cp -rf branch/dist pages/$alpha_version/dist
-          cp -rf branch/storybook pages/$alpha_version/storybook
+          cp -rf branch/dist pages/$alpha_version
           cp -rf branch/*.tgz pages/$alpha_version
 
           bash .script/commit.sh "Updated Alpha $alpha_version"
