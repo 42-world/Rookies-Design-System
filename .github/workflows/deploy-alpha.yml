@@ -53,7 +53,11 @@ jobs:
           cp -rf branch/dist/* pages/$alpha_version
           cp -rf branch/*.tgz pages/$alpha_version
 
-          bash .script/commit.sh "Updated Alpha $alpha_version"
+          cd pages
+          git config --global user.name 'deploy'
+          git config --global user.email 'deploy@users.noreply.github.com'
+          git commit -am "Updated Alpha $alpha_version"
+          git push
 
       - name: Comment a pull_request
         env:
@@ -64,4 +68,4 @@ jobs:
             -H "Content-Type: application/json" \
             -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
             https://api.github.com/repos/$REPO/issues/$PR_NUMBER/comments \
-            -d "{\"body\": \"Alpha $alpha_version Build Done!\n New Version: $new_version\"}"
+            -d "{\"body\": \"Alpha $alpha_version Build Done!\n Expected New Version: $new_version\"}"

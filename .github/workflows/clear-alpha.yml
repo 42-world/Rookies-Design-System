@@ -11,9 +11,24 @@ concurrency:
   group: 'pages-deploy'
 
 jobs:
-  clear:
+  version:
     runs-on: ubuntu-latest
+    outputs:
+      new_version: ${{ steps.version.outputs.new_version }}
+      main_version: ${{ steps.version.outputs.main_version }}
+      alpha_version: ${{ steps.version.outputs.alpha_version }}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/version-setter
+        id: version
 
+  clear:
+    needs: version
+    runs-on: ubuntu-latest
+    env:
+      main_version: ${{ needs.version.outputs.main_version }}
+      alpha_version: ${{ needs.version.outputs.alpha_version }}
+      new_version: ${{ needs.version.outputs.new_version }}
     steps:
       - name: Checkout Pages
         uses: actions/checkout@v2
@@ -21,27 +36,20 @@ jobs:
           ref: pages
           path: pages
 
-      - name: Set Version Variables
-        run: |
-          MAIN_VERSION=$(cd $GITHUB_WORKSPACE/branch && yarn --silent run version)
-          ALPHA_VERSION=$MAIN_VERSION-alpha${{ github.event.pull_request.number }}
-          echo "main_version=$MAIN_VERSION" >> $GITHUB_ENV
-          echo "alpha_version=$MAIN_VERSION" >> $GITHUB_ENV
-
       - name: Remove Alpha Pages
-        env:
-          alpha_version: ${{ env.alpha_version }}
-          main_version: ${{ env.main_version}}
         run: |
           rm -rf pages/alpha_version
 
-          bash .script/commit.sh "Remove Alpha $alpha_version"
+          cd pages
+          git config --global user.name 'deploy'
+          git config --global user.email 'deploy@users.noreply.github.com'
+          git commit -am "Remove Alpha $alpha_version"
+          git push
 
       - name: Comment a pull_request
         env:
           PR_NUMBER: ${{ github.event.pull_request.number }}
           REPO: ${{ github.repository }}
-          alpha_version: ${{ env.alpha_version }}
         run: |
           curl -X POST \
             -H "Content-Type: application/json" \
