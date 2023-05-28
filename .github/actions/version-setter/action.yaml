@@ -25,7 +25,7 @@ runs:
         MAIN_VERSION=$(yarn --silent run version)
         ALPHA_VERSION=$MAIN_VERSION-alpha${{ github.event.pull_request.number }}
         echo "main_version=$MAIN_VERSION" >> $GITHUB_OUTPUT
-        echo "alpha_version=$MAIN_VERSION" >> $GITHUB_OUTPUT
+        echo "alpha_version=$ALPHA_VERSION" >> $GITHUB_OUTPUT
 
     - name: New Version
       id: new_version
