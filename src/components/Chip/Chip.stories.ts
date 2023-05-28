@@ -17,4 +17,11 @@ export const Primary: Story = {
   },
 };
 
+export const PrimaryNoIcon: Story = {
+  args: {
+    text: 'Sample',
+    selected: false,
+  },
+};
+
 export default meta;
