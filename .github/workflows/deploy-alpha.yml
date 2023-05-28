@@ -65,17 +65,17 @@ jobs:
         with:
           reactions: rocket
           message: |
-            ## Alpha $$alpha_version Build Done!
+            ## Alpha ${{ github.env.alpha_version }} Build Done! (${{ github.event.pull_request.commits }})
 
-            Expected New Version: $$new_version
+            Expected New Version: ${{ github.env.new_version }}
 
             ### Check it out!
 
-            - Go to [StoryBook](https://42-world.github.io/42world-Design-System/$$alpha_version/storybook)
-            - Go to [Framer](https://42-world.github.io/42world-Design-System/$$alpha_version/framer/index.js)
+            - Go to [StoryBook](https://42-world.github.io/42world-Design-System/${{ github.env.alpha_version }}/storybook)
+            - Go to [Framer](https://42-world.github.io/42world-Design-System/${{ github.env.alpha_version }}/framer/index.js)
 
             ### Or you can try...
 
             ```
-            yarn add @42world/design-core@https://42-world.github.io/42world-Design-System/$$alpha_version/42world-design-core-v$$main_version.tgz
+            yarn add @42world/design-core@https://42-world.github.io/42world-Design-System/${{ github.env.alpha_version }}/42world-design-core-v${{ github.env.main_version }}.tgz
             ```
