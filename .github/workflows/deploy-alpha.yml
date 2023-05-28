@@ -60,12 +60,17 @@ jobs:
           git commit -m "Updated Alpha $alpha_version"
           git push
 
+      # PR 에서 처음 한번만
       - name: Comment PR
         uses: thollander/actions-comment-pull-request@v2
+        env:
+          main_version: ${{ needs.version.outputs.main_version }}
+          alpha_version: ${{ needs.version.outputs.alpha_version }}
+          new_version: ${{ needs.version.outputs.new_version }}
         with:
           reactions: rocket
           message: |
-            ## Alpha ${{ github.env.alpha_version }} Build Done! (${{ github.event.pull_request.commits }})
+            ## Alpha ${{ github.env.alpha_version }} Build Done!
 
             Expected New Version: ${{ github.env.new_version }}
 
@@ -79,3 +84,15 @@ jobs:
             ```
             yarn add @42world/design-core@https://42-world.github.io/42world-Design-System/${{ github.env.alpha_version }}/42world-design-core-v${{ github.env.main_version }}.tgz
             ```
+
+      # 빌드 될때마다 re build done! (커밋) 이 어떤지
+      - name: Comment PR
+        uses: thollander/actions-comment-pull-request@v2
+        env:
+          main_version: ${{ needs.version.outputs.main_version }}
+          alpha_version: ${{ needs.version.outputs.alpha_version }}
+          new_version: ${{ needs.version.outputs.new_version }}
+        with:
+          reactions: rocket
+          message: |
+            Alpha ${{ github.env.alpha_version }} Rebuilt ${{ github.sha }}
