@@ -39,17 +39,9 @@ jobs:
           ref: pages
           path: pages
 
-      - name: Reset Alpha Pages
-        run: |
-          rm -rf pages/$alpha_version
-          mkdir -p pages/$alpha_version
-          cp -rf pages/$main_version pages/$alpha_version || true
-
-          bash .script/commit.sh "Reset Alpha $alpha_version"
-
       - name: Build Alpha Pages
         run: |
-          cd branch
+          cd branchtfff
           yarn
           yarn build
           yarn version --new_version $alpha_version --no-git-tag-version
