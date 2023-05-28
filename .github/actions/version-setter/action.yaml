@@ -31,7 +31,7 @@ runs:
       id: new_version
       shell: bash
       run: |
-        semver=$(bash .script/get-version-semver.sh ${{ github.event.pull_request.title }})
+        semver=$(bash .script/get-version-semver.sh '${{ github.event.pull_request.title }}')
         yarn version $semver --no-git-tag-version
         new_version=$(yarn --silent run version)
         echo "new_version=$new_version" >> $GITHUB_OUTPUT
