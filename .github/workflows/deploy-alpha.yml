@@ -63,26 +63,22 @@ jobs:
       # PR 에서 처음 한번만
       - name: Comment PR
         uses: thollander/actions-comment-pull-request@v2
-        env:
-          main_version: ${{ needs.version.outputs.main_version }}
-          alpha_version: ${{ needs.version.outputs.alpha_version }}
-          new_version: ${{ needs.version.outputs.new_version }}
         with:
           reactions: rocket
           message: |
-            ## Alpha ${{ github.env.alpha_version }} Build Done!
+            ## Alpha ${{ env.alpha_version }} Build Done!
 
-            Expected New Version: ${{ github.env.new_version }}
+            Expected New Version: ${{ env.new_version }}
 
             ### Check it out!
 
-            - Go to [StoryBook](https://42-world.github.io/42world-Design-System/${{ github.env.alpha_version }}/storybook)
-            - Go to [Framer](https://42-world.github.io/42world-Design-System/${{ github.env.alpha_version }}/framer/index.js)
+            - Go to [StoryBook](https://42-world.github.io/42world-Design-System/${{ env.alpha_version }}/storybook)
+            - Go to [Framer](https://42-world.github.io/42world-Design-System/${{ env.alpha_version }}/framer/index.js)
 
             ### Or you can try...
 
             ```
-            yarn add @42world/design-core@https://42-world.github.io/42world-Design-System/${{ github.env.alpha_version }}/42world-design-core-v${{ github.env.main_version }}.tgz
+            yarn add @42world/design-core@https://42-world.github.io/42world-Design-System/${{ env.alpha_version }}/42world-design-core-v${{ github.env.main_version }}.tgz
             ```
 
       # 빌드 될때마다 re build done! (커밋) 이 어떤지
