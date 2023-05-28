@@ -60,7 +60,6 @@ jobs:
           git commit -m "Updated Alpha $alpha_version"
           git push
 
-      # PR 에서 처음 한번만
       - name: Comment PR
         uses: thollander/actions-comment-pull-request@v2
         with:
@@ -80,12 +79,10 @@ jobs:
             ```
             yarn add @42world/design-core@https://42-world.github.io/42world-Design-System/${{ env.alpha_version }}/42world-design-core-v${{ env.main_version }}.tgz
             ```
-
-      # 빌드 될때마다 re build done! (커밋) 이 어떤지
+          comment_tag: execution
       - name: Comment PR
         uses: thollander/actions-comment-pull-request@v2
         with:
           reactions: rocket
           message: |
             Alpha ${{ env.alpha_version }} Rebuilt ${{ github.sha }}
-          comment_tag: execution
