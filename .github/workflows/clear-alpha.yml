@@ -43,7 +43,8 @@ jobs:
           cd pages
           git config --global user.name 'deploy'
           git config --global user.email 'deploy@users.noreply.github.com'
-          git commit -am "Remove Alpha $alpha_version"
+          git add .
+          git commit -m "Remove Alpha $alpha_version"
           git push
 
       - name: Comment a pull_request

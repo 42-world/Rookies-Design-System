@@ -56,7 +56,8 @@ jobs:
           cd pages
           git config --global user.name 'deploy'
           git config --global user.email 'deploy@users.noreply.github.com'
-          git commit -am "Updated Alpha $alpha_version"
+          git add .
+          git commit -m "Updated Alpha $alpha_version"
           git push
 
       - name: Comment a pull_request
