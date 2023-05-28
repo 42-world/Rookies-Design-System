@@ -41,7 +41,7 @@ jobs:
 
       - name: Build Alpha Pages
         run: |
-          cd branchtfff
+          cd branch
           yarn
           yarn build
           yarn version --new_version $alpha_version --no-git-tag-version
