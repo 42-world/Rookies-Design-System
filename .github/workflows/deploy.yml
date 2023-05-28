@@ -10,26 +10,60 @@ concurrency:
   group: 'pages-deploy'
 
 jobs:
-  new-version:
+  version:
     runs-on: ubuntu-latest
     outputs:
-      version: ${{ steps.version.outputs.new_version }}
+      new_version: ${{ steps.version.outputs.new_version }}
+      main_version: ${{ steps.version.outputs.main_version }}
+      alpha_version: ${{ steps.version.outputs.alpha_version }}
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Get New Version
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/version-setter
         id: version
+
+  clear:
+    needs: version
+    runs-on: ubuntu-latest
+    env:
+      main_version: ${{ needs.version.outputs.main_version }}
+      alpha_version: ${{ needs.version.outputs.alpha_version }}
+      new_version: ${{ needs.version.outputs.new_version }}
+    steps:
+      - name: Checkout Pages
+        uses: actions/checkout@v2
+        with:
+          ref: pages
+          path: pages
+
+      - name: Remove Alpha Pages
         run: |
-          title=$(git log -1 --pretty=%B)  # get the last commit message
-          option=$(bash .script/version-up-option.sh $title)
-          yarn version $option --no-git-tag-version
-          new_version=$(yarn --silent run version)
-          echo $new_version
+          rm -rf pages/alpha_version
+
+          cd pages
+          git config --global user.name 'deploy'
+          git config --global user.email 'deploy@users.noreply.github.com'
+          git add .
+          git commit -m "Remove Alpha $alpha_version"
+          git push
+
+      - name: Comment a pull_request
+        env:
+          GITHUB_SHA: ${{ github.event.commits }}
+          REPO: ${{ github.repository }}
+        run: |
+          curl -X POST \
+            -H "Content-Type: application/json" \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            https://api.github.com/repos/$REPO/commits/$GITHUB_SHA/comments \
+            -d "{\"body\": \" Removed Alpha $alpha_version\n\"}"
 
   build:
-    needs: new-version
+    needs: [version, clear]
     runs-on: ubuntu-latest
+    env:
+      main_version: ${{ needs.version.outputs.main_version }}
+      alpha_version: ${{ needs.version.outputs.alpha_version }}
+      new_version: ${{ needs.version.outputs.new_version }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -42,44 +76,34 @@ jobs:
           ref: pages
           path: pages
 
-      - name: Set Version Variables
-        run: |
-          MAIN_VERSION=$(cd $GITHUB_WORKSPACE/branch && yarn --silent run version)
-          echo "main_version=$MAIN_VERSION" >> $GITHUB_ENV
-
       - name: Generate Pages
-        env:
-          main_version: ${{ env.main_version}}
         run: |
-          cd branch
+          cd main
           yarn
-          yarn build & yarn build-framer & yarn build-storybook
-          yarn version --new-version $alpha_version
+          yarn build
+          yarn version --new_version $new_version
           yarn pack
           cd $GITHUB_WORKSPACE
 
-      - name: Commit & Push
-        run: |
-          cd main
-          VERSION=$(yarn --silent run version)
-          cd ../pages
+          rm -rf pages/$new_version
+          mkdir -p pages/$new_version
+          cp -rf main/dist/* pages/$new_version
+          cp -rf main/*.tgz pages/$new_version
+
+          cd pages
           git config --global user.name 'deploy'
           git config --global user.email 'deploy@users.noreply.github.com'
           git add .
-          bash $GITHUB_WORKSPACE/main/.script/get-build-complete-message.sh $VERSION > $GITHUB_WORKSPACE/comment.txt
-          git status
-          git commit -m "Updated Main" | cat
-          git pull
+          git commit -m "Deploy version $new_version"
           git push
 
       - name: Comment a pull_request
         env:
-          PR_NUMBER: ${{ github.event.pull_request.number }}
+          GITHUB_SHA: ${{ github.event.commits }}
           REPO: ${{ github.repository }}
-          main_version: ${{ env.main_version}}
         run: |
           curl -X POST \
             -H "Content-Type: application/json" \
             -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
             https://api.github.com/repos/$REPO/commits/$GITHUB_SHA/comments \
-            -d "{\"body\": \"$(cat $GITHUB_WORKSPACE/comment.txt)\"}"
+            -d "{\"body\": \" New Version $new_version Build Done!\n\"}"
