@@ -51,7 +51,7 @@ jobs:
         run: |
           cd branch
           yarn
-          yarn build & yarn build-framer & yarn build-storybook
+          yarn build
           yarn version --new_version $alpha_version --no-git-tag-version
           yarn pack
           cd $GITHUB_WORKSPACE
