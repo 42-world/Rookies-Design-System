@@ -11,8 +11,5 @@
     "src/**/*.stories.ts",
     "src/**/*.framer.tsx",
     "src/**/*.framer.ts"
-  ],
-  "compilerOptions": {
-    "outDir": "./dist"
-  }
+  ]
 }
