@@ -88,3 +88,4 @@ jobs:
           reactions: rocket
           message: |
             Alpha ${{ env.alpha_version }} Rebuilt ${{ github.sha }}
+          comment_tag: execution
