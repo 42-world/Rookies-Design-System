@@ -20,6 +20,7 @@ runs:
 
     - name: Main and Alpha Version
       id: version
+      shell: bash
       run: |
         MAIN_VERSION=$(yarn --silent run version)
         ALPHA_VERSION=$MAIN_VERSION-alpha${{ github.event.pull_request.number }}
@@ -28,6 +29,7 @@ runs:
 
     - name: New Version
       id: new_version
+      shell: bash
       run: |
         title=${{ github.event.pull_request.title }}
         semver=$(bash .script/get-version-semver.sh $title)
