@@ -5,6 +5,7 @@ const path = require('path');
 const fs = require('fs-extra');
 const postcss = require('postcss');
 const cssModules = require('postcss-modules');
+const discardComments = require('postcss-discard-comments');
 const util = require('util');
 const tmp = require('tmp');
 const crypto = require('crypto');
@@ -15,20 +16,20 @@ const ensureDir = util.promisify(fs.ensureDir);
 const pluginNamespace = 'esbuild-css-modules-plugin-namespace';
 
 const buildCssModulesJS = async (cssFullPath, options) => {
-  const { localsConvention = 'camelCaseOnly', inject = true, generateScopedName } = options;
+  const { inject = true } = options;
 
   const css = await readFile(cssFullPath);
 
   let cssModulesJSON = {};
   const result = await postcss([
     cssModules({
-      localsConvention,
-      generateScopedName,
+      generateScopedName: '[local]',
       getJSON(cssSourceFile, json) {
         cssModulesJSON = { ...json };
         return cssModulesJSON;
       },
     }),
+    discardComments({ removeAll: true }),
   ]).process(css, {
     from: undefined,
     map: false,
@@ -66,9 +67,8 @@ exports.cssPlugin = (options = {}) => {
       const tmpDirPath = tmp.dirSync().name;
       const { outdir, bundle } = build.initialOptions;
 
-      build.onResolve({ filter: /\.modules?\.css$/, namespace: 'file' }, async (args) => {
+      build.onResolve({ filter: /\.css$/, namespace: 'file' }, async (args) => {
         const sourceFullPath = path.resolve(args.resolveDir, args.path);
-
         const sourceExt = path.extname(sourceFullPath);
         const sourceBaseName = path.basename(sourceFullPath, sourceExt);
         const sourceDir = path.dirname(sourceFullPath);
@@ -98,8 +98,6 @@ exports.cssPlugin = (options = {}) => {
 
           fs.ensureDirSync(path.dirname(target));
           fs.copyFileSync(`${tmpFilePath}.js`, target);
-
-          // console.log('[esbuild-css-modules-plugin]', path.relative(rootDir, sourceFullPath), '=>', path.relative(rootDir, target));
         }
 
         if (!bundle) {
@@ -122,10 +120,7 @@ exports.cssPlugin = (options = {}) => {
         };
       });
 
-      build.onLoad({ filter: /\.modules?\.css\.js$/, namespace: pluginNamespace }, (args) => {
-        // const { path: resolvePath, importer } = args.pluginData.resolveArgs;
-        // const importerName = path.basename(importer);
-        // console.log('[esbuild-css-modules-plugin]', `${resolvePath} => ${resolvePath}.js => ${importerName}`);
+      build.onLoad({ filter: /\.css\.js$/, namespace: pluginNamespace }, (args) => {
         return { contents: args.pluginData.content, loader: 'js' };
       });
     },

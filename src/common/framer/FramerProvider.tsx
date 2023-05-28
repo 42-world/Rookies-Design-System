@@ -1,4 +1,5 @@
 import { ThemeProvider } from '../../context';
+import '../../styles/_tailwind.css';
 import '../../styles/reset.css';
 import { useFramerThemeData } from './useFramerThemeData';
 
