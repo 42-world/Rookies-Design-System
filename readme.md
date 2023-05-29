@@ -163,3 +163,9 @@ Any files with path `*.framer.*` will be ignored in the publishing process. This
 ```bash
 dist/typography/Text/Text.framer.js # ignored
 ```
+
+### Check List
+
+- StoryBook 에서 정상적으로 동작하는가?
+- Framer 에서 정상적으로 동작하는가?
+- 패키지를 다운받았을때 정상적으로 동작하는가?
