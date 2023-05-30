@@ -1,8 +1,13 @@
+const colors = require('tailwindcss/colors');
+
+const { lightBlue, warmGray, trueGray, coolGray, blueGray, ...restColors } = colors;
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./src/**/*.{html,js,jsx,ts,tsx}'],
   theme: {
     colors: {
+      ...restColors,
       text: {
         primary: '#000000',
         primary_dark: '#FFFFFF',
