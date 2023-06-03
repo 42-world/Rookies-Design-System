@@ -85,6 +85,11 @@ jobs:
           cp -rf dist/* .pages/$new_version
           cp -rf *.tgz .pages/$new_version
 
+      - name: Commit New Version
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: '${{ env.new_version }}'
+
       - name: Commit Pages
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
