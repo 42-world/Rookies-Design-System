@@ -1,12 +1,12 @@
 {
   "name": "@42world/design-core",
-  "version": "0.2.3",
+  "version": "0.2.18",
   "author": "42World Team",
   "description": "42World Design System",
   "homepage": "https://github.com/42-world/42world-Design-System",
-  "main": "dist/framer/index.js",
-  "types": "dist/index.d.ts",
-  "module": "dist/esm/index.js",
+  "main": "dist/js/index.cjs",
+  "types": "dist/types/index.d.ts",
+  "module": "dist/js/index.mjs",
   "repository": {
     "type": "git",
     "url": "https://github.com/42-world/42world-Design-System"
@@ -15,19 +15,20 @@
     "access": "public"
   },
   "files": [
-    "dist"
+    "dist/js",
+    "dist/types"
   ],
   "license": "MIT",
   "scripts": {
     "dev": "concurrently 'yarn:dev:*'",
     "dev:storybook": "storybook dev -p 6006",
-    "dev:framer": "node .framer/esmbuild.js serve ./src 8000",
+    "dev:framer": "node .build/esmbuild.js serve 8000",
     "dev:tailwind": "tailwindcss -i ./src/styles/tailwind.css -o ./src/styles/_tailwind.css --watch",
-    "build": "yarn pre-build:tailwind && concurrently 'yarn:build:*'",
-    "build:cjs": "rm -rf dist/cjs && tsc -p tsconfig.build.json --outDir dist/cjs",
-    "build:esm": "rm -rf dist/esm && tsc -p tsconfig.esm.json --outDir dist/esm",
-    "build:framer": "rm -rf dist/framer && node .framer/esmbuild.js build src ./dist/framer",
-    "build:storybook": "rm -rf dist/storybook && storybook build -o ./dist/storybook",
+    "build": "yarn concurrently 'yarn:pre-build:*' && concurrently 'yarn:build:*'",
+    "build:js": "node .build/esmbuild.js build",
+    "build:types": "tsc -p tsconfig.build.json --outDir ./dist/types",
+    "build:storybook": "storybook build -o ./dist/storybook",
+    "pre-build:clear": "rm -rf dist",
     "pre-build:tailwind": "tailwindcss -i ./src/styles/tailwind.css -o ./src/styles/_tailwind.css",
     "lint": "eslint '{src,test}/**/*.ts' --fix",
     "prettier": "prettier --write ./**/*.ts",

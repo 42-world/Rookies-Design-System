@@ -4,7 +4,6 @@ import React from 'react';
 import { useDarkMode } from 'storybook-dark-mode';
 import { ThemeProvider } from '../src';
 import '../src/styles/_tailwind.css';
-import '../src/styles/reset.css';
 import './style.css';
 
 const preview: Preview = {
