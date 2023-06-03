@@ -77,7 +77,7 @@ jobs:
         run: |
           yarn
           NODE_ENV=production yarn build
-          yarn version --new_version $new_version
+          yarn version --new-version $new_version
           yarn pack
 
           rm -rf .pages/$new_version

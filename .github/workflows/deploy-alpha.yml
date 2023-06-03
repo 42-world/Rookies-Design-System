@@ -47,7 +47,7 @@ jobs:
         run: |
           yarn
           NODE_ENV=production yarn build
-          yarn version --new_version $alpha_version --no-git-tag-version
+          yarn version --new-version $alpha_version --no-git-tag-version
           yarn pack
 
           rm -rf .pages/$alpha_version
@@ -77,7 +77,7 @@ jobs:
             ### Or you can try...
 
             ```
-            yarn add @42world/design-core@https://42-world.github.io/${{ env.alpha_version }}/42world-design-core-v${{ env.main_version }}.tgz
+            yarn add @42world/design-core@https://42-world.github.io/${{ env.alpha_version }}/42world-design-core-v${{ env.new_version }}.tgz
             ```
           comment_tag: execution
 
@@ -95,5 +95,5 @@ jobs:
             ### Or you can try...
 
             ```
-            yarn add @42world/design-core@https://42-world.github.io/${{ env.alpha_version }}/42world-design-core-v${{ env.main_version }}.tgz
+            yarn add @42world/design-core@https://42-world.github.io/${{ env.alpha_version }}/42world-design-core-v${{ env.new_version }}.tgz
             ```
