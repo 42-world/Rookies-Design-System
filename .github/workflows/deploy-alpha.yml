@@ -64,7 +64,7 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: 'Alpha ${{ env.alpha_version }} Build'
-          commit_options: --allow-empty'
+          commit_options: '--allow-empty'
           repository: pages
           branch: main
 
