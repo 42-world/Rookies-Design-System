@@ -40,11 +40,9 @@ jobs:
           rm -rf pages/alpha_version
 
           cd pages
-          git config --global user.name 'deploy'
-          git config --global user.email 'deploy@users.noreply.github.com'
           git pull
-          ! git add .
-          ! git commit -m "Remove Alpha $alpha_version"
+          git add .
+          git commit --allow-empty --author="github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>" -m "Remove Alpha $alpha_version"
           git push
 
       - name: Comment a pull_request
@@ -92,11 +90,9 @@ jobs:
           cp -rf main/*.tgz pages/$new_version
 
           cd pages
-          git config --global user.name 'deploy'
-          git config --global user.email 'deploy@users.noreply.github.com'
           git pull
           git add .
-          git commit -m "Deploy version $new_version"
+          git commit --allow-empty --author="github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>" -m "Deploy version $new_version"
           git push
 
       - name: Comment a pull_request
