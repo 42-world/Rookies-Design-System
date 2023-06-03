@@ -43,22 +43,13 @@ jobs:
         run: |
           rm -rf pages/alpha_version
 
-          cd pages
-          git pull
-          git add .
-          git commit --allow-empty --author="github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>" -m "Remove Alpha $alpha_version"
-          git push
-
-      - name: Comment a pull_request
-        env:
-          GITHUB_SHA: ${{ github.event.commits }}
-          REPO: ${{ github.repository }}
-        run: |
-          curl -X POST \
-            -H "Content-Type: application/json" \
-            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-            https://api.github.com/repos/$REPO/commits/$GITHUB_SHA/comments \
-            -d "{\"body\": \" Removed Alpha $alpha_version\n\"}"
+      - name: Commit Alpha Pages
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: 'Remove Alpha ${{ env.alpha_version }}'
+          commit_options: '--allow-empty'
+          repository: pages
+          branch: main
 
   build:
     needs: [version, clear]
@@ -97,19 +88,27 @@ jobs:
           cp -rf main/dist/* pages/$new_version
           cp -rf main/*.tgz pages/$new_version
 
-          cd pages
-          git pull
-          git add .
-          git commit --allow-empty --author="github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>" -m "Deploy version $new_version"
-          git push
+      - name: Commit Pages
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: 'Alpha ${{ env.alpha_version }} Build'
+          commit_options: '--allow-empty'
+          repository: pages
+          branch: main
 
-      - name: Comment a pull_request
-        env:
-          GITHUB_SHA: ${{ github.event.commits }}
-          REPO: ${{ github.repository }}
-        run: |
-          curl -X POST \
-            -H "Content-Type: application/json" \
-            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-            https://api.github.com/repos/$REPO/commits/$GITHUB_SHA/comments \
-            -d "{\"body\": \" New Version $new_version Build Done!\n\"}"
+      - name: Comment commit
+        uses: peter-evans/commit-comment@v2
+        with:
+          body: |
+            ## ${{ env.new_version }} Build Done!
+
+            ### Check it out!
+
+            - Go to [StoryBook](https://42-world.github.io/${{ env.new_version }}/storybook)
+            - Go to [Framer](https://42-world.github.io/${{ env.new_version }}/framer/components/Text/Text.framer.js)
+
+            ### Or you can try...
+
+            ```
+            yarn add @42world/design-core@https://42-world.github.io/${{ env.new_version }}/42world-design-core-v${{ env.new_version }}.tgz
+            ```

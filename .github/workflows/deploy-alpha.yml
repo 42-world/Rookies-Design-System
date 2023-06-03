@@ -42,7 +42,7 @@ jobs:
         with:
           repository: '42-world/42-world.github.io'
           path: pages
-          token: ${{ secrets.ACCESS_TOKEN_GITHUB }}
+          token: ${{ secrets.GH_TOKEN }}
 
       - name: Build Alpha Pages
         run: |
@@ -77,19 +77,18 @@ jobs:
 
             ### Check it out!
 
-            - Go to [StoryBook](https://42-world.github.io/cdn/${{ env.alpha_version }}/storybook)
-            - Go to [Framer](https://42-world.github.io/cdn/${{ env.alpha_version }}/framer/index.js)
+            - Go to [StoryBook](https://42-world.github.io/${{ env.alpha_version }}/storybook)
+            - Go to [Framer](https://42-world.github.io/${{ env.alpha_version }}/framer/components/Text/Text.framer.js)
 
             ### Or you can try...
 
             ```
-            yarn add @42world/design-core@https://42-world.github.io/cdn/${{ env.alpha_version }}/42world-design-core-v${{ env.main_version }}.tgz
+            yarn add @42world/design-core@https://42-world.github.io/${{ env.alpha_version }}/42world-design-core-v${{ env.main_version }}.tgz
             ```
           comment_tag: execution
 
-      - name: Comment PR Alpha Build by commit
-        uses: thollander/actions-comment-pull-request@v2
+      - name: Comment commit
+        uses: peter-evans/commit-comment@v2
         with:
-          reactions: rocket
-          message: |
+          body: |
             Alpha ${{ env.alpha_version }} Rebuilt ${{ github.sha }}
