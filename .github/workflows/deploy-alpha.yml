@@ -50,7 +50,7 @@ jobs:
         run: |
           yarn
           NODE_ENV=production yarn build
-          sha=$(git rev-parse --short ${{ github.event.pull_request.base.sha }})
+          sha=$(git rev-parse --short ${{ github.sha }})
           yarn version --new-version $alpha_version-$sha --no-git-tag-version
           yarn pack
 
