@@ -40,7 +40,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           repository: '42-world/42-world.github.io'
-          path: __pages__
+          path: .pages
           token: ${{ secrets.GH_TOKEN }}
 
       - name: Build Alpha Pages
@@ -50,17 +50,17 @@ jobs:
           yarn version --new_version $alpha_version --no-git-tag-version
           yarn pack
 
-          rm -rf __pages__/$alpha_version
-          mkdir -p __pages__/$alpha_version
-          cp -rf dist/* __pages__/$alpha_version
-          cp -rf *.tgz __pages__/$alpha_version
+          rm -rf .pages/$alpha_version
+          mkdir -p .pages/$alpha_version
+          cp -rf dist/* .pages/$alpha_version
+          cp -rf *.tgz .pages/$alpha_version
 
       - name: Commit Alpha Pages
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: 'Alpha ${{ env.alpha_version }} Build'
           commit_options: '--allow-empty'
-          repository: __pages__
+          repository: .pages
           branch: main
 
       - name: Comment PR Alpha Build
