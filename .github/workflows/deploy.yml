@@ -32,7 +32,7 @@ jobs:
       - name: Checkout Pages
         uses: actions/checkout@v2
         with:
-          ref: pages
+          repository: '42-world/cdn'
           path: pages
 
       - name: Remove Alpha Pages
@@ -42,8 +42,9 @@ jobs:
           cd pages
           git config --global user.name 'deploy'
           git config --global user.email 'deploy@users.noreply.github.com'
-          git add .
-          git commit -m "Remove Alpha $alpha_version"
+          git pull
+          ! git add .
+          ! git commit -m "Remove Alpha $alpha_version"
           git push
 
       - name: Comment a pull_request
@@ -73,7 +74,7 @@ jobs:
       - name: Checkout Pages
         uses: actions/checkout@v2
         with:
-          ref: pages
+          repository: '42-world/cdn'
           path: pages
 
       - name: Generate Pages
@@ -93,6 +94,7 @@ jobs:
           cd pages
           git config --global user.name 'deploy'
           git config --global user.email 'deploy@users.noreply.github.com'
+          git pull
           git add .
           git commit -m "Deploy version $new_version"
           git push

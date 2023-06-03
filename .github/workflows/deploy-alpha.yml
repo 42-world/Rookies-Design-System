@@ -36,7 +36,7 @@ jobs:
       - name: Checkout Pages
         uses: actions/checkout@v3
         with:
-          ref: pages
+          repository: '42-world/cdn'
           path: pages
 
       - name: Build Alpha Pages
@@ -56,6 +56,7 @@ jobs:
           cd pages
           git config --global user.name 'deploy'
           git config --global user.email 'deploy@users.noreply.github.com'
+          git pull
           git add .
           git commit -m "Updated Alpha $alpha_version"
           git push
@@ -71,13 +72,13 @@ jobs:
 
             ### Check it out!
 
-            - Go to [StoryBook](https://42-world.github.io/42world-Design-System/${{ env.alpha_version }}/storybook)
-            - Go to [Framer](https://42-world.github.io/42world-Design-System/${{ env.alpha_version }}/framer/index.js)
+            - Go to [StoryBook](https://42-world.github.io/cdn/${{ env.alpha_version }}/storybook)
+            - Go to [Framer](https://42-world.github.io/cdn/${{ env.alpha_version }}/framer/index.js)
 
             ### Or you can try...
 
             ```
-            yarn add @42world/design-core@https://42-world.github.io/42world-Design-System/${{ env.alpha_version }}/42world-design-core-v${{ env.main_version }}.tgz
+            yarn add @42world/design-core@https://42-world.github.io/cdn/${{ env.alpha_version }}/42world-design-core-v${{ env.main_version }}.tgz
             ```
           comment_tag: execution
       - name: Comment PR
