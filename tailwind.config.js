@@ -54,7 +54,11 @@ module.exports = {
         overlay: '#00000052',
       },
     },
-    extend: {},
+    extend: {
+      transitionProperty: {
+        gap: 'gap',
+      },
+    },
   },
   plugins: [
     require('tailwindcss'), //
