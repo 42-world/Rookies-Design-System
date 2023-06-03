@@ -43,7 +43,7 @@ type Props = {
   color?: Color;
 };
 
-const textSizeConfig: Record<TextSize, string> = {
+export const textSizeConfig: Record<TextSize, string> = {
   heading1: 'text-4xl',
   heading2: 'text-2xl',
   heading3: 'text-lg',
@@ -52,19 +52,19 @@ const textSizeConfig: Record<TextSize, string> = {
   small: 'text-xs',
 };
 
-const textWeightConfig: Record<TextWeight, string> = {
+export const textWeightConfig: Record<TextWeight, string> = {
   regular: 'font-light',
   medium: 'font-normal',
   semibold: 'font-semibold',
 };
 
-const textAlignConfig: Record<TextAlign, string> = {
+export const textAlignConfig: Record<TextAlign, string> = {
   left: 'text-left',
   right: 'text-right',
   center: 'text-center',
 };
 
-const textColorConfig: Record<Theme, Record<Color, string>> = {
+export const textColorConfig: Record<Theme, Record<Color, string>> = {
   light: {
     primary: 'text-text-primary',
     secondary: 'text-text-secondary',
@@ -135,7 +135,7 @@ export function Text({ text, size = 'body1', weight = 'regular', align = 'left',
 
   return (
     <p
-      className={`display
+      className={`font-display
         ${textSizeConfig[size]}
         ${textWeightConfig[weight]}
         ${textAlignConfig[align]}
