@@ -48,7 +48,7 @@ jobs:
         run: |
           cd branch
           yarn
-          yarn build
+          NODE_ENV=production yarn build
           yarn version --new_version $alpha_version --no-git-tag-version
           yarn pack
           cd $GITHUB_WORKSPACE

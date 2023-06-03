@@ -81,7 +81,7 @@ jobs:
         run: |
           cd main
           yarn
-          yarn build
+          NODE_ENV=production yarn build
           yarn version --new_version $new_version
           yarn pack
           cd $GITHUB_WORKSPACE
