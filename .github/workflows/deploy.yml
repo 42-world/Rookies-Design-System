@@ -89,6 +89,7 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: '${{ env.new_version }}'
+          commit_options: '--force'
 
       - name: Commit Pages
         uses: stefanzweifel/git-auto-commit-action@v4
