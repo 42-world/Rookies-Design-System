@@ -12,6 +12,7 @@ module.exports = {
       },
       transitionProperty: {
         spacing: 'margin, padding',
+        gap: 'gap',
       },
       colors: {
         text: {
@@ -61,11 +62,6 @@ module.exports = {
           system_200: '#007AFF',
           overlay: '#00000052',
         },
-      },
-    },
-    extend: {
-      transitionProperty: {
-        gap: 'gap',
       },
     },
   },
