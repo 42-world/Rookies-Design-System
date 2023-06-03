@@ -37,19 +37,16 @@ jobs:
         uses: actions/checkout@v3
         with:
           repository: '42-world/42-world.github.io'
-          path: pages
 
       - name: Remove Alpha Pages
         run: |
-          rm -rf pages/$alpha_version
+          rm -rf $alpha_version*
 
       - name: Commit Alpha Pages
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: 'Remove Alpha ${{ env.alpha_version }}'
           commit_options: '--allow-empty'
-          repository: pages
-          branch: main
 
   build:
     needs: [version, clear]
@@ -66,37 +63,33 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         with:
-          ref: main
-          path: main
           token: ${{ secrets.GH_TOKEN }}
 
       - name: Checkout Pages Repo
         uses: actions/checkout@v3
         with:
           repository: '42-world/42-world.github.io'
-          path: pages
+          path: __pages__
           token: ${{ secrets.GH_TOKEN }}
 
       - name: Generate Pages
         run: |
-          cd main
           yarn
           NODE_ENV=production yarn build
           yarn version --new_version $new_version
           yarn pack
-          cd $GITHUB_WORKSPACE
 
-          rm -rf pages/$new_version
-          mkdir -p pages/$new_version
-          cp -rf main/dist/* pages/$new_version
-          cp -rf main/*.tgz pages/$new_version
+          rm -rf __pages__/$new_version
+          mkdir -p __pages__/$new_version
+          cp -rf dist/* __pages__/$new_version
+          cp -rf *.tgz __pages__/$new_version
 
       - name: Commit Pages
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: 'Version ${{ env.new_version }} Build'
           commit_options: '--allow-empty'
-          repository: pages
+          repository: __pages__
           branch: main
 
       - uses: JS-DevTools/npm-publish@v2

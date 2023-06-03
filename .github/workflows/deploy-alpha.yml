@@ -35,35 +35,32 @@ jobs:
 
       - name: Checkout
         uses: actions/checkout@v3
-        with:
-          path: branch
+
       - name: Checkout Pages Repo
         uses: actions/checkout@v3
         with:
           repository: '42-world/42-world.github.io'
-          path: pages
+          path: __pages__
           token: ${{ secrets.GH_TOKEN }}
 
       - name: Build Alpha Pages
         run: |
-          cd branch
           yarn
           NODE_ENV=production yarn build
           yarn version --new_version $alpha_version --no-git-tag-version
           yarn pack
-          cd $GITHUB_WORKSPACE
 
-          rm -rf pages/$alpha_version
-          mkdir -p pages/$alpha_version
-          cp -rf branch/dist/* pages/$alpha_version
-          cp -rf branch/*.tgz pages/$alpha_version
+          rm -rf __pages__/$alpha_version
+          mkdir -p __pages__/$alpha_version
+          cp -rf dist/* __pages__/$alpha_version
+          cp -rf *.tgz __pages__/$alpha_version
 
       - name: Commit Alpha Pages
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: 'Alpha ${{ env.alpha_version }} Build'
           commit_options: '--allow-empty'
-          repository: pages
+          repository: __pages__
           branch: main
 
       - name: Comment PR Alpha Build
