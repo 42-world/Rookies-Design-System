@@ -84,8 +84,7 @@ jobs:
           mkdir -p .pages/$new_version
           cp -rf dist/* .pages/$new_version
           cp -rf *.tgz .pages/$new_version
-          pack_name=$(ls *.tgz)
-          echo "pack_name=$pack_name" >> $GITHUB_ENV
+          echo "pack_name=$(ls *.tgz)" >> $GITHUB_OUTPUT
           rm -rf *.tgz
 
       - name: Commit New Version
