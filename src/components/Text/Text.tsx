@@ -1,3 +1,4 @@
+import { Theme } from '../../common/type';
 import { useTheme } from '../../context';
 
 type TextSize = 'heading1' | 'heading2' | 'heading3' | 'body1' | 'body2' | 'small';
@@ -63,7 +64,7 @@ const textAlignConfig: Record<TextAlign, string> = {
   center: 'text-center',
 };
 
-const textColorConfig = {
+const textColorConfig: Record<Theme, Record<Color, string>> = {
   light: {
     primary: 'text-text-primary',
     secondary: 'text-text-secondary',
@@ -131,6 +132,7 @@ const textColorConfig = {
 
 export function Text({ text, size = 'body1', weight = 'regular', align = 'left', color = 'primary' }: Props) {
   const theme = useTheme();
+
   return (
     <p
       className={`display
