@@ -44,6 +44,7 @@ jobs:
         with:
           repository: '42-world/42-world.github.io'
           path: pages
+          token: ${{ secrets.ACCESS_TOKEN_GITHUB }}
 
       - name: Build Alpha Pages
         run: |
@@ -63,7 +64,7 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: 'Alpha ${{ env.alpha_version }} Build'
-          commit_options: '--no-verify --signoff --allow-empty'
+          commit_options: --allow-empty'
           repository: pages
           branch: main
 
