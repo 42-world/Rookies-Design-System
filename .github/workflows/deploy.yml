@@ -41,7 +41,7 @@ jobs:
 
       - name: Remove Alpha Pages
         run: |
-          rm -rf pages/alpha_version
+          rm -rf pages/$alpha_version
 
       - name: Commit Alpha Pages
         uses: stefanzweifel/git-auto-commit-action@v4
