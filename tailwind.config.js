@@ -5,7 +5,10 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        display: 'Pretendard Variable',
+        /**
+         * @warning
+         * fontFamily는 tailwind.css 에 별도로 정의되어 있으므로 여기에 추가하지 마세요
+         */
       },
       aspectRatio: {
         '16/10': '16 / 10',
