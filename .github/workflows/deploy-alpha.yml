@@ -29,21 +29,26 @@ jobs:
       alpha_version: ${{ needs.version.outputs.alpha_version }}
       new_version: ${{ needs.version.outputs.new_version }}
     steps:
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
       - name: Checkout
         uses: actions/checkout@v3
         with:
           path: branch
-      - name: Checkout Pages
+      - name: Checkout Pages Repo
         uses: actions/checkout@v3
         with:
-          ref: pages
+          repository: '42-world/42-world.github.io'
           path: pages
+          token: ${{ secrets.GH_TOKEN }}
 
       - name: Build Alpha Pages
         run: |
           cd branch
           yarn
-          yarn build
+          NODE_ENV=production yarn build
           yarn version --new_version $alpha_version --no-git-tag-version
           yarn pack
           cd $GITHUB_WORKSPACE
@@ -53,17 +58,17 @@ jobs:
           cp -rf branch/dist/* pages/$alpha_version
           cp -rf branch/*.tgz pages/$alpha_version
 
-          cd pages
-          git config --global user.name 'deploy'
-          git config --global user.email 'deploy@users.noreply.github.com'
-          git add .
-          git commit -m "Updated Alpha $alpha_version"
-          git push
+      - name: Commit Alpha Pages
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: 'Alpha ${{ env.alpha_version }} Build'
+          commit_options: '--allow-empty'
+          repository: pages
+          branch: main
 
-      - name: Comment PR
+      - name: Comment PR Alpha Build
         uses: thollander/actions-comment-pull-request@v2
         with:
-          reactions: rocket
           message: |
             ## Alpha ${{ env.alpha_version }} Build Done!
 
@@ -71,18 +76,29 @@ jobs:
 
             ### Check it out!
 
-            - Go to [StoryBook](https://42-world.github.io/42world-Design-System/${{ env.alpha_version }}/storybook)
-            - Go to [Framer](https://42-world.github.io/42world-Design-System/${{ env.alpha_version }}/framer/index.js)
+            - Go to [StoryBook](https://42-world.github.io/${{ env.alpha_version }}/storybook)
+            - Go to [Framer](https://42-world.github.io/${{ env.alpha_version }}/framer/components/Text/Text.framer.js)
 
             ### Or you can try...
 
             ```
-            yarn add @42world/design-core@https://42-world.github.io/42world-Design-System/${{ env.alpha_version }}/42world-design-core-v${{ env.main_version }}.tgz
+            yarn add @42world/design-core@https://42-world.github.io/${{ env.alpha_version }}/42world-design-core-v${{ env.main_version }}.tgz
             ```
           comment_tag: execution
-      - name: Comment PR
-        uses: thollander/actions-comment-pull-request@v2
+
+      - name: Comment commit
+        uses: peter-evans/commit-comment@v2
         with:
-          reactions: rocket
-          message: |
-            Alpha ${{ env.alpha_version }} Rebuilt ${{ github.sha }}
+          body: |
+            ## Alpha ${{ env.alpha_version }} Rebuilt
+
+            ### Check it out!
+
+            - Go to [StoryBook](https://42-world.github.io/${{ env.alpha_version }}/storybook)
+            - Go to [Framer](https://42-world.github.io/${{ env.alpha_version }}/framer/components/Text/Text.framer.js)
+
+            ### Or you can try...
+
+            ```
+            yarn add @42world/design-core@https://42-world.github.io/${{ env.alpha_version }}/42world-design-core-v${{ env.main_version }}.tgz
+            ```

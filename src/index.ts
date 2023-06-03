@@ -1,5 +1,4 @@
-import './styles/reset.css';
-import './styles/tailwind.css';
+import './styles/_tailwind.css';
 
 export * from './components';
 export * from './context';

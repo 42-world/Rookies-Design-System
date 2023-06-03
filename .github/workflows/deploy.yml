@@ -29,33 +29,27 @@ jobs:
       alpha_version: ${{ needs.version.outputs.alpha_version }}
       new_version: ${{ needs.version.outputs.new_version }}
     steps:
-      - name: Checkout Pages
-        uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
         with:
-          ref: pages
+          node-version: 18
+
+      - name: Checkout Pages
+        uses: actions/checkout@v3
+        with:
+          repository: '42-world/42-world.github.io'
           path: pages
 
       - name: Remove Alpha Pages
         run: |
-          rm -rf pages/alpha_version
+          rm -rf pages/$alpha_version
 
-          cd pages
-          git config --global user.name 'deploy'
-          git config --global user.email 'deploy@users.noreply.github.com'
-          git add .
-          git commit -m "Remove Alpha $alpha_version"
-          git push
-
-      - name: Comment a pull_request
-        env:
-          GITHUB_SHA: ${{ github.event.commits }}
-          REPO: ${{ github.repository }}
-        run: |
-          curl -X POST \
-            -H "Content-Type: application/json" \
-            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-            https://api.github.com/repos/$REPO/commits/$GITHUB_SHA/comments \
-            -d "{\"body\": \" Removed Alpha $alpha_version\n\"}"
+      - name: Commit Alpha Pages
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: 'Remove Alpha ${{ env.alpha_version }}'
+          commit_options: '--allow-empty'
+          repository: pages
+          branch: main
 
   build:
     needs: [version, clear]
@@ -65,22 +59,29 @@ jobs:
       alpha_version: ${{ needs.version.outputs.alpha_version }}
       new_version: ${{ needs.version.outputs.new_version }}
     steps:
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           ref: main
           path: main
-      - name: Checkout Pages
-        uses: actions/checkout@v2
+          token: ${{ secrets.GH_TOKEN }}
+
+      - name: Checkout Pages Repo
+        uses: actions/checkout@v3
         with:
-          ref: pages
+          repository: '42-world/42-world.github.io'
           path: pages
+          token: ${{ secrets.GH_TOKEN }}
 
       - name: Generate Pages
         run: |
           cd main
           yarn
-          yarn build
+          NODE_ENV=production yarn build
           yarn version --new_version $new_version
           yarn pack
           cd $GITHUB_WORKSPACE
@@ -90,20 +91,37 @@ jobs:
           cp -rf main/dist/* pages/$new_version
           cp -rf main/*.tgz pages/$new_version
 
-          cd pages
-          git config --global user.name 'deploy'
-          git config --global user.email 'deploy@users.noreply.github.com'
-          git add .
-          git commit -m "Deploy version $new_version"
-          git push
+      - name: Commit Pages
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: 'Version ${{ env.new_version }} Build'
+          commit_options: '--allow-empty'
+          repository: pages
+          branch: main
 
-      - name: Comment a pull_request
-        env:
-          GITHUB_SHA: ${{ github.event.commits }}
-          REPO: ${{ github.repository }}
-        run: |
-          curl -X POST \
-            -H "Content-Type: application/json" \
-            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-            https://api.github.com/repos/$REPO/commits/$GITHUB_SHA/comments \
-            -d "{\"body\": \" New Version $new_version Build Done!\n\"}"
+      - uses: JS-DevTools/npm-publish@v2
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
+
+      - name: Comment commit
+        uses: peter-evans/commit-comment@v2
+        with:
+          body: |
+            ## Version ${{ env.new_version }} Build Done!
+
+            ### Check it out!
+
+            - Go to [StoryBook](https://42-world.github.io/${{ env.new_version }}/storybook)
+            - Go to [Framer](https://42-world.github.io/${{ env.new_version }}/framer/components/Text/Text.framer.js)
+
+            ### Or you can try...
+
+            ```
+            yarn add @42world/design-core@${{ env.new_version }}
+            ```
+
+            or
+
+            ```
+            yarn add @42world/design-core@https://42-world.github.io/${{ env.new_version }}/42world-design-core-v${{ env.new_version }}.tgz
+            ```
