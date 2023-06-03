@@ -35,6 +35,8 @@ jobs:
 
       - name: Checkout
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
       - name: Checkout Pages Repo
         uses: actions/checkout@v3
@@ -62,7 +64,7 @@ jobs:
       - name: Deploy Alpha Pages
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: 'Alpha ${{ env.alpha_version }} Build (${{ github.sha }})'
+          commit_message: 'Alpha ${{ env.alpha_version }} Build (${{ steps.build.outputs.sha }})'
           commit_options: '--allow-empty'
           repository: .pages
           branch: main
@@ -71,7 +73,7 @@ jobs:
         uses: thollander/actions-comment-pull-request@v2
         with:
           message: |
-            ## Alpha ${{ env.alpha_version }} (${{ steps.build.outputs.sha }}) Build Done!
+            ## Alpha ${{ env.alpha_version }} Build Done! - ${{ steps.build.outputs.sha }}
 
             ### Check it out!
 
