@@ -13,7 +13,7 @@ export function Chip({ children, text, selected }: Props) {
   return (
     <div
       className={cx({
-        'w-fit h-8 flex flex-row items-center border-2 rounded-lg border-amber-400 select-none': true,
+        'w-fit h-8 flex flex-row items-center rounded-lg select-none': true,
         [text ? 'px-3' : 'px-2']: true,
         [selected ? 'bg-bg-secondary' : 'bg-bg-tertiary_alpha_0']: theme === 'light',
         [selected ? 'bg-bg-secondary_dark' : 'bg-bg-primary_alpha_0_dark']: theme === 'dark',
