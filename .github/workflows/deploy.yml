@@ -77,6 +77,7 @@ jobs:
         run: |
           yarn
           NODE_ENV=production yarn build
+          sha=$(git rev-parse --short "$GITHUB_SHA")
           yarn version --new-version $new_version --no-git-tag-version
           yarn pack
 
@@ -85,6 +86,7 @@ jobs:
           cp -rf dist/* .pages/$new_version
           cp -rf *.tgz .pages/$new_version
           echo "pack_name=$(ls *.tgz)" >> $GITHUB_OUTPUT
+          echo "sha=$sha" >> $GITHUB_OUTPUT
           rm -rf *.tgz
 
       - name: Commit New Version
@@ -96,7 +98,7 @@ jobs:
       - name: Deploy Pages
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: 'Version ${{ env.new_version }} Build (${{ github.sha }})'
+          commit_message: 'Version ${{ env.new_version }} Build (${{ steps.build.outputs.sha }})'
           commit_options: '--allow-empty'
           repository: .pages
           branch: main
