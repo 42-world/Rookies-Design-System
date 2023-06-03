@@ -117,11 +117,11 @@ jobs:
             ### Or you can try...
 
             ```
-            yarn add @42world/design-core@https://42-world.github.io/${{ env.new_version }}/42world-design-core-v${{ env.new_version }}.tgz
-            ```
-
-            or 
-
-            ```
             yarn add @42world/design-core@${{ env.new_version }}
+            ```
+
+            or
+
+            ```
+            yarn add @42world/design-core@https://42-world.github.io/${{ env.new_version }}/42world-design-core-v${{ env.new_version }}.tgz
             ```

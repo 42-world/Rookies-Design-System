@@ -90,4 +90,15 @@ jobs:
         uses: peter-evans/commit-comment@v2
         with:
           body: |
-            Alpha ${{ env.alpha_version }} Rebuilt ${{ github.sha }}
+            ## Alpha ${{ env.alpha_version }} Rebuilt
+
+            ### Check it out!
+
+            - Go to [StoryBook](https://42-world.github.io/${{ env.alpha_version }}/storybook)
+            - Go to [Framer](https://42-world.github.io/${{ env.alpha_version }}/framer/components/Text/Text.framer.js)
+
+            ### Or you can try...
+
+            ```
+            yarn add @42world/design-core@https://42-world.github.io/${{ env.alpha_version }}/42world-design-core-v${{ env.main_version }}.tgz
+            ```
