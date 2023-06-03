@@ -125,5 +125,5 @@ jobs:
             or
 
             ```
-            yarn add @42world/design-core@https://42-world.github.io/${{ env.new_version }}/${{ steps.build.outputs.pack_name }}}
+            yarn add @42world/design-core@https://42-world.github.io/${{ env.new_version }}/${{ steps.build.outputs.pack_name }}
             ```

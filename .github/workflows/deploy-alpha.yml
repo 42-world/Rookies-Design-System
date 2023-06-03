@@ -57,6 +57,7 @@ jobs:
           cp -rf dist/* .pages/$alpha_version
           cp -rf *.tgz .pages/$alpha_version
           echo "pack_name=$(ls *.tgz)" >> $GITHUB_OUTPUT
+          echo "sha=$sha" >> $GITHUB_OUTPUT
 
       - name: Deploy Alpha Pages
         uses: stefanzweifel/git-auto-commit-action@v4
@@ -70,7 +71,7 @@ jobs:
         uses: thollander/actions-comment-pull-request@v2
         with:
           message: |
-            ## Alpha ${{ env.alpha_version }} Build Done!
+            ## Alpha ${{ env.alpha_version }} (${{ steps.build.outputs.sha }}) Build Done!
 
             ### Check it out!
 
@@ -80,7 +81,7 @@ jobs:
             ### Or you can try...
 
             ```
-            yarn add @42world/design-core@https://42-world.github.io/${{ env.alpha_version }}/${{ steps.build.outputs.pack_name }}}
+            yarn add @42world/design-core@https://42-world.github.io/${{ env.alpha_version }}/${{ steps.build.outputs.pack_name }}
             ```
           comment_tag: execution
 
@@ -98,5 +99,5 @@ jobs:
             ### Or you can try...
 
             ```
-            yarn add @42world/design-core@https://42-world.github.io/${{ env.alpha_version }}/${{ steps.build.outputs.pack_name }}}
+            yarn add @42world/design-core@https://42-world.github.io/${{ env.alpha_version }}/${{ steps.build.outputs.pack_name }}
             ```
