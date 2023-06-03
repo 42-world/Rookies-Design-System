@@ -29,8 +29,12 @@ jobs:
       alpha_version: ${{ needs.version.outputs.alpha_version }}
       new_version: ${{ needs.version.outputs.new_version }}
     steps:
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
       - name: Checkout Pages
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           repository: '42-world/cdn'
           path: pages
@@ -64,13 +68,17 @@ jobs:
       alpha_version: ${{ needs.version.outputs.alpha_version }}
       new_version: ${{ needs.version.outputs.new_version }}
     steps:
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           ref: main
           path: main
       - name: Checkout Pages
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           repository: '42-world/cdn'
           path: pages

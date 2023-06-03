@@ -29,6 +29,10 @@ jobs:
       alpha_version: ${{ needs.version.outputs.alpha_version }}
       new_version: ${{ needs.version.outputs.new_version }}
     steps:
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
       - name: Checkout
         uses: actions/checkout@v3
         with:
@@ -53,11 +57,12 @@ jobs:
           cp -rf branch/dist/* pages/$alpha_version
           cp -rf branch/*.tgz pages/$alpha_version
 
-          cd pages
-          git pull
-          git add .
-          git commit --allow-empty --author="github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>" -m "Updated Alpha $alpha_version"
-          git push
+      - name: Commit Alpha Pages
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: 'Alpha ${{ env.alpha_version }} Build'
+          commit_options: '--no-verify --signoff --allow-empty'
+          repository: pages
 
       - name: Comment PR Alpha Build
         uses: thollander/actions-comment-pull-request@v2
