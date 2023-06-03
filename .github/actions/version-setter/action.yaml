@@ -3,14 +3,14 @@ description: 'set version variables'
 
 outputs:
   new_version:
-    description: 'new_version'
-    value: ${{ steps.new_version.outputs.new_version }}
   main_version:
     description: 'main_version'
     value: ${{ steps.version.outputs.main_version }}
+    description: 'new_version'
+    value: ${{ steps.new_version.outputs.new_version }}
   alpha_version:
     description: 'alpha_version'
-    value: ${{ steps.version.outputs.alpha_version }}
+    value: ${{ steps.new_version.outputs.alpha_version }}
 
 runs:
   using: 'composite'
