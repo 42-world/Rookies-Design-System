@@ -56,7 +56,8 @@ jobs:
           mkdir -p .pages/$alpha_version
           cp -rf dist/* .pages/$alpha_version
           cp -rf *.tgz .pages/$alpha_version
-          echo "pack_name=$(ls *.tgz)" >> $GITHUB_OUTPUT
+          pack_name=$(ls *.tgz)
+          echo "pack_name=$pack_name" >> $GITHUB_ENV
 
       - name: Deploy Alpha Pages
         uses: stefanzweifel/git-auto-commit-action@v4
