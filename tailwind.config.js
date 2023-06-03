@@ -63,6 +63,11 @@ module.exports = {
         },
       },
     },
+    extend: {
+      transitionProperty: {
+        gap: 'gap',
+      },
+    },
   },
   plugins: [
     require('tailwindcss'), //
