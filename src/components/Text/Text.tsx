@@ -133,7 +133,7 @@ export function Text({ text, size = 'body1', weight = 'regular', align = 'left',
   const theme = useTheme();
   return (
     <p
-      className={`display
+      className={`font-display
         ${textSizeConfig[size]}
         ${textWeightConfig[weight]}
         ${textAlignConfig[align]}
