@@ -36,7 +36,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         with:
-          fetch-depth: 0
+          fetch-depth: 2
 
       - name: Checkout Pages Repo
         uses: actions/checkout@v3
@@ -50,7 +50,7 @@ jobs:
         run: |
           yarn
           NODE_ENV=production yarn build
-          sha=$(git rev-parse --short "$GITHUB_SHA")
+          sha=$(git rev-parse --short HEAD^)
           yarn version --new-version $alpha_version-$sha --no-git-tag-version
           yarn pack
 

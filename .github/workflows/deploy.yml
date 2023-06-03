@@ -77,7 +77,7 @@ jobs:
         run: |
           yarn
           NODE_ENV=production yarn build
-          sha=$(git rev-parse --short "$GITHUB_SHA")
+          sha=$(git rev-parse --short HEAD^)
           yarn version --new-version $new_version --no-git-tag-version
           yarn pack
 
