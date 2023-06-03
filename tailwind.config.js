@@ -1,8 +1,11 @@
 /** @type {import('tailwindcss').Config} */
+const colors = require('tailwindcss/colors');
+
 module.exports = {
   content: ['./src/**/*.{html,js,jsx,ts,tsx}'],
   theme: {
     colors: {
+      ...colors,
       text: {
         primary: '#000000',
         primary_dark: '#FFFFFF',
@@ -35,19 +38,21 @@ module.exports = {
         secondary_bg: '#EBEBEB',
         secondary_bg_dark: '#2E2E2E',
       },
-      white: '#FFFFFF',
-      green: '#28CD41',
-      yellow: '#FFCC00',
-      cyan: '#32ADE6',
-      indigo: '#5856D6',
-      mint: '#00C7BE',
-      blue_200: '#007AFF',
-      blue_300: '#0056B3',
-      pink: '#FF2D55',
-      brown: '#A2845E',
-      red: '#FF3B30',
-      system_200: '#007AFF',
-      overlay: '#00000052',
+      color: {
+        white: '#FFFFFF',
+        green: '#28CD41',
+        yellow: '#FFCC00',
+        cyan: '#32ADE6',
+        indigo: '#5856D6',
+        mint: '#00C7BE',
+        blue_200: '#007AFF',
+        blue_300: '#0056B3',
+        pink: '#FF2D55',
+        brown: '#A2845E',
+        red: '#FF3B30',
+        system_200: '#007AFF',
+        overlay: '#00000052',
+      },
     },
     extend: {},
   },
