@@ -118,7 +118,7 @@ jobs:
             ### Or you can try...
 
             ```
-            yarn add @42world/design-core@${{ env.new_version }}
+            yarn add @42world/design-core@^${{ env.new_version }}
             ```
 
             or
