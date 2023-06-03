@@ -30,11 +30,11 @@ jobs:
       new_version: ${{ needs.version.outputs.new_version }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           path: branch
       - name: Checkout Pages
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           ref: pages
           path: pages
@@ -65,17 +65,24 @@ jobs:
         with:
           reactions: rocket
           message: |
-            ## Alpha ${{ github.env.alpha_version }} Build Done! (${{ github.event.pull_request.commits }})
+            ## Alpha ${{ env.alpha_version }} Build Done!
 
-            Expected New Version: ${{ github.env.new_version }}
+            Expected New Version: ${{ env.new_version }}
 
             ### Check it out!
 
-            - Go to [StoryBook](https://42-world.github.io/42world-Design-System/${{ github.env.alpha_version }}/storybook)
-            - Go to [Framer](https://42-world.github.io/42world-Design-System/${{ github.env.alpha_version }}/framer/index.js)
+            - Go to [StoryBook](https://42-world.github.io/42world-Design-System/${{ env.alpha_version }}/storybook)
+            - Go to [Framer](https://42-world.github.io/42world-Design-System/${{ env.alpha_version }}/framer/index.js)
 
             ### Or you can try...
 
             ```
-            yarn add @42world/design-core@https://42-world.github.io/42world-Design-System/${{ github.env.alpha_version }}/42world-design-core-v${{ github.env.main_version }}.tgz
+            yarn add @42world/design-core@https://42-world.github.io/42world-Design-System/${{ env.alpha_version }}/42world-design-core-v${{ env.main_version }}.tgz
             ```
+          comment_tag: execution
+      - name: Comment PR
+        uses: thollander/actions-comment-pull-request@v2
+        with:
+          reactions: rocket
+          message: |
+            Alpha ${{ env.alpha_version }} Rebuilt ${{ github.sha }}
