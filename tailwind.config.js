@@ -20,7 +20,7 @@ module.exports = {
         primary_alpha_0: '#FFFFFF00',
         primary_alpha_0_dark: '#00000000',
         secondary: '#F4F5F6',
-        secondary_dark: '#141414',
+        secondary_dark: '#292929',
         tertiary: '#E3E3E3',
         tertiary_dark: '#333333',
         tertiary_alpha_0: '#E3E3E300',
