@@ -36,7 +36,7 @@ jobs:
       - name: Checkout Pages
         uses: actions/checkout@v3
         with:
-          repository: '42-world/cdn'
+          repository: '42-world/42-world.github.io'
           path: pages
 
       - name: Remove Alpha Pages
@@ -80,7 +80,7 @@ jobs:
       - name: Checkout Pages
         uses: actions/checkout@v3
         with:
-          repository: '42-world/cdn'
+          repository: '42-world/42-world.github.io'
           path: pages
 
       - name: Generate Pages
