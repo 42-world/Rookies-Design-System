@@ -23,17 +23,17 @@ applyFramerProperties(Text, {
     options: Object.keys(textSizeConfig),
   },
   weight: {
-    title: 'weight',
+    title: 'Weight',
     type: ControlType.Enum,
     options: Object.keys(textWeightConfig),
   },
   align: {
-    title: 'align',
+    title: 'Align',
     type: ControlType.Enum,
     options: Object.keys(textAlignConfig),
   },
   color: {
-    title: 'color',
+    title: 'Color',
     type: ControlType.Enum,
     options: Object.keys(textColorConfig.light),
   },
