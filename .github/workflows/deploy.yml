@@ -84,6 +84,7 @@ jobs:
           mkdir -p .pages/$new_version
           cp -rf dist/* .pages/$new_version
           cp -rf *.tgz .pages/$new_version
+          rm -rf *.tgz
 
       - name: Commit New Version
         uses: stefanzweifel/git-auto-commit-action@v4
