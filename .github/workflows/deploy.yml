@@ -89,7 +89,7 @@ jobs:
       - name: Commit New Version
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: '${{ env.new_version }}'
+          commit_message: '[skip actions] v${{ env.new_version }} updated'
           push_options: '--force'
 
       - name: Commit Pages

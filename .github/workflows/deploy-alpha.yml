@@ -69,8 +69,6 @@ jobs:
           message: |
             ## Alpha ${{ env.alpha_version }} Build Done!
 
-            Expected New Version: ${{ env.new_version }}
-
             ### Check it out!
 
             - Go to [StoryBook](https://42-world.github.io/${{ env.alpha_version }}/storybook)
