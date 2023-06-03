@@ -94,7 +94,7 @@ jobs:
       - name: Commit Pages
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: 'Alpha ${{ env.alpha_version }} Build'
+          commit_message: 'Version ${{ env.new_version }} Build'
           commit_options: '--allow-empty'
           repository: pages
           branch: main
