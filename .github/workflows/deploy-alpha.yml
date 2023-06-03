@@ -63,6 +63,7 @@ jobs:
           commit_message: 'Alpha ${{ env.alpha_version }} Build'
           commit_options: '--no-verify --signoff --allow-empty'
           repository: pages
+          branch: main
 
       - name: Comment PR Alpha Build
         uses: thollander/actions-comment-pull-request@v2
