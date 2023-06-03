@@ -24,8 +24,6 @@ jobs:
   build:
     needs: version
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     env:
       main_version: ${{ needs.version.outputs.main_version }}
       alpha_version: ${{ needs.version.outputs.alpha_version }}
