@@ -26,7 +26,6 @@ jobs:
     runs-on: ubuntu-latest
     env:
       main_version: ${{ needs.version.outputs.main_version }}
-      alpha_version: ${{ needs.version.outputs.alpha_version }}
       new_version: ${{ needs.version.outputs.new_version }}
     steps:
       - uses: actions/setup-node@v3
@@ -41,12 +40,12 @@ jobs:
 
       - name: Remove Alpha Pages
         run: |
-          rm -rf $alpha_version*
+          rm -rf $new_version-alpha*
 
-      - name: Commit Alpha Pages
+      - name: Deploy Remove Alpha Pages
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: 'Remove Alpha ${{ env.alpha_version }}'
+          commit_message: 'Remove Alpha ${{ env.new_version }}-alpha (${{ github.sha }}))'
           commit_options: '--allow-empty'
 
   build:
@@ -73,17 +72,19 @@ jobs:
           path: .pages
           token: ${{ secrets.GH_TOKEN }}
 
-      - name: Generate Pages
+      - name: Build Pages
+        id: build
         run: |
           yarn
           NODE_ENV=production yarn build
-          yarn version --new-version $new_version
+          yarn version --new-version $new_version --no-git-tag-version
           yarn pack
 
           rm -rf .pages/$new_version
           mkdir -p .pages/$new_version
           cp -rf dist/* .pages/$new_version
           cp -rf *.tgz .pages/$new_version
+          echo "pack_name=$(ls *.tgz)" >> $GITHUB_OUTPUT
           rm -rf *.tgz
 
       - name: Commit New Version
@@ -92,10 +93,10 @@ jobs:
           commit_message: '[skip actions] v${{ env.new_version }} updated'
           push_options: '--force'
 
-      - name: Commit Pages
+      - name: Deploy Pages
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: 'Version ${{ env.new_version }} Build'
+          commit_message: 'Version ${{ env.new_version }} Build (${{ github.sha }})'
           commit_options: '--allow-empty'
           repository: .pages
           branch: main
@@ -124,5 +125,5 @@ jobs:
             or
 
             ```
-            yarn add @42world/design-core@https://42-world.github.io/${{ env.new_version }}/42world-design-core-v${{ env.new_version }}.tgz
+            yarn add @42world/design-core@https://42-world.github.io/${{ env.new_version }}/${{ steps.build.outputs.pack_name }}}
             ```

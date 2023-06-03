@@ -44,21 +44,24 @@ jobs:
           token: ${{ secrets.GH_TOKEN }}
 
       - name: Build Alpha Pages
+        id: build
         run: |
           yarn
           NODE_ENV=production yarn build
-          yarn version --new-version $alpha_version --no-git-tag-version
+          sha=$(git rev-parse --short HEAD)
+          yarn version --new-version $alpha_version-$sha --no-git-tag-version
           yarn pack
 
           rm -rf .pages/$alpha_version
           mkdir -p .pages/$alpha_version
           cp -rf dist/* .pages/$alpha_version
           cp -rf *.tgz .pages/$alpha_version
+          echo "pack_name=$(ls *.tgz)" >> $GITHUB_OUTPUT
 
-      - name: Commit Alpha Pages
+      - name: Deploy Alpha Pages
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: 'Alpha ${{ env.alpha_version }} Build'
+          commit_message: 'Alpha ${{ env.alpha_version }} Build (${{ github.sha }})'
           commit_options: '--allow-empty'
           repository: .pages
           branch: main
@@ -77,7 +80,7 @@ jobs:
             ### Or you can try...
 
             ```
-            yarn add @42world/design-core@https://42-world.github.io/${{ env.alpha_version }}/42world-design-core-v${{ env.new_version }}.tgz
+            yarn add @42world/design-core@https://42-world.github.io/${{ env.alpha_version }}/${{ steps.build.outputs.pack_name }}}
             ```
           comment_tag: execution
 
@@ -95,5 +98,5 @@ jobs:
             ### Or you can try...
 
             ```
-            yarn add @42world/design-core@https://42-world.github.io/${{ env.alpha_version }}/42world-design-core-v${{ env.new_version }}.tgz
+            yarn add @42world/design-core@https://42-world.github.io/${{ env.alpha_version }}/${{ steps.build.outputs.pack_name }}}
             ```
