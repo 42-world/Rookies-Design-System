@@ -4,6 +4,9 @@ module.exports = {
   content: ['./src/**/*.{html,js,jsx,ts,tsx}'],
   theme: {
     extend: {
+      fontFamily: {
+        display: 'Pretendard Variable',
+      },
       aspectRatio: {
         '16/10': '16 / 10',
       },
