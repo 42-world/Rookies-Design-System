@@ -68,11 +68,14 @@ jobs:
         with:
           ref: main
           path: main
-      - name: Checkout Pages
+          token: ${{ secrets.GH_TOKEN }}
+
+      - name: Checkout Pages Repo
         uses: actions/checkout@v3
         with:
           repository: '42-world/42-world.github.io'
           path: pages
+          token: ${{ secrets.GH_TOKEN }}
 
       - name: Generate Pages
         run: |
@@ -96,11 +99,15 @@ jobs:
           repository: pages
           branch: main
 
+      - uses: JS-DevTools/npm-publish@v2
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
+
       - name: Comment commit
         uses: peter-evans/commit-comment@v2
         with:
           body: |
-            ## ${{ env.new_version }} Build Done!
+            ## Version ${{ env.new_version }} Build Done!
 
             ### Check it out!
 
@@ -111,4 +118,10 @@ jobs:
 
             ```
             yarn add @42world/design-core@https://42-world.github.io/${{ env.new_version }}/42world-design-core-v${{ env.new_version }}.tgz
+            ```
+
+            or 
+
+            ```
+            yarn add @42world/design-core@${{ env.new_version }}
             ```
