@@ -7,6 +7,9 @@ module.exports = {
       aspectRatio: {
         '16/10': '16 / 10',
       },
+      transitionProperty: {
+        spacing: 'margin, padding',
+      },
       colors: {
         text: {
           primary: '#000000',
