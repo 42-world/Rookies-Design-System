@@ -35,6 +35,6 @@ applyFramerProperties(Text, {
   color: {
     title: 'Color',
     type: ControlType.Enum,
-    options: Object.keys(textColorConfig.light),
+    options: Object.keys(textColorConfig),
   },
 });
