@@ -14,35 +14,23 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       new_version: ${{ steps.version.outputs.new_version }}
-      main_version: ${{ steps.version.outputs.main_version }}
-      alpha_version: ${{ steps.version.outputs.alpha_version }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Main and Alpha Version
+      - name: Version
         id: version
-        shell: bash
-        run: |
-          MAIN_VERSION=$(yarn --silent run version)
-          echo "main_version=$MAIN_VERSION" >> $GITHUB_OUTPUT
-
-      - name: New Version
-        id: new_version
         shell: bash
         run: |
           semver=$(bash .script/get-version-semver.sh '${{ github.event.head_commit.message }}')
           yarn version $semver --no-git-tag-version
           NEW_VERSION=$(yarn --silent run version)
-          ALPHA_VERSION=$NEW_VERSION-alpha
-          echo "alpha_version=$ALPHA_VERSION" >> $GITHUB_OUTPUT
           echo "new_version=$NEW_VERSION" >> $GITHUB_OUTPUT
 
   clear:
     needs: version
     runs-on: ubuntu-latest
     env:
-      main_version: ${{ needs.version.outputs.main_version }}
       new_version: ${{ needs.version.outputs.new_version }}
       base_path: 'design'
     steps:
@@ -70,8 +58,6 @@ jobs:
     needs: [version, clear]
     runs-on: ubuntu-latest
     env:
-      main_version: ${{ needs.version.outputs.main_version }}
-      alpha_version: ${{ needs.version.outputs.alpha_version }}
       new_version: ${{ needs.version.outputs.new_version }}
       base_path: 'design'
     steps:
