@@ -55,6 +55,7 @@ jobs:
       main_version: ${{ needs.version.outputs.main_version }}
       alpha_version: ${{ needs.version.outputs.alpha_version }}
       new_version: ${{ needs.version.outputs.new_version }}
+      base_path: 'design'
     steps:
       - uses: actions/setup-node@v3
         with:
@@ -80,14 +81,19 @@ jobs:
           yarn version --new-version $new_version --no-git-tag-version
           yarn pack
 
-          rm -rf .pages/$new_version
-          mkdir -p .pages/$new_version
-          cp -rf dist/* .pages/$new_version
-          cp -rf *.tgz .pages/$new_version
+          rm -rf .pages/$base_path/$new_version
+          mkdir -p .pages/$base_path/$new_version
+          cp -rf dist/* .pages/$base_path/$new_version
+          cp -rf *.tgz .pages/$base_path/$new_version
+
+          rm -rf .pages/$base_path/latest
+          cp -rf .pages/$base_path/$new_version .pages/$base_path/latest
+
           echo "pack_name=$(ls *.tgz)" >> $GITHUB_OUTPUT
           rm -rf *.tgz
 
       - name: Commit New Version
+        id: commit-new-version
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: '[skip actions] v${{ env.new_version }} updated'
@@ -108,13 +114,14 @@ jobs:
       - name: Comment commit
         uses: peter-evans/commit-comment@v2
         with:
+          sha: ${{ steps.commit-new-version.outputs.commit_hash }}
           body: |
             ## Version ${{ env.new_version }} Build Done!
 
             ### Check it out!
 
-            - Go to [StoryBook](https://42-world.github.io/${{ env.new_version }}/storybook)
-            - Go to [Framer](https://42-world.github.io/${{ env.new_version }}/framer/components/Text/Text.framer.js)
+            - Go to [StoryBook](https://42-world.github.io/${{ env.base_path }}/${{ env.new_version }}/storybook)
+            - Go to [Framer](https://42-world.github.io/${{ env.base_path }}/${{ env.new_version }}/framer/components/Text/Text.framer.js)
 
             ### Or you can try...
 
@@ -125,5 +132,5 @@ jobs:
             or
 
             ```
-            yarn add @42world/design-core@https://42-world.github.io/${{ env.new_version }}/${{ steps.build.outputs.pack_name }}
+            yarn add @42world/design-core@https://42-world.github.io/${{ env.base_path }}/${{ env.new_version }}/${{ steps.build.outputs.pack_name }}
             ```
