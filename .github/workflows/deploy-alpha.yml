@@ -17,9 +17,26 @@ jobs:
       main_version: ${{ steps.version.outputs.main_version }}
       alpha_version: ${{ steps.version.outputs.alpha_version }}
     steps:
-      - uses: actions/checkout@v3
-      - uses: ./.github/actions/version-setter
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Version
         id: version
+        shell: bash
+        run: |
+          MAIN_VERSION=$(yarn --silent run version)
+          echo "main_version=$MAIN_VERSION"
+          echo "main_version=$MAIN_VERSION" >> $GITHUB_OUTPUT
+
+          semver=$(bash .script/get-version-semver.sh '${{ github.event.pull_request.title }}')
+          yarn version $semver --no-git-tag-version
+          NEW_VERSION=$(yarn --silent run version)
+          echo "new_version=$NEW_VERSION"
+          echo "new_version=$NEW_VERSION" >> $GITHUB_OUTPUT
+
+          ALPHA_VERSION=$NEW_VERSION-alpha${{ github.event.pull_request.number }}
+          echo "alpha_version=$ALPHA_VERSION"
+          echo "alpha_version=$ALPHA_VERSION" >> $GITHUB_OUTPUT
 
   build:
     needs: version
@@ -53,7 +70,7 @@ jobs:
           yarn version --new-version $alpha_version-$sha --no-git-tag-version
           yarn pack
 
-          rm -rf .pages/$base_path/$alpha_version
+          rm -rf .pages/$base_path/*-alpha${{ github.event.pull_request.number }}
           mkdir -p .pages/$base_path/$alpha_version
           cp -rf dist/* .pages/$base_path/$alpha_version
           cp -rf *.tgz .pages/$base_path/$alpha_version

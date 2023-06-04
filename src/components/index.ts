@@ -5,3 +5,4 @@ export { Sample } from './Sample';
 export { Text } from './Text';
 export { Thumbnail } from './Thumbnail';
 export { Divider } from './Divider';
+export { Input } from './Input';

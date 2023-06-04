@@ -23,7 +23,7 @@ module.exports = {
           primary: '#000000',
           primary_dark: '#FFFFFF',
           secondary: '#707070',
-          secondary_dark: '#BABABA',
+          secondary_dark: '#292929',
           tertiary: '#B5B5B5',
           tertiary_dark: '#7A7A7A',
         },
