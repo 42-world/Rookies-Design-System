@@ -27,6 +27,7 @@ jobs:
     env:
       main_version: ${{ needs.version.outputs.main_version }}
       new_version: ${{ needs.version.outputs.new_version }}
+      base_path: 'design'
     steps:
       - uses: actions/setup-node@v3
         with:
@@ -40,7 +41,7 @@ jobs:
 
       - name: Remove Alpha Pages
         run: |
-          rm -rf $new_version-alpha*
+          rm -rf $base_path/$new_version-alpha*
 
       - name: Deploy Remove Alpha Pages
         uses: stefanzweifel/git-auto-commit-action@v4
@@ -87,6 +88,7 @@ jobs:
           cp -rf *.tgz .pages/$base_path/$new_version
 
           rm -rf .pages/$base_path/latest
+          mkdir -p .pages/$base_path/latest
           cp -rf .pages/$base_path/$new_version .pages/$base_path/latest
 
           echo "pack_name=$(ls *.tgz)" >> $GITHUB_OUTPUT

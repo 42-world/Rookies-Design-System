@@ -5,7 +5,7 @@ This is a design system for [42World](https://42world.kr).
 ## Installation
 
 ```bash
-yarn add @42world/design-system
+yarn add @42world/design-core
 ```
 
 ## Usage
