@@ -42,10 +42,10 @@ module.exports = {
           alpha_60_dark: '#00000099',
         },
         border: {
-          primary: '#D9D9D9',
-          primary_dark: '#333333',
-          secondary: '#EBEBEB',
-          secondary_dark: '#242424',
+          primary: '#D1D5DB',
+          primary_dark: '#525252',
+          secondary: '#F3F4F6',
+          secondary_dark: '#262626',
         },
         button: {
           secondary_bg: '#EBEBEB',
