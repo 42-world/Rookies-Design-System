@@ -88,6 +88,7 @@ jobs:
           rm -rf *.tgz
 
       - name: Commit New Version
+        id: commit-new-version
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: '[skip actions] v${{ env.new_version }} updated'
@@ -108,6 +109,7 @@ jobs:
       - name: Comment commit
         uses: peter-evans/commit-comment@v2
         with:
+          sha: ${{ steps.commit-new-version.outputs.commit_hash }}
           body: |
             ## Version ${{ env.new_version }} Build Done!
 
