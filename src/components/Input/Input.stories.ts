@@ -9,7 +9,7 @@ const meta: Meta<Component> = {
 
 type Story = StoryObj<Component>;
 export const Primary: Story = {
-  args: { value: '', placeholder: '', maxLength: 10 },
+  args: { placeholder: '', maxLength: 10, variant: 'outline', hasError: false },
 };
 
 export default meta;
