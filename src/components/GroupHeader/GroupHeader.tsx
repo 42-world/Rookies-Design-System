@@ -1,6 +1,7 @@
 import cx from 'classnames';
 import { ChevronRight } from '../../assets/icons';
 import { useTheme } from '../../context';
+import { Text } from '../Text';
 
 interface Props {
   href: string;
@@ -18,7 +19,7 @@ export function GroupHeader({ href, text }: Props) {
       })}
       href={href}
     >
-      <p className={cx('text-lg', 'font-semibold', 'leading-[1.2]')}>{text}</p>
+      <Text text={text} size="heading3" weight="semibold" />
       <ChevronRight classname={cx('w-6', 'h-6')} />
     </a>
   );
