@@ -2,6 +2,7 @@ import cx from 'classnames';
 import { forwardRef, useState, useId } from 'react';
 import type { InputHTMLAttributes, ReactNode } from 'react';
 import { useTheme } from '../../context';
+import { useControllableState } from './useControllableState';
 
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
@@ -11,6 +12,7 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
   variant: 'outline' | 'filled';
   hasError: boolean;
   rightAddon: ReactNode;
+  onValueChange: (value: string) => void;
 }
 
 export const Input = forwardRef<HTMLInputElement, Props>(
@@ -25,13 +27,18 @@ export const Input = forwardRef<HTMLInputElement, Props>(
       rightAddon,
       hasError,
       maxLength,
+      onValueChange: onValueChangeFromProps,
       ...restProps
     },
     ref,
   ) => {
     const id = useId();
     const theme = useTheme();
-    const [value, setValue] = useState(valueFromProps ?? defaultValue ?? '');
+    const [value, setValue] = useControllableState({
+      value: valueFromProps,
+      defaultValue: defaultValue ?? '',
+      onChange: onValueChangeFromProps,
+    });
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       setValue(e.target.value);
