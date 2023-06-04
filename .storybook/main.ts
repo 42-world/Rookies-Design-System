@@ -6,6 +6,7 @@ const config: StorybookConfig = {
     '@storybook/addon-links',
     '@storybook/addon-essentials',
     '@storybook/addon-interactions',
+    'storybook-addon-turbo-build',
     'storybook-dark-mode',
     {
       name: '@storybook/addon-styling',
