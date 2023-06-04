@@ -2,7 +2,7 @@ import { useCallback, useState } from 'react';
 
 interface UseControllableStateProps<T> {
   state?: T;
-  defaultState?: T | (() => T);
+  defaultState: T | (() => T);
   onChange?: (value: T) => void;
 }
 
