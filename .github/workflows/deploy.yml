@@ -89,7 +89,7 @@ jobs:
 
           rm -rf .pages/$base_path/latest
           mkdir -p .pages/$base_path/latest
-          cp -rf .pages/$base_path/$new_version .pages/$base_path/latest
+          cp -rf .pages/$base_path/$new_version/* .pages/$base_path/latest
 
           echo "pack_name=$(ls *.tgz)" >> $GITHUB_OUTPUT
           rm -rf *.tgz
