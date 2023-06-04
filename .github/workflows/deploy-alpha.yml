@@ -28,6 +28,7 @@ jobs:
       main_version: ${{ needs.version.outputs.main_version }}
       alpha_version: ${{ needs.version.outputs.alpha_version }}
       new_version: ${{ needs.version.outputs.new_version }}
+      base_path: 'design'
     steps:
       - uses: actions/setup-node@v3
         with:
@@ -52,10 +53,10 @@ jobs:
           yarn version --new-version $alpha_version-$sha --no-git-tag-version
           yarn pack
 
-          rm -rf .pages/$alpha_version
-          mkdir -p .pages/$alpha_version
-          cp -rf dist/* .pages/$alpha_version
-          cp -rf *.tgz .pages/$alpha_version
+          rm -rf .pages/$base_path/$alpha_version
+          mkdir -p .pages/$base_path/$alpha_version
+          cp -rf dist/* .pages/$base_path/$alpha_version
+          cp -rf *.tgz .pages/$base_path/$alpha_version
           echo "pack_name=$(ls *.tgz)" >> $GITHUB_OUTPUT
           echo "sha=$sha" >> $GITHUB_OUTPUT
 
@@ -75,13 +76,13 @@ jobs:
 
             ### Check it out!
 
-            - Go to [StoryBook](https://42-world.github.io/${{ env.alpha_version }}/storybook)
-            - Go to [Framer](https://42-world.github.io/${{ env.alpha_version }}/framer/components/Text/Text.framer.js)
+            - Go to [StoryBook](https://42-world.github.io/${{ env.base_path }}/${{ env.alpha_version }}/storybook)
+            - Go to [Framer](https://42-world.github.io/${{ env.base_path }}/${{ env.alpha_version }}/framer/components/Text/Text.framer.js)
 
             ### Or you can try...
 
             ```
-            yarn add @42world/design-core@https://42-world.github.io/${{ env.alpha_version }}/${{ steps.build.outputs.pack_name }}
+            yarn add @42world/design-core@https://42-world.github.io/${{ env.base_path }}/${{ env.alpha_version }}/${{ steps.build.outputs.pack_name }}
             ```
           comment_tag: execution
 
@@ -93,11 +94,11 @@ jobs:
 
             ### Check it out!
 
-            - Go to [StoryBook](https://42-world.github.io/${{ env.alpha_version }}/storybook)
-            - Go to [Framer](https://42-world.github.io/${{ env.alpha_version }}/framer/components/Text/Text.framer.js)
+            - Go to [StoryBook](https://42-world.github.io/${{ env.base_path }}/${{ env.alpha_version }}/storybook)
+            - Go to [Framer](https://42-world.github.io/${{ env.base_path }}/${{ env.alpha_version }}/framer/components/Text/Text.framer.js)
 
             ### Or you can try...
 
             ```
-            yarn add @42world/design-core@https://42-world.github.io/${{ env.alpha_version }}/${{ steps.build.outputs.pack_name }}
+            yarn add @42world/design-core@https://42-world.github.io/${{ env.base_path }}/${{ env.alpha_version }}/${{ steps.build.outputs.pack_name }}
             ```
