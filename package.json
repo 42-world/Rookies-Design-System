@@ -1,6 +1,6 @@
 {
   "name": "@42world/design-core",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "author": "42World Team",
   "description": "42World Design System",
   "homepage": "https://github.com/42-world/42world-Design-System",
@@ -61,7 +61,7 @@
     "@storybook/testing-library": "^0.1.0",
     "@types/babel-core": "^6.25.7",
     "@types/node": "^18.11.6",
-    "@types/react": "^17",
+    "@types/react": "^18.2.8",
     "@types/react-dom": "^18.2.4",
     "@typescript-eslint/eslint-plugin": "^5.41.0",
     "@typescript-eslint/parser": "^5.41.0",
