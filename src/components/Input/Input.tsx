@@ -35,8 +35,8 @@ export const Input = forwardRef<HTMLInputElement, Props>(
     const id = useId();
     const theme = useTheme();
     const [value, setValue] = useControllableState({
-      value: valueFromProps,
-      defaultValue: defaultValue ?? '',
+      state: valueFromProps,
+      defaultState: defaultValue ?? '',
       onChange: onValueChangeFromProps,
     });
 

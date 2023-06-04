@@ -1,17 +1,19 @@
 import { useCallback, useState } from 'react';
 
 interface UseControllableStateProps<T> {
-  value?: T;
-  defaultValue?: T | (() => T);
+  state?: T;
+  defaultState?: T | (() => T);
   onChange?: (value: T) => void;
 }
 
 export const useControllableState = <T>({
-  value: valueFromProps,
-  defaultValue,
+  state: valueFromProps,
+  defaultState,
   onChange,
 }: UseControllableStateProps<T>) => {
-  const [uncontrolledValue, setUncontrolledValue] = useState<T>(defaultValue as T);
+  const [uncontrolledValue, setUncontrolledValue] = useState<T>(
+    typeof defaultState === 'function' ? (defaultState as () => T)() : (defaultState as T),
+  );
   const isControlled = valueFromProps != undefined;
   const value = isControlled ? valueFromProps : uncontrolledValue;
 
