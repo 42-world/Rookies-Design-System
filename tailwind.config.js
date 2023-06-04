@@ -5,7 +5,10 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        display: 'Pretendard Variable',
+        /**
+         * @warning
+         * fontFamily는 tailwind.css 에 별도로 정의되어 있으므로 여기에 추가하지 마세요
+         */
       },
       bg: {
         primary: '#FFFFFF',
@@ -26,6 +29,7 @@ module.exports = {
       },
       transitionProperty: {
         spacing: 'margin, padding',
+        gap: 'gap',
       },
       colors: {
         text: {
@@ -75,11 +79,6 @@ module.exports = {
           system_200: '#007AFF',
           overlay: '#00000052',
         },
-      },
-    },
-    extend: {
-      transitionProperty: {
-        gap: 'gap',
       },
     },
   },
