@@ -1,11 +1,18 @@
-import { ThemeProvider } from '../../context';
+import { useEffect } from 'react';
 import '../../styles/_tailwind.css';
 import { useFramerThemeData } from './useFramerThemeData';
 
 export function FramerProvider({ children }: { children: React.ReactNode }) {
-  return (
-    <ThemeProvider value={useFramerThemeData() ? 'dark' : 'light'}>
-      <div>{children}</div>
-    </ThemeProvider>
-  );
+  const isDark = useFramerThemeData();
+
+  useEffect(() => {
+    const document = window.document;
+    if (isDark) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [isDark]);
+
+  return <>{children}</>;
 }

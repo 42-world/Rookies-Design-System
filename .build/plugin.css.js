@@ -22,13 +22,14 @@ const buildCssModulesJS = async (cssFullPath, options) => {
 
   let cssModulesJSON = {};
   const result = await postcss([
-    cssModules({
-      generateScopedName: '[local]',
-      getJSON(cssSourceFile, json) {
-        cssModulesJSON = { ...json };
-        return cssModulesJSON;
-      },
-    }),
+    // NOTE CSS 가져올 때 escape처리가 되어버려 하기 모듈 주석처리
+    // cssModules({
+    //   generateScopedName: '[local]',
+    //   getJSON(cssSourceFile, json) {
+    //     cssModulesJSON = { ...json };
+    //     return cssModulesJSON;
+    //   },
+    // }),
     discardComments({ removeAll: true }),
   ]).process(css, {
     from: undefined,
@@ -40,7 +41,7 @@ const buildCssModulesJS = async (cssFullPath, options) => {
   const digest = hash.copy().digest('hex');
   return `
 const digest = '${digest}';
-const css = \`${result.css}\`;
+const css = \`${JSON.stringify(result.css)}\`;
 ${
   inject &&
   `
