@@ -1,8 +1,7 @@
 import type { Preview } from '@storybook/react';
 import { themes } from '@storybook/theming';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDarkMode } from 'storybook-dark-mode';
-import { ThemeProvider } from '../src';
 import '../src/styles/_tailwind.css';
 import './style.css';
 
@@ -31,5 +30,16 @@ const preview: Preview = {
 export default preview;
 
 function ThemeWrapper(props) {
-  return <ThemeProvider value={useDarkMode() ? 'dark' : 'light'}>{props.children}</ThemeProvider>;
+  const isDark = useDarkMode();
+
+  useEffect(() => {
+    const document = window.document;
+    if (isDark) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [isDark]);
+
+  return <>{props.children}</>;
 }
