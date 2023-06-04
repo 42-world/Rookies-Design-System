@@ -1,7 +1,7 @@
 import { ControlType } from 'framer';
 import type { ComponentProps } from 'react';
 import { FramerProvider, applyFramerProperties } from '../../common/framer';
-import { Divider as _Divider } from './Divder';
+import { Divider as _Divider } from './Divider';
 
 export function Divider(props: ComponentProps<typeof _Divider>) {
   return (
@@ -11,7 +11,7 @@ export function Divider(props: ComponentProps<typeof _Divider>) {
   );
 }
 
-applyFramerProperties(_Divider, {
+applyFramerProperties(Divider, {
   variant: {
     title: 'Variant',
     type: ControlType.Enum,
