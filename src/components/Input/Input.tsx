@@ -1,6 +1,6 @@
 import cx from 'classnames';
-import { forwardRef, useState, useId } from 'react';
 import type { InputHTMLAttributes, ReactNode } from 'react';
+import { forwardRef, useId } from 'react';
 import { useTheme } from '../../context';
 import { useControllableState } from './useControllableState';
 
