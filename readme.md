@@ -2,6 +2,8 @@
 
 This is a design system for [42World](https://42world.kr).
 
+- [Storybook](https://42-world.github.io/design/latest/storybook)
+
 ## Installation
 
 ```bash
