@@ -70,7 +70,7 @@ jobs:
           yarn version --new-version $alpha_version-$sha --no-git-tag-version
           yarn pack
 
-          rm -rf .pages/$base_path/$alpha_version
+          rm -rf .pages/$base_path/*-alpha${{ github.event.pull_request.number }}
           mkdir -p .pages/$base_path/$alpha_version
           cp -rf dist/* .pages/$base_path/$alpha_version
           cp -rf *.tgz .pages/$base_path/$alpha_version
