@@ -22,8 +22,8 @@ module.exports = {
         text: {
           primary: '#000000',
           primary_dark: '#FFFFFF',
-          secondary: '#707070',
-          secondary_dark: '#292929',
+          secondary: '#737373',
+          secondary_dark: '#BABABA',
           tertiary: '#B5B5B5',
           tertiary_dark: '#7A7A7A',
         },
