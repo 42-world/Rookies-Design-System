@@ -15,22 +15,22 @@ export default function (
       {
         type: 'add',
         path: 'src/components/{{pascalCase name}}/index.ts',
-        templateFile: 'templates/index.hbs',
+        templateFile: '.templates/index.hbs',
       },
       {
         type: 'add',
         path: 'src/components/{{pascalCase name}}/{{pascalCase name}}.tsx',
-        templateFile: 'templates/component.hbs',
+        templateFile: '.templates/component.hbs',
       },
       {
         type: 'add',
         path: 'src/components/{{pascalCase name}}/{{pascalCase name}}.stories.ts',
-        templateFile: 'templates/story.hbs',
+        templateFile: '.templates/story.hbs',
       },
       {
         type: 'add',
         path: 'src/components/{{pascalCase name}}/{{pascalCase name}}.framer.tsx',
-        templateFile: 'templates/framer.hbs',
+        templateFile: '.templates/framer.hbs',
       },
     ],
   });
