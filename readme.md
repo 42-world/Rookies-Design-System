@@ -131,3 +131,9 @@ export function Button() {
   return <button>Button</button>;
 }
 ```
+
+### Generating template
+
+You can use `yarn template` command to easily generate component template files(`index.ts`, `Component.stories.ts`, `Component.framer.tsx`, `Component.tsx`) at once.
+
+If you run `yarn template` command, a prompt asking "What is your component name?" will be printed. Give your component name, and template files will be generated.
