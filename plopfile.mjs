@@ -32,6 +32,12 @@ export default function (
         path: 'src/components/{{pascalCase name}}/{{pascalCase name}}.framer.tsx',
         templateFile: '.templates/framer.hbs',
       },
+      {
+        type: 'modify',
+        path: 'src/components/index.ts',
+        pattern: /$/,
+        template: "export { {{pascalCase name}} } from './{{pascalCase name}}';\n",
+      }
     ],
   });
 }
