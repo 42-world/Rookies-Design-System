@@ -1,4 +1,5 @@
 import cx from 'classnames';
+import { Text } from '../Text';
 
 type Props = {
   children?: JSX.Element;
@@ -18,16 +19,7 @@ export function Chip({ children, text, selected }: Props) {
       )}
     >
       <div className={cx([{ hidden: !children }, 'mr-2'])}>{children}</div>
-      <span
-        className={cx(
-          'text-sm font-medium',
-          selected
-            ? 'text-text-primary dark:text-text-primary_dark'
-            : 'text-text-secondary dark:text-text-secondary_dark',
-        )}
-      >
-        {text}
-      </span>
+      {text && <Text text={text} size="body2" weight="medium" color={selected ? 'primary' : 'secondary'} />}
     </div>
   );
 }
