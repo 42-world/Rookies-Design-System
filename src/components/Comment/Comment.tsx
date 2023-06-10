@@ -1,4 +1,4 @@
-import { AvatarText, Badge, Chip, Text } from '..';
+import { AvatarText, Badge, Text } from '..';
 
 interface Props {
   avatarSrc: string;
@@ -23,6 +23,8 @@ export function Comment({
   isLiked,
   numOfLikes = 0,
 }: Props) {
+  isLiked;
+
   return (
     <div className="flex flex-col gap-3 w-[720px] overflow-hidden break-words">
       <div className="flex flex-row items-start gap-3">
