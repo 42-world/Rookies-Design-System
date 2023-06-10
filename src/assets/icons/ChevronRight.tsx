@@ -1,6 +1,6 @@
 import { SVGAttributes } from 'react';
 
-type Props = SVGAttributes<SVGElement>;
+interface Props extends SVGAttributes<SVGElement> {}
 
 export const ChevronRight = (props: Props) => {
   return (
