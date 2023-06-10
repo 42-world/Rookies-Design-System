@@ -1,6 +1,6 @@
 import { ControlType } from 'framer';
 import { ComponentProps } from 'react';
-import { FramerProvider, applyFramerProperties } from '../../common/framer';
+import { applyFramerProperties, FramerProvider } from '../../common/framer';
 import { Sample as _Sample } from './Sample';
 
 export function Sample(props: ComponentProps<typeof _Sample>) {
