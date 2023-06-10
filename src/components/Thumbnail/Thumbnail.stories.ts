@@ -10,7 +10,7 @@ const meta: Meta<Component> = {
 type Story = StoryObj<Component>;
 export const Primary: Story = {
   args: {
-    src: 'https://github.com/42-world/42world-Frontend/raw/dev/public/assets/42worldCharacterLogo.png',
+    src: 'https://picsum.photos/536/354',
     alt: '42world',
     width: 269,
     ratio: '16:9',
