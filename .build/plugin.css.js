@@ -41,7 +41,7 @@ const buildCssModulesJS = async (cssFullPath, options) => {
   const digest = hash.copy().digest('hex');
   return `
 const digest = '${digest}';
-const css = \`${JSON.stringify(result.css)}\`;
+const css = \`${JSON.stringify(result.css).slice(1, -1)}\`;
 ${
   inject &&
   `
