@@ -61,6 +61,13 @@ jobs:
           path: .pages
           token: ${{ secrets.GH_TOKEN }}
 
+      - name: CI
+        run: |
+          yarn lint
+          yarn format
+          yarn typecheck
+          yarn test
+
       - name: Build Alpha Pages
         id: build
         run: |
