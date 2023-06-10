@@ -63,6 +63,7 @@ jobs:
 
       - name: CI
         run: |
+          yarn
           yarn lint
           yarn format
           yarn typecheck
