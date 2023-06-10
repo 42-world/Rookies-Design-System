@@ -7,7 +7,7 @@ type Props = {
   ratio?: '16:9' | '16:10' | '1:1';
 };
 
-export function Thumbnail({ src, alt, width, ratio = '16:9' }: Props) {
+export function Thumbnail({ src, alt = '', width, ratio = '16:9' }: Props) {
   const ratioClass = {
     '16:9': 'aspect-video',
     '16:10': 'aspect-16/10',
