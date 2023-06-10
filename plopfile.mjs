@@ -37,7 +37,7 @@ export default function (
         path: 'src/components/index.ts',
         pattern: /$/,
         template: "export { {{pascalCase name}} } from './{{pascalCase name}}';\n",
-      }
+      },
     ],
   });
 }
