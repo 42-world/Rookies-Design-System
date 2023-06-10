@@ -1,6 +1,5 @@
-import { ControlType } from 'framer';
 import type { ComponentProps } from 'react';
-import { FramerProvider, applyFramerProperties } from '../../common/framer';
+import { FramerProvider } from '../../common/framer';
 import { AvatarText as _AvatarText } from './AvatarText';
 
 export function AvatarText(props: ComponentProps<typeof _AvatarText>) {
@@ -11,6 +10,5 @@ export function AvatarText(props: ComponentProps<typeof _AvatarText>) {
   );
 }
 
-applyFramerProperties(AvatarText, {
-  // Add your custom property infos here
-});
+// Add your custom property infos here
+// applyFramerProperties(AvatarText, {});
