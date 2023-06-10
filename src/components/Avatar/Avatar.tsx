@@ -6,7 +6,7 @@ interface Props {
   size?: '40px' | '64px';
 }
 
-export function Avatar({ src, alt, size = '40px' }: Props) {
+export function Avatar({ src, alt = '', size = '40px' }: Props) {
   return (
     <img
       src={src}
