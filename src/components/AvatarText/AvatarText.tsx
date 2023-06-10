@@ -9,7 +9,7 @@ interface Props {
   subText?: string;
 }
 
-export function AvatarText({ src, alt, size = '40px', mainText, subText }: Props) {
+export function AvatarText({ src, alt = '', size = '40px', mainText, subText }: Props) {
   return (
     <div className={cx('flex flex-row', { 'gap-3': size === '40px', 'gap-4': size === '64px' })}>
       <Avatar src={src} alt={alt} size={size} />
