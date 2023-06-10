@@ -2,7 +2,7 @@ import cx from 'classnames';
 import { Text } from '..';
 
 interface Props {
-  color: 'indigo' | 'yellow' | 'mint' | 'cyan' | 'blue' | 'pink' | 'brown' | 'outline' | 'mono';
+  color?: 'indigo' | 'yellow' | 'mint' | 'cyan' | 'blue' | 'pink' | 'brown' | 'outline' | 'mono';
   text: string;
 }
 
@@ -18,7 +18,7 @@ const colorConfig = {
   outline: 'bg-bg-primary dark:bg-bg-primary_dark',
 };
 
-export function Badge({ color, text }: Props) {
+export function Badge({ color = 'outline', text }: Props) {
   return (
     <div
       className={cx('px-2 py-[3px] w-fit rounded-lg', colorConfig[color], {
