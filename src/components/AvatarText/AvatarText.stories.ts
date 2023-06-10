@@ -1,19 +1,21 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Thumbnail } from './Thumbnail';
+import { AvatarText } from './AvatarText';
 
-type Component = typeof Thumbnail;
+type Component = typeof AvatarText;
 const meta: Meta<Component> = {
-  title: 'rookies/Thumbnail',
-  component: Thumbnail,
+  title: 'rookies/AvatarText',
+  component: AvatarText,
 };
 
 type Story = StoryObj<Component>;
+
 export const Primary: Story = {
+  // Add your story args here
   args: {
     src: 'https://picsum.photos/536/354',
     alt: '42world',
-    width: 269,
-    ratio: '16:9',
+    size: '40px',
+    mainText: '규동한그릇주소',
   },
 };
 
