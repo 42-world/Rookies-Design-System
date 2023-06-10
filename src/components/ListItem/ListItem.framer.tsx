@@ -21,17 +21,17 @@ applyFramerProperties(ListItem, {
   thumbnailSrc: {
     title: 'ThumbnailSrc',
     type: ControlType.String,
-    defaultValue: '지최 is Babo',
+    defaultValue: 'https://picsum.photos/536/354',
   },
   secondaryTextFirst: {
     title: 'SecondaryTextFirst',
     type: ControlType.String,
-    defaultValue: '지최 is Babo',
+    defaultValue: '지최',
   },
   secondaryTextSecond: {
     title: 'SecondaryTextSecond',
     type: ControlType.String,
-    defaultValue: '지최 is Babo',
+    defaultValue: '2021-10-20',
   },
   commentCnt: {
     title: 'Title',
