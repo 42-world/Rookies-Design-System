@@ -7,7 +7,7 @@ export function FramerProvider({ children }: { children: React.ReactNode }) {
   const isDark = useFramerThemeData();
 
   useEffect(() => {
-    toggleTheme(isDark);
+    toggleTheme(isDark ? 'dark' : 'light');
   }, [isDark]);
 
   return <>{children}</>;
