@@ -26,7 +26,7 @@ export function Badge({ color = 'outline', text }: Props) {
       })}
     >
       {color === 'mono' ? (
-        <Text text={text} size="small" color="white" /> // TODO: mono일 때 색상 변경
+        <Text text={text} size="small" className="text-text-primary_dark dark:text-text-primary" />
       ) : (
         <Text text={text} size="small" />
       )}
