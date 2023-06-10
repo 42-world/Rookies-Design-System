@@ -3,5 +3,5 @@ type Props = {
 };
 
 export function Sample({ text }: Props) {
-  return <p className={'text-pink-500 dark:text-gray-700'}>This is Sample! "{text}"</p>;
+  return <p className={'text-blue-500 dark:text-pink-600'}>This is Sample! "{text}"</p>;
 }
