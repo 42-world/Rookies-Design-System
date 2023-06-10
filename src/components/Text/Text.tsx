@@ -33,6 +33,7 @@ type Color =
   | 'indigo_300';
 
 type Props = {
+  className?: string;
   text: string;
   size?: TextSize;
   weight?: TextWeight;
@@ -41,12 +42,12 @@ type Props = {
 };
 
 export const textSizeConfig: Record<TextSize, string> = {
-  heading1: 'text-4xl',
-  heading2: 'text-2xl',
-  heading3: 'text-lg',
-  body1: 'text-base',
-  body2: 'text-sm',
-  small: 'text-xs',
+  heading1: 'text-4xl leading-normal',
+  heading2: 'text-2xl leading-normal',
+  heading3: 'text-lg leading-normal',
+  body1: 'text-base leading-[1.8rem]',
+  body2: 'text-sm leading-[1.8rem]',
+  small: 'text-xs leading-normal',
 };
 
 export const textWeightConfig: Record<TextWeight, string> = {
@@ -93,7 +94,14 @@ export const textColorConfig: Record<Color, string> = {
   indigo_300: 'text-indigo-700',
 };
 
-export function Text({ text, size = 'body1', weight = 'regular', align = 'left', color = 'primary' }: Props) {
+export function Text({
+  className,
+  text,
+  size = 'body1',
+  weight = 'regular',
+  align = 'left',
+  color = 'primary',
+}: Props) {
   return (
     <p
       className={`font-display
@@ -101,6 +109,7 @@ export function Text({ text, size = 'body1', weight = 'regular', align = 'left',
         ${textWeightConfig[weight]}
         ${textAlignConfig[align]}
         ${textColorConfig[color]}
+        ${className}
         `}
     >
       {text}

@@ -2,6 +2,7 @@ import cx from 'classnames';
 import type { InputHTMLAttributes, ReactNode } from 'react';
 import { forwardRef, useId } from 'react';
 import { useControllableState } from './useControllableState';
+import { Text } from '../Text';
 
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
@@ -54,9 +55,13 @@ export const Input = forwardRef<HTMLInputElement, Props>(
             </label>
           )}
           {maxLength && (
-            <span className="text-sm leading-[1.8] font-normal ml-auto text-text-secondary dark:text-text-secondary_dark">
-              ({value.length}/{maxLength})
-            </span>
+            <Text
+              className="ml-auto"
+              text={`(${value.length}/${maxLength})`}
+              size="body2"
+              weight="regular"
+              color="secondary"
+            />
           )}
         </div>
         <div
@@ -78,15 +83,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(
           />
           {rightAddon && <span className="flex">{rightAddon}</span>}
         </div>
-        {subLabel && (
-          <span
-            className={cx('text-sm leading-[1.8] font-normal text-text-secondary dark:text-text-secondary_dark', {
-              '!text-color-red': hasError,
-            })}
-          >
-            {subLabel}
-          </span>
-        )}
+        {subLabel && <Text text={subLabel} size="body2" weight="regular" color={hasError ? 'red_200' : 'secondary'} />}
       </div>
     );
   },
