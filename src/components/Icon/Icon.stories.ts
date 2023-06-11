@@ -1,4 +1,3 @@
-import Face from '@material-design-icons/svg/filled/face.svg';
 import AddCard from '@material-design-icons/svg/filled/power.svg';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Icon } from './Icon';
