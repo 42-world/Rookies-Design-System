@@ -2,10 +2,10 @@ import { createElement, FunctionComponent, SVGProps } from 'react';
 
 interface Props extends SVGProps<SVGSVGElement> {
   svg: FunctionComponent<SVGProps<SVGSVGElement>>;
-  size: 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge';
+  size?: 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge';
 }
 
-export function Icon({ svg, size, ...rest }: Props) {
+export function Icon({ svg, size = 'medium', ...rest }: Props) {
   const wh = {
     xsmall: { width: 12, height: 12 },
     small: { width: 16, height: 16 },
