@@ -9,3 +9,4 @@ export { Sample } from './Sample';
 export { Text } from './Text';
 export { Thumbnail } from './Thumbnail';
 export { Icon } from './Icon';
+export { ListItem } from './ListItem';
