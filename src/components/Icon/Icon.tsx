@@ -1,5 +1,3 @@
-import cx from 'classnames';
-
 import { createElement, FunctionComponent, SVGProps } from 'react';
 
 interface Props extends SVGProps<SVGSVGElement> {
