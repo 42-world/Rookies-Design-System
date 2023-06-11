@@ -19,7 +19,7 @@ export function Chip({ icon, text, selected }: Props) {
           : 'bg-bg-tertiary_alpha_0 dark:bg-bg-primary_alpha_0_dark',
       )}
     >
-      <div className={cx([{ hidden: !icon }, 'mr-2'])}>{icon && <Icon svg={icon} />}</div>
+      {icon && <Icon svg={icon} className="mr-2" />}
       {text && <Text text={text} size="body2" weight="medium" color={selected ? 'primary' : 'secondary'} />}
     </div>
   );
