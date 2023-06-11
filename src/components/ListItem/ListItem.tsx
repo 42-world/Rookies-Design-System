@@ -34,7 +34,7 @@ export function ListItem({
   hasBorder = true,
 }: Props) {
   return (
-    <div className="w-[540px] cursor-pointer active:scale-95 transition-transform duration-300 ease-out">
+    <div className="w-[540px] cursor-pointer active:scale-95 transition-transform duration-300 ease-out select-none">
       <div className="flex flex-row items-center py-4">
         {thumbnailSrc && <Thumbnail src={thumbnailSrc} alt={title} width={85} ratio="16:9" />}
         <div className="ml-3 flex-1">
