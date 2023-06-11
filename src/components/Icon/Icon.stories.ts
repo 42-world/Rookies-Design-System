@@ -14,6 +14,7 @@ export const Primary: Story = {
   // Add your story args here
   args: {
     svg: Face,
+    size: 'xsmall',
   },
 };
 
