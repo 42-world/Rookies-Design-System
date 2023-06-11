@@ -25,6 +25,20 @@ export function useFramerThemeData() {
       }
     };
     window.addEventListener('message', handleFramerThemeChange);
+    // const isFramerDarkMode = window.document.querySelector('body')?.classList.contains('framer-theme-dark') ?? false;
+    // const isFramerEditor = new URL(window.location.href).host.includes('framercanvas');
+    // const isFramerComponentEditor =
+    //   window.document.querySelector('body')?.getAttribute('style')?.includes('rgb(0, 0, 0)') ?? false;
+
+    // console.log('isFramerDarkMode', isFramerDarkMode);
+    // console.log('isFramerEditor', isFramerEditor);
+
+    // // Set the initial theme
+    // if (isFramerEditor) {
+    //   setIsDarkMode(isFramerDarkMode);
+    // } else {
+    //   setIsDarkMode(isOsDarkMode);
+    // }
 
     // Cleanup listener on unmount
     return () => {

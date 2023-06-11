@@ -11,7 +11,7 @@ const meta: Meta<Component> = {
 type Story = StoryObj<Component>;
 export const Primary: Story = {
   args: {
-    children: BellIcon({ color: 'main_green_5' }),
+    icon: BellIcon,
     text: 'Sample',
     selected: false,
   },

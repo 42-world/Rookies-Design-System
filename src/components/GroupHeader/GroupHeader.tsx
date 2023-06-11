@@ -1,4 +1,5 @@
 import { ChevronRight } from '../../assets/icons';
+import { Icon } from '../Icon';
 import { Text } from '../Text';
 
 interface Props {
@@ -13,7 +14,7 @@ export function GroupHeader({ href, text }: Props) {
       href={href}
     >
       <Text text={text} size="heading3" weight="semibold" />
-      <ChevronRight className="w-6 h-6" />
+      <Icon svg={ChevronRight} className="w-6 h-6" />
     </a>
   );
 }

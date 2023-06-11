@@ -3,6 +3,6 @@
 declare module 'https://framer.com/m/*';
 
 declare module '*.svg' {
-  const content: React.FunctionComponent<React.SVGAttributes<SVGElement>>;
+  const content: React.FC<React.SVGAttributes<SVGElement>>;
   export default content;
 }

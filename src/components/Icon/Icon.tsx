@@ -1,7 +1,7 @@
-import { createElement, FunctionComponent, SVGProps } from 'react';
+import { createElement, SVGProps } from 'react';
 
 interface Props extends SVGProps<SVGSVGElement> {
-  svg: FunctionComponent<SVGProps<SVGSVGElement>>;
+  svg: React.FC<React.SVGAttributes<SVGElement>>;
   size?: 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge';
 }
 
