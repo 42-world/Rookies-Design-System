@@ -14,10 +14,14 @@ interface Props {
   hasBorder?: boolean;
 }
 
-const getMergedSecondaryText = (first?: string, second?: string) => {
-  if (first && second) return `${first} · ${second}`;
-
-  return first || second;
+const MergedSecondaryText = (first?: string, second?: string) => {
+  return (
+    <div className="flex flex-row items-center gap-1">
+      {first && <Text text={first} size="body2" weight="medium" color="secondary" />}
+      {first && second && '·'}
+      {second && <Text text={second} size="body2" weight="regular" color="secondary" />}
+    </div>
+  );
 };
 
 export function ListItem({
@@ -29,14 +33,12 @@ export function ListItem({
   likeCnt,
   hasBorder = true,
 }: Props) {
-  const secondaryText = getMergedSecondaryText(secondaryTextFirst, secondaryTextSecond);
-
   return (
-    <>
-      <div className="flex flex-row items-center py-4 w-[540px] cursor-pointer">
+    <div className="w-[540px] cursor-pointer active:scale-95 transition-transform duration-300 ease-out">
+      <div className="flex flex-row items-center py-4">
         {thumbnailSrc && <Thumbnail src={thumbnailSrc} alt={title} width={85} ratio="16:9" />}
         <div className="ml-3 flex-1">
-          {secondaryText && <Text text={secondaryText} size="body2" weight="regular" color="secondary" />}
+          {MergedSecondaryText(secondaryTextFirst, secondaryTextSecond)}
           <Text text={title} size="body1" weight="medium" color="primary" />
         </div>
         <div className="flex flex-row items-center gap-2 text-text-secondary dark:text-text-secondary_dark">
@@ -55,6 +57,6 @@ export function ListItem({
         </div>
       </div>
       {hasBorder && <Divider variant="secondary" />}
-    </>
+    </div>
   );
 }
