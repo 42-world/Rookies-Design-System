@@ -1,4 +1,5 @@
-import { ChatBubble, Favorite } from '../../assets/icons';
+import ChatBubble from '@material-design-icons/svg/filled/chat_bubble.svg';
+import Favorite from '@material-design-icons/svg/filled/favorite.svg';
 import { Divider } from '../Divider';
 import { Icon } from '../Icon';
 import { Thumbnail } from '../Thumbnail';

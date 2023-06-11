@@ -1,5 +1,5 @@
+import Face from '@material-design-icons/svg/filled/face.svg';
 import type { Meta, StoryObj } from '@storybook/react';
-import { BellIcon } from '../../assets/icons';
 import { Chip } from './Chip';
 
 type Component = typeof Chip;
@@ -11,7 +11,7 @@ const meta: Meta<Component> = {
 type Story = StoryObj<Component>;
 export const Primary: Story = {
   args: {
-    icon: BellIcon,
+    icon: Face,
     text: 'Sample',
     selected: false,
   },

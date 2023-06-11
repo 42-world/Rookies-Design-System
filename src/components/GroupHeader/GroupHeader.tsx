@@ -1,4 +1,4 @@
-import { ChevronRight } from '../../assets/icons';
+import ChevronRight from '@material-design-icons/svg/filled/chevron_right.svg';
 import { Icon } from '../Icon';
 import { Text } from '../Text';
 
