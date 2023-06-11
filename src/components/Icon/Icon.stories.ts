@@ -1,4 +1,5 @@
 import Face from '@material-design-icons/svg/filled/face.svg';
+import AddCard from '@material-design-icons/svg/filled/power.svg';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Icon } from './Icon';
 
@@ -13,7 +14,7 @@ type Story = StoryObj<Component>;
 export const Primary: Story = {
   // Add your story args here
   args: {
-    svg: Face,
+    svg: AddCard,
     size: 'xsmall',
   },
 };

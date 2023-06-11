@@ -15,6 +15,7 @@ export function Icon({ svg, size = 'medium', ...rest }: Props) {
   }[size] || { width: 24, height: 24 };
 
   return createElement(svg, {
+    viewBox: '0 0 24 24',
     width: wh.width,
     height: wh.height,
     ...rest,
