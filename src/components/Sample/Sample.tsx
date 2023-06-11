@@ -1,5 +1,5 @@
 import Face from '@material-design-icons/svg/filled/face.svg';
-import { Icon } from '../Icon/Icon.framer';
+import { Icon } from '../Icon';
 
 type Props = {
   text: string;
