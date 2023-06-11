@@ -5,7 +5,7 @@ interface Props extends SVGProps<SVGSVGElement> {
   size?: 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge';
 }
 
-export function Icon({ svg, size = 'medium', ...rest }: Props) {
+export function Icon({ svg: SvgComponent, size = 'medium', className, ...rest }: Props) {
   const wh = {
     xsmall: { width: 12, height: 12 },
     small: { width: 16, height: 16 },
@@ -14,10 +14,17 @@ export function Icon({ svg, size = 'medium', ...rest }: Props) {
     xlarge: { width: 32, height: 32 },
   }[size] || { width: 24, height: 24 };
 
-  return createElement(svg, {
-    viewBox: '0 0 24 24',
-    width: wh.width,
-    height: wh.height,
-    ...rest,
-  });
+  const origin = SvgComponent({});
+  return createElement(
+    'svg',
+    {
+      ...origin?.props,
+      viewBox: '0 0 24 24',
+      width: wh.width,
+      height: wh.height,
+      className: `fill-black dark:fill-white ${className}`,
+      ...rest,
+    },
+    origin?.props.children,
+  );
 }
