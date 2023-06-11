@@ -1,6 +1,6 @@
+import AddCard from '@material-design-icons/svg/filled/power.svg';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Icon } from './Icon';
-import { BellIcon } from '../../assets/icons';
 
 type Component = typeof Icon;
 const meta: Meta<Component> = {
@@ -13,7 +13,7 @@ type Story = StoryObj<Component>;
 export const Primary: Story = {
   // Add your story args here
   args: {
-    children: BellIcon({ color: 'main_green_5' }),
+    svg: AddCard,
     size: 'xsmall',
   },
 };

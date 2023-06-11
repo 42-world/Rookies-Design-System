@@ -51,8 +51,8 @@ export const textSizeConfig: Record<TextSize, string> = {
 };
 
 export const textWeightConfig: Record<TextWeight, string> = {
-  regular: 'font-light',
-  medium: 'font-normal',
+  regular: 'font-normal',
+  medium: 'font-medium',
   semibold: 'font-semibold',
 };
 

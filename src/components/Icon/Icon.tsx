@@ -1,22 +1,23 @@
-import cx from 'classnames';
+import { createElement, FunctionComponent, SVGProps } from 'react';
 
-interface Props {
-  children: JSX.Element;
-  size: 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge';
+interface Props extends SVGProps<SVGSVGElement> {
+  svg: FunctionComponent<SVGProps<SVGSVGElement>>;
+  size?: 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge';
 }
 
-export function Icon({ children, size }: Props) {
-  return (
-    <div
-      className={cx(
-        { '[&>svg]:w-3 [&>svg]:h-3': size === 'xsmall' },
-        { '[&>svg]:w-4 [&>svg]:h-4': size === 'small' },
-        { '[&>svg]:w-5 [&>svg]:h-5': size === 'medium' },
-        { '[&>svg]:w-6 [&>svg]:h-6': size === 'large' },
-        { '[&>svg]:w-8 [&>svg]:h-8': size === 'xlarge' },
-      )}
-    >
-      {children}
-    </div>
-  );
+export function Icon({ svg, size = 'medium', ...rest }: Props) {
+  const wh = {
+    xsmall: { width: 12, height: 12 },
+    small: { width: 16, height: 16 },
+    medium: { width: 20, height: 20 },
+    large: { width: 24, height: 24 },
+    xlarge: { width: 32, height: 32 },
+  }[size] || { width: 24, height: 24 };
+
+  return createElement(svg, {
+    viewBox: '0 0 24 24',
+    width: wh.width,
+    height: wh.height,
+    ...rest,
+  });
 }
