@@ -1,12 +1,22 @@
+import AddCard from '@material-design-icons/svg/filled/power.svg';
 import { ControlType } from 'framer';
 import type { ComponentProps } from 'react';
-import { FramerProvider, applyFramerProperties } from '../../common/framer';
+import { applyFramerProperties, FramerProvider } from '../../common/framer';
 import { Button as _Button } from './Button';
 
-export function Button(props: ComponentProps<typeof _Button>) {
+export function Button({ icon, ...props }: Omit<ComponentProps<typeof _Button>, 'icon'> & { icon: JSX.Element[] }) {
+  if (!icon.length) {
+    return (
+      <FramerProvider>
+        <_Button icon={AddCard} {...props} />
+      </FramerProvider>
+    );
+  }
+
+  const IconComponent = () => icon[0];
   return (
     <FramerProvider>
-      <_Button {...props} />
+      <_Button icon={IconComponent} {...props} />
     </FramerProvider>
   );
 }
