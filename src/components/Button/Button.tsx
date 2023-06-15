@@ -14,9 +14,9 @@ interface ButtonProps {
 type Props = ButtonProps & Omit<ButtonHTMLAttributes<HTMLButtonElement>, keyof ButtonProps>;
 
 const variantStyles = {
-  primary: 'bg-color-blue_200 border-0 hover:bg-color-blue_300',
+  primary: 'bg-color-system_200 border-0 hover:bg-color-system_300',
   secondary:
-    'border-border-primary dark:border-border-primary_dark hover:border-color-blue_200 hover:dark:border-color-blue_200',
+    'border-border-primary dark:border-border-primary_dark hover:border-color-system_200 hover:dark:border-color-system_200',
   text: 'border-0',
 };
 
@@ -24,7 +24,7 @@ export function Button({ text, variant = 'primary', icon, ...restProps }: Props)
   return (
     <button
       className={cx(
-        `group h-8 flex flex-row items-center gap-2 px-3 rounded-2xl border border-solid ${variantStyles[variant]}`,
+        `group h-8 flex flex-row items-center gap-2 px-3 rounded-2xl border border-solid transition-all duration-300 active:scale-95 ${variantStyles[variant]}`,
         {
           'px-0': !icon,
         },
@@ -37,8 +37,9 @@ export function Button({ text, variant = 'primary', icon, ...restProps }: Props)
           size="small"
           className={cx(
             variant === 'primary' ? 'fill-color-white' : 'fill-text-secondary dark:fill-text-secondary_dark',
+            'transition-colors duration-300',
             {
-              'group-hover:fill-color-blue_200': variant !== 'primary',
+              'group-hover:fill-color-system_200': variant !== 'primary',
             },
           )}
         />
@@ -49,8 +50,8 @@ export function Button({ text, variant = 'primary', icon, ...restProps }: Props)
           size="body2"
           weight="medium"
           color={variant === 'primary' ? 'white' : 'secondary'}
-          className={cx({
-            'group-hover:text-color-blue_200': variant !== 'primary',
+          className={cx('transition-colors duration-300', {
+            'group-hover:text-color-system_200': variant !== 'primary',
           })}
         />
       )}
