@@ -1,22 +1,20 @@
-import { isDarkTheme } from './isDarkTheme';
-
 /**
- * Toggles the current theme.
- *
+ * Set the theme of the website.
  * @note
  * This function only works when `window` exists.
  *
+ * @param initialTheme
  * @returns
  */
-export function toggleTheme(): void {
+export function setTheme(initialTheme?: 'light' | 'dark') {
   if (typeof window === 'undefined') {
     return;
   }
 
   const document = window.document;
-  if (isDarkTheme()) {
-    document.documentElement.classList.remove('dark');
-  } else {
+  if (initialTheme === 'dark') {
     document.documentElement.classList.add('dark');
+  } else {
+    document.documentElement.classList.remove('dark');
   }
 }
