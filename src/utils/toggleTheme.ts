@@ -1,4 +1,5 @@
 import { isDarkTheme } from './isDarkTheme';
+import { setTheme } from './setTheme';
 
 /**
  * Toggles the current theme.
@@ -13,10 +14,5 @@ export function toggleTheme(): void {
     return;
   }
 
-  const document = window.document;
-  if (isDarkTheme()) {
-    document.documentElement.classList.remove('dark');
-  } else {
-    document.documentElement.classList.add('dark');
-  }
+  setTheme(isDarkTheme() ? 'light' : 'dark');
 }

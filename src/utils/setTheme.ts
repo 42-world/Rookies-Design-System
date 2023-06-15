@@ -3,16 +3,16 @@
  * @note
  * This function only works when `window` exists.
  *
- * @param initialTheme
+ * @param theme
  * @returns
  */
-export function setTheme(initialTheme?: 'light' | 'dark') {
+export function setTheme(theme?: 'light' | 'dark'): void {
   if (typeof window === 'undefined') {
     return;
   }
 
   const document = window.document;
-  if (initialTheme === 'dark') {
+  if (theme === 'dark') {
     document.documentElement.classList.add('dark');
   } else {
     document.documentElement.classList.remove('dark');
