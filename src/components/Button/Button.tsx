@@ -15,7 +15,8 @@ type Props = ButtonProps & Omit<ButtonHTMLAttributes<HTMLButtonElement>, keyof B
 
 const variantStyles = {
   primary: 'bg-color-blue_200 border-0 hover:bg-color-blue_300',
-  secondary: 'border-border-primary hover:border-color-blue_200',
+  secondary:
+    'border-border-primary dark:border-border-primary_dark hover:border-color-blue_200 hover:dark:border-color-blue_200',
   text: 'border-0',
 };
 
@@ -34,9 +35,12 @@ export function Button({ text, variant = 'primary', icon, ...restProps }: Props)
         <Icon
           svg={icon}
           size="small"
-          className={cx(variant === 'primary' ? 'fill-color-white' : 'fill-text-secondary', {
-            'group-hover:fill-color-blue_200': variant !== 'primary',
-          })}
+          className={cx(
+            variant === 'primary' ? 'fill-color-white' : 'fill-text-secondary dark:fill-text-secondary_dark',
+            {
+              'group-hover:fill-color-blue_200': variant !== 'primary',
+            },
+          )}
         />
       )}
       {text && (
