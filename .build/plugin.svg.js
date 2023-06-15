@@ -31,11 +31,17 @@ exports.svgPlugin = (options = {}) => ({
       }
 
       return {
-        contents: `export default () => {
-          return (${contents});
+        contents: `export default (props) => {
+          return (${injectPropsToSvg(contents)});
         }`,
         loader: options.typescript ? 'tsx' : 'jsx',
       };
     });
   },
 });
+
+function injectPropsToSvg(svg) {
+  const svgProps = svg.match(/<svg([^>]+)>/s)[1];
+  const svgContent = svg.replace(svgProps, `${svgProps} {...props}`);
+  return svgContent;
+}
