@@ -3,7 +3,7 @@ const esbuild = require('esbuild');
 const globby = require('globby');
 const { esmPlugin } = require('./plugin.esm');
 const { cssPlugin } = require('./plugin.css');
-const svgr = require('esbuild-plugin-svgr');
+const { svgPlugin } = require('./plugin.svg');
 
 const color = (n, v) => `\x1b[${n}m${v}\x1b[0m`;
 
@@ -15,7 +15,7 @@ function getBuildCommonOptions() {
     target: 'es2019',
     inject: [__dirname + '/react-shim.js'],
     external: ['react', 'react/jsx-runtime', 'react-dom', 'framer', 'framer-motion'],
-    plugins: [svgr(), cssPlugin({ inject: true })],
+    plugins: [svgPlugin(), cssPlugin({ inject: true })],
   };
 }
 
