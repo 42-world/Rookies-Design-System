@@ -47,11 +47,6 @@ jobs:
       new_version: ${{ needs.version.outputs.new_version }}
       base_path: 'design'
     steps:
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 18
-          cache: 'yarn'
-
       - name: Checkout
         uses: actions/checkout@v3
 
@@ -61,6 +56,11 @@ jobs:
           repository: '42-world/42-world.github.io'
           path: .pages
           token: ${{ secrets.GH_TOKEN }}
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'yarn'
 
       - name: CI
         run: |
