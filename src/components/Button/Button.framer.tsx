@@ -12,4 +12,20 @@ export function Button(props: ComponentProps<typeof _Button>) {
 }
 
 // Add your custom property infos here
-// applyFramerProperties(Avatar, {});
+applyFramerProperties(Button, {
+  text: {
+    title: 'Text',
+    type: ControlType.String,
+    defaultValue: 'Button',
+  },
+  variant: {
+    title: 'Variant',
+    type: ControlType.Enum,
+    options: ['primary', 'secondary', 'text'],
+    defaultValue: 'primary',
+  },
+  icon: {
+    title: 'Icon',
+    type: ControlType.ComponentInstance,
+  },
+});
