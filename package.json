@@ -30,10 +30,11 @@
     "build:storybook": "storybook build -o ./dist/storybook",
     "pre-build:clear": "rm -rf dist",
     "pre-build:tailwind": "tailwindcss -i ./src/styles/tailwind.css -o ./src/styles/_tailwind.css",
-    "test": "echo no test",
-    "lint": "eslint 'src/**/*.{ts,tsx}' --config .eslintrc.js",
-    "format": "prettier --check src/**/*.{ts,tsx}",
-    "typecheck": "tsc --noEmit",
+    "ci": "yarn concurrently 'yarn:ci:*'",
+    "ci:test": "echo no test",
+    "ci:lint": "eslint 'src/**/*.{ts,tsx}' --config .eslintrc.js",
+    "ci:format": "prettier --check src/**/*.{ts,tsx}",
+    "ci:typecheck": "tsc --noEmit",
     "version": "echo $npm_package_version",
     "template": "plop"
   },
@@ -94,7 +95,6 @@
     "storybook-dark-mode": "^3.0.0",
     "tailwindcss": "^3.3.2",
     "tmp": "^0.2.1",
-    "tsup": "^6.7.0",
     "typescript": "^4.9.4"
   }
 }

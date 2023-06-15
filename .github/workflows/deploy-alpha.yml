@@ -64,10 +64,7 @@ jobs:
       - name: CI
         run: |
           yarn
-          yarn lint
-          yarn format
-          yarn typecheck
-          yarn test
+          yarn ci
 
       - name: Build Alpha Pages
         id: build
