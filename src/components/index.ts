@@ -13,3 +13,4 @@ export { Text } from './Text';
 export { Thumbnail } from './Thumbnail';
 export { Badge } from './Badge';
 export { IconText } from './IconText';
+export { Button } from './Button';
