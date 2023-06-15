@@ -11,7 +11,36 @@ const meta: Meta<Component> = {
 type Story = StoryObj<Component>;
 
 export const Primary: Story = {
-  render: (args) => <Button text="이거 누르면 지최 등장함" icon={HolidayVillage} {...args} />,
+  args: {
+    text: '이거 누르면 지최 등장함',
+    icon: HolidayVillage,
+  },
+};
+
+export const Secondary: Story = {
+  args: {
+    ...Primary.args,
+    variant: 'secondary',
+  },
+};
+
+export const Text: Story = {
+  args: {
+    ...Primary.args,
+    variant: 'text',
+  },
+};
+
+export const OnlyIcon: Story = {
+  args: {
+    icon: HolidayVillage,
+  },
+};
+
+export const OnlyText: Story = {
+  args: {
+    text: '이거 누르면 지최 등장함',
+  },
 };
 
 export default meta;
