@@ -1,8 +1,9 @@
+import ChatBubble from '@material-design-icons/svg/filled/chat_bubble.svg';
+import Favorite from '@material-design-icons/svg/filled/favorite.svg';
+import { Divider } from '../Divider';
+import { Icon } from '../Icon';
 import { Thumbnail } from '../Thumbnail';
 import { Text } from './../Text/Text';
-import { Divider } from '../Divider';
-import { ChatBubble } from '../../assets/icons/ChatBubble';
-import { Favorite } from '../../assets/icons/Favorite';
 
 interface Props {
   title: string;
@@ -44,13 +45,13 @@ export function ListItem({
         <div className="flex flex-row items-center gap-2 text-text-secondary dark:text-text-secondary_dark">
           {commentCnt && (
             <div className="flex flex-row items-center gap-2">
-              <ChatBubble className="w-4 h-4" />
+              <Icon svg={ChatBubble} className="w-4 h-4" />
               <Text text={commentCnt.toString()} size="body2" weight="regular" color="secondary" />
             </div>
           )}
           {likeCnt && (
             <div className="flex flex-row items-center gap-2">
-              <Favorite className="w-4 h-4" />
+              <Icon svg={Favorite} className="w-4 h-4" />
               <Text text={likeCnt.toString()} size="body2" weight="regular" color="secondary" />
             </div>
           )}

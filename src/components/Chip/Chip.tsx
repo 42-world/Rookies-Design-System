@@ -1,13 +1,14 @@
 import cx from 'classnames';
+import { Icon } from '../Icon';
 import { Text } from '../Text';
 
 type Props = {
-  children?: JSX.Element;
+  icon?: React.FC<React.SVGAttributes<SVGElement>>;
   text?: string;
   selected?: boolean;
 };
 
-export function Chip({ children, text, selected }: Props) {
+export function Chip({ icon, text, selected }: Props) {
   return (
     <div
       className={cx(
@@ -18,7 +19,7 @@ export function Chip({ children, text, selected }: Props) {
           : 'bg-bg-tertiary_alpha_0 dark:bg-bg-primary_alpha_0_dark',
       )}
     >
-      <div className={cx([{ hidden: !children }, 'mr-2'])}>{children}</div>
+      {icon && <Icon svg={icon} className="mr-2" />}
       {text && <Text text={text} size="body2" weight="medium" color={selected ? 'primary' : 'secondary'} />}
     </div>
   );
