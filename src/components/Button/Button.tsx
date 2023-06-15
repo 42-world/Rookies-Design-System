@@ -24,10 +24,8 @@ export function Button({ text, variant = 'primary', icon, ...restProps }: Props)
   return (
     <button
       className={cx(
-        `group h-8 flex flex-row items-center gap-2 px-3 rounded-2xl border border-solid transition-all duration-300 active:scale-95 ${variantStyles[variant]}`,
-        {
-          'px-0': !icon,
-        },
+        `group h-8 flex flex-row items-center gap-2 rounded-2xl border border-solid transition-all duration-300 active:scale-95 ${variantStyles[variant]}`,
+        icon && !text ? 'px-2' : 'px-3',
       )}
       {...restProps}
     >
