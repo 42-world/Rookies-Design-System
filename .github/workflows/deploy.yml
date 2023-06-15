@@ -41,11 +41,6 @@ jobs:
           repository: '42-world/42-world.github.io'
           token: ${{ secrets.GH_TOKEN }}
 
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 18
-          cache: 'yarn'
-
       - name: Remove Alpha Pages
         run: |
           rm -rf $base_path/$new_version-alpha*
