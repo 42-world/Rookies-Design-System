@@ -10,8 +10,9 @@ const meta: Meta<Component> = {
 type Story = StoryObj<Component>;
 
 export const Primary: Story = {
-  // Add your story args here
-  args: {},
+  args: {
+    placeholder: '감사합니다!',
+  },
 };
 
 export default meta;
