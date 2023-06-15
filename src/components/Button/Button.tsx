@@ -31,7 +31,13 @@ export function Button({ text, variant = 'primary', icon, ...restProps }: Props)
       {...restProps}
     >
       {icon && (
-        <Icon svg={icon} size="small" className={variant === 'primary' ? 'fill-color-white' : 'fill-text-secondary'} />
+        <Icon
+          svg={icon}
+          size="small"
+          className={cx(variant === 'primary' ? 'fill-color-white' : 'fill-text-secondary', {
+            'group-hover:fill-color-blue_200': variant !== 'primary',
+          })}
+        />
       )}
       {text && (
         <Text
