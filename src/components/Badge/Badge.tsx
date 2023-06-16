@@ -15,7 +15,7 @@ const colorConfig = {
   pink: 'bg-color-pink',
   brown: 'bg-color-brown',
   mono: 'bg-bg-primary_dark dark:bg-bg-primary',
-  outline: 'bg-bg-primary dark:bg-bg-primary_dark',
+  outline: 'bg-none',
 };
 
 export function Badge({ color = 'outline', text }: Props) {
