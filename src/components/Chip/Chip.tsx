@@ -19,7 +19,17 @@ export function Chip({ icon, text, isSelected }: Props) {
           : 'bg-bg-tertiary_alpha_0 dark:bg-bg-primary_alpha_0_dark',
       )}
     >
-      {icon && <Icon svg={icon} className="mr-2 transition-[fill] group-hover:fill-color-system_200" />}
+      {icon && (
+        <Icon
+          svg={icon}
+          className={cx(
+            'mr-2  transition-[fill] group-hover:fill-color-system_200',
+            isSelected
+              ? 'fill-text-primary dark:fill-text-primary_dark'
+              : 'fill-text-secondary dark:fill-text-secondary_dark',
+          )}
+        />
+      )}
       {text && (
         <Text
           text={text}
