@@ -10,7 +10,7 @@ interface Props {
   isMine?: boolean;
   isAuthor?: boolean;
   isLiked?: boolean;
-  numOfLikes: number;
+  numOfLikes?: number;
   onClickLike?: () => void;
   onClickReply?: () => void;
   onClickEdit?: () => void;
