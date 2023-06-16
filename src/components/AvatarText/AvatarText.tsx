@@ -1,5 +1,6 @@
 import cx from 'classnames';
-import { Avatar, Text } from '..';
+import { Avatar } from '../Avatar';
+import { Text } from '../Text';
 
 interface Props {
   src: string;
