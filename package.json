@@ -42,7 +42,8 @@
     "@svgr/core": "^8.0.0",
     "classnames": "^2.3.2",
     "framer-motion": "^10.12.4",
-    "popmotion": "^11.0.5"
+    "popmotion": "^11.0.5",
+    "tailwind-merge": "^1.13.2"
   },
   "peerDependencies": {
     "react": "^18.2.0",
