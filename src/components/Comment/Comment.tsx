@@ -24,14 +24,12 @@ export function Comment({
   isLiked,
   numOfLikes = 0,
 }: Props) {
-  isLiked;
-
   return (
     <div className="flex flex-col gap-3 w-[720px] overflow-hidden break-words">
-      <div className="flex flex-row items-start gap-3">
+      <div className="flex flex-row items-start gap-2">
         <AvatarText src={avatarSrc} alt={avatarAlt} mainText={username} subText={time} />
-        {isAuthor && <Badge color="outline" text="작성자" />}
-        {isMine && <Badge color="outline" text="내댓글" />} {/* TODO: 뱃지 사이 간격 gap-2로 줄 방법? */}
+        {isAuthor && <Badge color="outline" text="작성자" className="ml-1" />}
+        {isMine && <Badge color="outline" text="내댓글" />}
       </div>
       <Text size="body2" text={content} />
       <div className="flex flex-row items-center gap-4">
