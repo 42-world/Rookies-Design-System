@@ -1,4 +1,5 @@
 import cx from 'classnames';
+
 import { Text } from '..';
 
 interface Props {
@@ -25,11 +26,12 @@ export function Badge({ color = 'outline', text }: Props) {
         'border border-border-secondary dark:border-border-secondary_dark': color === 'outline',
       })}
     >
-      {color === 'mono' ? (
-        <Text text={text} size="small" className="text-text-primary_dark dark:text-text-primary" />
-      ) : (
-        <Text text={text} size="small" />
-      )}
+      <Text
+        text={text}
+        size="small"
+        className={cx({ 'text-text-primary_dark dark:text-text-primary': color === 'mono' })}
+        color={color === 'outline' ? 'secondary' : 'white'}
+      />
     </div>
   );
 }
