@@ -1,7 +1,7 @@
 import cx from 'classnames';
 import { twMerge } from 'tailwind-merge';
 
-import { Text } from '..';
+import { Text } from '../Text';
 
 interface Props {
   color?: 'indigo' | 'yellow' | 'mint' | 'cyan' | 'blue' | 'pink' | 'brown' | 'outline' | 'mono';

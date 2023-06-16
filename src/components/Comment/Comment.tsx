@@ -1,5 +1,8 @@
 import cx from 'classnames';
-import { AvatarText, Badge, Button, Text } from '..';
+import { AvatarText } from '../AvatarText';
+import { Badge } from '../Badge';
+import { Button } from '../Button';
+import { Text } from '../Text';
 
 interface Props {
   avatarSrc: string;
