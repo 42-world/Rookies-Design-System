@@ -13,14 +13,14 @@ interface ButtonProps {
 
 type Props = ButtonProps & Omit<ButtonHTMLAttributes<HTMLButtonElement>, keyof ButtonProps>;
 
-const variantStyles = {
+const variantStyles: Record<ButtonVariant, string> = {
   primary: 'bg-color-system_200 border-0 hover:bg-color-system_300',
   secondary:
     'border-border-primary dark:border-border-primary_dark hover:border-color-system_200 hover:dark:border-color-system_200',
   text: 'border-0',
 };
 
-export function Button({ text, variant = 'primary', icon, ...restProps }: Props) {
+export function Button({ variant = 'primary', text, icon, ...restProps }: Props) {
   return (
     <button
       className={cx(
