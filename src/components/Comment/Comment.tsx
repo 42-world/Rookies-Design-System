@@ -1,4 +1,4 @@
-import { AvatarText, Badge, Text } from '..';
+import { AvatarText, Badge, Button, Text } from '..';
 
 interface Props {
   avatarSrc: string;
@@ -34,9 +34,9 @@ export function Comment({
       </div>
       <Text size="body2" text={content} />
       <div className="flex flex-row items-center gap-4">
-        <Text text={`좋아요 ${numOfLikes}`} size="body2" color="secondary" />
-        <Text text="답글달기" size="body2" color="secondary" />
-        <Text text="수정하기" size="body2" color="secondary" />
+        <Button text={`좋아요 ${numOfLikes}`} variant="text" className="px-0" />
+        <Button text="답글달기" variant="text" className="px-0 mx-4" />
+        <Button text="수정하기" variant="text" className="px-0" />
       </div>
     </div>
   );
