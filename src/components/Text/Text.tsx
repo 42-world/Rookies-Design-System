@@ -1,4 +1,4 @@
-type TextSize = 'heading1' | 'heading2' | 'heading3' | 'body1' | 'body2' | 'small';
+export type TextSize = 'heading1' | 'heading2' | 'heading3' | 'body1' | 'body2' | 'small';
 type TextWeight = 'regular' | 'medium' | 'semibold';
 type TextAlign = 'left' | 'right' | 'center';
 type Color =

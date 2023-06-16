@@ -1,5 +1,7 @@
-import cx from 'classnames';
 import { ButtonHTMLAttributes, FC, SVGAttributes } from 'react';
+import { twMerge } from 'tailwind-merge';
+import cx from 'classnames';
+
 import { Icon } from '../Icon';
 import { Text } from '../Text';
 
@@ -20,12 +22,13 @@ const variantStyles: Record<ButtonVariant, string> = {
   text: 'border-0',
 };
 
-export function Button({ variant = 'primary', text, icon, ...restProps }: Props) {
+export function Button({ variant = 'primary', text, icon, className, ...restProps }: Props) {
   return (
     <button
-      className={cx(
+      className={twMerge(
         `group h-8 flex flex-row items-center gap-2 rounded-2xl border border-solid transition-all duration-300 active:scale-95 ${variantStyles[variant]}`,
         icon && !text ? 'px-2' : 'px-3',
+        className,
       )}
       {...restProps}
     >
