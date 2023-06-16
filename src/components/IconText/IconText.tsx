@@ -11,13 +11,13 @@ interface Props {
   size?: Size;
 }
 
-export function IconText({ svg, size = 'medium', text }: Props) {
-  const textSize: Record<Size, TextSize> = {
-    medium: 'body1',
-    small: 'body2',
-    xsmall: 'small',
-  };
+const textSize: Record<Size, TextSize> = {
+  medium: 'body1',
+  small: 'body2',
+  xsmall: 'small',
+};
 
+export function IconText({ svg, size = 'medium', text }: Props) {
   return (
     <div className={cx('flex flex-row items-center', { 'gap-2': size !== 'xsmall', 'gap-1': size === 'xsmall' })}>
       <Icon svg={svg} size={size} className="fill-text-secondary dark:fill-text-secondary_dark" />
