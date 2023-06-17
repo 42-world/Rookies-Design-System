@@ -14,22 +14,22 @@ export function AvatarText(props: ComponentProps<typeof _AvatarText>) {
 // Add your custom property infos here
 applyFramerProperties(AvatarText, {
   src: {
-    title: 'src',
+    title: 'Src',
     type: ControlType.String,
     defaultValue: 'https://picsum.photos/536/354',
   },
   alt: {
-    title: 'alt',
+    title: 'Alt',
     type: ControlType.String,
     defaultValue: '지최 is Babo',
   },
   size: {
-    title: 'size',
+    title: 'Size',
     type: ControlType.Number,
     defaultValue: 16,
   },
   mainText: {
-    title: 'mainText',
+    title: 'MainText',
     type: ControlType.String,
     defaultValue: '지최',
   },

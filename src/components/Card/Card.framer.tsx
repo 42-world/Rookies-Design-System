@@ -14,27 +14,27 @@ export function Card(props: ComponentProps<typeof _Card>) {
 // Add your custom property infos here
 applyFramerProperties(Card, {
   imageSrc: {
-    title: 'imageSrc',
+    title: 'ImageSrc',
     type: ControlType.String,
     defaultValue: 'https://picsum.photos/536/354',
   },
   imageAlt: {
-    title: 'imageAlt',
+    title: 'ImageAlt',
     type: ControlType.String,
     defaultValue: '지최 is Babo',
   },
   primary: {
-    title: 'primary',
+    title: 'Primary',
     type: ControlType.String,
     defaultValue: '지최',
   },
   secondary: {
-    title: 'secondary',
+    title: 'Secondary',
     type: ControlType.String,
     defaultValue: '지최',
   },
   detail: {
-    title: 'detail',
+    title: 'Detail',
     type: ControlType.String,
     defaultValue: '지최',
   },
