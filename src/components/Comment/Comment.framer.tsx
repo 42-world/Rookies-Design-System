@@ -1,6 +1,5 @@
-import type { ComponentProps } from 'react';
 import { ControlType } from 'framer';
-
+import type { ComponentProps } from 'react';
 import { FramerProvider, applyFramerProperties } from '../../common/framer';
 import { Comment as _Comment } from './Comment';
 
@@ -15,48 +14,48 @@ export function Comment(props: ComponentProps<typeof _Comment>) {
 // Add your custom property infos here
 applyFramerProperties(Comment, {
   avatarSrc: {
-    title: 'avatarSrc',
+    title: 'AvatarSrc',
     type: ControlType.String,
     defaultValue: 'https://picsum.photos/536/354',
   },
   avatarAlt: {
-    title: 'avatarAlt',
+    title: 'AvatarAlt',
     type: ControlType.String,
-    defaultValue: '지최',
+    defaultValue: 'image',
   },
   username: {
-    title: 'username',
+    title: 'Username',
     type: ControlType.String,
-    defaultValue: '지최',
+    defaultValue: '에베베손',
   },
   time: {
-    title: 'time',
+    title: 'Time',
     type: ControlType.String,
-    defaultValue: '2021-10-20',
+    defaultValue: '1시간 전',
   },
   content: {
-    title: 'content',
+    title: 'Content',
     type: ControlType.String,
-    defaultValue: '지최 is Babo',
+    defaultValue: '42world design system',
   },
   isMine: {
-    title: 'isMine',
+    title: 'IsMine',
     type: ControlType.Boolean,
     defaultValue: false,
   },
   isAuthor: {
-    title: 'isAuthor',
+    title: 'IsAuthor',
     type: ControlType.Boolean,
     defaultValue: false,
   },
   isLiked: {
-    title: 'isLiked',
+    title: 'IsLiked',
     type: ControlType.Boolean,
     defaultValue: false,
   },
   numOfLikes: {
-    title: 'numOfLikes',
+    title: 'NumOfLikes',
     type: ControlType.Number,
-    defaultValue: 16,
+    defaultValue: 0,
   },
 });

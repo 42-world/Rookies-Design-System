@@ -1,35 +1,40 @@
 import { ControlType } from 'framer';
 import type { ComponentProps } from 'react';
 import { applyFramerProperties, FramerProvider } from '../../common/framer';
-import { AvatarText as _AvatarText } from './AvatarText';
+import { Card as _Card } from './Card';
 
-export function AvatarText(props: ComponentProps<typeof _AvatarText>) {
+export function Card(props: ComponentProps<typeof _Card>) {
   return (
     <FramerProvider>
-      <_AvatarText {...props} />
+      <_Card {...props} />
     </FramerProvider>
   );
 }
 
 // Add your custom property infos here
-applyFramerProperties(AvatarText, {
-  src: {
-    title: 'Src',
+applyFramerProperties(Card, {
+  imageSrc: {
+    title: 'ImageSrc',
     type: ControlType.String,
     defaultValue: 'https://picsum.photos/536/354',
   },
-  alt: {
-    title: 'Alt',
+  imageAlt: {
+    title: 'ImageAlt',
     type: ControlType.String,
     defaultValue: '지최 is Babo',
   },
-  size: {
-    title: 'Size',
-    type: ControlType.Enum,
-    options: ['40px', '64px'],
+  primary: {
+    title: 'Primary',
+    type: ControlType.String,
+    defaultValue: '지최',
   },
-  mainText: {
-    title: 'MainText',
+  secondary: {
+    title: 'Secondary',
+    type: ControlType.String,
+    defaultValue: '지최',
+  },
+  detail: {
+    title: 'Detail',
     type: ControlType.String,
     defaultValue: '지최',
   },
