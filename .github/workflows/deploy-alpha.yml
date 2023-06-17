@@ -84,6 +84,7 @@ jobs:
           echo "sha=$sha" >> $GITHUB_OUTPUT
 
       - name: Deploy Alpha Pages
+        id: deploy
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: 'Alpha ${{ env.alpha_version }} Build (${{ steps.build.outputs.sha }})'
@@ -96,6 +97,8 @@ jobs:
         with:
           message: |
             ## Alpha ${{ env.alpha_version }} Build Done! - ${{ steps.build.outputs.sha }}
+
+            _wait for the deploy to be done [here](https://github.com/42-world/42-world.github.io/commit/${{ steps.deploy.outputs.commit_hash }}/status-details)_
 
             ### Check it out!
 
@@ -114,6 +117,8 @@ jobs:
         with:
           body: |
             ## Alpha ${{ env.alpha_version }} Rebuilt
+
+            _wait for the deploy to be done [here](https://github.com/42-world/42-world.github.io/commit/${{ steps.deploy.outputs.commit_hash }}/status-details)_
 
             ### Check it out!
 

@@ -103,6 +103,7 @@ jobs:
           push_options: '--force'
 
       - name: Deploy Pages
+        id: deploy
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: 'Version ${{ env.new_version }} Build (${{ github.sha }})'
@@ -120,6 +121,8 @@ jobs:
           sha: ${{ steps.commit-new-version.outputs.commit_hash }}
           body: |
             ## Version ${{ env.new_version }} Build Done!
+
+            _wait for the deploy to be done [here](https://github.com/42-world/42-world.github.io/commit/${{ steps.deploy.outputs.commit_hash }}/status-details)_
 
             ### Check it out!
 
