@@ -1,0 +1,85 @@
+import { ControlType } from 'framer';
+import { ComponentProps, useEffect, useRef } from 'react';
+import { FramerProvider, applyFramerProperties } from '../../common/framer';
+import { Input as _Input } from './Input';
+
+interface InputProps extends ComponentProps<typeof _Input> {
+  focused: boolean;
+  helperText: string;
+}
+
+const transformProps = (props: InputProps): ComponentProps<typeof _Input> => {
+  const { focused, helperText, ...restProps } = props;
+
+  return {
+    ...restProps,
+    label: '레이블',
+    value: '값',
+    required: true,
+    hasError: false,
+    maxLength: 20,
+    subLabel: helperText,
+  };
+};
+
+export function Input(props: InputProps) {
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const propsForFramer = transformProps(props);
+
+  useEffect(() => {
+    if (props.focused) {
+      inputRef.current?.focus();
+    }
+  }, [props.focused]);
+
+  return (
+    <FramerProvider>
+      <_Input ref={inputRef} {...propsForFramer} />
+    </FramerProvider>
+  );
+}
+
+applyFramerProperties(Input, {
+  variant: {
+    title: 'Variant',
+    type: ControlType.Enum,
+    options: ['outlined', 'filled'],
+    defaultValue: 'outlined',
+  },
+  focused: {
+    title: 'Focused',
+    type: ControlType.Boolean,
+    defaultValue: false,
+  },
+  required: {
+    title: 'Required',
+    type: ControlType.Boolean,
+    defaultValue: true,
+  },
+  value: {
+    title: 'Value',
+    type: ControlType.String,
+    defaultValue: '',
+  },
+  label: {
+    title: 'Label',
+    type: ControlType.String,
+    defaultValue: '레이블',
+  },
+  hasError: {
+    title: 'Has Error',
+    type: ControlType.Boolean,
+    defaultValue: false,
+  },
+  helperText: {
+    title: 'Helper Text',
+    type: ControlType.String,
+    defaultValue: '헬퍼텍스트',
+  },
+  maxLength: {
+    title: 'Max Length',
+    type: ControlType.Number,
+    defaultValue: 20,
+  },
+});
