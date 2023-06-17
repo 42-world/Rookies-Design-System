@@ -3,9 +3,16 @@ import { ComponentProps, useEffect, useRef } from 'react';
 import { FramerProvider, applyFramerProperties } from '../../common/framer';
 import { Input as _Input } from './Input';
 
-interface InputProps extends ComponentProps<typeof _Input> {
+interface InputProps {
+  variant: 'outline' | 'filled';
+  value: string;
+  label: string;
+  hasError: boolean;
+  required: boolean;
+  maxLength: number;
   focused: boolean;
   helperText: string;
+  placeholder: string;
 }
 
 const transformProps = (props: InputProps): ComponentProps<typeof _Input> => {
@@ -13,11 +20,6 @@ const transformProps = (props: InputProps): ComponentProps<typeof _Input> => {
 
   return {
     ...restProps,
-    label: '레이블',
-    value: '값',
-    required: true,
-    hasError: false,
-    maxLength: 20,
     subLabel: helperText,
   };
 };
@@ -25,7 +27,7 @@ const transformProps = (props: InputProps): ComponentProps<typeof _Input> => {
 export function Input(props: InputProps) {
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const propsForFramer = transformProps(props);
+  const transformedProps = transformProps(props);
 
   useEffect(() => {
     if (props.focused) {
@@ -35,7 +37,7 @@ export function Input(props: InputProps) {
 
   return (
     <FramerProvider>
-      <_Input ref={inputRef} {...propsForFramer} />
+      <_Input ref={inputRef} {...transformedProps} />
     </FramerProvider>
   );
 }
@@ -56,6 +58,11 @@ applyFramerProperties(Input, {
     title: 'Required',
     type: ControlType.Boolean,
     defaultValue: true,
+  },
+  placeholder: {
+    title: 'Placeholder',
+    type: ControlType.String,
+    defaultValue: '플레이스홀더',
   },
   value: {
     title: 'Value',
