@@ -45,8 +45,8 @@ export const textSizeConfig: Record<TextSize, string> = {
   heading1: 'text-4xl leading-normal',
   heading2: 'text-2xl leading-normal',
   heading3: 'text-lg leading-normal',
-  body1: 'text-base leading-[1.8rem]',
-  body2: 'text-sm leading-[1.8rem]',
+  body1: 'text-base leading-normal',
+  body2: 'text-sm leading-normal',
   small: 'text-xs leading-normal',
 };
 
