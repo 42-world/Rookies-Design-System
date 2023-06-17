@@ -11,6 +11,7 @@ export { ListItem } from './ListItem';
 export { Sample } from './Sample';
 export { Text } from './Text';
 export { Thumbnail } from './Thumbnail';
+export { CommentInput } from './CommentInput';
 export { Badge } from './Badge';
 export { IconText } from './IconText';
 export { Button } from './Button';
