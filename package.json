@@ -1,6 +1,6 @@
 {
   "name": "@42world/design-core",
-  "version": "0.9.1",
+  "version": "0.11.2",
   "author": "42World Team",
   "description": "42World Design System",
   "homepage": "https://github.com/42-world/42world-Design-System",
@@ -42,7 +42,8 @@
     "@svgr/core": "^8.0.0",
     "classnames": "^2.3.2",
     "framer-motion": "^10.12.4",
-    "popmotion": "^11.0.5"
+    "popmotion": "^11.0.5",
+    "tailwind-merge": "^1.13.2"
   },
   "peerDependencies": {
     "react": "^18.2.0",
