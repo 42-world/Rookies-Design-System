@@ -29,6 +29,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       rightAddon,
       hasError,
       maxLength,
+      children,
       onValueChange: onValueChangeFromProps,
       ...restProps
     },
@@ -61,7 +62,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
               {label}
             </label>
           )}
-          {maxLength && (
+          {maxLength ? (
             <Text
               className="ml-auto"
               text={`(${value.length}/${maxLength})`}
@@ -69,7 +70,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
               weight="regular"
               color="secondary"
             />
-          )}
+          ) : null}
         </div>
         <div
           className={cx('flex items-center w-full rounded-lg px-4', {
