@@ -1,6 +1,5 @@
-import { ControlType } from 'framer';
 import type { ComponentProps } from 'react';
-import { FramerProvider, applyFramerProperties } from '../../common/framer';
+import { applyFramerProperties, FramerProvider } from '../../common/framer';
 import { CommentInput as _CommentInput } from './CommentInput';
 
 export function CommentInput(props: ComponentProps<typeof _CommentInput>) {
@@ -12,4 +11,4 @@ export function CommentInput(props: ComponentProps<typeof _CommentInput>) {
 }
 
 // Add your custom property infos here
-// applyFramerProperties(Avatar, {});
+applyFramerProperties(CommentInput, {});
