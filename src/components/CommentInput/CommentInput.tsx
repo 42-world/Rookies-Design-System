@@ -1,6 +1,8 @@
-import type { InputHTMLAttributes } from 'react';
+import SendIcon from '@material-design-icons/svg/filled/send.svg';
 import { forwardRef } from 'react';
+import type { InputHTMLAttributes } from 'react';
 import cx from 'classnames';
+import { Button } from '../Button';
 
 interface CommentInputProps extends InputHTMLAttributes<HTMLInputElement> {}
 /**
@@ -16,7 +18,7 @@ export const CommentInput = forwardRef<HTMLInputElement, CommentInputProps>(({ c
         className={cx('flex-1 w-full h-8 text-sm bg-transparent outline-none', className)}
         {...restProps}
       />
-      <button>규동님 버튼 만들어주세요</button>
+      <Button type="submit" icon={SendIcon} aria-label="댓글 작성" />
     </div>
   );
 });
