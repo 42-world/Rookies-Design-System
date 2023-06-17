@@ -4,18 +4,19 @@ import { forwardRef, useId } from 'react';
 import { useControllableState } from './useControllableState';
 import { Text } from '../Text';
 
-interface Props extends InputHTMLAttributes<HTMLInputElement> {
+interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   value?: string;
   defaultValue?: string;
   subLabel?: string;
   variant?: 'outline' | 'filled';
+  required?: boolean;
   hasError?: boolean;
   rightAddon?: ReactNode;
   onValueChange?: (value: string) => void;
 }
 
-export const Input = forwardRef<HTMLInputElement, Props>(
+export const Input = forwardRef<HTMLInputElement, InputProps>(
   (
     {
       id: idFromProps,
@@ -24,6 +25,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(
       defaultValue,
       subLabel,
       variant,
+      required,
       rightAddon,
       hasError,
       maxLength,
@@ -49,7 +51,12 @@ export const Input = forwardRef<HTMLInputElement, Props>(
           {label && (
             <label
               htmlFor={idFromProps ?? id}
-              className='before:content-["*"] before:mr-1 text-sm leading-[1.8] font-normal text-text-secondary dark:text-text-secondary_dark'
+              className={cx(
+                'before:mr-1 text-sm leading-[1.8] font-normal text-text-secondary dark:text-text-secondary_dark',
+                {
+                  'before:content-["*"]': required,
+                },
+              )}
             >
               {label}
             </label>
