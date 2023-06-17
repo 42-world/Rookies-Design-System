@@ -1,0 +1,1 @@
+export { AvatarText } from './AvatarText';

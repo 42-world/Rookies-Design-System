@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.json",
+  "exclude": [
+    "**/__test__/**",
+    "**/*.test.ts",
+    "**/*.mdx",
+    "node_modules",
+    "dist",
+    "src/**/framer/**",
+    "src/**/*.stories.tsx",
+    "src/**/*.stories.ts",
+    "src/**/*.framer.tsx",
+    "src/**/*.framer.ts"
+  ]
+}

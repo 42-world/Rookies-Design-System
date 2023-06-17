@@ -1,74 +1,127 @@
-# This is a basic workflow to help you get started with Actions
-
 name: Deploy Alpha
 
-# Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the main branch
   pull_request:
     branches: [main]
 
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
-jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
+concurrency:
+  group: 'pages-deploy'
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
+jobs:
+  version:
+    runs-on: ubuntu-latest
+    outputs:
+      new_version: ${{ steps.version.outputs.new_version }}
+      main_version: ${{ steps.version.outputs.main_version }}
+      alpha_version: ${{ steps.version.outputs.alpha_version }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0 # All commits, so we can look at the tags
-          path: branch
-      - name: Checkout Pages
-        uses: actions/checkout@v2
-        with:
-          ref: pages
-          path: pages
-      - name: Reset Pages
+        uses: actions/checkout@v3
+
+      - name: Version
+        id: version
+        shell: bash
         run: |
-          cd branch
           MAIN_VERSION=$(yarn --silent run version)
-          cd ../pages
-          VERSION=alpha-pr${{ github.event.pull_request.number }}
-          rm -rf $VERSION
-          cp -rf $MAIN_VERSION $VERSION
-          git config --global user.name 'deploy'
-          git config --global user.email 'deploy@users.noreply.github.com'
-          git add .
-          git status
-          git commit -m "Reset Alpha $VERSION" | cat
-      - name: Generate Pages
+          echo "main_version=$MAIN_VERSION"
+          echo "main_version=$MAIN_VERSION" >> $GITHUB_OUTPUT
+
+          semver=$(bash .script/get-version-semver.sh '${{ github.event.pull_request.title }}')
+          yarn version $semver --no-git-tag-version
+          NEW_VERSION=$(yarn --silent run version)
+          echo "new_version=$NEW_VERSION"
+          echo "new_version=$NEW_VERSION" >> $GITHUB_OUTPUT
+
+          ALPHA_VERSION=$NEW_VERSION-alpha${{ github.event.pull_request.number }}
+          echo "alpha_version=$ALPHA_VERSION"
+          echo "alpha_version=$ALPHA_VERSION" >> $GITHUB_OUTPUT
+
+  build:
+    needs: version
+    runs-on: ubuntu-latest
+    env:
+      main_version: ${{ needs.version.outputs.main_version }}
+      alpha_version: ${{ needs.version.outputs.alpha_version }}
+      new_version: ${{ needs.version.outputs.new_version }}
+      base_path: 'design'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Checkout Pages Repo
+        uses: actions/checkout@v3
+        with:
+          repository: '42-world/42-world.github.io'
+          path: .pages
+          token: ${{ secrets.GH_TOKEN }}
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'yarn'
+
+      - name: CI
         run: |
-          cd branch
           yarn
-          yarn run build
-          VERSION=alpha-pr${{ github.event.pull_request.number }}
-          rm -rf $GITHUB_WORKSPACE/pages/$VERSION
-          cp -rf dist $GITHUB_WORKSPACE/pages/$VERSION
-      - name: Commit & Push
+          yarn ci
+
+      - name: Build Alpha Pages
+        id: build
         run: |
-          cd pages
-          git config --global user.name 'deploy'
-          git config --global user.email 'deploy@users.noreply.github.com'
-          git add .
-          VERSION=alpha-pr${{ github.event.pull_request.number }}
-          bash $GITHUB_WORKSPACE/branch/.script/get-build-complete-message.sh $VERSION > $GITHUB_WORKSPACE/comment.txt
-          git status
-          git commit -m "Updated Alpha $VERSION" | cat
-          git push --force
-      - name: Comment a pull_request
-        env:
-          PR_NUMBER: ${{ github.event.pull_request.number }}
-          REPO: ${{ github.repository }}
-        run: |
-          curl -X POST \
-            -H "Content-Type: application/json" \
-            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-            https://api.github.com/repos/$REPO/issues/$PR_NUMBER/comments \
-            -d "{\"body\": \"$(cat $GITHUB_WORKSPACE/comment.txt)\"}"
+          yarn
+          NODE_ENV=production yarn build
+          sha=$(git rev-parse --short ${{ github.event.pull_request.head.sha }})
+          yarn version --new-version $alpha_version-$sha --no-git-tag-version
+          yarn pack
+
+          rm -rf .pages/$base_path/*-alpha${{ github.event.pull_request.number }}
+          mkdir -p .pages/$base_path/$alpha_version
+          cp -rf dist/* .pages/$base_path/$alpha_version
+          cp -rf *.tgz .pages/$base_path/$alpha_version
+          echo "pack_name=$(ls *.tgz)" >> $GITHUB_OUTPUT
+          echo "sha=$sha" >> $GITHUB_OUTPUT
+
+      - name: Deploy Alpha Pages
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: 'Alpha ${{ env.alpha_version }} Build (${{ steps.build.outputs.sha }})'
+          commit_options: '--allow-empty'
+          repository: .pages
+          branch: main
+
+      - name: Comment PR Alpha Build
+        uses: thollander/actions-comment-pull-request@v2
+        with:
+          message: |
+            ## Alpha ${{ env.alpha_version }} Build Done! - ${{ steps.build.outputs.sha }}
+
+            ### Check it out!
+
+            - Go to [StoryBook](https://42-world.github.io/${{ env.base_path }}/${{ env.alpha_version }}/storybook)
+            - Go to [Framer](https://42-world.github.io/${{ env.base_path }}/${{ env.alpha_version }}/framer/components/Text/Text.framer.js)
+
+            ### Or you can try...
+
+            ```
+            yarn add @42world/design-core@https://42-world.github.io/${{ env.base_path }}/${{ env.alpha_version }}/${{ steps.build.outputs.pack_name }}
+            ```
+          comment_tag: execution
+
+      - name: Comment commit
+        uses: peter-evans/commit-comment@v2
+        with:
+          body: |
+            ## Alpha ${{ env.alpha_version }} Rebuilt
+
+            ### Check it out!
+
+            - Go to [StoryBook](https://42-world.github.io/${{ env.base_path }}/${{ env.alpha_version }}/storybook)
+            - Go to [Framer](https://42-world.github.io/${{ env.base_path }}/${{ env.alpha_version }}/framer/components/Text/Text.framer.js)
+
+            ### Or you can try...
+
+            ```
+            yarn add @42world/design-core@https://42-world.github.io/${{ env.base_path }}/${{ env.alpha_version }}/${{ steps.build.outputs.pack_name }}
+            ```
