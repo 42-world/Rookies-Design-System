@@ -1,5 +1,8 @@
 import cx from 'classnames';
-import { AvatarText, Badge, Button, Text } from '..';
+import { AvatarText } from '../AvatarText';
+import { Badge } from '../Badge';
+import { Button } from '../Button';
+import { Text } from '../Text';
 
 interface Props {
   avatarSrc: string;
@@ -10,7 +13,7 @@ interface Props {
   isMine?: boolean;
   isAuthor?: boolean;
   isLiked?: boolean;
-  numOfLikes: number;
+  numOfLikes?: number;
   onClickLike?: () => void;
   onClickReply?: () => void;
   onClickEdit?: () => void;

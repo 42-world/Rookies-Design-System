@@ -1,6 +1,6 @@
 import { ControlType } from 'framer';
 import type { ComponentProps } from 'react';
-import { applyFramerProperties, FramerProvider } from '../../common/framer';
+import { FramerProvider, applyFramerProperties } from '../../common/framer';
 import { Comment as _Comment } from './Comment';
 
 export function Comment(props: ComponentProps<typeof _Comment>) {

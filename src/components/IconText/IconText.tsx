@@ -1,7 +1,7 @@
 import cx from 'classnames';
 import { FunctionComponent, SVGProps } from 'react';
-import { Icon, Text } from '..';
-import { TextSize } from '../Text';
+import { Icon } from '../Icon';
+import { Text, TextSize } from '../Text';
 
 type Size = 'medium' | 'small' | 'xsmall';
 
