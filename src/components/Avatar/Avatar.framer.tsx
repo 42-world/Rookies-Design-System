@@ -1,5 +1,6 @@
+import { ControlType } from 'framer';
 import type { ComponentProps } from 'react';
-import { FramerProvider } from '../../common/framer';
+import { applyFramerProperties, FramerProvider } from '../../common/framer';
 import { Avatar as _Avatar } from './Avatar';
 
 export function Avatar(props: ComponentProps<typeof _Avatar>) {
@@ -10,5 +11,15 @@ export function Avatar(props: ComponentProps<typeof _Avatar>) {
   );
 }
 
-// Add your custom property infos here
-// applyFramerProperties(Avatar, {});
+applyFramerProperties(Avatar, {
+  src: {
+    title: 'src',
+    type: ControlType.String,
+    defaultValue: 'https://picsum.photos/536/354',
+  },
+  alt: {
+    title: 'alt',
+    type: ControlType.String,
+    defaultValue: '지최 is Babo',
+  },
+});
