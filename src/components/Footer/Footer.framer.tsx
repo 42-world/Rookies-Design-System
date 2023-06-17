@@ -1,6 +1,6 @@
 import { ControlType } from 'framer';
 import type { ComponentProps } from 'react';
-import { FramerProvider, applyFramerProperties } from '../../common/framer';
+import { applyFramerProperties, FramerProvider } from '../../common/framer';
 import { Footer as _Footer } from './Footer';
 
 export function Footer(props: ComponentProps<typeof _Footer>) {
@@ -25,7 +25,7 @@ applyFramerProperties(Footer, {
   },
   mailLink: {
     title: 'MailLink',
-    title: ControlType.String,
+    type: ControlType.String,
     defaultValue: 'mailto:asdf@naver.com',
   },
 });
