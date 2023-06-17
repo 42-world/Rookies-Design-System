@@ -25,8 +25,8 @@ applyFramerProperties(AvatarText, {
   },
   size: {
     title: 'Size',
-    type: ControlType.Number,
-    defaultValue: 16,
+    type: ControlType.Enum,
+    options: ['40px', '64px'],
   },
   mainText: {
     title: 'MainText',
