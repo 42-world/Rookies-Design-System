@@ -29,7 +29,6 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       rightAddon,
       hasError,
       maxLength,
-      children,
       onValueChange: onValueChangeFromProps,
       ...restProps
     },

@@ -27,7 +27,7 @@ const transformProps = (props: InputProps): ComponentProps<typeof _Input> => {
 export function Input(props: InputProps) {
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const transformedProps = transformProps(props);
+  const { children, ...transformedProps } = transformProps(props);
 
   useEffect(() => {
     if (props.focused) {
