@@ -9,10 +9,10 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
   value?: string;
   defaultValue?: string;
   subLabel?: string;
-  variant: 'outline' | 'filled';
-  hasError: boolean;
-  rightAddon: ReactNode;
-  onValueChange: (value: string) => void;
+  variant?: 'outline' | 'filled';
+  hasError?: boolean;
+  rightAddon?: ReactNode;
+  onValueChange?: (value: string) => void;
 }
 
 export const Input = forwardRef<HTMLInputElement, Props>(
