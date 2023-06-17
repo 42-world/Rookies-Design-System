@@ -27,6 +27,11 @@ applyFramerProperties(Thumbnail, {
     type: ControlType.Number,
     defaultValue: 480,
   },
+  rounded: {
+    title: 'rounded',
+    type: ControlType.Enum,
+    options: ['8px', '16px'],
+  },
   ratio: {
     title: 'ratio',
     type: ControlType.Enum,
