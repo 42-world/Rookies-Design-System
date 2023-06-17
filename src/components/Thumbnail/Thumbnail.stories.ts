@@ -13,6 +13,7 @@ export const Primary: Story = {
     src: 'https://picsum.photos/536/354',
     alt: '42world',
     width: 269,
+    rounded: '16px',
     ratio: '16:9',
   },
 };
