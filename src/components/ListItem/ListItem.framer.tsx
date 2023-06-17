@@ -3,8 +3,8 @@ import type { ComponentProps } from 'react';
 import { FramerProvider, applyFramerProperties } from '../../common/framer';
 import { ListItem as _ListItem } from './ListItem';
 
-export function ListItem({ children, ...props }: ComponentProps<typeof _ListItem> & { children: JSX.Element[] }) {
-  if (!children.length) {
+export function ListItem({ rightAddon, ...props }: ComponentProps<typeof _ListItem> & { rightAddon: JSX.Element[] }) {
+  if (!rightAddon.length) {
     return (
       <FramerProvider>
         <_ListItem {...props} />
@@ -14,9 +14,7 @@ export function ListItem({ children, ...props }: ComponentProps<typeof _ListItem
 
   return (
     <FramerProvider>
-      <_ListItem {...props}>
-        <_ListItem.MetadataItems>{children}</_ListItem.MetadataItems>
-      </_ListItem>
+      <_ListItem rightAddon={rightAddon} {...props}></_ListItem>
     </FramerProvider>
   );
 }
@@ -47,8 +45,8 @@ applyFramerProperties(ListItem, {
     type: ControlType.Boolean,
     defaultValue: true,
   },
-  children: {
-    title: 'Children',
+  rightAddon: {
+    title: 'RightAddon',
     type: ControlType.ComponentInstance,
   },
 });

@@ -1,15 +1,16 @@
-import { PropsWithChildren } from 'react';
+import { ReactNode } from 'react';
 import { Divider } from '../Divider';
 import { Thumbnail } from '../Thumbnail';
 import { Text } from './../Text/Text';
 
-type Props = PropsWithChildren<{
+interface Props {
   title: string;
   thumbnailSrc?: string;
   secondaryTextFirst?: string;
   secondaryTextSecond?: string;
   hasBorder?: boolean;
-}>;
+  rightAddon?: ReactNode;
+}
 
 const MergedSecondaryText = (first?: string, second?: string) => {
   return (
@@ -22,12 +23,12 @@ const MergedSecondaryText = (first?: string, second?: string) => {
 };
 
 export function ListItem({
-  children,
   title,
   thumbnailSrc,
   secondaryTextFirst,
   secondaryTextSecond,
   hasBorder = true,
+  rightAddon,
 }: Props) {
   return (
     <div className="w-full cursor-pointer active:scale-95 transition-transform duration-300 ease-out select-none">
@@ -39,17 +40,11 @@ export function ListItem({
             <Text text={title} size="body1" weight="medium" color="primary" />
           </div>
         </div>
-        {children}
+        <div className="flex flex-row items-center gap-2 text-text-secondary dark:text-text-secondary_dark">
+          {rightAddon}
+        </div>
       </div>
       {hasBorder && <Divider variant="secondary" />}
     </div>
   );
 }
-
-function MetadataItems({ children }: Pick<Props, 'children'>) {
-  return (
-    <div className="flex flex-row items-center gap-2 text-text-secondary dark:text-text-secondary_dark">{children}</div>
-  );
-}
-
-ListItem.MetadataItems = MetadataItems;
