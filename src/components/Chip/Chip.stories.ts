@@ -13,14 +13,14 @@ export const Primary: Story = {
   args: {
     icon: Face,
     text: 'Sample',
-    selected: false,
+    isSelected: false,
   },
 };
 
 export const PrimaryNoIcon: Story = {
   args: {
     text: 'Sample',
-    selected: false,
+    isSelected: false,
   },
 };
 
