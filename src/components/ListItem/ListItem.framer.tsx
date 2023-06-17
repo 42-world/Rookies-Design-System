@@ -49,4 +49,8 @@ applyFramerProperties(ListItem, {
     title: 'RightAddon',
     type: ControlType.ComponentInstance,
   },
+  onClick: {
+    title: 'OnClick',
+    type: ControlType.EventHandler,
+  },
 });

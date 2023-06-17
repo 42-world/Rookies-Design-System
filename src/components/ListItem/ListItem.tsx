@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode, MouseEventHandler } from 'react';
 import { Divider } from '../Divider';
 import { Thumbnail } from '../Thumbnail';
 import { Text } from './../Text/Text';
@@ -10,6 +10,7 @@ interface Props {
   secondaryTextSecond?: string;
   hasBorder?: boolean;
   rightAddon?: ReactNode;
+  onClick?: MouseEventHandler<HTMLDivElement>;
 }
 
 const MergedSecondaryText = (first?: string, second?: string) => {
@@ -29,9 +30,13 @@ export function ListItem({
   secondaryTextSecond,
   hasBorder = true,
   rightAddon,
+  onClick,
 }: Props) {
   return (
-    <div className="w-full cursor-pointer active:scale-95 transition-transform duration-300 ease-out select-none">
+    <div
+      className="w-full cursor-pointer active:scale-95 transition-transform duration-300 ease-out select-none"
+      onClick={onClick}
+    >
       <div className="flex flex-row justify-between items-center py-4">
         <div className="flex flex-row items-center">
           {thumbnailSrc && <Thumbnail src={thumbnailSrc} alt={title} width={85} ratio="16:9" />}
