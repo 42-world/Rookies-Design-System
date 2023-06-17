@@ -18,4 +18,14 @@ applyFramerProperties(Footer, {
     type: ControlType.String,
     defaultValue: '@ 2022. Team ROOK!ES',
   },
+  githubLink: {
+    title: 'GithubLink',
+    type: ControlType.String,
+    defaultValue: 'https://github.com',
+  },
+  mailLink: {
+    title: 'MailLink',
+    title: ControlType.String,
+    defaultValue: 'mailto:asdf@naver.com',
+  },
 });
