@@ -28,7 +28,7 @@ applyFramerProperties(Chip, {
     defaultValue: 'Chip',
   },
   isSelected: {
-    title: 'isSelected',
+    title: 'IsSelected',
     type: ControlType.Boolean,
     defaultValue: false,
   },
