@@ -16,9 +16,9 @@ interface Props {
 const MergedSecondaryText = (first?: string, second?: string) => {
   return (
     <div className="flex flex-row items-center gap-1">
-      {first && <Text text={first} size="body2" weight="regular" color="secondary" />}
-      {first && second && <Text text="·" size="body2" weight="regular" color="secondary" />}
-      {second && <Text text={second} size="body2" weight="regular" color="secondary" />}
+      {first && <Text text={first} size="body2" color="secondary" />}
+      {first && second && <Text text="·" size="body2" color="secondary" />}
+      {second && <Text text={second} size="body2" color="secondary" />}
     </div>
   );
 };
