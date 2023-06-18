@@ -39,7 +39,7 @@ export function ListItem({
     >
       <div className="flex flex-row justify-between items-center py-4">
         <div className="flex flex-row items-center">
-          {thumbnailSrc && <Thumbnail src={thumbnailSrc} alt={title} width={85} ratio="16:9" />}
+          {thumbnailSrc && <Thumbnail src={thumbnailSrc} alt={title} width={85} rounded="8px" ratio="16:9" />}
           <div className="ml-3 flex-1">
             {MergedSecondaryText(secondaryTextFirst, secondaryTextSecond)}
             <Text text={title} size="body1" weight="medium" color="primary" />
