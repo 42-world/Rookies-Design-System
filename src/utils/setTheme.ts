@@ -7,14 +7,13 @@
  * @returns
  */
 export function setTheme(theme?: 'light' | 'dark'): void {
-  if (typeof window === 'undefined') {
-    return;
-  }
-
-  const document = window.document;
-  if (theme === 'dark') {
-    document.documentElement.classList.add('dark');
-  } else {
-    document.documentElement.classList.remove('dark');
-  }
+  // if (typeof window === 'undefined') {
+  //   return;
+  // }
+  // const document = window.document;
+  // if (theme === 'dark') {
+  //   document.documentElement.classList.add('dark');
+  // } else {
+  //   document.documentElement.classList.remove('dark');
+  // }
 }

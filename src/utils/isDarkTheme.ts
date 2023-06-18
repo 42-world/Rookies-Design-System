@@ -7,10 +7,10 @@
  * @returns
  */
 export function isDarkTheme(): boolean {
-  if (typeof window === 'undefined') {
-    return false;
-  }
-
-  const document = window.document;
-  return document.documentElement.classList.contains('dark');
+  return false;
+  // if (typeof window === 'undefined') {
+  //   return false;
+  // }
+  // const document = window.document;
+  // return document.documentElement.classList.contains('dark');
 }
