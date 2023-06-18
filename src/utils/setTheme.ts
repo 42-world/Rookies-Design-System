@@ -7,6 +7,7 @@
  * @returns
  */
 export function setTheme(theme?: 'light' | 'dark'): void {
+  theme;
   // if (typeof window === 'undefined') {
   //   return;
   // }
