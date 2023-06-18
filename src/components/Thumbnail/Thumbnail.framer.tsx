@@ -1,18 +1,17 @@
 import { ControlType } from 'framer';
 import type { ComponentProps } from 'react';
 import { applyFramerProperties, FramerProvider } from '../../common/framer';
-import { AvatarText as _AvatarText } from './AvatarText';
+import { Thumbnail as _Thumbnail } from './Thumbnail';
 
-export function AvatarText(props: ComponentProps<typeof _AvatarText>) {
+export function Thumbnail(props: ComponentProps<typeof _Thumbnail>) {
   return (
     <FramerProvider>
-      <_AvatarText {...props} />
+      <_Thumbnail {...props} />
     </FramerProvider>
   );
 }
 
-// Add your custom property infos here
-applyFramerProperties(AvatarText, {
+applyFramerProperties(Thumbnail, {
   src: {
     title: 'Src',
     type: ControlType.String,
@@ -23,14 +22,19 @@ applyFramerProperties(AvatarText, {
     type: ControlType.String,
     defaultValue: '지최 is Babo',
   },
-  size: {
-    title: 'Size',
-    type: ControlType.Enum,
-    options: ['40px', '64px'],
+  width: {
+    title: 'Width',
+    type: ControlType.Number,
+    defaultValue: 480,
   },
-  mainText: {
-    title: 'MainText',
-    type: ControlType.String,
-    defaultValue: '지최',
+  rounded: {
+    title: 'Rounded',
+    type: ControlType.Enum,
+    options: ['8px', '16px'],
+  },
+  ratio: {
+    title: 'Ratio',
+    type: ControlType.Enum,
+    options: ['16:9', '16:10', '1:1'],
   },
 });
