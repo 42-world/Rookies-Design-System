@@ -13,15 +13,15 @@ interface Props {
 export function Footer({ githubLink = '', mailLink = '', text }: Props) {
   return (
     <div className="flex flex-col">
-      <div className="mb-6 w-full flex flex-row align-center justify-center gap-2">
-        <a href={githubLink} target="_blank" className="w-fit h-fit inline-block">
+      <div className="align-center mb-6 flex w-full flex-row justify-center gap-2">
+        <a href={githubLink} target="_blank" className="inline-block h-fit w-fit">
           <Button variant="secondary" icon={Github} />
         </a>
-        <a href={mailLink} target="_blank" className="w-fit h-fit inline-block">
+        <a href={mailLink} target="_blank" className="inline-block h-fit w-fit">
           <Button variant="secondary" icon={Mail} />
         </a>
       </div>
-      <div className="flex align-center justify-center">
+      <div className="align-center flex justify-center">
         <Text size="body2" color="secondary" text={text} />
       </div>
     </div>
