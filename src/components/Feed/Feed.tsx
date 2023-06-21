@@ -33,12 +33,12 @@ export function Feed({
   numOfComments = 0,
 }: Props) {
   return (
-    <div className="group w-[411px]">
+    <div className="group/feed  transition-transform ease-in-out duration-300 active:scale-[0.92] w-[411px]">
       <AvatarText src={userProfileSrc} mainText={username} subText={timestamp} />
       <Thumbnail
         src={thumbnailSrc}
         width={411}
-        className="mt-4 group-hover:translate-y-[-8px] transition-transform ease-in-out duration-300"
+        className="mt-4 group-hover/feed:translate-y-[-8px] transition-transform ease-in-out duration-300"
       />
       <div className="relative w-[411px] mt-6">
         <Text size="heading2" weight="semibold" text={title} className="mb-4" />
