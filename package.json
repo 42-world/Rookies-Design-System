@@ -34,8 +34,8 @@
     "ci:test": "echo no test",
     "ci:lint": "eslint 'src/**/*.{ts,tsx}' --config .eslintrc.js",
     "ci:format": "prettier --check src/**/*.{ts,tsx}",
-    "ci:format:fix": "prettier --cache --write ./src",
     "ci:typecheck": "tsc --noEmit",
+    "format:fix": "prettier --cache --write ./src",
     "version": "echo $npm_package_version",
     "template": "plop"
   },
