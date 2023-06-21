@@ -10,9 +10,15 @@ const meta: Meta<Component> = {
 type Story = StoryObj<Component>;
 
 export const Primary: Story = {
-  // Add your story args here
   args: {
-    placeholder: '검색어를 입력하세요',
+    placeholder: 'Yes, I am Gyudong',
+  },
+};
+
+export const Solid: Story = {
+  args: {
+    variant: 'solid',
+    placeholder: 'Yes, I am Gyudon',
   },
 };
 
