@@ -28,9 +28,9 @@ export function Feed({
   title,
   contents,
   isLiked,
-  numOfLikes = 0,
+  likeCount = 0,
   isCommentClicked,
-  numOfComments = 0,
+  commentCount = 0,
 }: Props) {
   return (
     <div className="group/feed w-411 active:scale-92 transition-transform ease-in-out duration-300">
@@ -46,8 +46,8 @@ export function Feed({
         <div className="absolute h-full z-10 top-0 left-0 w-411 from-bg-primary dark:from-bg-primary_dark to-transparent bg-gradient-to-t " />
       </div>
       <div className=" flex flex-row items-center justify-start mt-4 mb-4">
-        <Button variant="text" icon={LikeIcon} text={numOfLikes.toString()} />
-        <Button variant="text" icon={CommentIcon} text={numOfComments.toString()} />
+        <Button variant="text" icon={LikeIcon} text={likeCount.toString()} />
+        <Button variant="text" icon={CommentIcon} text={commentCount.toString()} />
       </div>
       <Divider variant="primary" className="w-411" />
     </div>
