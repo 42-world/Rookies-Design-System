@@ -11,11 +11,11 @@ type Props = {
 
 export function Card({ imageSrc, imageAlt, primary = '', secondary = '', title }: Props) {
   return (
-    <div className="w-[278px] flex flex-col group active:scale-92 transition-transform ease-in-out duration-300">
-      <div className="group-hover:translate-y-m8 transition-transform ease-in-out duration-300">
+    <div className="group flex w-[278px] flex-col transition-transform duration-300 ease-in-out active:scale-92">
+      <div className="transition-transform duration-300 ease-in-out group-hover:translate-y-m8">
         <Thumbnail src={imageSrc} alt={imageAlt} width={278} ratio="16:9" />
       </div>
-      <div className="mt-3 transition-spacing ease-in-out duration-300">
+      <div className="mt-3 transition-spacing duration-300 ease-in-out">
         <Text text={`${primary} · ${secondary}`} size="body2" weight="regular" color="secondary" />
       </div>
       {title && <Text text={title} size="body1" weight="medium" color="primary" className="line-clamp-1" />}
