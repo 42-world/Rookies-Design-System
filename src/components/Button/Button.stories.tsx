@@ -6,6 +6,14 @@ type Component = typeof Button;
 const meta: Meta<Component> = {
   title: 'rookies/Button',
   component: Button,
+  argTypes: {
+    activated: {
+      if: {
+        arg: 'variant',
+        eq: 'text',
+      },
+    },
+  },
 };
 
 type Story = StoryObj<Component>;
@@ -28,6 +36,14 @@ export const Text: Story = {
   args: {
     ...Primary.args,
     variant: 'text',
+  },
+};
+
+export const TextActivated: Story = {
+  args: {
+    ...Primary.args,
+    variant: 'text',
+    activated: true,
   },
 };
 
