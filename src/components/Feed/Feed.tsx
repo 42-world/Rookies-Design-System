@@ -15,9 +15,9 @@ interface Props {
   title: string;
   contents: string;
   isLiked?: boolean;
-  numOfLikes?: number;
+  likeCount?: number;
   isCommentClicked?: boolean;
-  numOfComments?: number;
+  commentCount?: number;
 }
 
 export function Feed({
@@ -32,6 +32,9 @@ export function Feed({
   isCommentClicked,
   commentCount = 0,
 }: Props) {
+  isLiked;
+  isCommentClicked;
+
   return (
     <div className="group/feed w-411 active:scale-92 transition-transform ease-in-out duration-300">
       <AvatarText src={userProfileSrc} mainText={username} subText={timestamp} />
