@@ -34,10 +34,10 @@ export function ListItem({
 }: Props) {
   return (
     <div
-      className="w-full cursor-pointer active:scale-95 transition-transform duration-300 ease-out select-none"
+      className="w-full cursor-pointer select-none transition-transform duration-300 ease-out active:scale-95"
       onClick={onClick}
     >
-      <div className="flex flex-row justify-between items-center py-4">
+      <div className="flex flex-row items-center justify-between py-4">
         <div className="flex flex-row items-center">
           {thumbnailSrc && <Thumbnail src={thumbnailSrc} alt={title} width={85} rounded="8px" ratio="16:9" />}
           <div className="ml-3 flex-1">

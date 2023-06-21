@@ -26,7 +26,7 @@ export function Button({ variant = 'primary', text, icon, className, ...restProp
   return (
     <button
       className={twMerge(
-        `group h-8 flex flex-row items-center gap-2 rounded-2xl border border-solid transition-all duration-300 active:scale-95 ${variantStyles[variant]}`,
+        `group flex h-8 flex-row items-center gap-2 rounded-2xl border border-solid transition-all duration-300 active:scale-95 ${variantStyles[variant]}`,
         icon && !text ? 'px-2' : 'px-3',
         className,
       )}
