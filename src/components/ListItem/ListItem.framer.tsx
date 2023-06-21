@@ -3,16 +3,23 @@ import type { ComponentProps } from 'react';
 import { FramerProvider, applyFramerProperties } from '../../common/framer';
 import { ListItem as _ListItem } from './ListItem';
 
-export function ListItem(props: ComponentProps<typeof _ListItem>) {
+export function ListItem({ rightAddon, ...props }: ComponentProps<typeof _ListItem> & { rightAddon: JSX.Element[] }) {
+  if (!rightAddon.length) {
+    return (
+      <FramerProvider>
+        <_ListItem {...props} />
+      </FramerProvider>
+    );
+  }
+
   return (
     <FramerProvider>
-      <_ListItem {...props} />
+      <_ListItem rightAddon={rightAddon} {...props}></_ListItem>
     </FramerProvider>
   );
 }
 
 applyFramerProperties(ListItem, {
-  // Add your custom property infos here
   title: {
     title: 'Title',
     type: ControlType.String,
@@ -26,26 +33,24 @@ applyFramerProperties(ListItem, {
   secondaryTextFirst: {
     title: 'SecondaryTextFirst',
     type: ControlType.String,
-    defaultValue: '지최',
+    defaultValue: '2021.10.20',
   },
   secondaryTextSecond: {
     title: 'SecondaryTextSecond',
     type: ControlType.String,
-    defaultValue: '2021-10-20',
-  },
-  commentCnt: {
-    title: 'Title',
-    type: ControlType.Number,
-    defaultValue: 16,
-  },
-  likeCnt: {
-    title: 'Title',
-    type: ControlType.Number,
-    defaultValue: 16,
+    defaultValue: '지최',
   },
   hasBorder: {
     title: 'HasBorder',
     type: ControlType.Boolean,
     defaultValue: true,
+  },
+  rightAddon: {
+    title: 'RightAddon',
+    type: ControlType.ComponentInstance,
+  },
+  onClick: {
+    title: 'OnClick',
+    type: ControlType.EventHandler,
   },
 });
