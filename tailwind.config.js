@@ -5,6 +5,9 @@ module.exports = {
   darkMode: 'class',
   theme: {
     extend: {
+      width: {
+        411: '411px',
+      },
       fontFamily: {
         /**
          * @warning
@@ -17,6 +20,9 @@ module.exports = {
       transitionProperty: {
         spacing: 'margin, padding',
         gap: 'gap',
+      },
+      scale: {
+        92: '0.92',
       },
       colors: {
         text: {

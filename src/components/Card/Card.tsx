@@ -11,7 +11,7 @@ type Props = {
 
 export function Card({ imageSrc, imageAlt, primary = '', secondary = '', title }: Props) {
   return (
-    <div className="w-[278px] flex flex-col group">
+    <div className="w-[278px] flex flex-col group active:scale-92 transition-transform ease-in-out duration-300">
       <div className="group-hover:translate-y-[-8px] transition-transform ease-in-out duration-300">
         <Thumbnail src={imageSrc} alt={imageAlt} width={278} ratio="16:9" />
       </div>
