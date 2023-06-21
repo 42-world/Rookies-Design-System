@@ -38,7 +38,7 @@ export function Feed({
       <Thumbnail
         src={thumbnailSrc}
         width={411}
-        className="mt-4 group-hover/feed:translate-y-[-8px] transition-transform ease-in-out duration-300"
+        className="mt-4 group-hover/feed:translate-y-m8 transition-transform ease-in-out duration-300"
       />
       <div className="relative w-411 mt-6">
         <Text size="heading2" weight="semibold" text={title} className="mb-4" />

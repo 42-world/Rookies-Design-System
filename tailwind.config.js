@@ -5,6 +5,9 @@ module.exports = {
   darkMode: 'class',
   theme: {
     extend: {
+      spacing: {
+        m8: '-8px',
+      },
       width: {
         411: '411px',
       },
