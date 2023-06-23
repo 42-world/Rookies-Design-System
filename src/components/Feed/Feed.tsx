@@ -4,8 +4,8 @@ import { Button } from '../Button';
 import { Divider } from '../Divider';
 import { Text } from '../Text';
 
-import CommentIcon from '/Users/chichoon/Documents/42world-Design-System/node_modules/@material-design-icons/svg/filled/comment.svg';
-import LikeIcon from '/Users/chichoon/Documents/42world-Design-System/node_modules/@material-design-icons/svg/filled/thumb_up.svg';
+import CommentIcon from '@material-design-icons/svg/filled/comment.svg';
+import LikeIcon from '@material-design-icons/svg/filled/thumb_up.svg';
 
 interface Props {
   username: string;
