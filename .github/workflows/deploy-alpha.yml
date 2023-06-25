@@ -62,11 +62,6 @@ jobs:
           node-version: 18
           cache: 'yarn'
 
-      - name: CI
-        run: |
-          yarn
-          yarn ci
-
       - name: Build Alpha Pages
         id: build
         run: |
