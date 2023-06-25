@@ -49,7 +49,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(
           {label && (
             <label
               htmlFor={idFromProps ?? id}
-              className='before:content-["*"] before:mr-1 text-sm leading-[1.8] font-normal text-text-secondary dark:text-text-secondary_dark'
+              className='text-sm font-normal leading-[1.8] text-text-secondary before:mr-1 before:content-["*"] dark:text-text-secondary_dark'
             >
               {label}
             </label>
@@ -65,7 +65,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(
           )}
         </div>
         <div
-          className={cx('flex items-center w-full rounded-lg px-4', {
+          className={cx('flex w-full items-center rounded-lg px-4', {
             'border border-solid border-border-primary bg-bg-primary_alpha_0 focus-within:border-color-blue_200':
               variant === 'outline',
             'bg-bg-secondary dark:bg-bg-secondary_dark': variant === 'filled',
@@ -75,7 +75,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(
           <input
             ref={ref}
             id={idFromProps ?? id}
-            className="w-full h-[44px] bg-transparent focus:outline-none text-base font-normal leading-[1.5] text-text-primary dark:text-text-primary_dark placeholder:text-text-tertiary dark:placeholder:text-text-tertiary_dark"
+            className="h-[44px] w-full bg-transparent text-base font-normal leading-[1.5] text-text-primary placeholder:text-text-tertiary focus:outline-none dark:text-text-primary_dark dark:placeholder:text-text-tertiary_dark"
             value={value}
             onChange={handleChange}
             maxLength={maxLength}
