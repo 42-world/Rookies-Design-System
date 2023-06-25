@@ -22,14 +22,11 @@ jobs:
       - name: Remove Alpha Pages
         id: remove
         run: |
-          FILE_LIST=$(ls $base_path | grep alpha$pr_number)
-          echo '## Alpha-${{ env.pr_number }}
-
-          Alpha pages have been removed.
-
-          ```
-          $FILE_LIST
-          ```' > message.txt
+          file_list=$(ls $base_path | grep alpha$pr_number)
+          delimiter="$(openssl rand -hex 8)"
+          echo "file_list<<$delimiter" >> $GITHUB_OUTPUT
+          echo "$file_list" >> $GITHUB_OUTPUT
+          echo "$delimiter" >> $GITHUB_OUTPUT
 
           rm -rf $base_path/*alpha$pr_number*
 
@@ -43,5 +40,10 @@ jobs:
       - name: Comment PR Alpha
         uses: thollander/actions-comment-pull-request@v2
         with:
-          filePath: message.txt
+          message: |
+            Alpha pages have been removed.
+
+            ```
+            ${{ steps.remove.outputs.file_list }}
+            ```
           comment_tag: execution
