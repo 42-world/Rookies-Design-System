@@ -53,7 +53,7 @@ jobs:
         uses: thollander/actions-comment-pull-request@v2
         with:
           message: |
-            ## Alpha ${{ steps.version.outputs.alpha_version }} - ${{ steps.sha.outputs.sha }}
+            ## Alpha ${{ github.event.pull_request.number }} - ${{ steps.sha.outputs.sha }}
 
             _CI done, please wait for the build to be done_
 
