@@ -10,7 +10,7 @@ jobs:
   clear:
     runs-on: ubuntu-latest
     env:
-      pr_number: 'alpha${{ github.event.pull_request.number }}'
+      pr_number: '${{ github.event.pull_request.number }}'
       base_path: 'design'
     steps:
       - name: Checkout Pages
