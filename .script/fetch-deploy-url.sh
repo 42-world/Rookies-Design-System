@@ -1,7 +1,7 @@
 #!/bin/bash
 
 commit_hash=$1
-status_page_url=https://github.com/42-world/42-world.github.io/actions
+status_page_url=https://github.com/42-world/42-world.github.io/commit/${commit_hash}/status-details
 
 attempt=0
 max_attempts=20
