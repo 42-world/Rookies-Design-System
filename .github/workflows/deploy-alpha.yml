@@ -107,7 +107,7 @@ jobs:
           message: |
             ## Alpha ${{ env.pr_number }} - ${{ env.sha }}
 
-            _check the deploy [here](${{ steps.fetch-build-status.outputs.url }})_
+            _check the deploy status [here](${{ steps.fetch-build-status.outputs.url }})_
 
             ### Check it out!
 
@@ -127,7 +127,7 @@ jobs:
           body: |
             ## Alpha ${{ env.pr_number }} - ${{ env.sha }}
 
-            _check the deploy [here](${{ steps.fetch-build-status.outputs.url }})_
+            _check the deploy status [here](${{ steps.fetch-build-status.outputs.url }})_
 
             ### Check it out!
 
