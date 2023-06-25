@@ -10,7 +10,7 @@ concurrency:
   group: 'pages-deploy'
 
 jobs:
-  version:
+  setup:
     runs-on: ubuntu-latest
     outputs:
       new_version: ${{ steps.version.outputs.new_version }}
@@ -28,34 +28,11 @@ jobs:
           echo "new_version=$NEW_VERSION"
           echo "new_version=$NEW_VERSION" >> $GITHUB_OUTPUT
 
-  clear:
-    needs: version
-    runs-on: ubuntu-latest
-    env:
-      new_version: ${{ needs.version.outputs.new_version }}
-      base_path: 'design'
-    steps:
-      - name: Checkout Pages
-        uses: actions/checkout@v3
-        with:
-          repository: '42-world/42-world.github.io'
-          token: ${{ secrets.GH_TOKEN }}
-
-      - name: Remove Alpha Pages
-        run: |
-          rm -rf $base_path/$new_version-alpha*
-
-      - name: Deploy Remove Alpha Pages
-        uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          commit_message: 'Remove Alpha ${{ env.new_version }}-alpha (${{ github.sha }}))'
-          commit_options: '--allow-empty'
-
   build:
-    needs: [version, clear]
+    needs: setup
     runs-on: ubuntu-latest
     env:
-      new_version: ${{ needs.version.outputs.new_version }}
+      new_version: ${{ needs.setup.outputs.new_version }}
       base_path: 'design'
     steps:
       - name: Checkout
@@ -103,6 +80,7 @@ jobs:
           push_options: '--force'
 
       - name: Deploy Pages
+        id: deploy
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: 'Version ${{ env.new_version }} Build (${{ github.sha }})'
@@ -114,17 +92,26 @@ jobs:
         with:
           token: ${{ secrets.NPM_TOKEN }}
 
+      - name: Fetch Build Status Url
+        id: fetch-build-status
+        run: |
+          url=$(bash .script/fetch-deploy-url.sh '${{ steps.deploy.outputs.commit_hash }}')
+          echo "url=$url"
+          echo "url=$url" >> $GITHUB_OUTPUT
+
       - name: Comment commit
         uses: peter-evans/commit-comment@v2
         with:
           sha: ${{ steps.commit-new-version.outputs.commit_hash }}
           body: |
-            ## Version ${{ env.new_version }} Build Done!
+            ## Version ${{ env.new_version }}
+
+            _check the deploy status [here](${{ steps.fetch-build-status.outputs.url }})_
 
             ### Check it out!
 
             - Go to [StoryBook](https://42-world.github.io/${{ env.base_path }}/${{ env.new_version }}/storybook)
-            - Go to [Framer](https://42-world.github.io/${{ env.base_path }}/${{ env.new_version }}/framer/components/Text/Text.framer.js)
+            - Go to [Framer](https://42-world.github.io/${{ env.base_path }}/utils/framer_code_gen.html?base_path=${{ env.base_path }}&version=${{ env.new_version }})
 
             ### Or you can try...
 
