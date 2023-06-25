@@ -1,0 +1,60 @@
+name: Deploy Alpha
+
+on:
+  pull_request:
+    branches: [main]
+
+  workflow_dispatch:
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Comment PR Alpha
+        uses: thollander/actions-comment-pull-request@v2
+        with:
+          message: |
+            _wait for the CI to be done [here](https://github.com/42-world/42world-Design-System/actions/runs/${{ github.run_id }})_
+
+          comment_tag: execution
+
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'yarn'
+
+      - name: CI
+        run: |
+          yarn
+          yarn ci
+
+      - name: Get Commit Hash
+        id: sha
+        run: |
+          sha=$(git rev-parse --short ${{ github.event.pull_request.head.sha }})
+          echo "sha=$sha" >> $GITHUB_OUTPUT
+
+      - name: Version
+        id: version
+        run: |
+          semver=$(bash .script/get-version-semver.sh '${{ github.event.pull_request.title }}')
+          yarn version $semver --no-git-tag-version
+          NEW_VERSION=$(yarn --silent run version)
+          echo "new_version=$NEW_VERSION"
+
+          ALPHA_VERSION=$NEW_VERSION-alpha${{ github.event.pull_request.number }}-${{ steps.sha.outputs.sha }}
+          echo "alpha_version=$ALPHA_VERSION"
+          echo "alpha_version=$ALPHA_VERSION" >> $GITHUB_OUTPUT
+
+      - name: Comment PR Alpha
+        uses: thollander/actions-comment-pull-request@v2
+        with:
+          message: |
+            ## Alpha ${{ github.event.pull_request.number }} - ${{ steps.sha.outputs.sha }}
+
+            _CI done, please wait for the build to be done_
+
+          comment_tag: execution
