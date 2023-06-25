@@ -116,7 +116,7 @@ jobs:
 
       - name: Create Message
         run: |
-          echo "## Alpha-${{ env.pr_number }} - ${{ env.sha }}
+          echo '## Alpha-${{ env.pr_number }} - ${{ env.sha }}
 
           _check the deploy status [here](${{ steps.fetch-build-status.outputs.url }})_
 
