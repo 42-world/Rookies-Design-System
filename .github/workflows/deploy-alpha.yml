@@ -112,7 +112,7 @@ jobs:
             ### Check it out!
 
             - Go to [StoryBook](https://42-world.github.io/${{ env.base_path }}/${{ env.alpha_version }}/storybook)
-            - Go to [Framer](https://42-world.github.io/${{ env.base_path }}/${{ env.alpha_version }}/framer/components/Text/Text.framer.js)
+            - Go to [Framer](https://42-world.github.io/${{ env.base_path }}/utils/framer_code_gen.html?base_path=${{ env.base_path }}&version=${{ env.alpha_version }})
 
             ### Or you can try...
 
@@ -132,7 +132,7 @@ jobs:
             ### Check it out!
 
             - Go to [StoryBook](https://42-world.github.io/${{ env.base_path }}/${{ env.alpha_version }}/storybook)
-            - Go to [Framer](https://42-world.github.io/${{ env.base_path }}/${{ env.alpha_version }}/framer/components/Text/Text.framer.js)
+            - Go to [Framer](https://42-world.github.io/${{ env.base_path }}/utils/framer_code_gen.html?base_path=${{ env.base_path }}&version=${{ env.alpha_version }})
 
             ### Or you can try...
 
