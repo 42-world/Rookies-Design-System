@@ -92,10 +92,11 @@ jobs:
           repository: .pages
           branch: main
 
-      - name: Fetch Build Status
+      - name: Fetch Build Status Url
         id: fetch-build-status
         run: |
           url=$(bash .script/fetch-deploy-url.sh '${{ steps.deploy.outputs.commit_hash }}')
+          echo "url=$url"
           echo "url=$url" >> $GITHUB_OUTPUT
 
       - name: Comment PR Alpha Build

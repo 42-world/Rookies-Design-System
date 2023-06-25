@@ -3,7 +3,7 @@
 commit_hash=$1
 status_page_url=https://github.com/42-world/42-world.github.io/commit/${commit_hash}/status-details
 
-body=$(curl -s 'https://github.com/42-world/42-world.github.io/commit/ba6de67f1f3c4c6c68f947f71f9716df336b7cd7/status-details' \
+body=$(curl -s $status_page_url \
 -H 'Host: github.com' \
 -H 'Connection: keep-alive' \
 -H 'Cache-Control: max-age=0' \
