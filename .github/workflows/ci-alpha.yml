@@ -10,6 +10,14 @@ jobs:
   ci:
     runs-on: ubuntu-latest
     steps:
+      - name: Comment PR Alpha
+        uses: thollander/actions-comment-pull-request@v2
+        with:
+          message: |
+            _wait for the CI to be done [here](https://github.com/42-world/42world-Design-System/actions/runs/${{ github.run_id }})_
+
+          comment_tag: execution
+
       - name: Checkout
         uses: actions/checkout@v3
 
@@ -41,12 +49,12 @@ jobs:
           sha=$(git rev-parse --short ${{ github.event.pull_request.head.sha }})
           echo "sha=$sha" >> $GITHUB_OUTPUT
 
-      - name: Comment PR Alpha Build
+      - name: Comment PR Alpha
         uses: thollander/actions-comment-pull-request@v2
         with:
           message: |
             ## Alpha ${{ steps.version.outputs.alpha_version }} - ${{ steps.sha.outputs.sha }}
 
-            _wait for the build to finish_
+            _CI done, please wait for the build to be done [here](https://github.com/42-world/42world-Design-System/actions/runs/${{ github.run_id }})_
 
           comment_tag: execution
