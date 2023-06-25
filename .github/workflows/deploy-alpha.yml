@@ -77,7 +77,7 @@ jobs:
         run: |
           yarn
           NODE_ENV=production yarn build
-          yarn version --new-version $alpha_version-$sha --no-git-tag-version
+          yarn version --new-version $alpha_version --no-git-tag-version
           yarn pack
 
           mkdir -p .pages/$base_path/$alpha_version
