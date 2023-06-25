@@ -107,7 +107,7 @@ jobs:
           message: |
             ## Alpha ${{ env.pr_number }} - ${{ env.sha }}
 
-            _wait for the deploy to be done [here](${{ steps.fetch-build-status.outputs.url }})_
+            _check the deploy [here](${{ steps.fetch-build-status.outputs.url }})_
 
             ### Check it out!
 
