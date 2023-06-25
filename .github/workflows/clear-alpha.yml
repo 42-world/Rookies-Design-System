@@ -23,7 +23,13 @@ jobs:
         id: remove
         run: |
           FILE_LIST=$(ls $base_path | grep alpha$pr_number)
-          echo "::set-output name=file_list::$FORMATTED_FILE_LIST"
+          echo '## Alpha-${{ env.pr_number }}
+
+          Alpha pages have been removed.
+
+          ```
+          $FILE_LIST
+          ```' > message.txt
 
           rm -rf $base_path/*alpha$pr_number*
 
@@ -37,13 +43,5 @@ jobs:
       - name: Comment PR Alpha
         uses: thollander/actions-comment-pull-request@v2
         with:
-          message: |
-            ## Alpha-${{ env.pr_number }}
-
-            Alpha pages have been removed.
-
-            ```
-            ${{ steps.remove.outputs.file_list }}
-            ```
-
+          filePath: message.txt
           comment_tag: execution

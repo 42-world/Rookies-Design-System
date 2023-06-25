@@ -114,41 +114,40 @@ jobs:
           echo "url=$url"
           echo "url=$url" >> $GITHUB_OUTPUT
 
+      - name: Create Message
+        run: |
+          echo "## Alpha-${{ env.pr_number }} - ${{ env.sha }}
+
+          _check the deploy status [here](${{ steps.fetch-build-status.outputs.url }})_
+
+          ### Check it out!
+
+          - Go to [StoryBook](https://42-world.github.io/${{ env.base_path }}/${{ env.alpha_version }}/storybook)
+          - Go to [Framer](https://42-world.github.io/${{ env.base_path }}/utils/framer_code_gen.html?base_path=${{ env.base_path }}&version=${{ env.alpha_version }})
+
+          ### Or you can try...
+
+          ```
+          yarn add @42world/design-core@https://42-world.github.io/${{ env.base_path }}/${{ env.alpha_version }}/${{ steps.build.outputs.pack_name }}
+          ```' > message.txt
+          
+
+      - name: Get Message
+        id: message
+        run: |
+          body="$(cat message.txt)"
+          delimiter="$(openssl rand -hex 8)"
+          echo "body<<$delimiter" >> $GITHUB_OUTPUT
+          echo "$body" >> $GITHUB_OUTPUT
+          echo "$delimiter" >> $GITHUB_OUTPUT
+
       - name: Comment PR Alpha Build
         uses: thollander/actions-comment-pull-request@v2
         with:
-          message: |
-            ## Alpha-${{ env.pr_number }} - ${{ env.sha }}
-
-            _check the deploy status [here](${{ steps.fetch-build-status.outputs.url }})_
-
-            ### Check it out!
-
-            - Go to [StoryBook](https://42-world.github.io/${{ env.base_path }}/${{ env.alpha_version }}/storybook)
-            - Go to [Framer](https://42-world.github.io/${{ env.base_path }}/utils/framer_code_gen.html?base_path=${{ env.base_path }}&version=${{ env.alpha_version }})
-
-            ### Or you can try...
-
-            ```
-            yarn add @42world/design-core@https://42-world.github.io/${{ env.base_path }}/${{ env.alpha_version }}/${{ steps.build.outputs.pack_name }}
-            ```
+          message: ${{ steps.message.outputs.body }}
           comment_tag: execution
 
       - name: Comment commit
         uses: peter-evans/commit-comment@v2
         with:
-          body: |
-            ## Alpha-${{ env.pr_number }} - ${{ env.sha }}
-
-            _check the deploy status [here](${{ steps.fetch-build-status.outputs.url }})_
-
-            ### Check it out!
-
-            - Go to [StoryBook](https://42-world.github.io/${{ env.base_path }}/${{ env.alpha_version }}/storybook)
-            - Go to [Framer](https://42-world.github.io/${{ env.base_path }}/utils/framer_code_gen.html?base_path=${{ env.base_path }}&version=${{ env.alpha_version }})
-
-            ### Or you can try...
-
-            ```
-            yarn add @42world/design-core@https://42-world.github.io/${{ env.base_path }}/${{ env.alpha_version }}/${{ steps.build.outputs.pack_name }}
-            ```
+          body: ${{ steps.message.outputs.body }}
