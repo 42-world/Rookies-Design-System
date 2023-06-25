@@ -1,0 +1,30 @@
+name: Clear Alpha
+
+on:
+  pull_request:
+    types: [closed]
+
+  workflow_dispatch:
+
+jobs:
+  clear:
+    runs-on: ubuntu-latest
+    env:
+      pr_number: 'alpha${{ github.event.pull_request.number }}'
+      base_path: 'design'
+    steps:
+      - name: Checkout Pages
+        uses: actions/checkout@v3
+        with:
+          repository: '42-world/42-world.github.io'
+          token: ${{ secrets.GH_TOKEN }}
+
+      - name: Remove Alpha Pages
+        run: |
+          rm -rf $base_path/*-alpha$pr_number
+
+      - name: Commit Remove Alpha Pages
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: '[skip ci] Remove Alpha${{ env.pr_number }} (${{ github.sha }}))'
+          commit_options: '--allow-empty'

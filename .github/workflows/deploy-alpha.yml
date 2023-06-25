@@ -83,7 +83,7 @@ jobs:
           echo "pack_name=$(ls *.tgz)" >> $GITHUB_OUTPUT
           echo "sha=$sha" >> $GITHUB_OUTPUT
 
-      - name: Deploy Alpha Pages
+      - name: Commit Alpha Pages
         id: deploy
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
@@ -92,13 +92,19 @@ jobs:
           repository: .pages
           branch: main
 
+      - name: Fetch Build Status
+        id: fetch-build-status
+        run: |
+          url=$(bash .script/fetch-deploy-url.sh '${{ steps.deploy.outputs.commit_hash }}')
+          echo "url=$url" >> $GITHUB_OUTPUT
+
       - name: Comment PR Alpha Build
         uses: thollander/actions-comment-pull-request@v2
         with:
           message: |
-            ## Alpha ${{ env.alpha_version }} Build Done! - ${{ steps.build.outputs.sha }}
+            ## Alpha ${{ env.alpha_version }} - ${{ steps.build.outputs.sha }}
 
-            _wait for the deploy to be done [here](https://github.com/42-world/42-world.github.io/commit/${{ steps.deploy.outputs.commit_hash }}/status-details)_
+            _wait for the deploy to be done [here](${{ steps.fetch-build-status.outputs.url }})_
 
             ### Check it out!
 
@@ -116,9 +122,9 @@ jobs:
         uses: peter-evans/commit-comment@v2
         with:
           body: |
-            ## Alpha ${{ env.alpha_version }} Rebuilt
+            ## Alpha ${{ env.alpha_version }} Rebuilt - ${{ steps.build.outputs.sha }}
 
-            _wait for the deploy to be done [here](https://github.com/42-world/42-world.github.io/commit/${{ steps.deploy.outputs.commit_hash }}/status-details)_
+            _wait for the deploy to be done [here](${{ steps.fetch-build-status.outputs.url }})_
 
             ### Check it out!
 

@@ -115,14 +115,20 @@ jobs:
         with:
           token: ${{ secrets.NPM_TOKEN }}
 
+      - name: Fetch Build Status
+        id: fetch-build-status
+        run: |
+          url=$(bash .script/fetch-deploy-url.sh '${{ steps.deploy.outputs.commit_hash }}')
+          echo "url=$url" >> $GITHUB_OUTPUT
+
       - name: Comment commit
         uses: peter-evans/commit-comment@v2
         with:
           sha: ${{ steps.commit-new-version.outputs.commit_hash }}
           body: |
-            ## Version ${{ env.new_version }} Build Done!
+            ## Version ${{ env.new_version }}
 
-            _wait for the deploy to be done [here](https://github.com/42-world/42-world.github.io/commit/${{ steps.deploy.outputs.commit_hash }}/status-details)_
+            _wait for the deploy to be done [here](${{ steps.fetch-build-status.outputs.url }})_
 
             ### Check it out!
 
