@@ -1,7 +1,7 @@
 #!/bin/bash
 
 commit_hash=$1
-status_page_url=https://github.com/42-world/42-world.github.io/commit/${commit_hash}/status-details
+status_page_url=https://github.com/42-world/42-world.github.io/actions
 
 attempt=0
 max_attempts=20
@@ -23,7 +23,7 @@ while [ $attempt -lt $max_attempts ]; do
       -H 'Sec-Fetch-Dest: document' \
       -H 'Accept-Language: en-US,en;q=0.9' )
 
-    pathname=$(echo "$body" | sed -n 's/.*<a[^>]*href="\([^"]*\)".*/\1/p' | grep actions/runs | awk -F '/jobs' '{print $1}' | uniq)
+    pathname=$(echo "$body" | sed -n 's/.*<a[^>]*href="\([^"]*\)".*/\1/p' | grep actions/runs | awk -F '/jobs' '{print $1}' | head -n 1)
 
     # 만약 'pathname' 변수에 내용이 있으면 반복을 종료
     if [ -n "$pathname" ]; then

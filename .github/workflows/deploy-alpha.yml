@@ -110,7 +110,7 @@ jobs:
       - name: Fetch Build Status Url
         id: fetch-build-status
         run: |
-          url=$(bash .script/fetch-deploy-url.sh '${{ steps.deploy.outputs.commit_hash }}')
+          url=$(bash .script/fetch-deploy-url.sh)
           echo "url=$url"
           echo "url=$url" >> $GITHUB_OUTPUT
 
