@@ -38,7 +38,7 @@ jobs:
         uses: thollander/actions-comment-pull-request@v2
         with:
           message: |
-            ## Alpha ${{ env.pr_number }}
+            ## Alpha-${{ env.pr_number }}
 
             Alpha pages have been removed.
 
