@@ -118,7 +118,7 @@ jobs:
         uses: thollander/actions-comment-pull-request@v2
         with:
           message: |
-            ## Alpha ${{ env.pr_number }} - ${{ env.sha }}
+            ## Alpha-${{ env.pr_number }} - ${{ env.sha }}
 
             _check the deploy status [here](${{ steps.fetch-build-status.outputs.url }})_
 
@@ -138,7 +138,7 @@ jobs:
         uses: peter-evans/commit-comment@v2
         with:
           body: |
-            ## Alpha ${{ env.pr_number }} - ${{ env.sha }}
+            ## Alpha-${{ env.pr_number }} - ${{ env.sha }}
 
             _check the deploy status [here](${{ steps.fetch-build-status.outputs.url }})_
 
