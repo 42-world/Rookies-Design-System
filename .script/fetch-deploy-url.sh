@@ -4,7 +4,7 @@ commit_hash=$1
 status_page_url=https://github.com/42-world/42-world.github.io/commit/${commit_hash}/status-details
 
 attempt=0
-max_attempts=5
+max_attempts=20
 while [ $attempt -lt $max_attempts ]; do
     # 웹페이지의 내용을 'body' 변수에 저장
     body=$(curl -s $status_page_url \
@@ -30,7 +30,7 @@ while [ $attempt -lt $max_attempts ]; do
         break
     else
         # 짧은 대기시간을 두고 다시 시도
-        sleep 5
+        sleep 1
         attempt=$((attempt + 1))
     fi
 done
