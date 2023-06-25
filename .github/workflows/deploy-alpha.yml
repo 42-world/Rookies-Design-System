@@ -10,15 +10,23 @@ concurrency:
   group: 'pages-deploy'
 
 jobs:
-  version:
+  setup:
     runs-on: ubuntu-latest
     outputs:
       new_version: ${{ steps.version.outputs.new_version }}
       main_version: ${{ steps.version.outputs.main_version }}
       alpha_version: ${{ steps.version.outputs.alpha_version }}
+      sha: ${{ steps.sha.outputs.sha }}
+      pr_number: ${{ github.event.pull_request.number }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+
+      - name: Get Commit Hash
+        id: sha
+        run: |
+          sha=$(git rev-parse --short ${{ github.event.pull_request.head.sha }})
+          echo "sha=$sha" >> $GITHUB_OUTPUT
 
       - name: Version
         id: version
@@ -34,17 +42,19 @@ jobs:
           echo "new_version=$NEW_VERSION"
           echo "new_version=$NEW_VERSION" >> $GITHUB_OUTPUT
 
-          ALPHA_VERSION=$NEW_VERSION-alpha${{ github.event.pull_request.number }}
+          ALPHA_VERSION=$NEW_VERSION-alpha${{ github.event.pull_request.number }}-${{ steps.sha.outputs.sha }}
           echo "alpha_version=$ALPHA_VERSION"
           echo "alpha_version=$ALPHA_VERSION" >> $GITHUB_OUTPUT
 
   build:
-    needs: version
+    needs: setup
     runs-on: ubuntu-latest
     env:
-      main_version: ${{ needs.version.outputs.main_version }}
-      alpha_version: ${{ needs.version.outputs.alpha_version }}
-      new_version: ${{ needs.version.outputs.new_version }}
+      main_version: ${{ needs.setup.outputs.main_version }}
+      alpha_version: ${{ needs.setup.outputs.alpha_version }}
+      new_version: ${{ needs.setup.outputs.new_version }}
+      sha: ${{ needs.setup.outputs.sha }}
+      pr_number: ${{ needs.setup.outputs.pr_number }}
       base_path: 'design'
     steps:
       - name: Checkout
@@ -62,66 +72,81 @@ jobs:
           node-version: 18
           cache: 'yarn'
 
-      - name: CI
-        run: |
-          yarn
-          yarn ci
-
       - name: Build Alpha Pages
         id: build
         run: |
           yarn
           NODE_ENV=production yarn build
-          sha=$(git rev-parse --short ${{ github.event.pull_request.head.sha }})
-          yarn version --new-version $alpha_version-$sha --no-git-tag-version
+          yarn version --new-version $alpha_version --no-git-tag-version
           yarn pack
 
-          rm -rf .pages/$base_path/*-alpha${{ github.event.pull_request.number }}
           mkdir -p .pages/$base_path/$alpha_version
           cp -rf dist/* .pages/$base_path/$alpha_version
           cp -rf *.tgz .pages/$base_path/$alpha_version
           echo "pack_name=$(ls *.tgz)" >> $GITHUB_OUTPUT
-          echo "sha=$sha" >> $GITHUB_OUTPUT
 
-      - name: Deploy Alpha Pages
+      - name: Check if Still Pr is Open status
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          PR_JSON=$(curl -s -H "Authorization: token $GITHUB_TOKEN" "https://api.github.com/repos/$GITHUB_REPOSITORY/pulls/$PR_NUMBER")
+          PR_STATE=$(echo $PR_JSON | jq -r '.state')
+
+          if [ "$PR_STATE" != "open" ]; then
+            echo "It seems that the PR is closed."
+            exit 1
+          fi
+
+      - name: Commit Alpha Pages
+        id: deploy
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: 'Alpha ${{ env.alpha_version }} Build (${{ steps.build.outputs.sha }})'
+          commit_message: 'Alpha ${{ env.alpha_version }} Build'
           commit_options: '--allow-empty'
           repository: .pages
           branch: main
 
+      - name: Fetch Build Status Url
+        id: fetch-build-status
+        run: |
+          url=$(bash .script/fetch-deploy-url.sh)
+          echo "url=$url"
+          echo "url=$url" >> $GITHUB_OUTPUT
+
+      - name: Create Message
+        run: |
+          echo '## Alpha-${{ env.pr_number }} - ${{ env.sha }}
+
+          _check the deploy status [here](${{ steps.fetch-build-status.outputs.url }})_
+
+          ### Check it out!
+
+          - Go to [StoryBook](https://42-world.github.io/${{ env.base_path }}/${{ env.alpha_version }}/storybook)
+          - Go to [Framer](https://42-world.github.io/${{ env.base_path }}/utils/framer_code_gen.html?base_path=${{ env.base_path }}&version=${{ env.alpha_version }})
+
+          ### Or you can try...
+
+          ```
+          yarn add @42world/design-core@https://42-world.github.io/${{ env.base_path }}/${{ env.alpha_version }}/${{ steps.build.outputs.pack_name }}
+          ```' > message.txt
+
+      - name: Message to Output
+        id: message
+        run: |
+          body="$(cat message.txt)"
+          delimiter="$(openssl rand -hex 8)"
+          echo "body<<$delimiter" >> $GITHUB_OUTPUT
+          echo "$body" >> $GITHUB_OUTPUT
+          echo "$delimiter" >> $GITHUB_OUTPUT
+
       - name: Comment PR Alpha Build
         uses: thollander/actions-comment-pull-request@v2
         with:
-          message: |
-            ## Alpha ${{ env.alpha_version }} Build Done! - ${{ steps.build.outputs.sha }}
-
-            ### Check it out!
-
-            - Go to [StoryBook](https://42-world.github.io/${{ env.base_path }}/${{ env.alpha_version }}/storybook)
-            - Go to [Framer](https://42-world.github.io/${{ env.base_path }}/${{ env.alpha_version }}/framer/components/Text/Text.framer.js)
-
-            ### Or you can try...
-
-            ```
-            yarn add @42world/design-core@https://42-world.github.io/${{ env.base_path }}/${{ env.alpha_version }}/${{ steps.build.outputs.pack_name }}
-            ```
+          message: ${{ steps.message.outputs.body }}
           comment_tag: execution
 
       - name: Comment commit
         uses: peter-evans/commit-comment@v2
         with:
-          body: |
-            ## Alpha ${{ env.alpha_version }} Rebuilt
-
-            ### Check it out!
-
-            - Go to [StoryBook](https://42-world.github.io/${{ env.base_path }}/${{ env.alpha_version }}/storybook)
-            - Go to [Framer](https://42-world.github.io/${{ env.base_path }}/${{ env.alpha_version }}/framer/components/Text/Text.framer.js)
-
-            ### Or you can try...
-
-            ```
-            yarn add @42world/design-core@https://42-world.github.io/${{ env.base_path }}/${{ env.alpha_version }}/${{ steps.build.outputs.pack_name }}
-            ```
+          body: ${{ steps.message.outputs.body }}

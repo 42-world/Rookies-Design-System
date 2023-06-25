@@ -1,0 +1,49 @@
+name: Clear Alpha
+
+on:
+  pull_request:
+    types: [closed]
+
+  workflow_dispatch:
+
+jobs:
+  clear:
+    runs-on: ubuntu-latest
+    env:
+      pr_number: '${{ github.event.pull_request.number }}'
+      base_path: 'design'
+    steps:
+      - name: Checkout Pages
+        uses: actions/checkout@v3
+        with:
+          repository: '42-world/42-world.github.io'
+          token: ${{ secrets.GH_TOKEN }}
+
+      - name: Remove Alpha Pages
+        id: remove
+        run: |
+          file_list=$(ls $base_path | grep alpha$pr_number)
+          delimiter="$(openssl rand -hex 8)"
+          echo "file_list<<$delimiter" >> $GITHUB_OUTPUT
+          echo "$file_list" >> $GITHUB_OUTPUT
+          echo "$delimiter" >> $GITHUB_OUTPUT
+
+          rm -rf $base_path/*alpha$pr_number*
+
+      - name: Commit Remove Alpha Pages
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: '[skip actions] Remove Alpha${{ env.pr_number }} (${{ github.sha }}))'
+          commit_options: '--allow-empty'
+          branch: main
+
+      - name: Comment PR Alpha
+        uses: thollander/actions-comment-pull-request@v2
+        with:
+          message: |
+            Alpha pages have been removed.
+
+            ```
+            ${{ steps.remove.outputs.file_list }}
+            ```
+          comment_tag: execution
