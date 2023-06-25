@@ -130,9 +130,8 @@ jobs:
           ```
           yarn add @42world/design-core@https://42-world.github.io/${{ env.base_path }}/${{ env.alpha_version }}/${{ steps.build.outputs.pack_name }}
           ```' > message.txt
-          
 
-      - name: Get Message
+      - name: Message to Output
         id: message
         run: |
           body="$(cat message.txt)"
