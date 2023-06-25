@@ -22,7 +22,7 @@ jobs:
       - name: Remove Alpha Pages
         id: remove
         run: |
-          FILE_LIST=$(ls $base_path | grep alpha$pr_number)
+          FILE_LIST=$(ls $base_path | grep alpha$pr_number | tr '\n' ' ' | sed 's/ /\\n/g')
           echo "file_list=$FILE_LIST"
           echo "file_list=$FILE_LIST" >> $GITHUB_OUTPUT
 
