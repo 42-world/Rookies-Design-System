@@ -85,6 +85,19 @@ jobs:
           cp -rf *.tgz .pages/$base_path/$alpha_version
           echo "pack_name=$(ls *.tgz)" >> $GITHUB_OUTPUT
 
+      - name: Check if Still Pr is Open status
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          PR_JSON=$(curl -s -H "Authorization: token $GITHUB_TOKEN" "https://api.github.com/repos/$GITHUB_REPOSITORY/pulls/$PR_NUMBER")
+          PR_STATE=$(echo $PR_JSON | jq -r '.state')
+
+          if [ "$PR_STATE" != "open" ]; then
+            echo "It seems that the PR is closed."
+            exit 1
+          fi
+
       - name: Commit Alpha Pages
         id: deploy
         uses: stefanzweifel/git-auto-commit-action@v4
