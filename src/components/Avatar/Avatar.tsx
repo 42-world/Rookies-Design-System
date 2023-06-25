@@ -11,7 +11,7 @@ export function Avatar({ src, alt = '', size = '40px' }: Props) {
     <img
       src={src}
       alt={alt}
-      className={cx('rounded-full object-cover', { 'w-10 h-10': size === '40px', 'w-16 h-16': size === '64px' })}
+      className={cx('rounded-full object-cover', { 'h-10 w-10': size === '40px', 'h-16 w-16': size === '64px' })}
     />
   );
 }

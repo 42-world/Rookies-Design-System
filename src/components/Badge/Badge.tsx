@@ -25,7 +25,7 @@ export function Badge({ color = 'outline', text, className }: Props) {
   return (
     <div
       className={twMerge(
-        cx('px-2 py-[3px] w-fit rounded-lg', colorConfig[color], {
+        cx('w-fit rounded-lg px-2 py-[3px]', colorConfig[color], {
           'border border-border-secondary dark:border-border-secondary_dark': color === 'outline',
         }),
         className,
