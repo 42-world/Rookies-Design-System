@@ -10,15 +10,23 @@ concurrency:
   group: 'pages-deploy'
 
 jobs:
-  version:
+  setup:
     runs-on: ubuntu-latest
     outputs:
       new_version: ${{ steps.version.outputs.new_version }}
       main_version: ${{ steps.version.outputs.main_version }}
       alpha_version: ${{ steps.version.outputs.alpha_version }}
+      sha: ${{ steps.sha.outputs.sha }}
+      pr_number: ${{ github.event.pull_request.number }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+
+      - name: Get Commit Hash
+        id: sha
+        run: |
+          sha=$(git rev-parse --short ${{ github.event.pull_request.head.sha }})
+          echo "sha=$sha" >> $GITHUB_OUTPUT
 
       - name: Version
         id: version
@@ -34,17 +42,19 @@ jobs:
           echo "new_version=$NEW_VERSION"
           echo "new_version=$NEW_VERSION" >> $GITHUB_OUTPUT
 
-          ALPHA_VERSION=$NEW_VERSION-alpha${{ github.event.pull_request.number }}
+          ALPHA_VERSION=$NEW_VERSION-alpha${{ github.event.pull_request.number }}-${{ steps.sha.outputs.sha }}
           echo "alpha_version=$ALPHA_VERSION"
           echo "alpha_version=$ALPHA_VERSION" >> $GITHUB_OUTPUT
 
   build:
-    needs: version
+    needs: setup
     runs-on: ubuntu-latest
     env:
-      main_version: ${{ needs.version.outputs.main_version }}
-      alpha_version: ${{ needs.version.outputs.alpha_version }}
-      new_version: ${{ needs.version.outputs.new_version }}
+      main_version: ${{ needs.setup.outputs.main_version }}
+      alpha_version: ${{ needs.setup.outputs.alpha_version }}
+      new_version: ${{ needs.setup.outputs.new_version }}
+      sha: ${{ needs.setup.outputs.sha }}
+      pr_number: ${{ needs.setup.outputs.pr_number }}
       base_path: 'design'
     steps:
       - name: Checkout
@@ -67,22 +77,19 @@ jobs:
         run: |
           yarn
           NODE_ENV=production yarn build
-          sha=$(git rev-parse --short ${{ github.event.pull_request.head.sha }})
           yarn version --new-version $alpha_version-$sha --no-git-tag-version
           yarn pack
 
-          rm -rf .pages/$base_path/*-alpha${{ github.event.pull_request.number }}
           mkdir -p .pages/$base_path/$alpha_version
           cp -rf dist/* .pages/$base_path/$alpha_version
           cp -rf *.tgz .pages/$base_path/$alpha_version
           echo "pack_name=$(ls *.tgz)" >> $GITHUB_OUTPUT
-          echo "sha=$sha" >> $GITHUB_OUTPUT
 
       - name: Commit Alpha Pages
         id: deploy
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: 'Alpha ${{ env.alpha_version }} Build (${{ steps.build.outputs.sha }})'
+          commit_message: 'Alpha ${{ env.alpha_version }} Build'
           commit_options: '--allow-empty'
           repository: .pages
           branch: main
@@ -98,7 +105,7 @@ jobs:
         uses: thollander/actions-comment-pull-request@v2
         with:
           message: |
-            ## Alpha ${{ env.alpha_version }} - ${{ steps.build.outputs.sha }}
+            ## Alpha ${{ env.pr_number }} - ${{ env.sha }}
 
             _wait for the deploy to be done [here](${{ steps.fetch-build-status.outputs.url }})_
 
@@ -118,7 +125,7 @@ jobs:
         uses: peter-evans/commit-comment@v2
         with:
           body: |
-            ## Alpha ${{ env.alpha_version }} Rebuilt - ${{ steps.build.outputs.sha }}
+            ## Alpha ${{ env.pr_number }} - ${{ env.sha }}
 
             _wait for the deploy to be done [here](${{ steps.fetch-build-status.outputs.url }})_
 
