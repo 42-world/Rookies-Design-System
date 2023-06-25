@@ -33,6 +33,7 @@ jobs:
         with:
           commit_message: '[skip actions] Remove Alpha${{ env.pr_number }} (${{ github.sha }}))'
           commit_options: '--allow-empty'
+          branch: main
 
       - name: Comment PR Alpha
         uses: thollander/actions-comment-pull-request@v2
