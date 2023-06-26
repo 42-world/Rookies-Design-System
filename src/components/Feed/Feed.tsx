@@ -36,9 +36,6 @@ export function Feed({
   onClickLike,
   onClickComment,
 }: Props) {
-  isLiked;
-  isCommentClicked;
-
   return (
     <div className="group/feed w-411 transition-transform duration-300 ease-in-out active:scale-92">
       <AvatarText src={userProfileSrc} mainText={username} subText={timestamp} />
@@ -53,8 +50,14 @@ export function Feed({
         <div className="absolute left-0 top-0 z-10 h-full w-411 bg-gradient-to-t from-bg-primary to-transparent dark:from-bg-primary_dark " />
       </div>
       <div className=" mb-4 mt-4 flex flex-row items-center justify-start">
-        <Button variant="text" icon={LikeIcon} text={likeCount.toString()} onClick={onClickLike} />
-        <Button variant="text" icon={CommentIcon} text={commentCount.toString()} onClick={onClickComment} />
+        <Button variant="text" activated={isLiked} icon={LikeIcon} text={likeCount.toString()} onClick={onClickLike} />
+        <Button
+          variant="text"
+          activated={isCommentClicked}
+          icon={CommentIcon}
+          text={commentCount.toString()}
+          onClick={onClickComment}
+        />
       </div>
       <Divider variant="primary" className="w-411" />
     </div>
