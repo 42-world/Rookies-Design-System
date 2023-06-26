@@ -33,9 +33,9 @@ applyFramerProperties(Card, {
     type: ControlType.String,
     defaultValue: '지최',
   },
-  detail: {
-    title: 'Detail',
+  title: {
+    title: 'Title',
     type: ControlType.String,
-    defaultValue: '지최',
+    defaultValue: 'title',
   },
 });
