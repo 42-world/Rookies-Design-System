@@ -11,5 +11,21 @@ export function SearchBar(props: ComponentProps<typeof _SearchBar>) {
   );
 }
 
-// Add your custom property infos here
-// applyFramerProperties(SearchBar, {});
+applyFramerProperties(SearchBar, {
+  variant: {
+    title: 'Variant',
+    type: ControlType.Enum,
+    options: ['primary', 'solid'],
+    defaultValue: 'primary',
+  },
+  value: {
+    title: 'Value',
+    type: ControlType.String,
+    defaultValue: '',
+  },
+  placeholder: {
+    title: 'Placeholder',
+    type: ControlType.String,
+    defaultValue: 'Gyudong',
+  },
+});
