@@ -4,6 +4,7 @@ const globby = require('globby');
 const { esmPlugin } = require('./plugin.esm');
 const { cssPlugin } = require('./plugin.css');
 const { svgPlugin } = require('./plugin.svg');
+const { move, rm } = require('fs-extra');
 
 const color = (n, v) => `\x1b[${n}m${v}\x1b[0m`;
 
@@ -15,7 +16,7 @@ function getBuildCommonOptions() {
     target: 'es2019',
     inject: [__dirname + '/react-shim.js'],
     external: ['react', 'react/jsx-runtime', 'react-dom', 'framer', 'framer-motion'],
-    plugins: [svgPlugin(), cssPlugin({ inject: true })],
+    plugins: [svgPlugin()],
   };
 }
 
@@ -23,15 +24,16 @@ async function getBuildFramerOptions() {
   const path = join(process.cwd(), 'src');
   const outDir = resolve(join(process.cwd(), 'dist/framer'));
   const entryPoints = await globby([`${path}/**/*.(t|j)s*`]);
-  const commonOptions = getBuildCommonOptions();
 
   return {
-    ...commonOptions,
     entryPoints,
     minify: true,
     bundle: true,
     format: 'esm',
-    plugins: [...commonOptions.plugins, esmPlugin],
+    target: 'es2019',
+    inject: [__dirname + '/react-shim.js'],
+    external: ['react', 'react/jsx-runtime', 'react-dom', 'framer', 'framer-motion'],
+    plugins: [svgPlugin(), cssPlugin({ inject: true }), esmPlugin],
     outdir: outDir,
   };
 }
@@ -74,6 +76,9 @@ async function buildCjs() {
 
 async function build() {
   await Promise.all([buildFramer(), buildCjs(), buildEsm()]);
+
+  await rm(resolve(join(process.cwd(), 'style.css')));
+  await move(resolve(join(process.cwd(), 'dist/js/index.css')), resolve(join(process.cwd(), 'style.css')));
 
   console.log(`Build done!`);
 }

@@ -16,7 +16,9 @@
   },
   "files": [
     "dist/js",
-    "dist/types"
+    "dist/types",
+    "style.css",
+    "tailwind.config.js"
   ],
   "license": "MIT",
   "scripts": {
@@ -28,7 +30,7 @@
     "build:js": "node .build/esmbuild.js build",
     "build:types": "tsc -p tsconfig.build.json --emitDeclarationOnly --outDir ./dist/types",
     "build:storybook": "storybook build -o ./dist/storybook",
-    "pre-build:clear": "rm -rf dist",
+    "pre-build:clear": "rm -rf dist && rm style.css",
     "pre-build:tailwind": "tailwindcss -i ./src/styles/tailwind.css -o ./src/styles/_tailwind.css",
     "ci": "yarn concurrently 'yarn:ci:*'",
     "ci:test": "echo no test",
