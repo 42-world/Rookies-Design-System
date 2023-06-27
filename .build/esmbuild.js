@@ -77,7 +77,7 @@ async function buildCjs() {
 async function build() {
   await Promise.all([buildFramer(), buildCjs(), buildEsm()]);
 
-  await rm(resolve(join(process.cwd(), 'style.css')));
+  await rm(resolve(join(process.cwd(), 'style.css'))).catch(() => {});
   await move(resolve(join(process.cwd(), 'dist/js/index.css')), resolve(join(process.cwd(), 'style.css')));
 
   console.log(`Build done!`);
