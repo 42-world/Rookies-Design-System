@@ -4,9 +4,10 @@ import { FramerProvider, applyFramerProperties } from '../../common/framer';
 import { SearchBar as _SearchBar } from './SearchBar';
 
 export function SearchBar(props: ComponentProps<typeof _SearchBar>) {
+  const { children, ...restProps } = props;
   return (
     <FramerProvider>
-      <_SearchBar {...props} />
+      <_SearchBar {...restProps} />
     </FramerProvider>
   );
 }
