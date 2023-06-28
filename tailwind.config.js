@@ -5,6 +5,12 @@ module.exports = {
   darkMode: 'class',
   theme: {
     extend: {
+      spacing: {
+        m8: '-8px',
+      },
+      width: {
+        411: '411px',
+      },
       fontFamily: {
         /**
          * @warning
@@ -25,6 +31,8 @@ module.exports = {
         searchbar_hover_dark: '0px 0px 5px 1px #525252',
         searchbar_solid_hover: '0px 0px 16px 4px #B5B5B5',
         searchbar_solid_hover_dark: '0px 0px 16px 4px #7A7A7A',
+      scale: {
+        92: '0.92',
       },
       colors: {
         text: {
