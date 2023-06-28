@@ -18,14 +18,14 @@ applyFramerProperties(SearchBar, {
     options: ['primary', 'solid'],
     defaultValue: 'primary',
   },
-  // value: {
-  //   title: 'Value',
-  //   type: ControlType.String,
-  //   defaultValue: '',
-  // },
-  // placeholder: {
-  //   title: 'Placeholder',
-  //   type: ControlType.String,
-  //   defaultValue: 'Gyudong',
-  // },
+  value: {
+    title: 'Value',
+    type: ControlType.String,
+    defaultValue: '',
+  },
+  placeholder: {
+    title: 'Placeholder',
+    type: ControlType.String,
+    defaultValue: 'Gyudong',
+  },
 });
