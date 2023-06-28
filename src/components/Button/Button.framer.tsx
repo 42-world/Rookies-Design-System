@@ -8,7 +8,7 @@ export function Button({ icon, ...props }: Omit<ComponentProps<typeof _Button>, 
   if (!icon.length) {
     return (
       <FramerProvider>
-        <_Button icon={AddCard} {...props} />
+        <_Button {...props} />
       </FramerProvider>
     );
   }
