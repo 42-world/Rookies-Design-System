@@ -1,10 +1,12 @@
 import { ControlType } from 'framer';
 import type { ComponentProps } from 'react';
-import { FramerProvider, applyFramerProperties } from '../../common/framer';
+import { applyFramerProperties, FramerProvider } from '../../common/framer';
 import { SearchBar as _SearchBar } from './SearchBar';
 
 export function SearchBar(props: ComponentProps<typeof _SearchBar>) {
   const { children, ...restProps } = props;
+  void children;
+
   return (
     <FramerProvider>
       <_SearchBar {...restProps} />

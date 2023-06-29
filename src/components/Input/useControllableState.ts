@@ -17,9 +17,9 @@ export const useControllableState = <T>({
   const isControlled = valueFromProps != undefined;
   const value = isControlled ? valueFromProps : uncontrolledValue;
 
-  const onValueChange = useCallback((nextState: T | (() => T)) => {
+  const onValueChange = useCallback((nextState: T | ((value: T) => T)) => {
     if (typeof nextState === 'function') {
-      nextState = (nextState as () => T)();
+      nextState = (nextState as (value: T) => T)(value);
     }
 
     if (!isControlled) {
