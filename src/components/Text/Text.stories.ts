@@ -10,9 +10,30 @@ const meta: Meta<Component> = {
 type Story = StoryObj<Component>;
 export const Primary: Story = {
   args: {
-    text: '테스트 텍스트입니다!',
+    text: 'Lorem ipsum',
     size: 'body1',
     weight: 'medium',
+  },
+};
+
+export const AlignRight: Story = {
+  args: {
+    ...Primary.args,
+    align: 'right',
+  },
+};
+
+export const AlignCenter: Story = {
+  args: {
+    ...Primary.args,
+    align: 'center',
+  },
+};
+
+export const ColorSecondary: Story = {
+  args: {
+    ...Primary.args,
+    color: 'secondary',
   },
 };
 

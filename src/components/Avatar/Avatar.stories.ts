@@ -17,6 +17,5 @@ export const Primary: Story = {
     size: '40px',
   },
 };
-s;
 
 export default meta;

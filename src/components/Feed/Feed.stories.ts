@@ -12,7 +12,7 @@ type Story = StoryObj<Component>;
 export const Primary: Story = {
   // Add your story args here
   args: {
-    username: 'Lorem Ipsum',
+    username: '홍길동',
     timestamp: '4시간 전',
     userProfileSrc: 'https://picsum.photos/536/354',
     thumbnailSrc: 'https://picsum.photos/536/354',

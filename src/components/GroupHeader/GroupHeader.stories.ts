@@ -10,8 +10,8 @@ const meta: Meta<Component> = {
 type Story = StoryObj<Component>;
 export const Primary: Story = {
   args: {
-    text: '인기게시글',
-    href: 'https://www.google.com',
+    text: 'Lorem ipsum',
+    href: 'https://github.com',
   },
 };
 
