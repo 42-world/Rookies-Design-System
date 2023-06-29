@@ -37,12 +37,12 @@ export function Feed({
   onClickComment,
 }: Props) {
   return (
-    <div className="group/feed w-411 transition-transform duration-300 ease-in-out active:scale-92">
+    <div className="group/feed w-411 transition-transform duration-200 ease-in-out active:scale-92">
       <AvatarText src={userProfileSrc} mainText={username} subText={timestamp} />
       <Thumbnail
         src={thumbnailSrc}
         width={411}
-        className="mt-4 transition-transform duration-300 ease-in-out group-hover/feed:translate-y-m8"
+        className="mt-4 transition-transform duration-200 ease-in-out group-hover/feed:translate-y-m8"
       />
       <div className="relative mt-6 w-411">
         <Text size="heading2" weight="semibold" text={title} className="mb-4" />
