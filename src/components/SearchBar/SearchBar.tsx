@@ -1,7 +1,7 @@
-import { forwardRef, InputHTMLAttributes } from 'react';
 import Search from '@material-design-icons/svg/filled/search.svg';
-import { Button } from '../Button';
+import { forwardRef, InputHTMLAttributes } from 'react';
 import { twMerge } from 'tailwind-merge';
+import { Button } from '../Button';
 
 type SearchBarVariant = 'primary' | 'solid';
 interface InputProps {
@@ -30,7 +30,7 @@ export const SearchBar = forwardRef<HTMLInputElement, Props>(
             )}
             {...restProps}
           />
-          <Button type="submit" variant="text" icon={Search} aria-label="검색" />
+          <Button type="submit" variant="text" icon={<Search />} aria-label="검색" />
         </div>
       </div>
     );

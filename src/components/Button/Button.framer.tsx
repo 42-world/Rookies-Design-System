@@ -1,29 +1,28 @@
 import { ControlType } from 'framer';
-import type { ComponentProps } from 'react';
-import { applyFramerProperties, FramerProvider } from '../../common/framer';
+import { ComponentProps } from 'react';
+import {
+  applyFramerProperties,
+  createFramerIconProperties,
+  FramerIconType,
+  FramerProvider,
+  useFramerIcon,
+} from '../../common/framer';
 import { Button as _Button } from './Button';
 
 type OriginalProps = ComponentProps<typeof _Button>;
 
 type Props = Omit<OriginalProps, 'icon'> & {
-  icon: JSX.Element[];
+  icon: FramerIconType;
   variant: OriginalProps['variant'];
   activated: boolean;
 };
 
 export function Button({ icon, ...props }: Props) {
-  if (!icon.length) {
-    return (
-      <FramerProvider>
-        <_Button {...props} />
-      </FramerProvider>
-    );
-  }
+  const svgElement = useFramerIcon({ icon });
 
-  const IconComponent = () => icon[0];
   return (
     <FramerProvider>
-      <_Button icon={IconComponent} {...props} />
+      <_Button icon={svgElement} {...props} />
     </FramerProvider>
   );
 }
@@ -41,10 +40,10 @@ applyFramerProperties(Button, {
     options: ['primary', 'secondary', 'text'],
     defaultValue: 'primary',
   },
-  icon: {
+  icon: createFramerIconProperties({
     title: 'Icon',
-    type: ControlType.ComponentInstance,
-  },
+    optional: true,
+  }),
   activated: {
     title: 'Activated',
     type: ControlType.Boolean,

@@ -1,18 +1,17 @@
 import { ControlType } from 'framer';
 import type { ComponentProps } from 'react';
-import { FramerProvider, applyFramerProperties } from '../../common/framer';
+import {
+  applyFramerProperties,
+  createFramerIconProperties,
+  FramerIconType,
+  FramerProvider,
+  useFramerIcon,
+} from '../../common/framer';
 import { Chip as _Chip } from './Chip';
 
-export function Chip({ icon, ...props }: Omit<ComponentProps<typeof _Chip>, 'icon'> & { icon: JSX.Element[] }) {
-  if (!icon.length) {
-    return (
-      <FramerProvider>
-        <_Chip {...props} />
-      </FramerProvider>
-    );
-  }
+export function Chip({ icon, ...props }: Omit<ComponentProps<typeof _Chip>, 'icon'> & { icon: FramerIconType }) {
+  const IconComponent = useFramerIcon({ icon });
 
-  const IconComponent = () => icon[0];
   return (
     <FramerProvider>
       <_Chip icon={IconComponent} {...props} />
@@ -32,8 +31,8 @@ applyFramerProperties(Chip, {
     type: ControlType.Boolean,
     defaultValue: false,
   },
-  icon: {
+  icon: createFramerIconProperties({
     title: 'Icon',
-    type: ControlType.ComponentInstance,
-  },
+    optional: true,
+  }),
 });

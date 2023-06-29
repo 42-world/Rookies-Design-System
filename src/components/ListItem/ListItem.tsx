@@ -1,4 +1,4 @@
-import { ReactNode, MouseEventHandler } from 'react';
+import { MouseEventHandler, ReactNode } from 'react';
 import { Divider } from '../Divider';
 import { Thumbnail } from '../Thumbnail';
 import { Text } from './../Text/Text';

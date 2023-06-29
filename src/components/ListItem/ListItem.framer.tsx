@@ -1,10 +1,10 @@
 import { ControlType } from 'framer';
-import type { ComponentProps } from 'react';
-import { FramerProvider, applyFramerProperties } from '../../common/framer';
+import type { ComponentProps, ReactElement } from 'react';
+import { applyFramerProperties, FramerProvider } from '../../common/framer';
 import { ListItem as _ListItem } from './ListItem';
 
-export function ListItem({ rightAddon, ...props }: ComponentProps<typeof _ListItem> & { rightAddon: JSX.Element[] }) {
-  if (!rightAddon.length) {
+export function ListItem({ rightAddon, ...props }: ComponentProps<typeof _ListItem> & { rightAddon: ReactElement[] }) {
+  if (!rightAddon || !rightAddon.length) {
     return (
       <FramerProvider>
         <_ListItem {...props} />
