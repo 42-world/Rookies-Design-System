@@ -12,7 +12,7 @@ export function Chip({ icon, text, isSelected }: Props) {
   return (
     <div
       className={cx(
-        'group flex h-8 w-fit select-none flex-row items-center rounded-lg duration-300 ease-out active:scale-95',
+        'group flex h-8 w-fit select-none flex-row items-center rounded-lg duration-200 ease-out active:scale-92',
         text ? 'px-3' : 'px-2',
         isSelected
           ? 'bg-bg-secondary dark:bg-bg-secondary_dark'
