@@ -31,7 +31,7 @@ exports.svgPlugin = (options = {}) => ({
       }
 
       return {
-        contents: `export default (props) => {
+        contents: `export default function (props) {
           return (${injectPropsToSvg(contents)});
         }`,
         loader: options.typescript ? 'tsx' : 'jsx',
