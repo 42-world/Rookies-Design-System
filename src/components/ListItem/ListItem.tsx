@@ -34,7 +34,7 @@ export function ListItem({
 }: Props) {
   return (
     <div
-      className="w-full cursor-pointer select-none transition-transform duration-300 ease-out active:scale-95"
+      className="w-full cursor-pointer select-none transition-transform duration-200 ease-out active:scale-92"
       onClick={onClick}
     >
       <div className="flex flex-row items-center justify-between py-4">
