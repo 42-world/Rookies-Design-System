@@ -40,7 +40,7 @@ export function Comment({
         {isAuthor && <Badge color="outline" text="작성자" className="ml-1" />}
         {isMine && <Badge color="outline" text="내댓글" />}
       </div>
-      <Text size="body2" text={content} />
+      <Text size="body2" text={content} weight="medium" />
       <div className="flex flex-row items-center gap-4">
         <Button
           text={`좋아요 ${numOfLikes}`}
