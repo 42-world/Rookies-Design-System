@@ -35,9 +35,3 @@ export function Checkbox({ labelText, checked = false, disabled = false, onChang
     </label>
   );
 }
-
-// {
-/* //
-          ['bg-color-system_200']: selected,
-      }, */
-// }
