@@ -21,6 +21,6 @@ applyFramerProperties(Badge, {
   text: {
     title: 'Text',
     type: ControlType.String,
-    defaultValue: '뱃지',
+    defaultValue: '내댓글',
   },
 });

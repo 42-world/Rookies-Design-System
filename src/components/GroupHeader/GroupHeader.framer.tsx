@@ -15,11 +15,11 @@ applyFramerProperties(GroupHeader, {
   href: {
     title: 'Href',
     type: ControlType.String,
-    defaultValue: 'https://www.google.com',
+    defaultValue: 'https://github.com',
   },
   text: {
     title: 'Text',
     type: ControlType.String,
-    defaultValue: 'GroupHeader',
+    defaultValue: 'Lorem ipsum',
   },
 });

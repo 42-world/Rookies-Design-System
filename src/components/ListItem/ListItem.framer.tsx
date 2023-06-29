@@ -23,7 +23,7 @@ applyFramerProperties(ListItem, {
   title: {
     title: 'Title',
     type: ControlType.String,
-    defaultValue: '지최 is Babo',
+    defaultValue: 'Lorem ipsum',
   },
   thumbnailSrc: {
     title: 'ThumbnailSrc',
@@ -38,7 +38,7 @@ applyFramerProperties(ListItem, {
   secondaryTextSecond: {
     title: 'SecondaryTextSecond',
     type: ControlType.String,
-    defaultValue: '지최',
+    defaultValue: '홍길동',
   },
   hasBorder: {
     title: 'HasBorder',

@@ -15,17 +15,19 @@ applyFramerProperties(Text, {
   text: {
     title: 'Text',
     type: ControlType.String,
-    defaultValue: 'Hello!',
+    defaultValue: 'Lorem ipsum',
   },
   size: {
     title: 'Size',
     type: ControlType.Enum,
     options: Object.keys(textSizeConfig),
+    defaultValue: 'body1',
   },
   weight: {
     title: 'Weight',
     type: ControlType.Enum,
     options: Object.keys(textWeightConfig),
+    defaultValue: 'medium',
   },
   align: {
     title: 'Align',

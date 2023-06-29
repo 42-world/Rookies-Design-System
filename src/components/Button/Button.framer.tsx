@@ -26,7 +26,7 @@ applyFramerProperties(Button, {
   text: {
     title: 'Text',
     type: ControlType.String,
-    defaultValue: 'Button',
+    defaultValue: 'Lorem Ipsum',
   },
   variant: {
     title: 'Variant',
@@ -38,4 +38,9 @@ applyFramerProperties(Button, {
     title: 'Icon',
     type: ControlType.ComponentInstance,
   },
+  // activated: {
+  //   title: 'Activated',
+  //   type: ControlType.Boolean,
+  //   defaultValue: true
+  // }
 });
