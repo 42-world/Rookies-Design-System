@@ -48,7 +48,7 @@ export function Comment({
           className={cx('px-0', { '[&>p]:text-color-system_200 [&>p]:dark:text-color-system_200': isLiked })}
           onClick={onClickLike}
         />
-        <Button text="답글달기" variant="text" className="mx-4 px-0" onClick={onClickReply} />
+        <Button text="답글달기" variant="text" className="px-0" onClick={onClickReply} />
         <Button text="수정하기" variant="text" className="px-0" onClick={onClickEdit} />
       </div>
     </div>
