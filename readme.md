@@ -1,23 +1,21 @@
-# 42World Design System
+# Rookies Design System
 
-This is a design system for [42World](https://42world.kr).
-
-- [Storybook](https://42-world.github.io/design/latest/storybook)
-- [npm](https://www.npmjs.com/package/@42world/design-core)
+- [Storybook](https://pages.rookies.kr/design/latest/storybook)
+- [npm](https://www.npmjs.com/package/@rookies-team/design)
 
 ## Usage
 
-install `@42world/design-core` package
+install `@rookies-team/design` package
 
 ```bash
-yarn add @42world/design-core
+yarn add @rookies-team/design
 ```
 
-import component from `@42world/design-core` package
+import component from `@rookies-team/design` package
 
 ```tsx
-import '@42world/design-core/style.css';
-import { Button } from '@42world/design-core';
+import '@rookies-team/design/style.css';
+import { Button } from '@rookies-team/design';
 
 export default function App() {
   return <Button>Button</Button>;
@@ -127,7 +125,7 @@ Please write name and `@author` in every component function.
 /**
  * Button
  *
- * @author 42World
+ * @author Rookies
  */
 export function Button() {
   return <button>Button</button>;
