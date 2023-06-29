@@ -20,21 +20,23 @@ applyFramerProperties(Thumbnail, {
   alt: {
     title: 'Alt',
     type: ControlType.String,
-    defaultValue: '지최 is Babo',
+    defaultValue: 'Lorem Ipsum',
   },
   width: {
     title: 'Width',
     type: ControlType.Number,
-    defaultValue: 480,
+    defaultValue: 269,
   },
   rounded: {
     title: 'Rounded',
     type: ControlType.Enum,
     options: ['8px', '16px'],
+    defaultValue: '16px',
   },
   ratio: {
     title: 'Ratio',
     type: ControlType.Enum,
     options: ['16:9', '16:10', '1:1'],
+    defaultValue: '16:9',
   },
 });
