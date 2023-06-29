@@ -15,4 +15,5 @@ export { Badge } from './Badge';
 export { IconText } from './IconText';
 export { Button } from './Button';
 export { Footer } from './Footer';
+export { SearchBar } from './SearchBar';
 export { Feed } from './Feed';
