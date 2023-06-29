@@ -20,6 +20,12 @@ applyFramerProperties(Avatar, {
   alt: {
     title: 'Alt',
     type: ControlType.String,
-    defaultValue: '지최 is Babo',
+    defaultValue: 'Lorem Ipsum',
+  },
+  size: {
+    title: 'Size',
+    type: ControlType.Enum,
+    options: ['40px', '64px'],
+    defaultValue: '40px',
   },
 });
