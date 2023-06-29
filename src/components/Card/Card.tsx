@@ -16,7 +16,7 @@ export function Card({ imageSrc, imageAlt, primary = '', secondary = '', title }
         <Thumbnail src={imageSrc} alt={imageAlt} width={278} ratio="16:9" />
       </div>
       <div className="mt-3 transition-spacing duration-300 ease-in-out">
-        <Text text={`${primary} · ${secondary}`} size="body2" weight="regular" color="secondary" />
+        <Text text={`${[primary, secondary].join(' · ')}`} size="body2" weight="regular" color="secondary" />
       </div>
       {title && <Text text={title} size="body1" weight="medium" color="primary" className="line-clamp-1" />}
     </div>

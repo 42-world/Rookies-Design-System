@@ -16,7 +16,8 @@ yarn add @42world/design-core
 import component from `@42world/design-core` package
 
 ```tsx
-import { Button } from '@42world/design-system';
+import '@42world/design-core/style.css';
+import { Button } from '@42world/design-core';
 
 export default function App() {
   return <Button>Button</Button>;

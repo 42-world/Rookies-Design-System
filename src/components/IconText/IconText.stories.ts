@@ -12,7 +12,17 @@ type Story = StoryObj<Component>;
 
 export const Primary: Story = {
   // Add your story args here
-  args: { svg: AddCard, text: 'xsmall' },
+  args: { svg: AddCard, text: 'xsmall', size: 'xsmall' },
+};
+
+export const Small: Story = {
+  // Add your story args here
+  args: { ...Primary.args, text: 'small', size: 'small' },
+};
+
+export const Medium: Story = {
+  // Add your story args here
+  args: { ...Primary.args, text: 'medium', size: 'medium' },
 };
 
 export default meta;

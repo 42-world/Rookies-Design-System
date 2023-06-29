@@ -13,11 +13,11 @@ export const Primary: Story = {
   // Add your story args here
   args: {
     avatarSrc: 'https://picsum.photos/536/354',
-    avatarAlt: 'WeL0ve42World',
-    username: '에베베손',
+    avatarAlt: 'Lorem ipsum',
+    username: 'Lorem ipsum',
     time: '3시간 전',
     content:
-      '오늘 저녁은 맛있는 떡갈비에 열무김치에 명이나물을 먹었고 동물의숲 하고싶고 돈벌고싶고 어쩌구저쩌구 아쉽게도 transition은 아직 리액트 18에서도 개발중인 기능 중 하나이기에...',
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam',
     isMine: false,
     isAuthor: false,
     isLiked: false,
