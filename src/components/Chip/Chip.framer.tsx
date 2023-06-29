@@ -25,7 +25,7 @@ applyFramerProperties(Chip, {
   text: {
     title: 'Text',
     type: ControlType.String,
-    defaultValue: 'Chip',
+    defaultValue: 'Sample',
   },
   isSelected: {
     title: 'IsSelected',

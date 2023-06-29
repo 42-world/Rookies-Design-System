@@ -16,12 +16,12 @@ applyFramerProperties(Feed, {
   username: {
     title: 'Username',
     type: ControlType.String,
-    defaultValue: '에베베손',
+    defaultValue: '홍길동',
   },
   timestamp: {
     title: 'Timestamp',
     type: ControlType.String,
-    defaultValue: '1시간 전',
+    defaultValue: '4시간 전',
   },
   userProfileSrc: {
     title: 'UserProfileSrc',
@@ -36,12 +36,12 @@ applyFramerProperties(Feed, {
   title: {
     title: 'Title',
     type: ControlType.String,
-    defaultValue: '42world design system',
+    defaultValue: 'Lorem Ipsum',
   },
   contents: {
     title: 'Contents',
     type: ControlType.String,
-    defaultValue: '42world design system',
+    defaultValue: 'lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismo lorem, condimentum euismod. lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismo lorem, condimentum euismod. lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismo lorem, condimentum euismod.',
   },
   isLiked: {
     title: 'IsLiked',
@@ -51,7 +51,7 @@ applyFramerProperties(Feed, {
   likeCount: {
     title: 'LikeCount',
     type: ControlType.Number,
-    defaultValue: 0,
+    defaultValue: 30,
   },
   isCommentClicked: {
     title: 'IsCommentClicked',
@@ -61,6 +61,6 @@ applyFramerProperties(Feed, {
   commentCount: {
     title: 'CommentCount',
     type: ControlType.Number,
-    defaultValue: 0,
+    defaultValue: 30,
   },
 });

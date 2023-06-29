@@ -3,9 +3,9 @@ import { Icon } from '../Icon';
 import { Text } from '../Text';
 
 type Props = {
-  icon?: React.FC<React.SVGAttributes<SVGElement>>;
   text?: string;
   isSelected?: boolean;
+  icon?: React.FC<React.SVGAttributes<SVGElement>>;
 };
 
 export function Chip({ icon, text, isSelected }: Props) {

@@ -14,14 +14,14 @@ export const Primary: Story = {
   args: {
     avatarSrc: 'https://picsum.photos/536/354',
     avatarAlt: 'Lorem ipsum',
-    username: 'Lorem ipsum',
+    username: '홍길동',
     time: '3시간 전',
     content:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam',
     isMine: false,
     isAuthor: false,
     isLiked: false,
-    numOfLikes: 0,
+    likeCount: 0,
   },
 };
 

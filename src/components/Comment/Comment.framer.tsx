@@ -21,22 +21,22 @@ applyFramerProperties(Comment, {
   avatarAlt: {
     title: 'AvatarAlt',
     type: ControlType.String,
-    defaultValue: 'image',
+    defaultValue: 'Lorem ipsum',
   },
   username: {
     title: 'Username',
     type: ControlType.String,
-    defaultValue: '에베베손',
+    defaultValue: '홍길동',
   },
   time: {
     title: 'Time',
     type: ControlType.String,
-    defaultValue: '1시간 전',
+    defaultValue: '3시간 전',
   },
   content: {
     title: 'Content',
     type: ControlType.String,
-    defaultValue: '42world design system',
+    defaultValue: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam',
   },
   isMine: {
     title: 'IsMine',
@@ -53,8 +53,8 @@ applyFramerProperties(Comment, {
     type: ControlType.Boolean,
     defaultValue: false,
   },
-  numOfLikes: {
-    title: 'NumOfLikes',
+  likeCount: {
+    title: 'LikeCount',
     type: ControlType.Number,
     defaultValue: 0,
   },
