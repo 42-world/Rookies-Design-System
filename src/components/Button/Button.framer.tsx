@@ -1,4 +1,3 @@
-import AddCard from '@material-design-icons/svg/filled/power.svg';
 import { ControlType } from 'framer';
 import type { ComponentProps } from 'react';
 import { applyFramerProperties, FramerProvider } from '../../common/framer';

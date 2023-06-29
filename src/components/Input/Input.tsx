@@ -1,8 +1,8 @@
 import cx from 'classnames';
 import type { InputHTMLAttributes, ReactNode } from 'react';
 import { forwardRef, useId } from 'react';
-import { useControllableState } from './useControllableState';
 import { Text } from '../Text';
+import { useControllableState } from './useControllableState';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
@@ -52,7 +52,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             <label
               htmlFor={idFromProps ?? id}
               className={cx(
-                'before:mr-1 text-sm leading-[1.8] font-normal text-text-secondary dark:text-text-secondary_dark',
+                'text-sm font-normal leading-[1.8] text-text-secondary before:mr-1 dark:text-text-secondary_dark',
                 {
                   'before:content-["*"]': required,
                 },

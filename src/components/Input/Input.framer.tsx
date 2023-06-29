@@ -1,6 +1,6 @@
 import { ControlType } from 'framer';
-import { ComponentProps, useEffect, useRef } from 'react';
-import { FramerProvider, applyFramerProperties } from '../../common/framer';
+import { ComponentProps, useRef } from 'react';
+import { applyFramerProperties, FramerProvider } from '../../common/framer';
 import { Input as _Input } from './Input';
 
 interface InputProps {
@@ -16,7 +16,7 @@ interface InputProps {
 }
 
 const transformProps = (props: InputProps): ComponentProps<typeof _Input> => {
-  const { focused, helperText, ...restProps } = props;
+  const { helperText, ...restProps } = props;
 
   return {
     ...restProps,
@@ -28,12 +28,7 @@ export function Input(props: InputProps) {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const { children, ...transformedProps } = transformProps(props);
-
-  useEffect(() => {
-    if (props.focused) {
-      inputRef.current?.focus();
-    }
-  }, [props.focused]);
+  void children;
 
   return (
     <FramerProvider>
