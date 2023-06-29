@@ -1,0 +1,1 @@
+require('./update-framer-icon-list')
