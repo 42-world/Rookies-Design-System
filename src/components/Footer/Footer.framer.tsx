@@ -26,6 +26,6 @@ applyFramerProperties(Footer, {
   mailLink: {
     title: 'MailLink',
     type: ControlType.String,
-    defaultValue: 'mailto:asdf@naver.com',
+    defaultValue: 'mailto:Loremipsum@naver.com',
   },
 });

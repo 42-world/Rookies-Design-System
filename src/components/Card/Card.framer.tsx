@@ -21,21 +21,22 @@ applyFramerProperties(Card, {
   imageAlt: {
     title: 'ImageAlt',
     type: ControlType.String,
-    defaultValue: '지최 is Babo',
+    defaultValue: 'Lorem Ipsum',
   },
   primary: {
     title: 'Primary',
     type: ControlType.String,
-    defaultValue: '지최',
+    defaultValue: 'Lorem Ipsum',
   },
   secondary: {
     title: 'Secondary',
     type: ControlType.String,
-    defaultValue: '지최',
+    defaultValue: '2023.04.32',
   },
   title: {
     title: 'Title',
     type: ControlType.String,
-    defaultValue: 'title',
+    defaultValue:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam',
   },
 });

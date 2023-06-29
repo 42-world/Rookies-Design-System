@@ -30,11 +30,12 @@ applyFramerProperties(IconText, {
   text: {
     title: 'Text',
     type: ControlType.String,
-    defaultValue: 'IconText',
+    defaultValue: 'xsmall',
   },
   size: {
     title: 'Size',
     type: ControlType.Enum,
     options: ['xsmall', 'small', 'medium'],
+    defaultValue: 'xsmall',
   },
 });

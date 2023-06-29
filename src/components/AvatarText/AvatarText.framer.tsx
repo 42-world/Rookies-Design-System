@@ -33,4 +33,9 @@ applyFramerProperties(AvatarText, {
     type: ControlType.String,
     defaultValue: 'Lorem Ipsum',
   },
+  subText: {
+    title: 'SubText',
+    type: ControlType.String,
+    defaultValue: 'Lorem Ipsum',
+  },
 });

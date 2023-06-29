@@ -13,7 +13,7 @@ interface Props {
   isMine?: boolean;
   isAuthor?: boolean;
   isLiked?: boolean;
-  numOfLikes?: number;
+  likeCount?: number;
   onClickLike?: () => void;
   onClickReply?: () => void;
   onClickEdit?: () => void;
@@ -28,7 +28,7 @@ export function Comment({
   isMine,
   isAuthor,
   isLiked,
-  numOfLikes = 0,
+  likeCount = 0,
   onClickLike,
   onClickEdit,
   onClickReply,
@@ -43,7 +43,7 @@ export function Comment({
       <Text size="body2" text={content} weight="medium" />
       <div className="flex flex-row items-center gap-4">
         <Button
-          text={`좋아요 ${numOfLikes}`}
+          text={`좋아요 ${likeCount}`}
           variant="text"
           className={cx('px-0', { '[&>p]:text-color-system_200 [&>p]:dark:text-color-system_200': isLiked })}
           onClick={onClickLike}
