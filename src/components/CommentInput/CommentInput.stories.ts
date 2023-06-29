@@ -11,7 +11,8 @@ type Story = StoryObj<Component>;
 
 export const Primary: Story = {
   args: {
-    placeholder: '감사합니다!',
+    placeholder:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
   },
 };
 

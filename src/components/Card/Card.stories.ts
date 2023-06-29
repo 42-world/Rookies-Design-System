@@ -11,8 +11,8 @@ type Story = StoryObj<Component>;
 export const Primary: Story = {
   args: {
     imageSrc: 'https://picsum.photos/536/354',
-    imageAlt: '42world',
-    primary: '에베베손',
+    imageAlt: 'Lorem Ipsum',
+    primary: 'Lorem Ipsum',
     secondary: '2023.04.32',
   },
 };
@@ -20,19 +20,21 @@ export const Primary: Story = {
 export const PrimaryWithTitle: Story = {
   args: {
     imageSrc: 'https://picsum.photos/536/354',
-    imageAlt: '42world',
-    primary: '에베베손',
+    imageAlt: 'Lorem Ipsum',
+    primary: 'Lorem Ipsum',
     secondary: '2023.04.32',
-    title: '지최는 배가 고프고 내일은 닭가슴살 소세지 먹을 거고 스타벅스 가서 이거 하고',
+    title:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam',
   },
 };
 
 export const PrimaryNoPrimaryText: Story = {
   args: {
     imageSrc: 'https://picsum.photos/536/354',
-    imageAlt: '42world',
-    secondary: '지최',
-    title: '지최는 배가 고프고 내일은 닭가슴살 소세지 먹을 거고 스타벅스 가서 이거 하고',
+    imageAlt: 'Lorem Ipsum',
+    secondary: 'Lorem Ipsum',
+    title:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam',
   },
 };
 
