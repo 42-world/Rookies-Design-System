@@ -17,3 +17,4 @@ export { Button } from './Button';
 export { Footer } from './Footer';
 export { SearchBar } from './SearchBar';
 export { Feed } from './Feed';
+export { Radio, RadioGroup } from './Radio';
