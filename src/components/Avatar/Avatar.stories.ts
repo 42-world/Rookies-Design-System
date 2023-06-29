@@ -13,7 +13,8 @@ export const Primary: Story = {
   // Add your story args here
   args: {
     src: 'https://picsum.photos/536/354',
-    alt: '42world',
+    alt: 'Lorem Ipsum',
+    size: '40px',
   },
 };
 

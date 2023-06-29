@@ -21,7 +21,7 @@ applyFramerProperties(AvatarText, {
   alt: {
     title: 'Alt',
     type: ControlType.String,
-    defaultValue: '지최 is Babo',
+    defaultValue: 'Lorem Ipsum',
   },
   size: {
     title: 'Size',
@@ -31,6 +31,6 @@ applyFramerProperties(AvatarText, {
   mainText: {
     title: 'MainText',
     type: ControlType.String,
-    defaultValue: '지최',
+    defaultValue: 'Lorem Ipsum',
   },
 });

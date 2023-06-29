@@ -6,13 +6,21 @@ type Component = typeof Button;
 const meta: Meta<Component> = {
   title: 'rookies/Button',
   component: Button,
+  argTypes: {
+    activated: {
+      if: {
+        arg: 'variant',
+        eq: 'text',
+      },
+    },
+  },
 };
 
 type Story = StoryObj<Component>;
 
 export const Primary: Story = {
   args: {
-    text: '이거 누르면 지최 등장함',
+    text: 'Lorem Ipsum',
     icon: HolidayVillage,
   },
 };
@@ -31,6 +39,14 @@ export const Text: Story = {
   },
 };
 
+export const TextActivated: Story = {
+  args: {
+    ...Primary.args,
+    variant: 'text',
+    activated: true,
+  },
+};
+
 export const OnlyIcon: Story = {
   args: {
     icon: HolidayVillage,
@@ -39,7 +55,7 @@ export const OnlyIcon: Story = {
 
 export const OnlyText: Story = {
   args: {
-    text: '이거 누르면 지최 등장함',
+    text: 'Lorem Ipsum',
   },
 };
 
