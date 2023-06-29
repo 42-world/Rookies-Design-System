@@ -7,12 +7,12 @@ import { Text } from '../Text';
 
 interface Props {
   labelText: string;
-  checked: boolean;
+  checked?: boolean;
   disabled?: boolean;
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
-export function Checkbox({ labelText, checked, disabled, onChange }: Props) {
+export function Checkbox({ labelText, checked = false, disabled = false, onChange }: Props) {
   return (
     <label className={cx('flex flex-row items-center  gap-2', { 'opacity-[0.3]': disabled })}>
       <input type="checkbox" className="hidden" checked={checked} onChange={onChange} />
