@@ -110,17 +110,17 @@ jobs:
 
             ### Check it out!
 
-            - Go to [StoryBook](https://42-world.github.io/${{ env.base_path }}/${{ env.new_version }}/storybook)
-            - Go to [Framer](https://42-world.github.io/${{ env.base_path }}/utils/framer_code_gen.html?base_path=${{ env.base_path }}&version=${{ env.new_version }})
+            - Go to [StoryBook](https://pages.rookies.kr/${{ env.base_path }}/${{ env.new_version }}/storybook)
+            - Go to [Framer](https://pages.rookies.kr/${{ env.base_path }}/utils/framer_code_gen.html?base_path=${{ env.base_path }}&version=${{ env.new_version }})
 
             ### Or you can try...
 
             ```
-            yarn add @42world/design-core@^${{ env.new_version }}
+            yarn add @rookies-team/design@^${{ env.new_version }}
             ```
 
             or
 
             ```
-            yarn add @42world/design-core@https://42-world.github.io/${{ env.base_path }}/${{ env.new_version }}/${{ steps.build.outputs.pack_name }}
+            yarn add @rookies-team/design@https://pages.rookies.kr/${{ env.base_path }}/${{ env.new_version }}/${{ steps.build.outputs.pack_name }}
             ```

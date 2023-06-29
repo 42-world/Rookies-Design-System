@@ -1,21 +1,22 @@
 import cx from 'classnames';
 import type { InputHTMLAttributes, ReactNode } from 'react';
 import { forwardRef, useId } from 'react';
-import { useControllableState } from './useControllableState';
 import { Text } from '../Text';
+import { useControllableState } from './useControllableState';
 
-interface Props extends InputHTMLAttributes<HTMLInputElement> {
+interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   value?: string;
   defaultValue?: string;
   subLabel?: string;
-  variant: 'outline' | 'filled';
-  hasError: boolean;
-  rightAddon: ReactNode;
-  onValueChange: (value: string) => void;
+  variant?: 'outline' | 'filled';
+  required?: boolean;
+  hasError?: boolean;
+  rightAddon?: ReactNode;
+  onValueChange?: (value: string) => void;
 }
 
-export const Input = forwardRef<HTMLInputElement, Props>(
+export const Input = forwardRef<HTMLInputElement, InputProps>(
   (
     {
       id: idFromProps,
@@ -24,6 +25,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(
       defaultValue,
       subLabel,
       variant,
+      required,
       rightAddon,
       hasError,
       maxLength,
@@ -49,12 +51,17 @@ export const Input = forwardRef<HTMLInputElement, Props>(
           {label && (
             <label
               htmlFor={idFromProps ?? id}
-              className='text-sm font-normal leading-[1.8] text-text-secondary before:mr-1 before:content-["*"] dark:text-text-secondary_dark'
+              className={cx(
+                'text-sm font-normal leading-[1.8] text-text-secondary before:mr-1 dark:text-text-secondary_dark',
+                {
+                  'before:content-["*"]': required,
+                },
+              )}
             >
               {label}
             </label>
           )}
-          {maxLength && (
+          {maxLength ? (
             <Text
               className="ml-auto"
               text={`(${value.length}/${maxLength})`}
@@ -62,7 +69,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(
               weight="regular"
               color="secondary"
             />
-          )}
+          ) : null}
         </div>
         <div
           className={cx('flex w-full items-center rounded-lg px-4', {

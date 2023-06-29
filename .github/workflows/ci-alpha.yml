@@ -14,7 +14,7 @@ jobs:
         uses: thollander/actions-comment-pull-request@v2
         with:
           message: |
-            _wait for the CI to be done [here](https://github.com/42-world/42world-Design-System/actions/runs/${{ github.run_id }})_
+            _wait for the CI to be done [here](https://github.com/42-world/rookies-Design-System/actions/runs/${{ github.run_id }})_
 
           comment_tag: execution
 
