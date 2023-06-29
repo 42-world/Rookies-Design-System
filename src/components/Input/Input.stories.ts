@@ -9,7 +9,15 @@ const meta: Meta<Component> = {
 
 type Story = StoryObj<Component>;
 export const Primary: Story = {
-  args: { placeholder: '', maxLength: 10, variant: 'outline', hasError: false },
+  args: { label: '필수 항목', placeholder: '', maxLength: 10, variant: 'outline', hasError: false },
+};
+
+export const DefaultValue: Story = {
+  args: { ...Primary.args, defaultValue: '기본값' },
+};
+
+export const SubLabel: Story = {
+  args: { ...Primary.args, subLabel: 'Sub Label' },
 };
 
 export default meta;

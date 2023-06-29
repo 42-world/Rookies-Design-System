@@ -20,7 +20,7 @@ type Story = StoryObj<Component>;
 
 export const Primary: Story = {
   args: {
-    text: '이거 누르면 지최 등장함',
+    text: 'Lorem Ipsum',
     icon: HolidayVillage,
   },
 };
@@ -55,7 +55,7 @@ export const OnlyIcon: Story = {
 
 export const OnlyText: Story = {
   args: {
-    text: '이거 누르면 지최 등장함',
+    text: 'Lorem Ipsum',
   },
 };
 

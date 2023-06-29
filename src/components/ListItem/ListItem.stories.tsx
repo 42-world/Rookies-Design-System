@@ -14,10 +14,10 @@ type Story = StoryObj<Component>;
 
 export const Primary: Story = {
   args: {
-    title: '지바: 지최는 바보라는 뜻',
+    title: 'Lorem ipsum',
     thumbnailSrc: 'https://picsum.photos/536/354',
     secondaryTextFirst: '2021.10.20',
-    secondaryTextSecond: '지최',
+    secondaryTextSecond: '홍길동',
     rightAddon: (
       <>
         <IconText svg={ChatBubble} text="16" />
@@ -29,9 +29,9 @@ export const Primary: Story = {
 
 export const WithoutThumbnail: Story = {
   args: {
-    title: '지바: 지최는 바보라는 뜻',
+    title: 'Lorem ipsum',
     secondaryTextFirst: '2021.10.20',
-    secondaryTextSecond: '지최',
+    secondaryTextSecond: '홍길동',
     rightAddon: (
       <>
         <IconText svg={ChatBubble} text="16" />
@@ -43,8 +43,8 @@ export const WithoutThumbnail: Story = {
 
 export const OnlyOneSecondaryText: Story = {
   args: {
-    title: '지바: 지최는 바보라는 뜻',
-    secondaryTextFirst: '지최게시판',
+    title: 'Lorem ipsum',
+    secondaryTextFirst: '게시판 1',
     rightAddon: (
       <>
         <IconText svg={ChatBubble} text="16" />
@@ -56,7 +56,7 @@ export const OnlyOneSecondaryText: Story = {
 
 export const WithoutSecondaryText: Story = {
   args: {
-    title: '지바: 지최는 바보라는 뜻',
+    title: 'Lorem ipsum',
     rightAddon: (
       <>
         <IconText svg={ChatBubble} text="16" />
@@ -68,7 +68,7 @@ export const WithoutSecondaryText: Story = {
 
 export const SingleMetadata: Story = {
   args: {
-    title: '지바: 지최는 바보라는 뜻',
+    title: 'Lorem ipsum',
     rightAddon: (
       <>
         <IconText svg={ChatBubble} text="16" />
@@ -79,13 +79,13 @@ export const SingleMetadata: Story = {
 
 export const WithoutMetaData: Story = {
   args: {
-    title: '지바: 지최는 바보라는 뜻',
+    title: 'Lorem ipsum',
   },
 };
 
 export const WithoutBorder: Story = {
   args: {
-    title: '지바: 지최는 바보라는 뜻',
+    title: 'Lorem ipsum',
     hasBorder: false,
   },
 };
