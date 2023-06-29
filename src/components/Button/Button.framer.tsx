@@ -3,7 +3,15 @@ import type { ComponentProps } from 'react';
 import { applyFramerProperties, FramerProvider } from '../../common/framer';
 import { Button as _Button } from './Button';
 
-export function Button({ icon, ...props }: Omit<ComponentProps<typeof _Button>, 'icon'> & { icon: JSX.Element[] }) {
+type OriginalProps = ComponentProps<typeof _Button>;
+
+type Props = Omit<OriginalProps, 'icon'> & {
+  icon: JSX.Element[];
+  variant: OriginalProps['variant'];
+  activated: boolean;
+};
+
+export function Button({ icon, ...props }: Props) {
   if (!icon.length) {
     return (
       <FramerProvider>
@@ -37,9 +45,12 @@ applyFramerProperties(Button, {
     title: 'Icon',
     type: ControlType.ComponentInstance,
   },
-  // activated: {
-  //   title: 'Activated',
-  //   type: ControlType.Boolean,
-  //   defaultValue: true
-  // }
+  activated: {
+    title: 'Activated',
+    type: ControlType.Boolean,
+    defaultValue: false,
+    hidden(props) {
+      return !(props.variant === 'text');
+    },
+  },
 });
