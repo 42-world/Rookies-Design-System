@@ -22,7 +22,7 @@ export function useFramerIcon({ icon }: Params): ReactElement | undefined {
         `https://raw.githubusercontent.com/marella/material-design-icons/main/svg/${icon.type}/${icon.name}.svg`,
       ).then((res) => res.text());
 
-      SetSvgElement(<div dangerouslySetInnerHTML={{ __html: svg }} />);
+      SetSvgElement(<svg dangerouslySetInnerHTML={{ __html: svg }} />);
     })();
   });
 
