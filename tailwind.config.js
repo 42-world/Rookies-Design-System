@@ -24,6 +24,14 @@ module.exports = {
         spacing: 'margin, padding',
         gap: 'gap',
       },
+      boxShadow: {
+        searchbar: '0px 0px 1px 0px #F3F4F6',
+        searchbar_dark: '0px 0px 1px 0px #262626',
+        searchbar_hover: '0px 0px 5px 1px #D1D5DB',
+        searchbar_hover_dark: '0px 0px 5px 1px #525252',
+        searchbar_solid_hover: '0px 0px 16px 4px #B5B5B5',
+        searchbar_solid_hover_dark: '0px 0px 16px 4px #7A7A7A',
+      },
       scale: {
         92: '0.92',
       },

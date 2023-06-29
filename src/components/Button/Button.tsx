@@ -40,7 +40,7 @@ export function Button(props: Props) {
   return (
     <button
       className={twMerge(
-        `group flex h-8 flex-row items-center gap-2 rounded-2xl border border-solid transition-all duration-300 active:scale-95 ${variantStyles[variant]}`,
+        `group flex h-8 flex-row items-center gap-2 rounded-2xl border border-solid transition-all duration-200 active:scale-92 ${variantStyles[variant]}`,
         icon && !text ? 'px-2' : 'px-3',
         className,
       )}
@@ -50,13 +50,12 @@ export function Button(props: Props) {
         <Icon
           svg={icon}
           size="small"
-          className={cx(
-            variant === 'primary' ? 'fill-color-white' : 'fill-text-secondary dark:fill-text-secondary_dark',
-            'transition-colors duration-300',
-            {
-              'group-hover:fill-color-system_200': variant !== 'primary',
-              'fill-color-system_200': activated,
-            },
+          className={twMerge(
+            'transition-colors duration-200',
+            variant === 'primary'
+              ? 'fill-color-white'
+              : 'fill-text-secondary group-hover:fill-color-system_200 dark:fill-text-secondary_dark',
+            activated && 'fill-color-system_200 dark:fill-color-system_200',
           )}
         />
       )}
@@ -66,9 +65,9 @@ export function Button(props: Props) {
           size="body2"
           weight="medium"
           color={variant === 'primary' ? 'white' : 'secondary'}
-          className={cx('transition-colors duration-300', {
+          className={cx('transition-colors duration-200', {
             'group-hover:text-color-system_200': variant !== 'primary',
-            'text-color-system_200': activated,
+            'text-color-system_200 dark:text-color-system_200': activated,
           })}
         />
       )}

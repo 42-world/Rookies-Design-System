@@ -40,7 +40,7 @@ export function Comment({
         {isAuthor && <Badge color="outline" text="작성자" className="ml-1" />}
         {isMine && <Badge color="outline" text="내댓글" />}
       </div>
-      <Text size="body2" text={content} />
+      <Text size="body2" text={content} weight="medium" />
       <div className="flex flex-row items-center gap-4">
         <Button
           text={`좋아요 ${likeCount}`}
@@ -48,7 +48,7 @@ export function Comment({
           className={cx('px-0', { '[&>p]:text-color-system_200 [&>p]:dark:text-color-system_200': isLiked })}
           onClick={onClickLike}
         />
-        <Button text="답글달기" variant="text" className="mx-4 px-0" onClick={onClickReply} />
+        <Button text="답글달기" variant="text" className="px-0" onClick={onClickReply} />
         <Button text="수정하기" variant="text" className="px-0" onClick={onClickEdit} />
       </div>
     </div>
