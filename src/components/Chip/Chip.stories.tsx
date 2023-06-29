@@ -11,7 +11,7 @@ const meta: Meta<Component> = {
 type Story = StoryObj<Component>;
 export const Primary: Story = {
   args: {
-    icon: Face,
+    icon: <Face />,
     text: 'Sample',
     isSelected: false,
   },

@@ -1,7 +1,7 @@
-import { SVGProps } from 'react';
+import { cloneElement, ReactElement, SVGProps } from 'react';
 
 interface Props extends SVGProps<SVGSVGElement> {
-  svg: React.FC<React.SVGAttributes<SVGElement>>;
+  svg: ReactElement;
   size?: 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge';
 }
 
@@ -14,13 +14,15 @@ export function Icon({ svg: SvgComponent, size = 'medium', className, ...rest }:
     xlarge: { width: 32, height: 32 },
   }[size] || { width: 24, height: 24 };
 
-  return (
-    <SvgComponent
-      viewBox="0 0 24 24"
-      width={wh.width}
-      height={wh.height}
-      className={className ?? `fill-black dark:fill-white`}
-      {...rest}
-    />
+  return cloneElement(
+    SvgComponent,
+    {
+      viewBox: '0 0 24 24',
+      width: wh.width,
+      height: wh.height,
+      className: className ?? `fill-black dark:fill-white`,
+      ...rest,
+    },
+    null,
   );
 }

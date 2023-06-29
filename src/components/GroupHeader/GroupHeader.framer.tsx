@@ -1,6 +1,6 @@
 import { ControlType } from 'framer';
 import type { ComponentProps } from 'react';
-import { FramerProvider, applyFramerProperties } from '../../common/framer';
+import { applyFramerProperties, FramerProvider } from '../../common/framer';
 import { GroupHeader as _GroupHeader } from './GroupHeader';
 
 export function GroupHeader(props: ComponentProps<typeof _GroupHeader>) {
