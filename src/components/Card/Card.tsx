@@ -18,7 +18,7 @@ export function Card({ imageSrc, imageAlt, primary = '', secondary = '', title }
       <div className="mt-3 transition-spacing duration-300 ease-in-out">
         <div className="flex flex-row items-center gap-1">
           {primary && <Text text={primary} size="body2" weight="regular" color="secondary" />}
-          {primary && secondary && <Text text={' · '} size="body2" weight="regular" color="secondary" />}
+          {primary && secondary && <Text text={'·'} size="body2" weight="regular" color="secondary" />}
           {secondary && <Text text={secondary} size="body2" weight="regular" color="secondary" />}
         </div>
       </div>
