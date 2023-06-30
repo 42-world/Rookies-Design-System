@@ -11,5 +11,20 @@ export function Radio(props: ComponentProps<typeof _Radio>) {
   );
 }
 
-// Add your custom property infos here
-// applyFramerProperties(Radio, {});
+applyFramerProperties(Radio, {
+  label: {
+    title: 'Label',
+    type: ControlType.String,
+    defaultValue: 'Radio',
+  },
+  selected: {
+    title: 'Selected',
+    type: ControlType.Boolean,
+    defaultValue: false,
+  },
+  disabled: {
+    title: 'Disabled',
+    type: ControlType.Boolean,
+    defaultValue: false,
+  },
+});
