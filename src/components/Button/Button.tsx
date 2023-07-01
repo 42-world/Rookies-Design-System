@@ -7,18 +7,36 @@ import { Text } from '../Text';
 
 type ButtonVariant =
   | {
+      /**
+       * 버튼의 유형입니다.
+       */
       variant: 'text';
+      /**
+       * 텍스트 버튼이 활성화되었는지 여부입니다.
+       */
       activated?: boolean;
     }
   | {
+      /**
+       * 버튼의 유형입니다.
+       */
       variant: 'primary';
     }
   | {
+      /**
+       * 버튼의 유형입니다.
+       */
       variant: 'secondary';
     };
 
 type ButtonProps = Partial<ButtonVariant> & {
+  /**
+   * 버튼에 들어가는 텍스트입니다.
+   */
   text?: string;
+  /**
+   * 버튼에 들어가는 아이콘입니다.
+   */
   icon?: ReactElement;
 };
 
