@@ -5,8 +5,19 @@ import { Button } from '../Button';
 import { Text } from '../Text';
 
 interface Props {
+  /**
+   * 댓글 작성자의 프로필 사진 주소입니다.
+   */
   avatarSrc: string;
+
+  /**
+   * 댓글 작성자의 프로필 사진 대체 텍스트입니다.
+   */
   avatarAlt?: string;
+
+  /**
+   * 댓글 작성자의 이름입니다.
+   */
   username: string;
   time: string;
   content: string;
@@ -19,6 +30,9 @@ interface Props {
   onClickEdit?: () => void;
 }
 
+/**
+ * 댓글에 사용되는 컴포넌트입니다.
+ */
 export function Comment({
   avatarSrc,
   avatarAlt = '',
