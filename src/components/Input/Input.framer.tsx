@@ -41,7 +41,7 @@ applyFramerProperties(Input, {
   variant: {
     title: 'Variant',
     type: ControlType.Enum,
-    options: ['outlined', 'filled'],
+    options: ['outline', 'filled'],
     defaultValue: 'outlined',
   },
   focused: {
