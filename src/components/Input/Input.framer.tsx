@@ -5,6 +5,7 @@ import { Input as _Input } from './Input';
 
 interface InputProps {
   variant: 'outlined' | 'filled';
+  size: 'small' | 'medium';
   value: string;
   label: string;
   hasError: boolean;
@@ -38,6 +39,12 @@ export function Input(props: InputProps) {
 }
 
 applyFramerProperties(Input, {
+  size: {
+    title: 'Size',
+    type: ControlType.Enum,
+    options: ['small', 'medium'],
+    defaultValue: 'medium',
+  },
   variant: {
     title: 'Variant',
     type: ControlType.Enum,
