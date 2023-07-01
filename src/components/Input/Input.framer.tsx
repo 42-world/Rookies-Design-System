@@ -4,7 +4,7 @@ import { applyFramerProperties, FramerProvider } from '../../common/framer';
 import { Input as _Input } from './Input';
 
 interface InputProps {
-  variant: 'outline' | 'filled';
+  variant: 'outlined' | 'filled';
   value: string;
   label: string;
   hasError: boolean;
@@ -41,7 +41,7 @@ applyFramerProperties(Input, {
   variant: {
     title: 'Variant',
     type: ControlType.Enum,
-    options: ['outline', 'filled'],
+    options: ['outlined', 'filled'],
     defaultValue: 'outlined',
   },
   focused: {

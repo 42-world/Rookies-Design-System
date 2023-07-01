@@ -9,7 +9,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   value?: string;
   defaultValue?: string;
   subLabel?: string;
-  variant?: 'outline' | 'filled';
+  variant?: 'outlined' | 'filled';
   required?: boolean;
   hasError?: boolean;
   rightAddon?: ReactNode;
@@ -74,7 +74,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         <div
           className={cx('flex w-full items-center rounded-lg px-4', {
             'border border-solid border-border-primary bg-bg-primary_alpha_0 focus-within:border-color-blue_200':
-              variant === 'outline',
+              variant === 'outlined',
             'bg-bg-secondary dark:bg-bg-secondary_dark': variant === 'filled',
             'border-color-red focus-within:border-color-red': hasError,
           })}
