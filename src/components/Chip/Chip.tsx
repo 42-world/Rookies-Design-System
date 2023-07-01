@@ -1,11 +1,12 @@
 import cx from 'classnames';
+import { ReactElement } from 'react';
 import { Icon } from '../Icon';
 import { Text } from '../Text';
 
 type Props = {
   text?: string;
   isSelected?: boolean;
-  icon?: React.FC<React.SVGAttributes<SVGElement>>;
+  icon?: ReactElement;
 };
 
 export function Chip({ icon, text, isSelected }: Props) {

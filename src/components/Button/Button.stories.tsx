@@ -1,6 +1,6 @@
+import HolidayVillage from '@material-design-icons/svg/filled/holiday_village.svg';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Button } from './Button';
-import HolidayVillage from '@material-design-icons/svg/filled/holiday_village.svg';
 
 type Component = typeof Button;
 const meta: Meta<Component> = {
@@ -21,7 +21,7 @@ type Story = StoryObj<Component>;
 export const Primary: Story = {
   args: {
     text: 'Lorem Ipsum',
-    icon: HolidayVillage,
+    icon: <HolidayVillage />,
   },
 };
 
@@ -49,7 +49,7 @@ export const TextActivated: Story = {
 
 export const OnlyIcon: Story = {
   args: {
-    icon: HolidayVillage,
+    icon: <HolidayVillage />,
   },
 };
 

@@ -1,32 +1,33 @@
-import Face from '@material-design-icons/svg/filled/face.svg';
-
+import Power from '@material-design-icons/svg/filled/power.svg';
 import { ControlType } from 'framer';
 import type { ComponentProps } from 'react';
-import { FramerProvider, applyFramerProperties } from '../../common/framer';
+import {
+  applyFramerProperties,
+  createFramerIconProperties,
+  FramerIconType,
+  FramerProvider,
+  useFramerIcon,
+} from '../../common/framer';
 import { IconText as _IconText } from './IconText';
 
-export function IconText({ svg, ...props }: Omit<ComponentProps<typeof _IconText>, 'svg'> & { svg: JSX.Element[] }) {
-  if (!svg.length) {
-    return (
-      <FramerProvider>
-        <_IconText svg={Face} {...props} />
-      </FramerProvider>
-    );
-  }
-  const SvgComponent = () => svg[0];
+export function IconText({
+  icon,
+  ...props
+}: Omit<ComponentProps<typeof _IconText>, 'icon'> & { icon: FramerIconType }) {
+  const SvgComponent = useFramerIcon({ icon });
+
   return (
     <FramerProvider>
-      <_IconText svg={SvgComponent} {...props} />
+      <_IconText icon={SvgComponent ?? <Power />} {...props} />
     </FramerProvider>
   );
 }
 
 // Add your custom property infos here
 applyFramerProperties(IconText, {
-  svg: {
-    title: 'SVG',
-    type: ControlType.ComponentInstance,
-  },
+  icon: createFramerIconProperties({
+    title: 'Icon',
+  }),
   text: {
     title: 'Text',
     type: ControlType.String,

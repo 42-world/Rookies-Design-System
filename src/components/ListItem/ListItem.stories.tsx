@@ -1,8 +1,8 @@
-import type { Meta, StoryObj } from '@storybook/react';
 import ChatBubble from '@material-design-icons/svg/filled/chat_bubble.svg';
 import Favorite from '@material-design-icons/svg/filled/favorite.svg';
-import { ListItem } from './ListItem';
+import type { Meta, StoryObj } from '@storybook/react';
 import { IconText } from '../IconText';
+import { ListItem } from './ListItem';
 
 type Component = typeof ListItem;
 const meta: Meta<Component> = {
@@ -20,8 +20,8 @@ export const Primary: Story = {
     secondaryTextSecond: '홍길동',
     rightAddon: (
       <>
-        <IconText svg={ChatBubble} text="16" />
-        <IconText svg={Favorite} text="32" />
+        <IconText icon={<ChatBubble />} text="16" />
+        <IconText icon={<Favorite />} text="32" />
       </>
     ),
   },
@@ -34,8 +34,8 @@ export const WithoutThumbnail: Story = {
     secondaryTextSecond: '홍길동',
     rightAddon: (
       <>
-        <IconText svg={ChatBubble} text="16" />
-        <IconText svg={Favorite} text="32" />
+        <IconText icon={<ChatBubble />} text="16" />
+        <IconText icon={<Favorite />} text="32" />
       </>
     ),
   },
@@ -47,8 +47,8 @@ export const OnlyOneSecondaryText: Story = {
     secondaryTextFirst: '게시판 1',
     rightAddon: (
       <>
-        <IconText svg={ChatBubble} text="16" />
-        <IconText svg={Favorite} text="32" />
+        <IconText icon={<ChatBubble />} text="16" />
+        <IconText icon={<Favorite />} text="32" />
       </>
     ),
   },
@@ -59,8 +59,8 @@ export const WithoutSecondaryText: Story = {
     title: 'Lorem ipsum',
     rightAddon: (
       <>
-        <IconText svg={ChatBubble} text="16" />
-        <IconText svg={Favorite} text="32" />
+        <IconText icon={<ChatBubble />} text="16" />
+        <IconText icon={<Favorite />} text="32" />
       </>
     ),
   },
@@ -71,7 +71,7 @@ export const SingleMetadata: Story = {
     title: 'Lorem ipsum',
     rightAddon: (
       <>
-        <IconText svg={ChatBubble} text="16" />
+        <IconText icon={<ChatBubble />} text="16" />
       </>
     ),
   },

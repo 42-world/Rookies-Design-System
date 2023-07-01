@@ -1,4 +1,4 @@
-import AddCard from '@material-design-icons/svg/filled/power.svg';
+import Power from '@material-design-icons/svg/filled/power.svg';
 import type { Meta, StoryObj } from '@storybook/react';
 import { IconText } from './IconText';
 
@@ -12,7 +12,7 @@ type Story = StoryObj<Component>;
 
 export const Primary: Story = {
   // Add your story args here
-  args: { svg: AddCard, text: 'xsmall', size: 'xsmall' },
+  args: { icon: <Power />, text: 'xsmall', size: 'xsmall' },
 };
 
 export const Small: Story = {

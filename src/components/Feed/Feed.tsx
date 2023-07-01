@@ -1,8 +1,8 @@
 import { AvatarText } from '../AvatarText';
-import { Thumbnail } from '../Thumbnail';
 import { Button } from '../Button';
 import { Divider } from '../Divider';
 import { Text } from '../Text';
+import { Thumbnail } from '../Thumbnail';
 
 import CommentIcon from '@material-design-icons/svg/filled/comment.svg';
 import LikeIcon from '@material-design-icons/svg/filled/thumb_up.svg';
@@ -50,11 +50,17 @@ export function Feed({
         <div className="absolute left-0 top-0 z-10 h-full w-411 bg-gradient-to-t from-bg-primary to-transparent dark:from-bg-primary_dark " />
       </div>
       <div className=" mb-4 mt-4 flex flex-row items-center justify-start">
-        <Button variant="text" activated={isLiked} icon={LikeIcon} text={likeCount.toString()} onClick={onClickLike} />
+        <Button
+          variant="text"
+          activated={isLiked}
+          icon={<LikeIcon />}
+          text={likeCount.toString()}
+          onClick={onClickLike}
+        />
         <Button
           variant="text"
           activated={isCommentClicked}
-          icon={CommentIcon}
+          icon={<CommentIcon />}
           text={commentCount.toString()}
           onClick={onClickComment}
         />

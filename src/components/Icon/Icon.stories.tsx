@@ -13,7 +13,7 @@ type Story = StoryObj<Component>;
 export const Primary: Story = {
   // Add your story args here
   args: {
-    svg: AddCard,
+    svg: <AddCard />,
     size: 'medium',
   },
 };

@@ -1,6 +1,6 @@
-import { ButtonHTMLAttributes, FC, SVGAttributes } from 'react';
-import { twMerge } from 'tailwind-merge';
 import cx from 'classnames';
+import { ButtonHTMLAttributes, ReactElement } from 'react';
+import { twMerge } from 'tailwind-merge';
 
 import { Icon } from '../Icon';
 import { Text } from '../Text';
@@ -19,7 +19,7 @@ type ButtonVariant =
 
 type ButtonProps = Partial<ButtonVariant> & {
   text?: string;
-  icon?: FC<SVGAttributes<SVGSVGElement>>;
+  icon?: ReactElement;
 };
 
 type Props = ButtonProps & Omit<ButtonHTMLAttributes<HTMLButtonElement>, keyof ButtonProps>;
