@@ -4,8 +4,9 @@ import { forwardRef, useId } from 'react';
 import { Text } from '../Text';
 import { useControllableState } from './useControllableState';
 
-interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
   label?: string;
+  size?: 'small' | 'medium';
   value?: string;
   defaultValue?: string;
   subLabel?: string;
@@ -20,6 +21,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
   (
     {
       id: idFromProps,
+      size = 'medium',
       label,
       value: valueFromProps,
       defaultValue,
@@ -82,7 +84,13 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           <input
             ref={ref}
             id={idFromProps ?? id}
-            className="h-[44px] w-full bg-transparent text-base font-normal leading-[1.5] text-text-primary placeholder:text-text-tertiary focus:outline-none dark:text-text-primary_dark dark:placeholder:text-text-tertiary_dark"
+            className={cx(
+              'w-full bg-transparent text-base font-normal leading-[1.5] text-text-primary placeholder:text-text-tertiary focus:outline-none dark:text-text-primary_dark dark:placeholder:text-text-tertiary_dark',
+              {
+                'h-[44px]': size === 'medium',
+                'h-[32px]': size === 'small',
+              },
+            )}
             value={value}
             onChange={handleChange}
             maxLength={maxLength}
