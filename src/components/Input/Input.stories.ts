@@ -9,7 +9,7 @@ const meta: Meta<Component> = {
 
 type Story = StoryObj<Component>;
 export const Primary: Story = {
-  args: { label: '필수 항목', placeholder: '', maxLength: 10, variant: 'outline', hasError: false },
+  args: { label: '필수 항목', placeholder: '', maxLength: 10, variant: 'outline', hasError: false, required: true },
 };
 
 export const DefaultValue: Story = {
