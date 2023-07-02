@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { CheckboxGroup } from './CheckboxGroup';
 import { Checkbox } from './Checkbox';
-import { Children } from 'react';
 
 type Component = typeof CheckboxGroup;
 const meta: Meta<Component> = {
