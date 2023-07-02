@@ -34,7 +34,7 @@ export function Comment({
   onClickReply,
 }: Props) {
   return (
-    <div className="flex w-[720px] flex-col gap-3 overflow-hidden break-words">
+    <div className="flex flex-col gap-3 overflow-hidden break-words">
       <div className="flex flex-row items-start gap-2">
         <AvatarText src={avatarSrc} alt={avatarAlt} mainText={username} subText={time} />
         {isAuthor && <Badge color="outline" text="작성자" className="ml-1" />}
