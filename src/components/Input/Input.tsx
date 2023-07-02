@@ -5,6 +5,10 @@ import { Text } from '../Text';
 import { useControllableState } from './useControllableState';
 
 interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
+  /**
+   * Input의 크기
+   * @default medium
+   */
   size?: 'small' | 'medium';
   /**
    * Input 상단에 표시되는 라벨
