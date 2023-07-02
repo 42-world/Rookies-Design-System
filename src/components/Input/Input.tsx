@@ -7,46 +7,38 @@ import { useControllableState } from './useControllableState';
 interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
   size?: 'small' | 'medium';
   /**
-   * 라벨
-   * @description Input 상단에 표시되는 라벨
+   * Input 상단에 표시되는 라벨
    */
   label?: string;
   /**
-   * 값
-   * @description Input의 값, undefined일 경우 컴포넌트 내부에서 관리
+   * Input의 값, undefined일 경우 컴포넌트 내부에서 관리
    **/
   value?: string;
   /**
-   * 기본값
-   * @description Input의 기본값, uncontrolled 방식으로 사용할 때의 기본값
+   * uncontrolled 방식으로 사용할 때 Input의 기본값
    */
   defaultValue?: string;
   /**
-   * 서브 라벨
-   * @description Input 하단에 표시되는 서브 라벨
+   * Input 하단에 표시되는 서브 라벨
    */
   subLabel?: string;
   /**
-   * Input 스타일
-   * @description Input의 스타일, outline일 경우 테두리가 있고 filled일 경우 테두리가 없음
+   * Input의 스타일, outline일 경우 테두리가 있고 filled일 경우 테두리가 없음
    * @default outline
    **/
   variant?: 'outlined' | 'filled';
   /**
-   * 필수 여부
-   * @description Input이 필수인지 여부, true일 경우 라벨 앞에 * 표시
+   * Input이 필수인지 여부, true일 경우 라벨 앞에 * 표시
    * @default false
    */
   required?: boolean;
   /**
-   * 에러 여부
-   * @description Input에 에러가 있는지 여부, true일 경우 테두리가 빨간색으로 표시
+   * Input에 에러가 있는지 여부, true일 경우 테두리가 빨간색으로 표시
    * @default false
    */
   hasError?: boolean;
   /**
-   * 오른쪽 추가 요소
-   * @description Input 오른쪽에 추가되는 요소
+   * Input 오른쪽에 추가되는 요소
    * @example
    * ```tsx
    * <Input
@@ -56,8 +48,7 @@ interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'>
    */
   rightAddon?: ReactNode;
   /**
-   * 값 변경 이벤트
-   * @description Input 값이 변경될 때 호출되는 이벤트
+   * Input 값이 변경될 때 호출되는 이벤트
    * @param value 변경된 값
    * @example
    * ```tsx
