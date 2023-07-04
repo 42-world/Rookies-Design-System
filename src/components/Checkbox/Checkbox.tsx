@@ -6,9 +6,21 @@ import CheckIcon from '@material-design-icons/svg/outlined/check.svg';
 import { Text } from '../Text';
 
 interface Props {
+  /**
+   * 체크박스의 라벨에 들어가는 텍스트입니다.
+   */
   labelText: string;
+  /**
+   * 체크박스의 체크 여부입니다.
+   */
   checked?: boolean;
+  /**
+   * 체크박스 활성화 여부입니다.
+   */
   disabled?: boolean;
+  /**
+   * 체크 여부 변경 시 호출되는 함수입니다.
+   */
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
