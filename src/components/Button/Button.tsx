@@ -57,7 +57,7 @@ export function Button(props: Props) {
             'transition-colors duration-200',
             variant === 'primary'
               ? 'fill-color-white'
-              : 'fill-text-secondary enabled:group-hover:fill-color-system_200 dark:fill-text-secondary_dark',
+              : 'fill-text-secondary group-enabled:group-hover:fill-color-system_200 dark:fill-text-secondary_dark',
             activated && 'fill-color-system_200 dark:fill-color-system_200',
           )}
         />
@@ -69,7 +69,7 @@ export function Button(props: Props) {
           weight="medium"
           color={variant === 'primary' ? 'white' : 'secondary'}
           className={cx('transition-colors duration-200', {
-            'enabled:group-hover:text-color-system_200': variant !== 'primary',
+            'group-enabled:group-hover:text-color-system_200': variant !== 'primary',
             'text-color-system_200 dark:text-color-system_200': activated,
           })}
         />
