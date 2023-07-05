@@ -3,7 +3,13 @@ import { Icon } from '../Icon';
 import { Text } from '../Text';
 
 interface Props {
+  /**
+   * 컴포넌트와 연결되는 주소입니다.
+   */
   href: string;
+  /**
+   * 헤더의 텍스트입니다.
+   */
   text: string;
 }
 

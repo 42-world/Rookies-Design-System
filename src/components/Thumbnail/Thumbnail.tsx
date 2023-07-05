@@ -1,11 +1,29 @@
 import cx from 'classnames';
 
 type Props = {
+  /**
+   * 썸네일 이미지의 주소입니다.
+   */
   src: string;
+  /**
+   * 썸네일의 대체 텍스트입니다.
+   */
   alt?: string;
+  /**
+   * 썸네일의 너비입니다.
+   */
   width: number;
+  /**
+   * 썸네일의 border-radius 크기입니다.
+   */
   rounded?: '8px' | '16px';
+  /**
+   * 썸네일의 비율입니다.
+   */
   ratio?: '16:9' | '16:10' | '1:1';
+  /**
+   * 썸네일의 className입니다.
+   */
   className?: string;
 };
 

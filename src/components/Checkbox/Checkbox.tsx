@@ -7,10 +7,25 @@ import { CheckboxContext } from './CheckboxGroup';
 import { Text } from '../Text';
 
 interface Props {
+  /**
+   * 체크박스의 라벨에 들어가는 텍스트입니다.
+   */
   children: string;
+  /**
+   * 체크박스의 체크 여부입니다.
+   */
   checked?: boolean;
+  /**
+   * 체크박스 활성화 여부입니다.
+   */
   disabled?: boolean;
+  /**
+   * 체크 정보가 있는 context(문자열 배열)과 대조하기 위한 키 값입니다.
+   */
   value: string;
+  /**
+   * 체크 여부 변경 시 호출되는 함수입니다.
+   */
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 

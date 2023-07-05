@@ -1,7 +1,13 @@
 import { cloneElement, ReactElement, SVGProps } from 'react';
 
 interface Props extends SVGProps<SVGSVGElement> {
+  /**
+   * 출력할 아이콘 svg 컴포넌트입니다.
+   */
   svg: ReactElement;
+  /**
+   * 아이콘의 크기입니다.
+   */
   size?: 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge';
 }
 

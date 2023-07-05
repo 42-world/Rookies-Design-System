@@ -5,14 +5,41 @@ import { Text } from '../Text';
 import { useControllableState } from './useControllableState';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+  /**
+   * 입력창에 붙는 라벨입니다.
+   */
   label?: string;
+  /**
+   * 입력값입니다.
+   */
   value?: string;
+  /**
+   * 입력창의 기본값입니다.
+   */
   defaultValue?: string;
+  /**
+   * 하단에 출력되는 라벨입니다.
+   */
   subLabel?: string;
+  /**
+   * 입력창의 종류를 결정하는 변수입니다.
+   */
   variant?: 'outline' | 'filled';
+  /**
+   * 필수 입력 칸인지 결정하는 변수입니다.
+   */
   required?: boolean;
+  /**
+   * 에러 발생 여부를 결정하는 변수입니다.
+   */
   hasError?: boolean;
+  /**
+   * 입력창 우측에 붙는 컴포넌트입니다.
+   */
   rightAddon?: ReactNode;
+  /**
+   * 값이 변경되었을 때의 동작을 정의하는 함수입니다.
+   */
   onValueChange?: (value: string) => void;
 }
 
