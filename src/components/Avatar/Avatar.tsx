@@ -1,8 +1,17 @@
 import cx from 'classnames';
 
 interface Props {
+  /**
+   * 사진의 주소입니다.
+   */
   src: string;
+  /**
+   * 사진의 대체 텍스트입니다.
+   */
   alt?: string;
+  /**
+   * 사진의 가로 크기입니다.
+   */
   size?: '40px' | '64px';
 }
 

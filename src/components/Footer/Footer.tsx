@@ -5,8 +5,17 @@ import Mail from '@material-design-icons/svg/filled/mail.svg';
 import Github from '../../assets/icons/Github.svg';
 
 interface Props {
+  /**
+   * 웹 사이트의 GitHub 주소입니다.
+   */
   githubLink?: string;
+  /**
+   * 웹 사이트의 메일 주소입니다.
+   */
   mailLink?: string;
+  /**
+   * 푸터의 텍스트입니다.
+   */
   text: string;
 }
 
