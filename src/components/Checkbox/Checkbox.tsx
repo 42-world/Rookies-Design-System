@@ -2,7 +2,7 @@ import { ChangeEvent, useContext } from 'react';
 import cx from 'classnames';
 import { twMerge } from 'tailwind-merge';
 import CheckIcon from '@material-design-icons/svg/outlined/check.svg';
- import { CheckboxContext } from './CheckboxGroup';
+import { CheckboxContext } from './CheckboxGroup';
 
 import { Text } from '../Text';
 
@@ -15,14 +15,13 @@ interface Props {
 }
 
 export function Checkbox({ children, checked = false, disabled = false, value, onChange }: Props) {
-  
-    const context = useContext(CheckboxContext);
+  const context = useContext(CheckboxContext);
 
   if (context) {
     checked = context.selectedValue.includes(value);
     onChange = context.onChange;
   }
-  
+
   return (
     <label className={cx('flex flex-row items-center  gap-2', { 'opacity-[0.3]': disabled })}>
       <input type="checkbox" className="hidden" checked={checked} value={value} onChange={onChange} />

@@ -12,11 +12,11 @@ type Story = StoryObj<Component>;
 
 export const Primary: Story = {
   args: {
-    selectedValue: ["label1", "label3"],
+    selectedValue: ['label1', 'label3'],
     children: (
       <>
-        <Checkbox value="label1">children</Checkbox> 
-        <Checkbox value="label2">children</Checkbox> 
+        <Checkbox value="label1">children</Checkbox>
+        <Checkbox value="label2">children</Checkbox>
         <Checkbox value="label3">children</Checkbox>
       </>
     ),
@@ -25,12 +25,14 @@ export const Primary: Story = {
 
 export const WithDisabled: Story = {
   args: {
-    selectedValue: ["label1", "label3"],
+    selectedValue: ['label1', 'label3'],
     children: (
       <>
-        <Checkbox value="label1">children</Checkbox> 
-        <Checkbox value="label2">children</Checkbox> 
-        <Checkbox value="label3" disabled>children</Checkbox>
+        <Checkbox value="label1">children</Checkbox>
+        <Checkbox value="label2">children</Checkbox>
+        <Checkbox value="label3" disabled>
+          children
+        </Checkbox>
       </>
     ),
   },
