@@ -2,6 +2,9 @@ import cx from 'classnames';
 import type { HTMLAttributes } from 'react';
 
 interface DividerProps extends HTMLAttributes<HTMLDivElement> {
+  /**
+   * divider의 색상을 결정하는 변수입니다.
+   */
   variant: 'primary' | 'secondary';
 }
 

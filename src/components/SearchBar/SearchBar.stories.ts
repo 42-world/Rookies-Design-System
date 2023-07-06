@@ -11,14 +11,14 @@ type Story = StoryObj<Component>;
 
 export const Primary: Story = {
   args: {
-    placeholder: 'Yes, I am Gyudong',
+    placeholder: 'Lorem Ipsum',
   },
 };
 
 export const Solid: Story = {
   args: {
     variant: 'solid',
-    placeholder: 'Yes, I am Gyudon',
+    placeholder: 'Lorem Ipsum',
   },
 };
 

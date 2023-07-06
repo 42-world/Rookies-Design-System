@@ -5,6 +5,9 @@ import { Button } from '../Button';
 
 type SearchBarVariant = 'primary' | 'solid';
 interface InputProps {
+  /**
+   * 검색창의 종류를 결정하는 변수입니다.
+   */
   variant: SearchBarVariant;
 }
 
