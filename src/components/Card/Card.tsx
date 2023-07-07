@@ -2,10 +2,25 @@ import { Text } from '../Text';
 import { Thumbnail } from '../Thumbnail';
 
 type Props = {
+  /**
+   * 이미지의 주소입니다.
+   */
   imageSrc: string;
+  /**
+   * 이미지의 대체 텍스트입니다.
+   */
   imageAlt?: string;
+  /**
+   * 상단 텍스트의 좌측에 들어갈 텍스트입니다.
+   */
   primary?: string;
+  /**
+   * 상단 텍스트의 우측에 들어갈 텍스트입니다.
+   */
   secondary?: string;
+  /**
+   * 카드의 제목입니다. 하단에 들어갑니다.
+   */
   title: string;
 };
 

@@ -97,11 +97,29 @@ export const textColorConfig: Record<Color, string> = {
 };
 
 export function Text({
+  /**
+   * 텍스트 컴포넌트의 className입니다.
+   */
   className,
+  /**
+   * 텍스트 컴포넌트에 출력할 텍스트입니다.
+   */
   text,
+  /**
+   * 텍스트의 크기입니다.
+   */
   size = 'body1',
+  /**
+   * 텍스트의 굵기입니다.
+   */
   weight = 'regular',
+  /**
+   * 텍스트 정렬 방향입니다.
+   */
   align = 'left',
+  /**
+   * 텍스트 색상입니다.
+   */
   color = 'primary',
 }: Props) {
   return (

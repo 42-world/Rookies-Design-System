@@ -6,8 +6,17 @@ import { Text, TextSize } from '../Text';
 type Size = 'medium' | 'small' | 'xsmall';
 
 interface Props {
+  /**
+   * 출력할 아이콘 svg 컴포넌트입니다.
+   */
   icon: ReactElement;
+  /**
+   * 아이콘 옆에 출력될 텍스트입니다.
+   */
   text: string;
+  /**
+   * 아이콘의 크기입니다.
+   */
   size?: Size;
 }
 
