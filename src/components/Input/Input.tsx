@@ -2,7 +2,7 @@ import cx from 'classnames';
 import type { InputHTMLAttributes, ReactNode } from 'react';
 import { forwardRef, useId } from 'react';
 import { Text } from '../Text';
-import { useControllableState } from './useControllableState';
+import { useControllableState } from '../../utils/useControllableState';
 
 interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
   /**
