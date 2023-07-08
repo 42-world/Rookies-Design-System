@@ -52,6 +52,10 @@
     --color-yellow-100: 254 240 138;
     --color-yellow-200: 250 204 21;
     --color-yellow-300: 202 138 4;
+
+    --shadow-searchbar: 0px 0px 1px 0px #f3f4f6;
+    --shadow-searchbar-hover: 0px 0px 5px 1px #d1d5db;
+    --shadow-searchbar-solid-hover: 0px 0px 16px 4px #b5b5b5;
   }
 
   :root[class~='dark'] {
@@ -68,5 +72,9 @@
     --color-border-secondary: 38 38 38;
 
     --color-button-secondary-bg: 46 46 46;
+
+    --shadow-searchbar: 0px 0px 1px 0px #262626;
+    --shadow-searchbar-hover: 0px 0px 5px 1px #525252;
+    --shadow-searchbar-solid-hover: 0px 0px 16px 4px #7a7a7a;
   }
 }

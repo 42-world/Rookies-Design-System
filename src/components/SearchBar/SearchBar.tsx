@@ -14,10 +14,8 @@ interface InputProps {
 type Props = InputProps & Omit<InputHTMLAttributes<HTMLInputElement>, keyof InputProps>;
 
 const variantStyles: Record<SearchBarVariant, string> = {
-  primary:
-    'bg-gradient-to-r from-green-200 to-color-system_100 shadow-searchbar hover:shadow-searchbar_hover dark:shadow-searchbar_dark dark:hover:shadow-searchbar_hover_dark',
-  solid:
-    'bg-border-primary focus-within:bg-color-system_200 hover:shadow-searchbar_solid_hover dark:hover:shadow-searchbar_solid_hover_dark',
+  primary: 'bg-gradient-to-r from-green-200 to-color-system_100 shadow-searchbar hover:shadow-searchbar_hover',
+  solid: 'bg-border-primary focus-within:bg-color-system_200 hover:shadow-searchbar_solid_hover',
 };
 
 export const SearchBar = forwardRef<HTMLInputElement, Props>(
