@@ -101,7 +101,9 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     });
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      if (maxLength && e.target.value.length > maxLength) return;
+      if (maxLength && e.target.value.length > maxLength) {
+        return;
+      }
       setValue(e.target.value);
     };
 
