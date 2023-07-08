@@ -60,8 +60,10 @@ export function ListItem({
     >
       <div className="flex flex-row items-center justify-between py-4">
         <div className="flex flex-row items-center">
-          {thumbnailSrc && <Thumbnail src={thumbnailSrc} alt={title} width={85} rounded="8px" ratio="16:9" />}
-          <div className="ml-3 flex-1">
+          {thumbnailSrc && (
+            <Thumbnail src={thumbnailSrc} alt={title} width={85} rounded="8px" ratio="16:9" className="mr-3" />
+          )}
+          <div className="flex-1">
             {MergedSecondaryText(secondaryTextFirst, secondaryTextSecond)}
             <Text text={title} size="body1" weight="medium" color="primary" />
           </div>
