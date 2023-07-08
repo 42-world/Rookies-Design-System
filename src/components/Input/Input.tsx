@@ -88,6 +88,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       rightAddon,
       hasError,
       maxLength,
+      disabled,
       onValueChange: onValueChangeFromProps,
       ...restProps
     },
@@ -105,7 +106,11 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     };
 
     return (
-      <div className="flex flex-col space-y-2">
+      <div
+        className={cx('flex flex-col space-y-2', {
+          'opacity-40': disabled,
+        })}
+      >
         <div className="flex w-full">
           {label && (
             <label
@@ -146,11 +151,13 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
               {
                 'h-[44px]': size === 'medium',
                 'h-[32px]': size === 'small',
+                'cursor-not-allowed': disabled,
               },
             )}
             value={value}
             onChange={handleChange}
             maxLength={maxLength}
+            disabled={disabled}
             {...restProps}
           />
           {rightAddon && <span className="flex">{rightAddon}</span>}
