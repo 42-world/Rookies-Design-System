@@ -30,9 +30,9 @@ export function Checkbox({ labelText, checked = false, disabled = false, onChang
       <input type="checkbox" className="hidden" checked={checked} onChange={onChange} />
       <div
         className={cx(
-          ' flex h-[20px] w-[20px] items-center justify-center rounded-md border-2 border-border-primary transition-colors duration-200 hover:border-color-system_200 dark:border-border-primary_dark dark:hover:border-color-system_200',
+          ' flex h-[20px] w-[20px] items-center justify-center rounded-md border-2 border-border-primary transition-colors duration-200 hover:border-color-system_200',
           {
-            ['border-color-system_200 bg-color-system_200  dark:border-color-system_200']: checked,
+            ['border-color-system_200 bg-color-system_200']: checked,
           },
         )}
       >

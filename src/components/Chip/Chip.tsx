@@ -24,9 +24,7 @@ export function Chip({ icon, text, isSelected }: Props) {
       className={cx(
         'group flex h-8 w-fit select-none flex-row items-center rounded-lg duration-200 ease-out active:scale-92',
         text ? 'px-3' : 'px-2',
-        isSelected
-          ? 'bg-bg-secondary dark:bg-bg-secondary_dark'
-          : 'bg-bg-tertiary_alpha_0 dark:bg-bg-primary_alpha_0_dark',
+        isSelected ? 'bg-bg-secondary' : 'bg-bg-primary_alpha_0',
       )}
     >
       {icon && (
@@ -34,9 +32,7 @@ export function Chip({ icon, text, isSelected }: Props) {
           svg={icon}
           className={cx(
             'mr-2  transition-[fill] group-hover:fill-color-system_200',
-            isSelected
-              ? 'fill-text-primary dark:fill-text-primary_dark'
-              : 'fill-text-secondary dark:fill-text-secondary_dark',
+            isSelected ? 'fill-text-primary' : 'fill-text-secondary',
           )}
         />
       )}

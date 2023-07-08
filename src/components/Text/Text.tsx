@@ -65,9 +65,9 @@ export const textAlignConfig: Record<TextAlign, string> = {
 };
 
 export const textColorConfig: Record<Color, string> = {
-  primary: 'text-text-primary dark:text-text-primary_dark',
-  secondary: 'text-text-secondary dark:text-text-secondary_dark',
-  tertiary: 'text-text-tertiary dark:text-text-tertiary_dark',
+  primary: 'text-text-primary',
+  secondary: 'text-text-secondary',
+  tertiary: 'text-text-tertiary',
   white: 'text-white',
   black: 'text-black',
   red_100: 'text-red-300',

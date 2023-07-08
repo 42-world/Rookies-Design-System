@@ -26,7 +26,7 @@ const colorConfig = {
   blue: 'bg-color-blue_200',
   pink: 'bg-color-pink',
   brown: 'bg-color-brown',
-  mono: 'bg-bg-primary_dark dark:bg-bg-primary',
+  mono: 'bg-text-primary',
   outline: 'bg-none',
 };
 
@@ -35,7 +35,7 @@ export function Badge({ color = 'outline', text, className }: Props) {
     <div
       className={twMerge(
         cx('w-fit rounded-lg px-2 py-[3px]', colorConfig[color], {
-          'border border-border-secondary dark:border-border-secondary_dark': color === 'outline',
+          'border border-border-secondary': color === 'outline',
         }),
         className,
       )}
@@ -43,7 +43,7 @@ export function Badge({ color = 'outline', text, className }: Props) {
       <Text
         text={text}
         size="small"
-        className={cx({ 'text-text-primary_dark dark:text-text-primary': color === 'mono' })}
+        className={cx({ 'text-bg-primary': color === 'mono' })}
         color={color === 'outline' ? 'secondary' : 'white'}
       />
     </div>

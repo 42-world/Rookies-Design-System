@@ -78,12 +78,9 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           {label && (
             <label
               htmlFor={idFromProps ?? id}
-              className={cx(
-                'text-sm font-normal leading-[1.8] text-text-secondary before:mr-1 dark:text-text-secondary_dark',
-                {
-                  'before:content-["*"]': required,
-                },
-              )}
+              className={cx('text-sm font-normal leading-[1.8] text-text-secondary before:mr-1', {
+                'before:content-["*"]': required,
+              })}
             >
               {label}
             </label>
@@ -102,14 +99,14 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           className={cx('flex w-full items-center rounded-lg px-4', {
             'border border-solid border-border-primary bg-bg-primary_alpha_0 focus-within:border-color-blue_200':
               variant === 'outline',
-            'bg-bg-secondary dark:bg-bg-secondary_dark': variant === 'filled',
+            'bg-bg-secondary': variant === 'filled',
             'border-color-red focus-within:border-color-red': hasError,
           })}
         >
           <input
             ref={ref}
             id={idFromProps ?? id}
-            className="h-[44px] w-full bg-transparent text-base font-normal leading-[1.5] text-text-primary placeholder:text-text-tertiary focus:outline-none dark:text-text-primary_dark dark:placeholder:text-text-tertiary_dark"
+            className="h-[44px] w-full bg-transparent text-base font-normal leading-[1.5] text-text-primary placeholder:text-text-tertiary focus:outline-none"
             value={value}
             onChange={handleChange}
             maxLength={maxLength}

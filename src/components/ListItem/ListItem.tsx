@@ -66,9 +66,7 @@ export function ListItem({
             <Text text={title} size="body1" weight="medium" color="primary" />
           </div>
         </div>
-        <div className="flex flex-row items-center gap-2 text-text-secondary dark:text-text-secondary_dark">
-          {rightAddon}
-        </div>
+        <div className="flex flex-row items-center gap-2 text-text-secondary">{rightAddon}</div>
       </div>
       {hasBorder && <Divider variant="secondary" />}
     </div>

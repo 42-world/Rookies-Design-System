@@ -14,8 +14,8 @@ export function Divider({ variant = 'primary', className, ...restProps }: Divide
       className={cx(
         'h-[1px] w-full',
         {
-          'bg-border-primary dark:bg-border-primary_dark': variant === 'primary',
-          'bg-border-secondary dark:bg-border-secondary_dark': variant === 'secondary',
+          'bg-border-primary': variant === 'primary',
+          'bg-border-secondary': variant === 'secondary',
         },
         className,
       )}

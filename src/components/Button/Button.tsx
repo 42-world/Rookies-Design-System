@@ -44,8 +44,7 @@ type Props = ButtonProps & Omit<ButtonHTMLAttributes<HTMLButtonElement>, keyof B
 
 const variantStyles: Record<ButtonVariant['variant'], string> = {
   primary: 'bg-color-system_200 border-0 hover:bg-color-system_300',
-  secondary:
-    'border-border-primary dark:border-border-primary_dark hover:border-color-system_200 hover:dark:border-color-system_200',
+  secondary: 'border-border-primary hover:border-color-system_200',
   text: 'border-0',
 };
 
@@ -70,10 +69,8 @@ export function Button(props: Props) {
           size="small"
           className={twMerge(
             'transition-colors duration-200',
-            variant === 'primary'
-              ? 'fill-color-white'
-              : 'fill-text-secondary group-hover:fill-color-system_200 dark:fill-text-secondary_dark',
-            activated && 'fill-color-system_200 dark:fill-color-system_200',
+            variant === 'primary' ? 'fill-color-white' : 'fill-text-secondary group-hover:fill-color-system_200',
+            activated && 'fill-color-system_200',
           )}
         />
       )}
@@ -85,7 +82,7 @@ export function Button(props: Props) {
           color={variant === 'primary' ? 'white' : 'secondary'}
           className={cx('transition-colors duration-200', {
             'group-hover:text-color-system_200': variant !== 'primary',
-            'text-color-system_200 dark:text-color-system_200': activated,
+            'text-color-system_200': activated,
           })}
         />
       )}

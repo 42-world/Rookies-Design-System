@@ -29,7 +29,7 @@ const textSize: Record<Size, TextSize> = {
 export function IconText({ icon, size = 'medium', text }: Props) {
   return (
     <div className={cx('flex flex-row items-center', { 'gap-2': size !== 'xsmall', 'gap-1': size === 'xsmall' })}>
-      <Icon svg={icon} size={size} className="fill-text-secondary dark:fill-text-secondary_dark" />
+      <Icon svg={icon} size={size} className="fill-text-secondary" />
       <Text text={text} size={textSize[size]} color="secondary" />
     </div>
   );

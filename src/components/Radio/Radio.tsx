@@ -27,10 +27,10 @@ export function Radio({ label, selected, disabled, onChange }: Props) {
       <input type="radio" value={label} className="hidden" checked={selected} disabled={disabled} onChange={onChange} />
       <div
         className={cx(
-          'flex h-5 w-5 flex-row items-center justify-center rounded-full border-2 border-border-primary duration-200 dark:border-border-primary_dark',
+          'flex h-5 w-5 flex-row items-center justify-center rounded-full border-2 border-border-primary duration-200',
           {
-            'border-color-system_200 dark:border-color-system_200': selected,
-            'group-hover:border-color-system_200 group-hover:dark:border-color-system_200': !disabled,
+            'border-color-system_200': selected,
+            'group-hover:border-color-system_200': !disabled,
           },
         )}
       >

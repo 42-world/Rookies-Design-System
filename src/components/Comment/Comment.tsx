@@ -81,7 +81,7 @@ export function Comment({
         <Button
           text={`좋아요 ${likeCount}`}
           variant="text"
-          className={cx('px-0', { '[&>p]:text-color-system_200 [&>p]:dark:text-color-system_200': isLiked })}
+          className={cx('px-0', { '[&>p]:text-color-system_200': isLiked })}
           onClick={onClickLike}
         />
         <Button text="답글달기" variant="text" className="px-0" onClick={onClickReply} />

@@ -83,7 +83,7 @@ export function Feed({
       <div className="relative mt-6 w-411">
         <Text size="heading2" weight="semibold" text={title} className="mb-4" />
         <Text text={contents} className="line-clamp-4" />
-        <div className="absolute left-0 top-0 z-10 h-full w-411 bg-gradient-to-t from-bg-primary to-transparent dark:from-bg-primary_dark " />
+        <div className="absolute left-0 top-0 z-10 h-full w-411 bg-gradient-to-t from-bg-primary to-transparent" />
       </div>
       <div className=" mb-4 mt-4 flex flex-row items-center justify-start">
         <Button
