@@ -40,7 +40,7 @@ describe('Input의 정상 동작은 아래와 같다.', () => {
       const inputElement = screen.getByRole('textbox');
 
       expect(inputElement).toBeInTheDocument();
-      expect(onChange).not.toBeCalled();
+      expect(onChange).not.toHaveBeenCalled();
 
       const value = 'test';
 
@@ -48,8 +48,8 @@ describe('Input의 정상 동작은 아래와 같다.', () => {
         await user.type(inputElement, value);
       });
 
-      expect(onChange).toBeCalledTimes(value.length);
-      expect(onChange).toBeCalledWith(value);
+      expect(onChange).toHaveBeenCalledTimes(value.length);
+      expect(onChange).toHaveBeenCalledWith(value);
 
       expect(inputElement).toHaveValue(value);
     });

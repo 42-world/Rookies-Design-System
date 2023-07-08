@@ -5,7 +5,7 @@ module.exports = {
     sourceType: 'module',
     tsconfigRootDir: __dirname,
   },
-  plugins: ['@typescript-eslint/eslint-plugin', 'jest'],
+  plugins: ['@typescript-eslint/eslint-plugin'],
   extends: [
     'eslint:recommended',
     'plugin:react/recommended',
@@ -13,6 +13,9 @@ module.exports = {
     'plugin:react-hooks/recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended',
+    'plugin:jest/recommended',
+    'plugin:jest-dom/recommended',
+    'plugin:testing-library/react',
   ],
   root: true,
   env: {
