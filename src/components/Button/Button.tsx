@@ -35,10 +35,6 @@ type ButtonProps = Partial<ButtonVariant> & {
    */
   text?: string;
   /**
-   * 버튼을 비활성화합니다.
-   */
-  disabled?: boolean;
-  /**
    * 버튼에 들어가는 아이콘입니다.
    */
   icon?: ReactElement;
