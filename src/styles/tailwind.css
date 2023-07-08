@@ -7,4 +7,66 @@
   body {
     font-family: Pretendard Variable;
   }
+
+  :root {
+    --color-text-primary: 0 0 0;
+    --color-text-secondary: 115 115 115;
+    --color-text-tertiary: 181 181 181;
+
+    --color-bg-primary: 255 255 255;
+    --color-bg-alpha-base: 255 255 255;
+    --color-bg-secondary: 243 244 246;
+    --color-bg-tertiary: 209 213 219;
+
+    --color-border-primary: 209 213 219;
+    --color-border-secondary: 243 244 246;
+
+    --color-button-secondary-bg: 235 235 235;
+
+    --color-white: 255 255 255;
+    --color-black: 0 0 0;
+    --color-green: 40 205 65;
+    --color-yellow: 255 204 0;
+    --color-cyan: 50 173 230;
+    --color-indigo: 88 86 214;
+    --color-mint: 0 199 190;
+    --color-pink: 255 45 85;
+    --color-brown: 162 132 94;
+    --color-red: 255 59 48;
+
+    --color-blue_200: 56 189 248;
+    --color-blue_300: 2 132 199;
+
+    --color-system-100: 186 230 253;
+    --color-system-200: 56 189 248;
+    --color-system-300: 2 132 199;
+
+    --color-green-100: 187 247 208;
+    --color-green-200: 34 197 94;
+    --color-green-300: 22 163 74;
+
+    --color-red-100: 254 202 202;
+    --color-red-200: 255 59 48;
+    --color-red-300: 220 38 38;
+
+    --color-yellow-100: 254 240 138;
+    --color-yellow-200: 250 204 21;
+    --color-yellow-300: 202 138 4;
+  }
+
+  :root[class~='dark'] {
+    --color-text-primary: 255 255 255;
+    --color-text-secondary: 186 186 186;
+    --color-text-tertiary: 122 122 122;
+
+    --color-bg-primary: 10 10 10;
+    --color-bg-alpha-base: 0 0 0;
+    --color-bg-secondary: 20 20 20;
+    --color-bg-tertiary: 51 51 51;
+
+    --color-border-primary: 82 82 82;
+    --color-border-secondary: 38 38 38;
+
+    --color-button-secondary-bg: 46 46 46;
+  }
 }
