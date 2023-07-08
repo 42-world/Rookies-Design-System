@@ -136,11 +136,10 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           ) : null}
         </div>
         <div
-          className={cx('flex w-full items-center rounded-lg px-4', {
-            'border border-solid border-border-primary bg-bg-primary_alpha_0 focus-within:border-color-blue_200':
-              variant === 'outlined',
-            'bg-bg-secondary dark:bg-bg-secondary_dark': variant === 'filled',
-            'border-color-red focus-within:border-color-red': hasError,
+          className={cx('flex w-full items-center rounded-lg border border-solid px-4', {
+            'border-border-primary bg-bg-primary_alpha_0 focus-within:border-color-blue_200': variant === 'outlined',
+            'border-bg-secondary bg-bg-secondary dark:bg-bg-secondary_dark': variant === 'filled',
+            '!border-color-red focus-within:border-color-red': hasError,
           })}
         >
           <input
