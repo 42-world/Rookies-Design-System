@@ -1,0 +1,10 @@
+import { render } from '@testing-library/react';
+import { {{pascalCase name}} } from '.';
+
+describe('{{pascalCase name}}의 정상 동작은 아래와 같다.', () => {
+  test('{{pascalCase name}}이 정상적으로 렌더링 된다.', () => {
+    const { container } = render(<{{pascalCase name}} />);
+
+    expect(container).toBeInTheDocument();
+  });
+});
