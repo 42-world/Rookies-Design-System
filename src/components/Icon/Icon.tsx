@@ -20,7 +20,7 @@ export function Icon({ svg: SvgComponent, size = 'medium', className, ...rest }:
       viewBox: '0 0 24 24',
       width: wh.width,
       height: wh.height,
-      className: className ?? `fill-black dark:fill-white`,
+      className: className ?? `fill-text-primary dark:fill-text-primary_dark`,
       ...rest,
     },
     null,
