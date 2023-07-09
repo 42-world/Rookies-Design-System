@@ -33,7 +33,7 @@
     "pre-build:clear": "rm -rf dist && rm style.css || true",
     "pre-build:tailwind": "tailwindcss -i ./src/styles/tailwind.css -o ./src/styles/_tailwind.css",
     "ci": "yarn concurrently 'yarn:ci:*'",
-    "ci:test": "echo no test",
+    "ci:test": "jest --ci --coverage",
     "ci:lint": "eslint 'src/**/*.{ts,tsx}' --config .eslintrc.js",
     "ci:format": "prettier --check src/**/*.{ts,tsx}",
     "ci:typecheck": "tsc --noEmit",
