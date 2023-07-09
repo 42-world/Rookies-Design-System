@@ -4,49 +4,81 @@ import { forwardRef, useId } from 'react';
 import { Text } from '../Text';
 import { useControllableState } from './useControllableState';
 
-interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
   /**
-   * 입력창에 붙는 라벨입니다.
+   * Input의 크기
+   * @default medium
+   */
+  size?: 'small' | 'medium';
+  /**
+   * Input 상단에 표시되는 라벨
    */
   label?: string;
   /**
-   * 입력값입니다.
-   */
+   * Input의 값, undefined일 경우 컴포넌트 내부에서 관리
+   **/
   value?: string;
   /**
-   * 입력창의 기본값입니다.
+   * uncontrolled 방식으로 사용할 때 Input의 기본값
    */
   defaultValue?: string;
   /**
-   * 하단에 출력되는 라벨입니다.
+   * Input 하단에 표시되는 서브 라벨
    */
   subLabel?: string;
   /**
-   * 입력창의 종류를 결정하는 변수입니다.
-   */
-  variant?: 'outline' | 'filled';
+   * Input의 스타일, outline일 경우 테두리가 있고 filled일 경우 테두리가 없음
+   * @default outline
+   **/
+  variant?: 'outlined' | 'filled';
   /**
-   * 필수 입력 칸인지 결정하는 변수입니다.
+   * Input이 필수인지 여부, true일 경우 라벨 앞에 * 표시
+   * @default false
    */
   required?: boolean;
   /**
-   * 에러 발생 여부를 결정하는 변수입니다.
+   * Input에 에러가 있는지 여부, true일 경우 테두리가 빨간색으로 표시
+   * @default false
    */
   hasError?: boolean;
   /**
-   * 입력창 우측에 붙는 컴포넌트입니다.
+   * Input 오른쪽에 추가되는 요소
+   * @example
+   * ```tsx
+   * <Input
+   *  rightAddon={<Button>전송</Button>}
+   * />
+   * ```
    */
   rightAddon?: ReactNode;
   /**
-   * 값이 변경되었을 때의 동작을 정의하는 함수입니다.
-   */
+   * Input 값이 변경될 때 호출되는 이벤트
+   * @param value 변경된 값
+   * @example
+   * ```tsx
+   * <Input
+   *  onValueChange={(value) => console.log(value)}
+   * />
+   * ```
+   **/
   onValueChange?: (value: string) => void;
 }
 
+/**
+ * `Input` 컴포넌트는 사용자의 입력을 받는 컴포넌트입니다.
+ * @example
+ * ```tsx
+ * <Input
+ *  label="이메일"
+ *  placeholder="이메일을 입력해주세요."
+ * />
+ * ```
+ */
 export const Input = forwardRef<HTMLInputElement, InputProps>(
   (
     {
       id: idFromProps,
+      size = 'medium',
       label,
       value: valueFromProps,
       defaultValue,
@@ -56,6 +88,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       rightAddon,
       hasError,
       maxLength,
+      disabled,
       onValueChange: onValueChangeFromProps,
       ...restProps
     },
@@ -73,7 +106,11 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     };
 
     return (
-      <div className="flex flex-col space-y-2">
+      <div
+        className={cx('flex flex-col space-y-2', {
+          'opacity-40': disabled,
+        })}
+      >
         <div className="flex w-full">
           {label && (
             <label
@@ -99,20 +136,28 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           ) : null}
         </div>
         <div
-          className={cx('flex w-full items-center rounded-lg px-4', {
-            'border border-solid border-border-primary bg-bg-primary_alpha_0 focus-within:border-color-blue_200':
-              variant === 'outline',
-            'bg-bg-secondary dark:bg-bg-secondary_dark': variant === 'filled',
-            'border-color-red focus-within:border-color-red': hasError,
+          className={cx('flex w-full items-center rounded-lg border border-solid px-4', {
+            'border-border-primary bg-transparent focus-within:border-color-blue_200 dark:border-border-primary_dark':
+              variant === 'outlined',
+            'border-transparent bg-bg-secondary dark:bg-bg-secondary_dark': variant === 'filled',
+            '!border-color-red focus-within:border-color-red': hasError,
           })}
         >
           <input
             ref={ref}
             id={idFromProps ?? id}
-            className="h-[44px] w-full bg-transparent text-base font-normal leading-[1.5] text-text-primary placeholder:text-text-tertiary focus:outline-none dark:text-text-primary_dark dark:placeholder:text-text-tertiary_dark"
+            className={cx(
+              'w-full bg-transparent text-base font-normal leading-[1.5] text-text-primary placeholder:text-text-tertiary focus:outline-none dark:text-text-primary_dark dark:placeholder:text-text-tertiary_dark',
+              {
+                'h-[44px]': size === 'medium',
+                'h-[32px]': size === 'small',
+                'cursor-not-allowed': disabled,
+              },
+            )}
             value={value}
             onChange={handleChange}
             maxLength={maxLength}
+            disabled={disabled}
             {...restProps}
           />
           {rightAddon && <span className="flex">{rightAddon}</span>}

@@ -17,17 +17,20 @@ export const useControllableState = <T>({
   const isControlled = valueFromProps != undefined;
   const value = isControlled ? valueFromProps : uncontrolledValue;
 
-  const onValueChange = useCallback((nextState: T | ((value: T) => T)) => {
-    if (typeof nextState === 'function') {
-      nextState = (nextState as (value: T) => T)(value);
-    }
+  const onValueChange = useCallback(
+    (nextState: T | ((value: T) => T)) => {
+      if (typeof nextState === 'function') {
+        nextState = (nextState as (value: T) => T)(value);
+      }
 
-    if (!isControlled) {
-      setUncontrolledValue(nextState);
-    }
+      if (!isControlled) {
+        setUncontrolledValue(nextState);
+      }
 
-    onChange?.(nextState);
-  }, []);
+      onChange?.(nextState);
+    },
+    [isControlled, onChange, value],
+  );
 
   return [value, onValueChange] as const;
 };

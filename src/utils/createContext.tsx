@@ -15,6 +15,7 @@ export function createContext<ContextValueType extends object | null>(
   ) {
     const { children, ...contexts } = props;
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     const value = useMemo(() => contexts, Object.values(contexts)) as ContextValueType;
 
     return <Context.Provider value={value}>{children}</Context.Provider>;
