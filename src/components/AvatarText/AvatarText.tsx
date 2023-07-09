@@ -3,10 +3,25 @@ import { Avatar } from '../Avatar';
 import { Text } from '../Text';
 
 interface Props {
+  /**
+   * 사진의 주소입니다.
+   */
   src: string;
+  /**
+   * 사진의 대체 텍스트입니다.
+   */
   alt?: string;
+  /**
+   * 사진의 가로 크기입니다.
+   */
   size?: '40px' | '64px';
+  /**
+   * 본문입니다. 대개 사용자의 이름을 나타냅니다.
+   */
   mainText: string;
+  /**
+   * 부가적인 설명이 들어갑니다.
+   */
   subText?: string;
 }
 

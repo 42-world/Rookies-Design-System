@@ -13,6 +13,13 @@ const meta: Meta<Component> = {
         eq: 'text',
       },
     },
+    disabled: {
+      description: '버튼을 비활성화합니다.',
+      table: {
+        type: { summary: 'boolean' },
+      },
+      control: { type: 'boolean' },
+    },
   },
 };
 
@@ -56,6 +63,13 @@ export const OnlyIcon: Story = {
 export const OnlyText: Story = {
   args: {
     text: 'Lorem Ipsum',
+  },
+};
+
+export const Disabled: Story = {
+  args: {
+    text: 'Lorem Ipsum',
+    disabled: true,
   },
 };
 

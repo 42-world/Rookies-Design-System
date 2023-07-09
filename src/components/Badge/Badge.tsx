@@ -4,8 +4,17 @@ import { twMerge } from 'tailwind-merge';
 import { Text } from '../Text';
 
 interface Props {
+  /**
+   * 뱃지의 배경색입니다.
+   */
   color?: 'indigo' | 'yellow' | 'mint' | 'cyan' | 'blue' | 'pink' | 'brown' | 'outline' | 'mono';
+  /**
+   * 뱃지에 들어가는 텍스트입니다.
+   */
   text: string;
+  /**
+   * 뱃지의 className입니다.
+   */
   className?: string;
 }
 

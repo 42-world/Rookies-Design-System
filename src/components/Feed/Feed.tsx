@@ -8,17 +8,53 @@ import CommentIcon from '@material-design-icons/svg/filled/comment.svg';
 import LikeIcon from '@material-design-icons/svg/filled/thumb_up.svg';
 
 interface Props {
+  /**
+   * 게시글 작성자의 닉네임입니다.
+   */
   username: string;
+  /**
+   * 게시글 작성 시간입니다.
+   */
   timestamp: string;
+  /**
+   * 게시글 작성자의 프로필 사진 주소입니다.
+   */
   userProfileSrc: string;
+  /**
+   * 게시글의 썸네일 사진 주소입니다.
+   */
   thumbnailSrc: string;
+  /**
+   * 게시글 제목입니다.
+   */
   title: string;
+  /**
+   * 게시글 본문입니다.
+   */
   contents: string;
+  /**
+   * 게시글 좋아요 여부입니다.
+   */
   isLiked?: boolean;
+  /**
+   * 좋아요의 갯수입니다.
+   */
   likeCount?: number;
+  /**
+   * 댓글 클릭 여부입니다.
+   */
   isCommentClicked?: boolean;
+  /**
+   * 댓글의 갯수입니다.
+   */
   commentCount?: number;
+  /**
+   * 좋아요 버튼을 클릭했을 때의 동작을 정의하는 함수입니다.
+   */
   onClickLike?: () => void;
+  /**
+   * 댓글 버튼을 클릭했을 때의 동작을 정의하는 함수입니다.
+   */
   onClickComment?: () => void;
 }
 

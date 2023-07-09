@@ -1,6 +1,6 @@
 {
   "name": "@rookies-team/design",
-  "version": "0.19.5",
+  "version": "0.23.0",
   "author": "Rookies Team",
   "description": "Rookies Design System",
   "homepage": "https://github.com/42-world/rookies-Design-System",
@@ -84,6 +84,8 @@
     "eslint": "^8.26.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
     "framer": "^2.3.0",
     "fs-extra": "^10.0.0",
     "globby": "^11.0.4",

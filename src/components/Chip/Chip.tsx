@@ -4,8 +4,17 @@ import { Icon } from '../Icon';
 import { Text } from '../Text';
 
 type Props = {
+  /**
+   * 칩에 들어가는 텍스트입니다.
+   */
   text?: string;
+  /**
+   * 칩 선택 여부를 나타냅니다.
+   */
   isSelected?: boolean;
+  /**
+   * 칩에 들어가는 아이콘입니다.
+   */
   icon?: ReactElement;
 };
 
