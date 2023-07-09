@@ -1,5 +1,5 @@
 import { ControlType } from 'framer';
-import { ComponentProps, useRef } from 'react';
+import { ComponentProps, useEffect, useState } from 'react';
 import { applyFramerProperties, FramerProvider } from '../../common/framer';
 import { Input as _Input } from './Input';
 
@@ -26,14 +26,18 @@ const transformProps = (props: InputProps): ComponentProps<typeof _Input> => {
 };
 
 export function Input(props: InputProps) {
-  const inputRef = useRef<HTMLInputElement>(null);
+  const [value, setValue] = useState(props.value);
+
+  useEffect(() => {
+    setValue(props.value);
+  }, [props.value]);
 
   const { children, ...transformedProps } = transformProps(props);
   void children;
 
   return (
     <FramerProvider>
-      <_Input ref={inputRef} {...transformedProps} />
+      <_Input {...transformedProps} value={value} onValueChange={setValue} />
     </FramerProvider>
   );
 }
