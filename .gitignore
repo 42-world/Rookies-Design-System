@@ -6,3 +6,4 @@ src/styles/_*.css
 .pages
 style.css
 .idea
+coverage

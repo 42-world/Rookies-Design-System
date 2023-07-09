@@ -2,7 +2,7 @@ import cx from 'classnames';
 import type { InputHTMLAttributes, ReactNode } from 'react';
 import { forwardRef, useId } from 'react';
 import { Text } from '../Text';
-import { useControllableState } from './useControllableState';
+import { useControllableState } from '../../utils/useControllableState';
 
 interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
   /**
@@ -102,6 +102,9 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     });
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      if (maxLength && e.target.value.length > maxLength) {
+        return;
+      }
       setValue(e.target.value);
     };
 
