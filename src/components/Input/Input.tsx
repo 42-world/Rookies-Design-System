@@ -121,7 +121,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           className,
         )}
       >
-        {showTopAddon && (
+        {showTopAddon ? (
           <div className="mb-2 flex w-full">
             {label && (
               <label
@@ -146,7 +146,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
               />
             ) : null}
           </div>
-        )}
+        ) : null}
         <div
           className={cx('flex w-full items-center rounded-lg border border-solid px-4', {
             'border-border-primary bg-transparent focus-within:border-color-blue_200 dark:border-border-primary_dark':
