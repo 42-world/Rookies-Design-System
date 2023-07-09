@@ -88,6 +88,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       rightAddon,
       hasError,
       maxLength,
+      disabled,
       onValueChange: onValueChangeFromProps,
       ...restProps
     },
@@ -108,7 +109,11 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     };
 
     return (
-      <div className="flex flex-col space-y-2">
+      <div
+        className={cx('flex flex-col space-y-2', {
+          'opacity-40': disabled,
+        })}
+      >
         <div className="flex w-full">
           {label && (
             <label
@@ -134,11 +139,11 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           ) : null}
         </div>
         <div
-          className={cx('flex w-full items-center rounded-lg px-4', {
-            'border border-solid border-border-primary bg-bg-primary_alpha_0 focus-within:border-color-blue_200':
+          className={cx('flex w-full items-center rounded-lg border border-solid px-4', {
+            'border-border-primary bg-transparent focus-within:border-color-blue_200 dark:border-border-primary_dark':
               variant === 'outlined',
-            'bg-bg-secondary dark:bg-bg-secondary_dark': variant === 'filled',
-            'border-color-red focus-within:border-color-red': hasError,
+            'border-transparent bg-bg-secondary dark:bg-bg-secondary_dark': variant === 'filled',
+            '!border-color-red focus-within:border-color-red': hasError,
           })}
         >
           <input
@@ -149,11 +154,13 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
               {
                 'h-[44px]': size === 'medium',
                 'h-[32px]': size === 'small',
+                'cursor-not-allowed': disabled,
               },
             )}
             value={value}
             onChange={handleChange}
             maxLength={maxLength}
+            disabled={disabled}
             {...restProps}
           />
           {rightAddon && <span className="flex">{rightAddon}</span>}

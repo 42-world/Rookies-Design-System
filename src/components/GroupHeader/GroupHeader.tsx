@@ -20,7 +20,7 @@ export function GroupHeader({ href, text }: Props) {
       href={href}
     >
       <Text text={text} size="heading3" weight="semibold" />
-      <Icon svg={<ChevronRight />} className="h-6 w-6" />
+      <Icon svg={<ChevronRight />} className="h-6 w-6 fill-text-primary dark:fill-text-primary_dark" />
     </a>
   );
 }
