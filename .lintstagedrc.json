@@ -1,3 +1,3 @@
 {
-  "src/**/*.{ts,tsx}": ["yarn ci"]
+  "src/**/*.{ts,tsx}": ["yarn ci:lint", "yarn ci:format", "bash -c 'yarn ci:typecheck'"]
 }
