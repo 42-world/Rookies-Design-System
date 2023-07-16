@@ -24,6 +24,11 @@ export default function (
       },
       {
         type: 'add',
+        path: 'src/components/{{pascalCase name}}/{{pascalCase name}}.test.tsx',
+        templateFile: '.templates/componentTest.hbs',
+      },
+      {
+        type: 'add',
         path: 'src/components/{{pascalCase name}}/{{pascalCase name}}.stories.ts',
         templateFile: '.templates/story.hbs',
       },

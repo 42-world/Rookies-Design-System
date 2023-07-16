@@ -15,6 +15,7 @@ type Props = Omit<OriginalProps, 'icon'> & {
   icon: FramerIconType;
   variant: OriginalProps['variant'];
   activated: boolean;
+  disabled: boolean;
 };
 
 export function Button({ icon, ...props }: Props) {
@@ -51,5 +52,10 @@ applyFramerProperties(Button, {
     hidden(props) {
       return !(props.variant === 'text');
     },
+  },
+  disabled: {
+    title: 'Disabled',
+    type: ControlType.Boolean,
+    defaultValue: false,
   },
 });
