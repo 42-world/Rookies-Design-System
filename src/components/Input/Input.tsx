@@ -1,8 +1,8 @@
 import cx from 'classnames';
 import type { InputHTMLAttributes, ReactNode } from 'react';
 import { forwardRef, useId } from 'react';
-import { Text } from '../Text';
 import { useControllableState } from '../../utils/useControllableState';
+import { Text } from '../Text';
 
 interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
   /**
@@ -89,6 +89,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       hasError,
       maxLength,
       disabled,
+      className
       onValueChange: onValueChangeFromProps,
       ...restProps
     },
@@ -112,7 +113,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       <div
         className={cx('flex flex-col space-y-2', {
           'opacity-40': disabled,
-        })}
+        }, className)}
       >
         <div className="flex w-full">
           {label && (
@@ -161,6 +162,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             onChange={handleChange}
             maxLength={maxLength}
             disabled={disabled}
+            required={required}
             {...restProps}
           />
           {rightAddon && <span className="flex">{rightAddon}</span>}
