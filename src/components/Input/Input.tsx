@@ -89,7 +89,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       hasError,
       maxLength,
       disabled,
-      className
+      className,
       onValueChange: onValueChangeFromProps,
       ...restProps
     },
@@ -111,9 +111,13 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
 
     return (
       <div
-        className={cx('flex flex-col space-y-2', {
-          'opacity-40': disabled,
-        }, className)}
+        className={cx(
+          'flex flex-col space-y-2',
+          {
+            'opacity-40': disabled,
+          },
+          className,
+        )}
       >
         <div className="flex w-full">
           {label && (
