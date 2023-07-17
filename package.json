@@ -40,8 +40,7 @@
     "format:fix": "prettier --cache --write ./src",
     "version": "echo $npm_package_version",
     "template": "plop",
-    "postinstall": "node .script/postinstall.js",
-    "prepare": "husky install && bash -c 'chmod ug+x .husky/*'"
+    "prepare": "node .script/postinstall.js && husky install && bash -c 'chmod ug+x .husky/*'"
   },
   "dependencies": {
     "@svgr/core": "^8.0.0",
