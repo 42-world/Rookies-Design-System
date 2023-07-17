@@ -22,7 +22,7 @@ jobs:
       - name: Remove Alpha Pages
         id: remove
         run: |
-          file_list=$(ls $base_path | grep alpha$pr_number)
+          file_list=$(ls $base_path | grep alpha$pr_number | cat)
           delimiter="$(openssl rand -hex 8)"
           echo "file_list<<$delimiter" >> $GITHUB_OUTPUT
           echo "$file_list" >> $GITHUB_OUTPUT
