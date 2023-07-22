@@ -109,40 +109,44 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       setValue(e.target.value);
     };
 
+    const showTopAddon = label || maxLength;
+
     return (
       <div
         className={cx(
-          'flex flex-col space-y-2',
+          'flex flex-col',
           {
             'opacity-40': disabled,
           },
           className,
         )}
       >
-        <div className="flex w-full">
-          {label && (
-            <label
-              htmlFor={idFromProps ?? id}
-              className={cx(
-                'text-sm font-normal leading-[1.8] text-text-secondary before:mr-1 dark:text-text-secondary_dark',
-                {
-                  'before:content-["*"]': required,
-                },
-              )}
-            >
-              {label}
-            </label>
-          )}
-          {maxLength ? (
-            <Text
-              className="ml-auto"
-              text={`(${value.length}/${maxLength})`}
-              size="body2"
-              weight="regular"
-              color="secondary"
-            />
-          ) : null}
-        </div>
+        {showTopAddon ? (
+          <div className="mb-2 flex w-full">
+            {label && (
+              <label
+                htmlFor={idFromProps ?? id}
+                className={cx(
+                  'text-sm font-normal leading-[1.8] text-text-secondary before:mr-1 dark:text-text-secondary_dark',
+                  {
+                    'before:content-["*"]': required,
+                  },
+                )}
+              >
+                {label}
+              </label>
+            )}
+            {maxLength ? (
+              <Text
+                className="ml-auto"
+                text={`(${value.length}/${maxLength})`}
+                size="body2"
+                weight="regular"
+                color="secondary"
+              />
+            ) : null}
+          </div>
+        ) : null}
         <div
           className={cx('flex w-full items-center rounded-lg border border-solid px-4', {
             'border-border-primary bg-transparent focus-within:border-color-blue_200 dark:border-border-primary_dark':
@@ -171,7 +175,11 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           />
           {rightAddon && <span className="flex">{rightAddon}</span>}
         </div>
-        {subLabel && <Text text={subLabel} size="body2" weight="regular" color={hasError ? 'red_200' : 'secondary'} />}
+        {subLabel && (
+          <div className="mt-2">
+            <Text text={subLabel} size="body2" weight="regular" color={hasError ? 'red_200' : 'secondary'} />
+          </div>
+        )}
       </div>
     );
   },

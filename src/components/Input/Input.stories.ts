@@ -9,10 +9,17 @@ const meta: Meta<Component> = {
 
 type Story = StoryObj<Component>;
 export const Primary: Story = {
+  argTypes: {
+    maxLength: {
+      description: '최대 글자 수',
+      control: {
+        type: 'number',
+      },
+    },
+  },
   args: {
     label: '필수 항목',
     placeholder: '',
-    maxLength: 10,
     variant: 'outlined',
     hasError: false,
     required: true,
