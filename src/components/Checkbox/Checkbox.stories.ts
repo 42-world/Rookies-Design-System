@@ -12,7 +12,7 @@ type Story = StoryObj<Component>;
 export const Primary: Story = {
   // Add your story args here
   args: {
-    labelText: 'label',
+    children: 'label',
     checked: false,
     disabled: false,
   },
