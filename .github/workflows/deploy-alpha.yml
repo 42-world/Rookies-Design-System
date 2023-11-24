@@ -86,6 +86,7 @@ jobs:
           echo "pack_name=$(ls *.tgz)" >> $GITHUB_OUTPUT
 
       - name: Check if Still Pr is Open status
+        id: check-pr-status
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
@@ -95,10 +96,12 @@ jobs:
 
           if [ "$PR_STATE" != "open" ]; then
             echo "It seems that the PR is closed."
-            exit 1
           fi
 
+          echo "pr_state=$PR_STATE" >> $GITHUB_OUTPUT
+
       - name: Commit Alpha Pages
+        if: ${{ steps.check-pr-status.outputs.pr_state == 'open' }}
         id: deploy
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
@@ -108,6 +111,7 @@ jobs:
           branch: main
 
       - name: Fetch Build Status Url
+        if: ${{ steps.check-pr-status.outputs.pr_state == 'open' }}
         id: fetch-build-status
         run: |
           url=$(bash .script/fetch-deploy-url.sh '${{ steps.deploy.outputs.commit_hash }}')
@@ -115,6 +119,7 @@ jobs:
           echo "url=$url" >> $GITHUB_OUTPUT
 
       - name: Create Message
+        if: ${{ steps.check-pr-status.outputs.pr_state == 'open' }}
         run: |
           echo '## Alpha-${{ env.pr_number }} - ${{ env.sha }}
 
@@ -132,6 +137,7 @@ jobs:
           ```' > message.txt
 
       - name: Message to Output
+        if: ${{ steps.check-pr-status.outputs.pr_state == 'open' }}
         id: message
         run: |
           body="$(cat message.txt)"
@@ -141,12 +147,14 @@ jobs:
           echo "$delimiter" >> $GITHUB_OUTPUT
 
       - name: Comment PR Alpha Build
+        if: ${{ steps.check-pr-status.outputs.pr_state == 'open' }}
         uses: thollander/actions-comment-pull-request@v2
         with:
           message: ${{ steps.message.outputs.body }}
           comment_tag: execution
 
       - name: Comment commit
+        if: ${{ steps.check-pr-status.outputs.pr_state == 'open' }}
         uses: peter-evans/commit-comment@v2
         with:
           body: ${{ steps.message.outputs.body }}
